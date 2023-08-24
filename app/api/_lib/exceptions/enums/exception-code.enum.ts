@@ -4,4 +4,7 @@ export enum ExceptionCode {
 	InvalidBody = 'E_INVALID_BODY',
 
 	TeamNotFound = 'E_TEAM_NOT_FOUND',
+
+	MissingToken = 'E_MISSING_TOKEN',
+	IncorrectToken = 'E_INCORRECT_TOKEN',
 }

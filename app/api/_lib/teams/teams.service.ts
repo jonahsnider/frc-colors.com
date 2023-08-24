@@ -65,6 +65,30 @@ export class TeamsService {
 		return new TeamNotFoundException(teamNumber);
 	}
 
+	async saveTeamColors(teamNumber: TeamNumberSchema, colors: Omit<TeamColors, 'verified'>): Promise<void> {
+		const teamColor = { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary };
+
+		await this.prisma.team.upsert({
+			where: {
+				id: teamNumber,
+			},
+			update: {
+				teamColor: {
+					upsert: {
+						create: teamColor,
+						update: { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary },
+					},
+				},
+			},
+			create: {
+				id: teamNumber,
+				teamColor: {
+					create: teamColor,
+				},
+			},
+		});
+	}
+
 	private async findSavedTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColors | undefined> {
 		const teamColors = await this.prisma.teamColor.findUnique({ where: { teamId: teamNumber } });
 
