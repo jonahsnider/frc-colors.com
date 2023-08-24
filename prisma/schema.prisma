@@ -4,8 +4,6 @@
 datasource db {
   provider          = "postgresql"
   url               = env("POSTGRES_PRISMA_URL")
-  directUrl         = env("POSTGRES_URL_NON_POOLING")
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 generator client {
@@ -30,7 +28,7 @@ model Team {
 
 model TeamColor {
   team   Team @relation(fields: [teamId], references: [id])
-  teamId Int  @unique
+  teamId Int  @unique @map("team_id")
 
   /// The hexadecimal color code of the team's primary color
   primaryColorHex String @map("primary_color_hex")
@@ -41,12 +39,16 @@ model TeamColor {
   /// When this team's colors were verified
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+	@@map("team_colors")
 }
 
 enum SuggestionStatus {
   PENDING
   ACCEPTED
   REJECTED
+
+  @@map("suggestion_status")
 }
 
 model ColorSuggestion {
