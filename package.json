@@ -10,12 +10,15 @@
     "validate-prisma": "prisma validate"
   },
   "dependencies": {
+    "@heroicons/react": "2.0.18",
     "@jonahsnider/util": "10.0.2",
     "@prisma/client": "5.2.0",
     "@types/node": "20.5.4",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "clsx": "2.0.0",
+    "color-luminance": "2.1.0",
     "convert": "4.13.1",
     "extract-colors": "3.0.0",
     "get-pixels": "3.3.3",

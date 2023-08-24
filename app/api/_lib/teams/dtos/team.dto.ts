@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { TeamNumberSchema } from './team-number.dto';
-import { HexColorCode } from '../../colors/dtos/hex-color-code.dto';
+import { HexColorCodeSchema } from '../../colors/dtos/hex-color-code.dto';
 
 export const TeamSchema = z.object({
 	teamNumber: TeamNumberSchema,

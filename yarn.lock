@@ -12,6 +12,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:2.0.18":
+  version: 2.0.18
+  resolution: "@heroicons/react@npm:2.0.18"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 597e8668818623d568a302e343ef06b69f62ce297c14b88c2ebbfed0c0f00cd85ec44fae33ec8a249931b4e7dcf145743ae3198095a9f4682108de5155f5f4c3
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -660,12 +669,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^2.0.1":
   version: 2.0.1
   resolution: "color-convert@npm:2.0.1"
   dependencies:
     color-name: ~1.1.4
   checksum: 79e6bdb9fd479a205c71d89574fccfb22bd9053bd98c6c4d870d65c132e5e904e6034978e55b43d69fcaa7433af2016ee203ce76eeba9cfa554b373e7f7db336
+  languageName: node
+  linkType: hard
+
+"color-luminance@npm:2.1.0":
+  version: 2.1.0
+  resolution: "color-luminance@npm:2.1.0"
+  checksum: 77e89018d884c589dc0dee58609beed7cd1447182d3b293b06bbdc7e1d90cc8ccaaa61e71f6e07c872356230759800c22ad8251652728d68dee4c16d93cd94ba
   languageName: node
   linkType: hard
 
@@ -1008,6 +1031,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frc-colors@workspace:."
   dependencies:
+    "@heroicons/react": 2.0.18
     "@jonahsnider/util": 10.0.2
     "@prisma/client": 5.2.0
     "@types/get-pixels": 3.3.2
@@ -1015,6 +1039,8 @@ __metadata:
     "@types/react": 18.2.21
     "@types/react-dom": 18.2.7
     autoprefixer: 10.4.15
+    clsx: 2.0.0
+    color-luminance: 2.1.0
     convert: 4.13.1
     extract-colors: 3.0.0
     get-pixels: 3.3.3

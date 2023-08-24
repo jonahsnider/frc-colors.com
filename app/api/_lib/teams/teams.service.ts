@@ -2,7 +2,7 @@ import { ColorGenService, colorGenService } from './color-gen/color-gen.service'
 import { TeamColors } from '../colors/interfaces/team-colors';
 import { PrismaClient } from '@prisma/client';
 import { prisma } from '../prisma';
-import { HexColorCode } from '../colors/dtos/hex-color-code.dto';
+import { HexColorCodeSchema } from '../colors/dtos/hex-color-code.dto';
 import { TeamNotFoundException } from './exceptions/team-not-found.exception';
 import { TbaService, tbaService } from '../tba/tba.service';
 import { TeamNumberSchema } from './dtos/team-number.dto';

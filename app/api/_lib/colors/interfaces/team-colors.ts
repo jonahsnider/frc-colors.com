@@ -1,7 +1,7 @@
-import { HexColorCode } from '../dtos/hex-color-code.dto';
+import { HexColorCodeSchema } from '../dtos/hex-color-code.dto';
 
 export interface TeamColors {
-	primary: HexColorCode;
-	secondary: HexColorCode;
+	primary: HexColorCodeSchema;
+	secondary: HexColorCodeSchema;
 	verified: boolean;
 }
