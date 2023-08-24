@@ -55,6 +55,10 @@ export class TbaService {
 			},
 		});
 
+		if (response.status === 404) {
+			return [];
+		}
+
 		if (!response.ok) {
 			throw new Error(`Failed to fetch team media for team ${teamNumber} from TBA: ${await response.text()}`);
 		}
