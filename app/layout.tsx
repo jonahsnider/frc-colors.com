@@ -3,11 +3,12 @@ import { Lato } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer';
-import { description, siteName } from './shared-metadata';
+import { description, metadataBase, siteName } from './shared-metadata';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
+	metadataBase: metadataBase,
 	title: { default: siteName, template: `%s - ${siteName}` },
 	description,
 	openGraph: {
