@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"prisma.prisma",
+		"rome.rome",
+		"editorconfig.editorconfig"
+	]
+}

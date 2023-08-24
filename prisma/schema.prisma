@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Team {
+  /// The team's number
+  id Int @id @unique
+
+  /// Color suggestions for this team
+  colorSuggestions ColorSuggestion[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// This team's colors
+  teamColor TeamColor?
+
+  @@map("teams")
+}
+
+model TeamColor {
+  team   Team @relation(fields: [teamId], references: [id])
+  teamId Int  @unique
+
+  /// The hexadecimal color code of the team's primary color
+  primaryColorHex String @map("primary_color_hex")
+
+  /// The hexadecimal color code of the team's secondary color
+  secondaryColorHex String @map("secondary_color_hex")
+
+  /// When this team's colors were verified
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+enum SuggestionStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model ColorSuggestion {
+  /// The ID of this suggestion
+  id String @id @default(uuid())
+
+  team   Team @relation(fields: [teamId], references: [id])
+  teamId Int
+
+  /// The hexadecimal color code of the team's primary color
+  primaryColorHex String @map("primary_color_hex")
+
+  /// The hexadecimal color code of the team's secondary color
+  secondaryColorHex String @map("secondary_color_hex")
+
+  status SuggestionStatus
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("color_suggestions")
+}

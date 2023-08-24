@@ -1,0 +1,23 @@
+{
+	"$schema": "https://docs.rome.tools/schemas/12.1.3/schema.json",
+	"organizeImports": {
+		"enabled": false
+	},
+	"formatter": {
+		"lineWidth": 120
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"files": {
+		"ignore": [".next"]
+	}
+}
