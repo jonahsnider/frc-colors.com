@@ -16,15 +16,15 @@ type Props = {
 
 export default function TeamCard({ teamName, teamNumber, avatarUrl, colors }: Props) {
 	return (
-		<div className='bg-neutral-200 rounded my-4 p-4 flex space-x-4 justify-between'>
+		<div className='bg-neutral-200 rounded my-4 p-4 flex max-md:flex-col justify-between space-x-4'>
 			{/* Image container */}
 
-			<div>
+			<div className='max-h-48'>
 				<TeamImage avatarUrl={avatarUrl} colors={colors} />
 			</div>
 
 			{/* Team number div is at top, color div is at bottom */}
-			<div className='basis-3/4 space-y-4 flex flex-col justify-between'>
+			<div className='space-y-4 flex flex-col justify-between'>
 				{/* Team number & name */}
 				<div className='flex space-x-1 items-center'>
 					<p className='text-2xl font-bold'>
@@ -45,7 +45,7 @@ export default function TeamCard({ teamName, teamNumber, avatarUrl, colors }: Pr
 				{colors && (
 					<div className='flex'>
 						{/* Colors */}
-						<div className='flex flex-col space-y-4'>
+						<div className='flex max-md:flex-row max-md:space-x-4 max-md:justify-center md:flex-col md:space-y-4'>
 							<ColorSwatch hex={colors.primaryHex} />
 							<ColorSwatch hex={colors.secondaryHex} />
 						</div>

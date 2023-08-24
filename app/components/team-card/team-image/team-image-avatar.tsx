@@ -21,14 +21,18 @@ export default function TeamImageAvatar({ avatarUrl }: { avatarUrl: string }) {
 	};
 
 	return (
-		<button type='button' onClick={cycleBackgroundColor}>
+		<button
+			type='button'
+			onClick={cycleBackgroundColor}
+			className={clsx('transition-all rounded', {
+				'bg-[#ED1C24]': backgroundColor === BackgroundColor.Red,
+				'bg-[#0066B3]': backgroundColor === BackgroundColor.Blue,
+			})}
+		>
 			<img
 				src={avatarUrl}
 				alt='Team avatar'
-				className={clsx('transition-all rounded', {
-					'bg-[#ED1C24]': backgroundColor === BackgroundColor.Red,
-					'bg-[#0066B3]': backgroundColor === BackgroundColor.Blue,
-				})}
+				className='p-1'
 				style={{
 					imageRendering: 'pixelated',
 				}}
