@@ -42,6 +42,10 @@ export class TbaService {
 
 	/** Get a team's media for a given year. */
 	private async getTeamMediaForYearRaw(teamNumber: TeamNumberSchema, year: number): Promise<TbaTeamMediaForYear> {
+		if (!this.config.tbaApiKey) {
+			return [];
+		}
+
 		const response = await fetch(`${TbaService.BASE_API_URL}/team/frc${teamNumber}/media/${year}`, {
 			headers: {
 				'X-TBA-Auth-Key': this.config.tbaApiKey,
@@ -59,6 +63,10 @@ export class TbaService {
 	}
 
 	private async getTeamRaw(teamNumber: TeamNumberSchema): Promise<TbaTeam | undefined> {
+		if (!this.config.tbaApiKey) {
+			return undefined;
+		}
+
 		const response = await fetch(`${TbaService.BASE_API_URL}/team/frc${teamNumber}`, {
 			headers: {
 				'X-TBA-Auth-Key': this.config.tbaApiKey,
