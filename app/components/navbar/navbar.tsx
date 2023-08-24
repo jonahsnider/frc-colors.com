@@ -27,7 +27,7 @@ export default function Navbar() {
 					return (
 						<li
 							key={item.content}
-							className='px-1.5 py-0.5 self-center rounded transition hover:bg-neutral-700 active:bg-neutral-600'
+							className='px-1.5 py-0.5 self-center rounded transition-colors hover:bg-neutral-700 active:bg-neutral-600'
 						>
 							<Link href={item.href} className='text-lg'>
 								{item.content}

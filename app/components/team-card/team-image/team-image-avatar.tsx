@@ -24,7 +24,7 @@ export default function TeamImageAvatar({ avatarUrl }: { avatarUrl: string }) {
 		<button
 			type='button'
 			onClick={cycleBackgroundColor}
-			className={clsx('transition-all rounded', {
+			className={clsx('transition-colors rounded', {
 				'bg-[#ED1C24]': backgroundColor === BackgroundColor.Red,
 				'bg-[#0066B3]': backgroundColor === BackgroundColor.Blue,
 			})}
