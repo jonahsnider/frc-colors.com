@@ -16,10 +16,12 @@ type Props = {
 
 export default function TeamCard({ teamName, teamNumber, avatarUrl, colors }: Props) {
 	return (
-		<div className='bg-neutral-200 rounded p-4 flex space-x-4 justify-between'>
+		<div className='bg-neutral-200 rounded my-4 p-4 flex space-x-4 justify-between'>
 			{/* Image container */}
 
-			<TeamImage avatarUrl={avatarUrl} colors={colors} />
+			<div>
+				<TeamImage avatarUrl={avatarUrl} colors={colors} />
+			</div>
 
 			{/* Team number div is at top, color div is at bottom */}
 			<div className='basis-3/4 space-y-4 flex flex-col justify-between'>

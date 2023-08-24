@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "rome check .",
-		"lint:fix": "rome check . --apply",
+    "lint:fix": "rome check . --apply",
     "start": "next start",
     "validate-prisma": "prisma validate"
   },
@@ -29,6 +29,7 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
+    "use-debounce": "9.0.4",
     "zod": "3.22.2",
     "zod-validation-error": "1.5.0"
   },
