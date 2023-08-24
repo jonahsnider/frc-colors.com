@@ -35,6 +35,11 @@ export class ColorGenService {
 		}
 
 		const pixels = await this.getPixels(teamAvatar);
+
+		if (!pixels) {
+			return undefined;
+		}
+
 		let colors = await this.extractColors(pixels, true);
 
 		// If there aren't enough colors, try extracting again with less strict filtering
@@ -57,8 +62,10 @@ export class ColorGenService {
 		};
 	}
 
-	private async getPixels(teamAvatar: Buffer): Promise<NdArray<Uint8Array>> {
-		return getPixels(teamAvatar, 'image/png');
+	private async getPixels(teamAvatar: Buffer): Promise<NdArray<Uint8Array> | undefined> {
+		try {
+			return await getPixels(teamAvatar, 'image/png');
+		} catch {}
 	}
 
 	private async extractColors(
