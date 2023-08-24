@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const images: string[] = [];
 
 	if (team.avatarUrl) {
-		images.push(team.avatarUrl);
+		images.push(`/api/opengraph/team/${teamNumber}/avatar`);
 	}
 
 	return {
