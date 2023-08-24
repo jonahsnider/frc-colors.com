@@ -25,9 +25,8 @@ export default function Navbar() {
 			<ul className='flex flex-row space-x-2'>
 				{items.map((item, index) => {
 					return (
-						// eslint-disable-next-line lint/suspicious/noArrayIndexKey
 						<li
-							key={index}
+							key={item.content}
 							className='px-1.5 py-0.5 self-center rounded transition hover:bg-neutral-700 active:bg-neutral-600'
 						>
 							<Link href={item.href} className='text-lg'>
