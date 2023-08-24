@@ -9,7 +9,7 @@ import { BaseHttpException } from '../../_lib/exceptions/base.exception';
 
 export async function GET(
 	request: NextRequest,
-	context: { params: { ids: string } },
+	context: { params: { id: string } },
 ): Promise<NextResponse<TeamSchema | ExceptionSchema>> {
 	const params = validateParams(context, z.object({ id: TeamNumberStringSchema }));
 
