@@ -16,33 +16,18 @@ async function getInternalTeam(teamNumber: TeamNumberSchema) {
 
 	const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;
 
-	if (teamName instanceof BaseHttpException) {
-		return {
-			teamNumber,
-			teamName: undefined,
-			avatarUrl,
-			colors: undefined,
-		};
-	}
-
-	if (colors instanceof BaseHttpException) {
-		return {
-			teamNumber,
-			teamName: undefined,
-			avatarUrl,
-			colors: undefined,
-		};
-	}
-
 	return {
 		teamNumber,
-		teamName,
+		teamName: teamName instanceof BaseHttpException ? undefined : teamName,
 		avatarUrl,
-		colors: {
-			primaryHex: colors.primary,
-			secondaryHex: colors.secondary,
-			verified: colors.verified,
-		},
+		colors:
+			colors instanceof BaseHttpException
+				? undefined
+				: {
+						primaryHex: colors.primary,
+						secondaryHex: colors.secondary,
+						verified: colors.verified,
+				  },
 	};
 }
 
