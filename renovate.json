@@ -1,0 +1,3 @@
+{
+	"extends": ["github>jonahsnider/renovate-config"]
+}
