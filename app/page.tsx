@@ -90,7 +90,12 @@ export default async function TeamPage({ searchParams }: Props) {
 				<SearchTeams teamNumber={teamNumber} />
 
 				{team && (
-					<TeamCard teamNumber={team.teamNumber} avatarUrl={team.avatarUrl} colors={team.colors} teamName={team.teamName} />
+					<TeamCard
+						teamNumber={team.teamNumber}
+						avatarUrl={team.avatarUrl}
+						colors={team.colors}
+						teamName={team.teamName}
+					/>
 				)}
 			</section>
 		</main>
