@@ -1,34 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FRC Colors
 
-## Getting Started
+**[frc-colors.com](https://frc-colors.com)**
 
-First, run the development server:
+A web app & API to get the primary & secondary/accent colors for an FRC team's logo.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Automatically extracts colors from team avatars uploaded to FIRST if verified colors aren't stored in our database.
+
+## API Usage
+
+### Base URL
+
+The API is publicly available at `https://frc-colors.com/api`.
+
+### `GET /team/:teamNumber`
+
+Get the colors for a team by number.
+
+#### Example
+
+`GET /team/581`
+
+```json
+{
+  "teamNumber": 581,
+  "colors": {
+    "primaryHex": "#e86d38",
+    "secondaryHex": "#7c7c7c",
+    "verified": false
+  }
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### `GET /team`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Get the colors for several teams by number.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Example
 
-## Learn More
+`GET /team?team=581&team=254`
 
-To learn more about Next.js, take a look at the following resources:
+```json
+{
+  "teams": [
+    {
+      "teamNumber": 581,
+      "colors": {
+        "primaryHex": "#e86d38",
+        "secondaryHex": "#7c7c7c",
+        "verified": false
+      }
+    },
+    {
+      "teamNumber": 254,
+      "colors": {
+        "primaryHex": "#0070ff",
+        "secondaryHex": "#232323",
+        "verified": true
+      }
+    }
+  ]
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Query Parameters
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `team`: The team number to get the colors for. Can be repeated.
