@@ -9,13 +9,17 @@ import { useDebounce } from 'use-debounce';
 export default function SearchTeams({ teamNumber }: { teamNumber?: TeamNumberSchema }) {
 	const router = useRouter();
 	const [teamNumberRaw, setTeamNumberRaw] = useState<string>(teamNumber?.toString() ?? '');
-	const [debouncedTeamNumberRaw] = useDebounce(teamNumberRaw, 250);
+	const [debouncedTeamNumberRaw] = useDebounce(teamNumberRaw, 100, { maxWait: 2000 });
 	const valid =
 		teamNumberRaw === '' ||
 		(TeamNumberStringSchema.safeParse(teamNumberRaw).success &&
 			TeamNumberSchema.safeParse(TeamNumberStringSchema.parse(teamNumberRaw)).success);
 
 	useEffect(() => {
+		if (debouncedTeamNumberRaw === '') {
+			router.replace('/');
+		}
+
 		const teamNumberString = TeamNumberStringSchema.safeParse(debouncedTeamNumberRaw);
 
 		if (!teamNumberString.success) return;
@@ -24,7 +28,7 @@ export default function SearchTeams({ teamNumber }: { teamNumber?: TeamNumberSch
 
 		if (!teamNumber.success) return;
 
-		router.replace(`/team/${teamNumber.data}`);
+		router.replace(`/?team=${teamNumber.data}`);
 	}, [debouncedTeamNumberRaw]);
 
 	return (
