@@ -9,15 +9,15 @@ import { BaseHttpException } from '../../_lib/exceptions/base.exception';
 
 export async function GET(
 	request: NextRequest,
-	context: { params: { id: string } },
+	context: { params: { team: string } },
 ): Promise<NextResponse<TeamSchema | ExceptionSchema>> {
-	const params = validateParams(context, z.object({ id: TeamNumberStringSchema }));
+	const params = validateParams(context, z.object({ team: TeamNumberStringSchema }));
 
 	if (params instanceof NextResponse) {
 		return params;
 	}
 
-	const teamNumber = TeamNumberSchema.parse(params.id);
+	const teamNumber = TeamNumberSchema.parse(params.team);
 
 	const colors = await teamsService.getTeamColors(teamNumber);
 
