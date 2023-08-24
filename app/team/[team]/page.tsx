@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { BaseHttpException } from '../../api/_lib/exceptions/base.exception';
 import { tbaService } from '../../api/_lib/tba/tba.service';
 import { TeamNumberSchema, TeamNumberStringSchema } from '../../api/_lib/teams/dtos/team-number.dto';
@@ -44,7 +45,32 @@ async function getInternalTeam(teamNumber: TeamNumberSchema) {
 	};
 }
 
-export default async function TeamPage({ params }: { params: { team: string } }) {
+type Props = {
+	params: {
+		team: string;
+	};
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const teamNumber = TeamNumberSchema.parse(TeamNumberStringSchema.parse(params.team));
+
+	const team = await getInternalTeam(teamNumber);
+
+	const images: string[] = [];
+
+	if (team.avatarUrl) {
+		images.push(team.avatarUrl);
+	}
+
+	return {
+		title: `FRC Colors - Team ${teamNumber}`,
+		openGraph: {
+			images,
+		},
+	};
+}
+
+export default async function TeamPage({ params }: Props) {
 	const teamNumber = TeamNumberSchema.parse(TeamNumberStringSchema.parse(params.team));
 
 	const team = await getInternalTeam(teamNumber);
