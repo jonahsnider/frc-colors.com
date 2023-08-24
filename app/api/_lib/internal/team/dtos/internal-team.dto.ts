@@ -3,7 +3,7 @@ import { HexColorCodeSchema } from '../../../colors/dtos/hex-color-code.dto';
 import { TeamNumberSchema } from '../../../teams/dtos/team-number.dto';
 
 export const InternalTeamSchema = z.object({
-	teamName: z.string(),
+	teamName: z.string().optional(),
 	avatarUrl: z.string().optional(),
 	teamNumber: TeamNumberSchema,
 	colors: z

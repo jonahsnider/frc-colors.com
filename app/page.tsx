@@ -7,8 +7,9 @@ import H1 from './components/headings/h1';
 import TeamCard from './components/team-card/team-card';
 import SearchTeams from '@/app/components/search-teams';
 import { description, siteName } from '@/app/shared-metadata';
+import { InternalTeamSchema } from './api/_lib/internal/team/dtos/internal-team.dto';
 
-async function getInternalTeam(teamNumber: TeamNumberSchema) {
+async function getInternalTeam(teamNumber: TeamNumberSchema): Promise<InternalTeamSchema> {
 	const [teamName, colors, avatarBase64] = await Promise.all([
 		teamsService.getTeamName(teamNumber),
 		teamsService.getTeamColors(teamNumber),
