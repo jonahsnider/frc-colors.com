@@ -35,7 +35,11 @@ export default function TeamCard({ teamName, teamNumber, avatarUrl, colors }: Pr
 						)}
 						{!teamName && <>Team {teamNumber}</>}
 					</p>
-					<CheckBadgeIcon className={clsx('h-6 text-sky-500 transition-opacity', { 'opacity-0': !colors?.verified })} />
+					<CheckBadgeIcon
+						className={clsx('h-6 transition-opacity', { 'opacity-0': !colors?.verified })}
+						color={colors?.primaryHex}
+						stroke={colors?.secondaryHex}
+					/>
 				</div>
 
 				{colors && (
