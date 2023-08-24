@@ -13,7 +13,6 @@ export function validateQuery<T extends Schema>(
 	const query = querystring.parse(new URL(request.url).search.slice('?'.length));
 
 	const result = schema.safeParse(query);
-	console.log({ query, result });
 
 	if (result.success) {
 		return result.data;
