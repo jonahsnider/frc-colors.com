@@ -16,7 +16,9 @@ export class TeamsService {
 	) {}
 
 	/** @returns The colors for a team. */
-	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColors | NoTeamColorsException | TeamNotFoundException> {
+	async getTeamColors(
+		teamNumber: TeamNumberSchema,
+	): Promise<TeamColors | NoTeamColorsException | TeamNotFoundException> {
 		const teamExistsException = await this.teamExists(teamNumber);
 
 		if (teamExistsException) {
