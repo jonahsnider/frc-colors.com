@@ -1,5 +1,17 @@
+import { Metadata } from 'next';
 import H1 from './components/headings/h1';
 import SearchTeams from './components/search-teams';
+import { description, siteName } from './shared-metadata';
+
+export const metadata: Metadata = {
+	title: `Home - ${siteName}`,
+	description,
+	openGraph: {
+		title: 'Home',
+		siteName,
+		description,
+	},
+};
 
 export default function HomePage() {
 	return (

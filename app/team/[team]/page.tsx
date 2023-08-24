@@ -6,6 +6,7 @@ import { teamsService } from '../../api/_lib/teams/teams.service';
 import H1 from '../../components/headings/h1';
 import TeamCard from '../../components/team-card/team-card';
 import SearchTeams from '@/app/components/search-teams';
+import { siteName } from '@/app/shared-metadata';
 
 async function getInternalTeam(teamNumber: TeamNumberSchema) {
 	const [teamName, colors, avatarBase64] = await Promise.all([
@@ -48,11 +49,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		images.push(`/api/opengraph/team/${teamNumber}/avatar`);
 	}
 
+	const teamName = team.teamName ? `${teamNumber} - ${team.teamName}` : `${teamNumber}`;
+
+	const description = `See team ${teamName}'s branding colors and avatar`;
 	return {
-		title: `FRC Colors - Team ${teamNumber}`,
+		title: `Team ${teamNumber} - ${siteName}`,
+		description,
 		openGraph: {
+			title: `Team ${teamNumber}`,
 			images,
+			description,
+			siteName,
 		},
+		themeColor: team.colors?.primaryHex,
 	};
 }
 
