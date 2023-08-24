@@ -5,8 +5,8 @@ import { HexColorCodeSchema } from '../../colors/dtos/hex-color-code.dto';
 export const TeamSchema = z.object({
 	teamNumber: TeamNumberSchema,
 	colors: z.object({
-		primaryHex: HexColorCode,
-		secondaryHex: HexColorCode,
+		primaryHex: HexColorCodeSchema,
+		secondaryHex: HexColorCodeSchema,
 		verified: z.boolean(),
 	}),
 });

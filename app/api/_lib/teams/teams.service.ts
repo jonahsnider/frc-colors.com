@@ -70,8 +70,8 @@ export class TeamsService {
 
 		if (teamColors) {
 			return {
-				primary: HexColorCode.parse(teamColors.primaryColorHex.toLowerCase()),
-				secondary: HexColorCode.parse(teamColors.secondaryColorHex.toLowerCase()),
+				primary: HexColorCodeSchema.parse(teamColors.primaryColorHex.toLowerCase()),
+				secondary: HexColorCodeSchema.parse(teamColors.secondaryColorHex.toLowerCase()),
 				verified: true,
 			};
 		}
