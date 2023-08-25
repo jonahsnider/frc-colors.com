@@ -8,7 +8,14 @@ import { teamsService } from '../_lib/teams/teams.service';
 import { validateQuery } from '../_lib/util/validate-request';
 
 export async function GET(request: NextRequest): Promise<NextResponse<FindManyTeamsSchema | ExceptionSchema>> {
-	const query = validateQuery(request, z.object({ team: TeamNumberStringSchema.array() }));
+	const query = validateQuery(
+		request,
+		z.object({
+			team: TeamNumberStringSchema.array()
+				.or(TeamNumberStringSchema.transform((teamNumber) => [teamNumber]))
+				.default([]),
+		}),
+	);
 	if (query instanceof NextResponse) {
 		return query;
 	}
