@@ -13,6 +13,6 @@ export const TeamSchema = z.object({
 export type TeamSchema = z.infer<typeof TeamSchema>;
 
 export const FindManyTeamsSchema = z.object({
-	teams: z.array(TeamSchema),
+	teams: z.array(TeamSchema.nullable()),
 });
 export type FindManyTeamsSchema = z.infer<typeof FindManyTeamsSchema>;
