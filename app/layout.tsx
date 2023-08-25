@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer';
 import { description, metadataBase, siteName } from './shared-metadata';
+import { Analytics } from '@vercel/analytics/react';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
 				<Navbar />
 				<div className='container mx-auto'>{children}</div>
 				<Footer />
+				<Analytics />
 			</body>
 		</html>
 	);
