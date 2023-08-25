@@ -18,7 +18,7 @@ export function validateQuery<T extends Schema>(
 		return result.data;
 	}
 
-	return new InvalidPathParamException(result.error).toResponse();
+	return new InvalidQueryParamsException(result.error).toResponse();
 }
 
 export function validateParams<T extends Schema>(
@@ -31,7 +31,7 @@ export function validateParams<T extends Schema>(
 		return result.data;
 	}
 
-	return new InvalidQueryParamsException(result.error).toResponse();
+	return new InvalidPathParamException(result.error).toResponse();
 }
 
 export async function validateBody<T extends Schema>(
