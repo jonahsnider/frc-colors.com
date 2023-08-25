@@ -5,6 +5,7 @@ import Navbar from './components/navbar/navbar';
 import Footer from './components/footer';
 import { description, metadataBase, siteName } from './shared-metadata';
 import { Analytics } from '@vercel/analytics/react';
+import PlausibleProvider from 'next-plausible';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
@@ -25,6 +26,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
+			<head>
+				<PlausibleProvider enabled selfHosted domain='frc-colors.com' />
+			</head>
+
 			<body className={lato.className}>
 				<Navbar />
 				<div className='container mx-auto'>{children}</div>
