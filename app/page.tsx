@@ -60,6 +60,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 				images,
 				description: teamDescription,
 				siteName,
+				url: `/?team=${teamNumber}`,
 			},
 			themeColor: team.colors?.primaryHex,
 		};
@@ -72,6 +73,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 			title: 'Home',
 			siteName,
 			description,
+			url: '/',
 		},
 	};
 }
