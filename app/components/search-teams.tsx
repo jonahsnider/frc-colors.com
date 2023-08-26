@@ -1,35 +1,15 @@
 'use client';
 
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { TeamNumberSchema, TeamNumberStringSchema } from '../api/_lib/teams/dtos/team-number.dto';
-import { useDebounce } from 'use-debounce';
+import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
+import { useContext, useState } from 'react';
+import { TeamNumberContext } from '../contexts/team-number-context';
+import { useDebouncedCallback } from 'use-debounce';
 
-export default function SearchTeams({ teamNumber }: { teamNumber?: TeamNumberSchema }) {
-	const router = useRouter();
-	const [teamNumberRaw, setTeamNumberRaw] = useState<string>(teamNumber?.toString() ?? '');
-	const [debouncedTeamNumberRaw] = useDebounce(teamNumberRaw, 100, { maxWait: 2000 });
-	const valid =
-		teamNumberRaw === '' ||
-		(TeamNumberStringSchema.safeParse(teamNumberRaw).success &&
-			TeamNumberSchema.safeParse(TeamNumberStringSchema.parse(teamNumberRaw)).success);
-
-	useEffect(() => {
-		if (debouncedTeamNumberRaw === '') {
-			router.replace('/');
-		}
-
-		const teamNumberString = TeamNumberStringSchema.safeParse(debouncedTeamNumberRaw);
-
-		if (!teamNumberString.success) return;
-
-		const teamNumber = TeamNumberSchema.safeParse(teamNumberString.data);
-
-		if (!teamNumber.success) return;
-
-		router.replace(`/?team=${teamNumber.data}`);
-	}, [debouncedTeamNumberRaw]);
+export default function SearchTeams() {
+	const [teamNumberRaw, setTeamNumberRaw] = useState('');
+	const setTeamNumber = useDebouncedCallback(useContext(TeamNumberContext).setTeamNumber, 100, { maxWait: 1000 });
+	const valid = teamNumberRaw === '' || TeamNumberSchema.safeParse(teamNumberRaw).success;
 
 	return (
 		<div className='flex flex-col space-y-4'>
@@ -40,7 +20,10 @@ export default function SearchTeams({ teamNumber }: { teamNumber?: TeamNumberSch
 				placeholder='Enter a team number'
 				type='text'
 				name='team'
-				onChange={(event) => setTeamNumberRaw(event.target.value)}
+				onChange={(event) => {
+					setTeamNumberRaw(event.target.value);
+					setTeamNumber(event.target.value);
+				}}
 				// rome-ignore lint/a11y/noAutofocus: <explanation>
 				autoFocus
 				value={teamNumberRaw}

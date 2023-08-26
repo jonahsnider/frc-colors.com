@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
-export const TeamNumberSchema = z.number().positive().int();
+export const TeamNumberSchema = z
+	.string()
+	.regex(/^\d+$/)
+	.or(z.number())
+	.transform(Number)
+	.pipe(z.number().positive().int().max(50_000));
 export type TeamNumberSchema = z.infer<typeof TeamNumberSchema>;
-
-export const TeamNumberStringSchema = z.string().regex(/^\d+$/).transform(Number);
-export type TeamNumberStringSchema = z.infer<typeof TeamNumberStringSchema>;

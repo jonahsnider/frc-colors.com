@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
-import { Lato } from 'next/font/google';
-import './globals.css';
-import Navbar from './components/navbar/navbar';
-import Footer from './components/footer';
-import { description, metadataBase, siteName } from './shared-metadata';
 import { Analytics } from '@vercel/analytics/react';
+import type { Metadata } from 'next';
 import PlausibleProvider from 'next-plausible';
+import { Lato } from 'next/font/google';
+import Footer from './components/footer';
+import Navbar from './components/navbar/navbar';
+import './globals.css';
+import { description, metadataBase, siteName } from './shared-metadata';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
 
 			<body className={lato.className}>
 				<Navbar />
-				<div className='container mx-auto'>{children}</div>
+				<main className='container mx-auto'>{children}</main>
 				<Footer />
 				<Analytics />
 			</body>

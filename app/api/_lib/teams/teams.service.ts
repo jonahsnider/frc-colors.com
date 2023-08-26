@@ -7,6 +7,8 @@ import { TeamNotFoundException } from './exceptions/team-not-found.exception';
 import { TbaService, tbaService } from '../tba/tba.service';
 import { TeamNumberSchema } from './dtos/team-number.dto';
 import { NoTeamColorsException } from './exceptions/no-team-colors.exception';
+import { InternalTeamSchema } from '../internal/team/dtos/internal-team.dto';
+import { BaseHttpException } from '../exceptions/base.exception';
 
 export class TeamsService {
 	constructor(
@@ -87,6 +89,30 @@ export class TeamsService {
 				},
 			},
 		});
+	}
+
+	async getInternalTeam(teamNumber: TeamNumberSchema): Promise<InternalTeamSchema> {
+		const [teamName, colors, avatarBase64] = await Promise.all([
+			this.getTeamName(teamNumber),
+			this.getTeamColors(teamNumber),
+			this.tba.getTeamAvatarForYear(teamNumber, new Date().getFullYear()),
+		]);
+
+		const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;
+
+		return {
+			teamNumber,
+			teamName: teamName instanceof BaseHttpException ? undefined : teamName,
+			avatarUrl,
+			colors:
+				colors instanceof BaseHttpException
+					? undefined
+					: {
+							primaryHex: colors.primary,
+							secondaryHex: colors.secondary,
+							verified: colors.verified,
+					  },
+		};
 	}
 
 	private async findSavedTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColors | undefined> {

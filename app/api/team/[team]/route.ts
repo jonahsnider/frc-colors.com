@@ -5,7 +5,7 @@ import { TeamColors } from '../../_lib/colors/interfaces/team-colors';
 import { BaseHttpException } from '../../_lib/exceptions/base.exception';
 import { ExceptionSchema } from '../../_lib/exceptions/dtos/exception.dto';
 import { SaveTeamSchema } from '../../_lib/teams/dtos/save-team.dto';
-import { TeamNumberSchema, TeamNumberStringSchema } from '../../_lib/teams/dtos/team-number.dto';
+import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
 import { TeamSchema } from '../../_lib/teams/dtos/team.dto';
 import { teamsService } from '../../_lib/teams/teams.service';
 import { validateBody, validateParams } from '../../_lib/util/validate-request';
@@ -25,7 +25,7 @@ export async function GET(
 	request: NextRequest,
 	context: { params: { team: string } },
 ): Promise<NextResponse<TeamSchema | ExceptionSchema>> {
-	const params = validateParams(context, z.object({ team: TeamNumberStringSchema }));
+	const params = validateParams(context, z.object({ team: TeamNumberSchema }));
 
 	if (params instanceof NextResponse) {
 		return params;
@@ -51,7 +51,7 @@ export async function POST(
 		return authError.toResponse();
 	}
 
-	const params = validateParams(context, z.object({ team: TeamNumberStringSchema }));
+	const params = validateParams(context, z.object({ team: TeamNumberSchema }));
 	if (params instanceof NextResponse) {
 		return params;
 	}
