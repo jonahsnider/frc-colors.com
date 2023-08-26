@@ -3,7 +3,7 @@
 import H1 from '../components/headings/h1';
 import { TeamNumberProvider } from '../contexts/team-number-context';
 
-export default function RootLayout({
+export default function TeamLayout({
 	children,
 }: {
 	children: React.ReactNode;
