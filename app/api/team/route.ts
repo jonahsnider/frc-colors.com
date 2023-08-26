@@ -42,6 +42,6 @@ export async function GET(request: NextRequest): Promise<NextResponse<FindManyTe
 	}
 
 	return NextResponse.json({
-		teams: teamColors.map((team) => (team === undefined ? null : team)),
+		teams: teamColors.map((team) => team ?? null),
 	});
 }
