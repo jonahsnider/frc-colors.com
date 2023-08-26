@@ -19,7 +19,7 @@ export default function HomePage() {
 
 			<TrackTeam teamNumber={teamNumber} />
 
-			{teamNumber && team && (
+			{team && (
 				<TeamCard
 					teamNumber={team.teamNumber}
 					avatarUrl={team.avatarUrl}
