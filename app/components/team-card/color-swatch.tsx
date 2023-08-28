@@ -1,4 +1,4 @@
-import { HexColorCodeSchema } from '@/app/api/_lib/colors/dtos/hex-color-code.dto';
+import { HexColorCodeSchema } from '@/app/api/_lib/teams/saved-colors/dtos/hex-color-code.dto';
 import clsx from 'clsx';
 import luminance from 'color-luminance';
 
