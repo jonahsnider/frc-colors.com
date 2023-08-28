@@ -1,25 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { authService } from '../../_lib/auth/auth.service';
-import { TeamColors } from '../../_lib/colors/interfaces/team-colors';
 import { BaseHttpException } from '../../_lib/exceptions/base.exception';
 import { ExceptionSchema } from '../../_lib/exceptions/dtos/exception.dto';
 import { SaveTeamSchema } from '../../_lib/teams/dtos/save-team.dto';
 import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
 import { TeamSchema } from '../../_lib/teams/dtos/team.dto';
+import { savedColorsService } from '../../_lib/teams/saved-colors/saved-colors.service';
 import { teamsService } from '../../_lib/teams/teams.service';
 import { validateBody, validateParams } from '../../_lib/util/validate-request';
-
-function teamColorsToDTO(teamNumber: TeamNumberSchema, colors: TeamColors): TeamSchema {
-	return {
-		teamNumber: teamNumber,
-		colors: {
-			primaryHex: colors.primary,
-			secondaryHex: colors.secondary,
-			verified: colors.verified,
-		},
-	};
-}
 
 export async function GET(
 	request: NextRequest,
@@ -33,13 +22,13 @@ export async function GET(
 
 	const teamNumber = TeamNumberSchema.parse(params.team);
 
-	const colors = await teamsService.getTeamColors(teamNumber);
+	const team = await teamsService.getTeamColors(teamNumber);
 
-	if (colors instanceof BaseHttpException) {
-		return colors.toResponse();
+	if (team instanceof BaseHttpException) {
+		return team.toResponse();
 	}
 
-	return NextResponse.json(teamColorsToDTO(teamNumber, colors));
+	return NextResponse.json(team);
 }
 
 export async function POST(
@@ -63,14 +52,14 @@ export async function POST(
 		return body;
 	}
 
-	await teamsService.saveTeamColors(teamNumber, body);
+	await savedColorsService.saveTeamColors(teamNumber, body);
 
-	const colors = await teamsService.getTeamColors(teamNumber);
+	const team = await teamsService.getTeamColors(teamNumber);
 
-	if (colors instanceof BaseHttpException) {
+	if (team instanceof BaseHttpException) {
 		// Should never happen
-		return colors.toResponse();
+		return team.toResponse();
 	}
 
-	return NextResponse.json(teamColorsToDTO(teamNumber, colors));
+	return NextResponse.json(team);
 }

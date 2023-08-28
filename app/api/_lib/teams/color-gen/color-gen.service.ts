@@ -1,12 +1,13 @@
 import { TbaService, tbaService } from '../../tba/tba.service';
-import { TeamColors } from '../../colors/interfaces/team-colors';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
+import { Sort } from '@jonahsnider/util';
 // @ts-expect-error Their types are wrong, see https://github.com/Namide/extract-colors/issues/39
 import { extractColors } from 'extract-colors';
 import getPixelsCb from 'get-pixels';
-import { promisify } from 'util';
-import { Sort } from '@jonahsnider/util';
 import { NdArray } from 'ndarray';
+import { promisify } from 'util';
+import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
+import { ColorGenCacheService, MISSING_AVATAR, colorGenCacheService } from './color-gen-cache.service';
 
 const getPixels = promisify(getPixelsCb);
 
@@ -25,10 +26,16 @@ export class ColorGenService {
 		// Not too transparent
 		alpha > 250;
 
-	constructor(private readonly tba: TbaService) {}
+	constructor(private readonly tba: TbaService, private readonly cache: ColorGenCacheService) {}
 
-	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColors | undefined> {
-		const teamAvatar = await this.tba.getTeamAvatarForThisYear(teamNumber);
+	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
+		const cached = await this.cache.getCachedTeamColors(teamNumber);
+
+		if (cached !== MISSING_AVATAR && cached !== undefined) {
+			return cached;
+		}
+
+		const teamAvatar = cached === MISSING_AVATAR ? undefined : await this.tba.getTeamAvatarForThisYear(teamNumber);
 
 		if (!teamAvatar) {
 			return undefined;
@@ -40,26 +47,30 @@ export class ColorGenService {
 			return undefined;
 		}
 
-		let colors = await this.extractColors(pixels, true);
+		let extractedColors = await this.extractColors(pixels, true);
 
 		// If there aren't enough colors, try extracting again with less strict filtering
-		if (colors.length < 2) {
-			colors = await this.extractColors(pixels, false);
+		if (extractedColors.length < 2) {
+			extractedColors = await this.extractColors(pixels, false);
 		}
 
-		colors.sort(Sort.descending((color) => color.area));
+		extractedColors.sort(Sort.descending((color) => color.area));
 
-		const [primary, secondary] = colors;
+		const [primary, secondary] = extractedColors;
 
 		if (!primary) {
 			return undefined;
 		}
 
-		return {
+		const colors = {
 			primary: primary.hex.toLowerCase(),
 			secondary: secondary?.hex?.toLowerCase() ?? '#ffffff',
 			verified: false,
 		};
+
+		await this.cache.setCachedTeamColors(teamNumber, colors);
+
+		return colors;
 	}
 
 	private async getPixels(teamAvatar: Buffer): Promise<NdArray<Uint8Array> | undefined> {
@@ -87,4 +98,4 @@ export class ColorGenService {
 	}
 }
 
-export const colorGenService = new ColorGenService(tbaService);
+export const colorGenService = new ColorGenService(tbaService, colorGenCacheService);
