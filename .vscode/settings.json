@@ -14,7 +14,7 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "rome.rome"
 	},
-	"editor.defaultFormatter": "rome.rome",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"search.exclude": {
 		"**/*.code-search": true,
 		"**/bower_components": true,
