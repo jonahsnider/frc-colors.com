@@ -22,24 +22,24 @@ export async function GET(request: NextRequest): Promise<NextResponse<FindManyTe
 
 	const teamNumbers = TeamNumberSchema.array().parse(query.team);
 
-	const teamColors: Array<TeamSchema | undefined> = [];
+	const teamColors: Array<TeamSchema | undefined> = await Promise.all(
+		teamNumbers.map(async (teamNumber) => {
+			const colors = await teamsService.getTeamColors(teamNumber);
 
-	for (const teamNumber of teamNumbers) {
-		const colors = await teamsService.getTeamColors(teamNumber);
+			if (colors instanceof BaseHttpException) {
+				return undefined;
+			}
 
-		if (colors instanceof BaseHttpException) {
-			teamColors.push(undefined);
-		} else {
-			teamColors.push({
+			return {
 				teamNumber,
 				colors: {
 					primaryHex: colors.primary,
 					secondaryHex: colors.secondary,
 					verified: colors.verified,
 				},
-			});
-		}
-	}
+			};
+		}),
+	);
 
 	return NextResponse.json({
 		teams: teamColors.map((team) => team ?? null),
