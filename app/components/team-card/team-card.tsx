@@ -21,7 +21,7 @@ export default function TeamCard({ teamName, teamNumber, avatarUrl, colors, acti
 
 	return (
 		<BaseTeamCard
-			title={<p className="text-2xl font-bold">{title}</p>}
+			title={<p className='text-2xl font-bold'>{title}</p>}
 			avatar={<TeamImage avatarUrl={avatarUrl} colors={colors} />}
 			colors={
 				colors && {
