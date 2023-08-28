@@ -33,18 +33,13 @@ export class TeamsService {
 			return savedTeamColors;
 		}
 
-		const currentYear = new Date().getFullYear();
-		const yearsToCheck = [currentYear, currentYear - 1];
+		const colors = await this.colorGen.getTeamColors(teamNumber);
 
-		for (const year of yearsToCheck) {
-			const colors = await this.colorGen.getTeamColorsForYear(teamNumber, year);
-
-			if (colors) {
-				return colors;
-			}
+		if (colors) {
+			return colors;
 		}
 
-		return new NoTeamColorsException(teamNumber, yearsToCheck);
+		return new NoTeamColorsException(teamNumber);
 	}
 
 	/** @returns `undefined` if the team exists, or an exception if it doesn't. */
@@ -95,7 +90,7 @@ export class TeamsService {
 		const [teamName, colors, avatarBase64] = await Promise.all([
 			this.getTeamName(teamNumber),
 			this.getTeamColors(teamNumber),
-			this.tba.getTeamAvatarForYear(teamNumber, new Date().getFullYear()),
+			this.tba.getTeamAvatarForThisYear(teamNumber),
 		]);
 
 		const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;

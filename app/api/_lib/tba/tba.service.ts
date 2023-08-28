@@ -17,8 +17,22 @@ export class TbaService {
 
 	constructor(private readonly config: ConfigService) {}
 
+	/** Get a buffer with a PNG of the team's avatar for the current year. */
+	async getTeamAvatarForThisYear(teamNumber: TeamNumberSchema): Promise<Buffer | undefined> {
+		const currentYear = new Date().getFullYear();
+		const yearsToCheck = [currentYear, currentYear - 1];
+
+		for (const year of yearsToCheck) {
+			const colors = await this.getTeamAvatarForYear(teamNumber, year);
+
+			if (colors) {
+				return colors;
+			}
+		}
+	}
+
 	/** Get a buffer with a PNG of the team's avatar for the given year. */
-	async getTeamAvatarForYear(teamNumber: TeamNumberSchema, year: number): Promise<Buffer | undefined> {
+	private async getTeamAvatarForYear(teamNumber: TeamNumberSchema, year: number): Promise<Buffer | undefined> {
 		const teamMedia = await this.getTeamMediaForYearRaw(teamNumber, year);
 
 		const avatarMedia = teamMedia.find((media): media is TbaMediaAvatar => media.type === 'avatar');

@@ -27,8 +27,8 @@ export class ColorGenService {
 
 	constructor(private readonly tba: TbaService) {}
 
-	async getTeamColorsForYear(teamNumber: TeamNumberSchema, year: number): Promise<TeamColors | undefined> {
-		const teamAvatar = await this.tba.getTeamAvatarForYear(teamNumber, year);
+	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColors | undefined> {
+		const teamAvatar = await this.tba.getTeamAvatarForThisYear(teamNumber);
 
 		if (!teamAvatar) {
 			return undefined;
