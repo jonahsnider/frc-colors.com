@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 
 type Props = {
 	title: ReactNode;
@@ -8,32 +9,47 @@ type Props = {
 		primary: ReactNode;
 		secondary: ReactNode;
 	};
+	actions?: ReactNode;
 };
 
-export default function BaseTeamCard({ title, avatar, verifiedBadge, colors }: Props) {
+export default function BaseTeamCard({
+	title,
+	avatar,
+	verifiedBadge,
+	colors,
+	actions,
+}: Props) {
 	return (
-		<div className='bg-neutral-200 rounded my-4 p-4 flex max-md:flex-col justify-between space-x-4'>
+		<div className="bg-neutral-200 rounded my-4 p-4 flex max-md:flex-col justify-between md:space-x-4">
 			{/* Image container */}
+			<div className="max-h-48 max-md:w-full flex justify-center items-center">
+				{avatar}
+			</div>
 
-			<div className='max-h-48'>{avatar}</div>
-
-			{/* Team number div is at top, color div is at bottom */}
-			<div className='space-y-4 flex flex-col justify-between'>
+			<div
+				className={clsx("flex flex-col", {
+					"max-md:justify-center": !colors,
+					"justify-between space-y-4": colors,
+				})}
+			>
 				{/* Team number & name */}
-				<div className='flex space-x-1 items-center'>
-					<p className='text-2xl font-bold'>{title}</p>
+				<div className="flex space-x-1 items-center">
+					{title}
 					{verifiedBadge}
 				</div>
 
+				{/* Colors */}
 				{colors && (
-					<div className='flex'>
-						{/* Colors */}
-						<div className='flex max-md:flex-row max-md:space-x-4 max-md:justify-center md:flex-col md:space-y-4'>
+					<div className="flex">
+						<div className="w-full flex max-md:flex-row max-md:space-x-4 max-md:justify-center md:flex-col md:space-y-4">
 							{colors.primary}
 							{colors.secondary}
 						</div>
 					</div>
 				)}
+
+				{/* Actions */}
+				{actions && <div className="flex space-x-4">{actions}</div>}
 			</div>
 		</div>
 	);

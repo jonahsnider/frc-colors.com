@@ -13,14 +13,15 @@ type Props = {
 		secondaryHex: string;
 		verified: boolean;
 	};
+	actions?: React.ReactNode;
 };
 
-export default function TeamCard({ teamName, teamNumber, avatarUrl, colors }: Props) {
+export default function TeamCard({ teamName, teamNumber, avatarUrl, colors, actions }: Props) {
 	const title = teamName ? `Team ${teamNumber} - ${teamName}` : `Team ${teamNumber}`;
 
 	return (
 		<BaseTeamCard
-			title={title}
+			title={<p className="text-2xl font-bold">{title}</p>}
 			avatar={<TeamImage avatarUrl={avatarUrl} colors={colors} />}
 			colors={
 				colors && {
@@ -30,11 +31,14 @@ export default function TeamCard({ teamName, teamNumber, avatarUrl, colors }: Pr
 			}
 			verifiedBadge={
 				<CheckBadgeIcon
-					className={clsx('h-6 transition-opacity', { 'opacity-0': !colors?.verified })}
+					className={clsx('h-6 transition-opacity', {
+						'opacity-0 max-md:h-0': !colors?.verified,
+					})}
 					color={colors?.primaryHex}
 					stroke={colors?.secondaryHex}
 				/>
 			}
+			actions={actions}
 		/>
 	);
 }
