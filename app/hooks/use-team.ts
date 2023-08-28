@@ -12,7 +12,7 @@ export function useTeam(teamNumber?: TeamNumberSchema): {
 		data: team,
 		error,
 		isLoading,
-	} = useSWR<InternalTeamSchema>(`/${teamNumber}`, {
+	} = useSWR<InternalTeamSchema>(`/api/internal/team/${teamNumber}`, {
 		fetcher: teamNumber ? fetcher : undefined,
 	});
 
