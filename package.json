@@ -23,7 +23,7 @@
     "clsx": "2.0.0",
     "color-luminance": "2.1.0",
     "convert": "4.13.1",
-    "extract-colors": "3.0.0",
+    "extract-colors": "4.0.0",
     "get-pixels": "3.3.3",
     "next": "13.4.19",
     "next-plausible": "3.11.1",

@@ -958,10 +958,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"extract-colors@npm:3.0.0":
-  version: 3.0.0
-  resolution: "extract-colors@npm:3.0.0"
-  checksum: d1b3c747969d5b93be4324b8ebccfeff9f0f278a7c64801ba2f1cbe87d93abdc4de75fc09c217f250f84d9ac2e982c9b2fd5dd916cdc51281b1b8d6f769394b2
+"extract-colors@npm:4.0.0":
+  version: 4.0.0
+  resolution: "extract-colors@npm:4.0.0"
+  checksum: f7a8467abeb9189b3fdda4ba71d16ef187058783d07d20857b67f8f6655ea75537f58235a2de807f09003a4199e72ad4a752d0dc7e758331c28c276a50d06ed6
   languageName: node
   linkType: hard
 
@@ -1076,7 +1076,7 @@ __metadata:
     clsx: 2.0.0
     color-luminance: 2.1.0
     convert: 4.13.1
-    extract-colors: 3.0.0
+    extract-colors: 4.0.0
     get-pixels: 3.3.3
     next: 13.4.19
     next-plausible: 3.11.1

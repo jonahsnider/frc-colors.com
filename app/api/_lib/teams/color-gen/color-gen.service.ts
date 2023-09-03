@@ -1,7 +1,6 @@
 import { TbaService, tbaService } from '../../tba/tba.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { Sort } from '@jonahsnider/util';
-// @ts-expect-error Their types are wrong, see https://github.com/Namide/extract-colors/issues/39
 import { extractColors } from 'extract-colors';
 import getPixelsCb from 'get-pixels';
 import { NdArray } from 'ndarray';
@@ -73,21 +72,13 @@ export class ColorGenService {
 		return colors;
 	}
 
-	private async getPixels(teamAvatar: Buffer): Promise<NdArray<Uint8Array> | undefined> {
+	private async getPixels(teamAvatar: Buffer): Promise<ReturnType<typeof getPixels> | undefined> {
 		try {
 			return await getPixels(teamAvatar, 'image/png');
 		} catch {}
 	}
 
-	private async extractColors(
-		pixels: NdArray<Uint8Array>,
-		strict: boolean,
-	): Promise<
-		({ hex: string } & Record<
-			'red' | 'green' | 'blue' | 'area' | 'hue' | 'saturation' | 'lightness' | 'intensity',
-			number
-		>)[]
-	> {
+	private async extractColors(pixels: NdArray<Uint8Array>, strict: boolean): Promise<ReturnType<typeof extractColors>> {
 		return extractColors(
 			{ data: Array.from(pixels.data), width: 40, height: 40 },
 			{
