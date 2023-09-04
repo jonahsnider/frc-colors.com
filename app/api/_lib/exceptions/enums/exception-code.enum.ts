@@ -3,6 +3,8 @@ export enum ExceptionCode {
 	InvalidQueryParams = 'E_INVALID_QUERY_PARAMS',
 	InvalidBody = 'E_INVALID_BODY',
 
+	UnknownRoute = 'E_UNKNOWN_ROUTE',
+
 	TeamNotFound = 'E_TEAM_NOT_FOUND',
 
 	MissingToken = 'E_MISSING_TOKEN',
