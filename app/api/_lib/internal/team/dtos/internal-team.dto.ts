@@ -4,8 +4,8 @@ import { TeamNumberSchema } from '../../../teams/dtos/team-number.dto';
 import { HexColorCodeSchema } from '../../../teams/saved-colors/dtos/hex-color-code.dto';
 
 export const InternalTeamSchema = z.object({
-	teamName: z.string().optional(),
-	avatarUrl: z.string().optional(),
+	teamName: z.string().nullable(),
+	avatarUrl: z.string().nullable(),
 	teamNumber: TeamNumberSchema,
 	colors: z
 		.object({
@@ -13,6 +13,6 @@ export const InternalTeamSchema = z.object({
 			secondaryHex: HexColorCodeSchema,
 			verified: z.boolean(),
 		})
-		.optional(),
+		.nullable(),
 });
 export type InternalTeamSchema = z.infer<typeof InternalTeamSchema>;

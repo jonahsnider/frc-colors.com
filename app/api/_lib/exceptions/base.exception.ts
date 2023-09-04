@@ -3,6 +3,7 @@ import { STATUS_CODES } from 'node:http';
 
 import { ExceptionCode } from './enums/exception-code.enum';
 import { ExceptionSchema } from './dtos/exception.dto';
+import { TO_RESPONSE } from '@jonahsnider/nextjs-api-utils';
 
 export class BaseHttpException extends Error {
 	readonly error: string;
@@ -17,7 +18,7 @@ export class BaseHttpException extends Error {
 		this.error = STATUS_CODES[statusCode] ?? BaseHttpException.name;
 	}
 
-	toResponse(): NextResponse<ExceptionSchema> {
+	[TO_RESPONSE](): NextResponse<ExceptionSchema> {
 		return NextResponse.json(
 			{
 				statusCode: this.statusCode,

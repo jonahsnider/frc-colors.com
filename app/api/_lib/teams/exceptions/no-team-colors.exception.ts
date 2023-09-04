@@ -1,4 +1,4 @@
-import { Http, Sort } from '@jonahsnider/util';
+import { Http } from '@jonahsnider/util';
 import { BaseHttpException } from '../../exceptions/base.exception';
 import { ExceptionCode } from '../../exceptions/enums/exception-code.enum';
 import { TeamNumberSchema } from '../../teams/dtos/team-number.dto';

@@ -1,35 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { V1FindManyTeamsSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
+import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
+import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { BaseHttpException } from '../../../_lib/exceptions/base.exception';
-import { ExceptionSchema } from '../../../_lib/exceptions/dtos/exception.dto';
-import { FindManyTeamsByEventSchema } from '../../../_lib/teams/dtos/event.dto';
-import { TeamSchema } from '../../../_lib/teams/dtos/team.dto';
 import { teamsService } from '../../../_lib/teams/teams.service';
-import { validateParams } from '../../../_lib/util/validate-request';
 
-export async function GET(
-	request: NextRequest,
-	context: { params: { eventCode: string } },
-): Promise<NextResponse<FindManyTeamsByEventSchema | ExceptionSchema>> {
+import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
+import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
+
+export const GET = exceptionRouteWrapper.wrapRoute<
+	V1FindManyTeamsSchema,
+	NextRouteHandlerContext<{ eventCode: string }>
+>(async (request, context) => {
 	const params = validateParams(context, z.object({ eventCode: z.string().min(1).max(64) }));
 
-	if (params instanceof NextResponse) {
-		return params;
-	}
+	const teamColors = await teamsService.getTeamColorsForEvent(params.eventCode);
 
-	let teamColors: TeamSchema[] = [];
-
-	try {
-		teamColors = await teamsService.getTeamColorsForEvent(params.eventCode);
-	} catch (error) {
-		if (error instanceof BaseHttpException) {
-			return error.toResponse();
-		}
-
-		throw error;
-	}
-
-	return NextResponse.json({
-		teams: teamColors,
-	});
-}
+	return NextResponse.json(TeamsSerializer.findManyTeamsToV1DTO(teamColors));
+});

@@ -22,9 +22,9 @@ export default function HomePage() {
 			{team && (
 				<TeamCard
 					teamNumber={team.teamNumber}
-					avatarUrl={team.avatarUrl}
-					colors={team.colors}
-					teamName={team.teamName}
+					avatarUrl={team.avatarUrl ?? undefined}
+					colors={team.colors ?? undefined}
+					teamName={team.teamName ?? undefined}
 				/>
 			)}
 			{error && <p>An error occurred while fetching team {teamNumber}'s information</p>}

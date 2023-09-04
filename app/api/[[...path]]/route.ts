@@ -1,7 +1,6 @@
-import { NextResponse } from 'next/server';
-import { ExceptionSchema } from '../_lib/exceptions/dtos/exception.dto';
+import { exceptionRouteWrapper } from '../_lib/exception-route-wrapper';
 import { UnknownRouteException } from '../_lib/exceptions/unknown-route.exception';
 
-export function GET(): NextResponse<ExceptionSchema> {
-	return new UnknownRouteException().toResponse();
-}
+export const GET = exceptionRouteWrapper.wrapRoute(() => {
+	throw new UnknownRouteException();
+});

@@ -6,20 +6,18 @@ import { MissingTokenException } from './exceptions/missing-token.exception';
 export class AuthService {
 	constructor(private readonly config: ConfigService) {}
 
-	public async validateRequest(request: NextRequest): Promise<IncorrectTokenException | undefined> {
+	public async assertRequestAuthenticated(request: NextRequest): Promise<void> {
 		const header = request.headers.get('Authorization');
 
 		if (!header) {
-			return new MissingTokenException();
+			throw new MissingTokenException();
 		}
 
 		const token = header.slice('Bearer '.length);
 
-		if (token === this.config.adminApiToken) {
-			return undefined;
+		if (token !== this.config.adminApiToken) {
+			throw new IncorrectTokenException();
 		}
-
-		return new IncorrectTokenException();
 	}
 }
 

@@ -35,6 +35,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jonahsnider/nextjs-api-utils@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@jonahsnider/nextjs-api-utils@npm:1.0.0"
+  dependencies:
+    "@jonahsnider/util": 10.0.2
+    yn: 5.0.0
+    zod: ^3.22.2
+    zod-validation-error: ^1.5.0
+  peerDependencies:
+    next: ^13
+  peerDependenciesMeta:
+    next:
+      optional: false
+  checksum: 6c105612769c3fd3ad48bdeb839d0120ff6e7be9e06c583f5f0049fa36dfe09cce6d58be119be96b893e0f20258ff6de68a4c16f19e90b7afd2e19c399862115
+  languageName: node
+  linkType: hard
+
 "@jonahsnider/util@npm:10.0.2":
   version: 10.0.2
   resolution: "@jonahsnider/util@npm:10.0.2"
@@ -1064,6 +1081,7 @@ __metadata:
   resolution: "frc-colors@workspace:."
   dependencies:
     "@heroicons/react": 2.0.18
+    "@jonahsnider/nextjs-api-utils": 1.0.0
     "@jonahsnider/util": 10.0.2
     "@prisma/client": 5.2.0
     "@types/get-pixels": 3.3.2
@@ -3027,7 +3045,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod-validation-error@npm:1.5.0":
+"yn@npm:5.0.0":
+  version: 5.0.0
+  resolution: "yn@npm:5.0.0"
+  checksum: f0ec7710d3d697e88a67a46e8072542448f04677a7e6580c56b1b78da202fa5cd73fabba94957d58ee306e4ce6366c5c38c1a9fb7fd76d07ad77a4d1908b66b0
+  languageName: node
+  linkType: hard
+
+"zod-validation-error@npm:1.5.0, zod-validation-error@npm:^1.5.0":
   version: 1.5.0
   resolution: "zod-validation-error@npm:1.5.0"
   peerDependencies:
@@ -3043,7 +3068,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.22.2":
+"zod@npm:3.22.2, zod@npm:^3.22.2":
   version: 3.22.2
   resolution: "zod@npm:3.22.2"
   checksum: 231e2180c8eabb56e88680d80baff5cf6cbe6d64df3c44c50ebe52f73081ecd0229b1c7215b9552537f537a36d9e36afac2737ddd86dc14e3519bdbc777e82b9

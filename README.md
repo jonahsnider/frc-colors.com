@@ -12,13 +12,13 @@ Automatically extracts colors from team avatars uploaded to FIRST if verified co
 
 The API is publicly available at `https://frc-colors.com/api`.
 
-### `GET /team/:teamNumber`
+### `GET /v1/team/:teamNumber`
 
 Get the colors for a team by number.
 
 #### Example
 
-`GET /team/581`
+`GET /v1/team/581`
 
 ```json
 {
@@ -31,26 +31,18 @@ Get the colors for a team by number.
 }
 ```
 
-### `GET /team`
+### `GET /v1/team`
 
 Get the colors for several teams by number.
 
 #### Example
 
-`GET /team?team=581&team=254&team=1678`
+`GET /v1/team?team=581&team=254&team=1678`
 
 ```json
 {
-  "teams": [
-    {
-      "teamNumber": 581,
-      "colors": {
-        "primaryHex": "#e86d38",
-        "secondaryHex": "#7c7c7c",
-        "verified": false
-      }
-    },
-    {
+  "teams": {
+    "254": {
       "teamNumber": 254,
       "colors": {
         "primaryHex": "#0070ff",
@@ -58,8 +50,19 @@ Get the colors for several teams by number.
         "verified": true
       }
     },
-    null
-  ]
+    "581": {
+      "teamNumber": 581,
+      "colors": {
+        "primaryHex": "#e86d38",
+        "secondaryHex": "#7c7c7c",
+        "verified": false
+      }
+    },
+    "1678": {
+      "teamNumber": 1678,
+      "colors": null
+    }
+  }
 }
 ```
 
@@ -73,8 +76,16 @@ Get the colors for all teams at an event.
 
 ```json
 {
-  "teams": [
-    {
+  "teams": {
+    "254": {
+      "teamNumber": 254,
+      "colors": {
+        "primaryHex": "#0070ff",
+        "secondaryHex": "#232323",
+        "verified": true
+      }
+    },
+    "581": {
       "teamNumber": 581,
       "colors": {
         "primaryHex": "#e86d38",
@@ -82,14 +93,10 @@ Get the colors for all teams at an event.
         "verified": false
       }
     },
-    {
-      "teamNumber": 254,
-      "colors": {
-        "primaryHex": "#0070ff",
-        "secondaryHex": "#232323",
-        "verified": true
-      }
+    "1678": {
+      "teamNumber": 1678,
+      "colors": null
     }
-  ]
+  }
 }
 ```
