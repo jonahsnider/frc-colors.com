@@ -37,7 +37,7 @@ Get the colors for several teams by number.
 
 #### Example
 
-`GET /team?team=581&team=254`
+`GET /team?team=581&team=254&team=1678`
 
 ```json
 {
@@ -57,7 +57,8 @@ Get the colors for several teams by number.
         "secondaryHex": "#232323",
         "verified": true
       }
-    }
+    },
+    null
   ]
 }
 ```
