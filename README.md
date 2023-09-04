@@ -63,6 +63,33 @@ Get the colors for several teams by number.
 }
 ```
 
-#### Query Parameters
+### `GET /v1/event/:eventCode`
 
-- `team`: The team number to get the colors for. Can be repeated.
+Get the colors for all teams at an event.
+
+#### Example
+
+`GET /v1/event/2023cc`
+
+```json
+{
+  "teams": [
+    {
+      "teamNumber": 581,
+      "colors": {
+        "primaryHex": "#e86d38",
+        "secondaryHex": "#7c7c7c",
+        "verified": false
+      }
+    },
+    {
+      "teamNumber": 254,
+      "colors": {
+        "primaryHex": "#0070ff",
+        "secondaryHex": "#232323",
+        "verified": true
+      }
+    }
+  ]
+}
+```

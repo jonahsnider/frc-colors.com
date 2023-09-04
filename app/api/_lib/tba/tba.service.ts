@@ -4,6 +4,8 @@ import { TeamNumberSchema } from '../teams/dtos/team-number.dto';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import { TbaTeam } from './interfaces/tba-team.interface';
+import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
+import { UnknownEventException } from './exceptions/unknown-event.exception';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {
@@ -14,6 +16,9 @@ export class TbaService {
 
 	/** Duration to cache response for team. */
 	private static readonly TEAM_CACHE_DURATION = convert(1, 'day');
+
+	/** Duration to cache response for event teams. */
+	private static readonly EVENT_TEAMS_CACHE_DURATION = convert(1, 'day');
 
 	constructor(private readonly config: ConfigService) {}
 
@@ -31,6 +36,22 @@ export class TbaService {
 		}
 	}
 
+	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
+		const team = await this.getTeamRaw(teamNumber);
+
+		if (!team) {
+			return undefined;
+		}
+
+		return team?.nickname ?? team?.name;
+	}
+
+	async getTeamsForEvent(eventCode: string): Promise<TeamNumberSchema[]> {
+		const eventTeams = await this.getEventRaw(eventCode);
+
+		return TeamNumberSchema.array().parse(eventTeams.map((team) => team.team_number));
+	}
+
 	/** Get a buffer with a PNG of the team's avatar for the given year. */
 	private async getTeamAvatarForYear(teamNumber: TeamNumberSchema, year: number): Promise<Buffer | undefined> {
 		const teamMedia = await this.getTeamMediaForYearRaw(teamNumber, year);
@@ -42,16 +63,6 @@ export class TbaService {
 		}
 
 		return Buffer.from(avatarMedia.details.base64Image, 'base64');
-	}
-
-	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
-		const team = await this.getTeamRaw(teamNumber);
-
-		if (!team) {
-			return undefined;
-		}
-
-		return team?.nickname ?? team?.name;
 	}
 
 	/** Get a team's media for a given year. */
@@ -100,6 +111,31 @@ export class TbaService {
 
 		if (!response.ok) {
 			throw new Error(`Failed to fetch team ${teamNumber} from TBA: ${await response.text()}`);
+		}
+
+		return response.json();
+	}
+
+	private async getEventRaw(eventCode: string): Promise<TbaEventTeams> {
+		if (!this.config.tbaApiKey) {
+			return [];
+		}
+
+		const response = await fetch(`${TbaService.BASE_API_URL}/event/${encodeURIComponent(eventCode)}/teams`, {
+			headers: {
+				'X-TBA-Auth-Key': this.config.tbaApiKey,
+			},
+			next: {
+				revalidate: TbaService.EVENT_TEAMS_CACHE_DURATION.to('seconds'),
+			},
+		});
+
+		if (response.status === 404) {
+			throw new UnknownEventException(eventCode);
+		}
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch teams for event ${eventCode} from TBA: ${await response.text()}`);
 		}
 
 		return response.json();

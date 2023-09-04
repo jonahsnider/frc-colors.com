@@ -67,6 +67,14 @@ export class TeamsService {
 		});
 	}
 
+	async getTeamColorsForEvent(eventCode: string): Promise<TeamSchema[]> {
+		const teams = await this.tba.getTeamsForEvent(eventCode);
+
+		const teamColors = await this.getManyTeamColors(teams);
+
+		return teamColors.filter((teamColor): teamColor is TeamSchema => teamColor !== undefined);
+	}
+
 	/** @returns `undefined` if the team exists, or an exception if it doesn't. */
 	async teamExists(teamNumber: TeamNumberSchema): Promise<TeamNotFoundException | undefined> {
 		const nameOrException = await this.getTeamName(teamNumber);
