@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { prisma } from '../../prisma';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
-
 import { HexColorCodeSchema } from './dtos/hex-color-code.dto';
 import { TeamColorsSchema } from './dtos/team-colors-dto';
 

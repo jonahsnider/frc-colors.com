@@ -1,5 +1,4 @@
 import { z } from 'zod';
-
 import { TeamNumberSchema } from '../../../teams/dtos/team-number.dto';
 import { HexColorCodeSchema } from '../../../teams/saved-colors/dtos/hex-color-code.dto';
 

@@ -1,5 +1,4 @@
 import { Http } from '@jonahsnider/util';
-
 import { BaseHttpException } from './base.exception';
 import { ExceptionCode } from './enums/exception-code.enum';
 

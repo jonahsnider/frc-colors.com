@@ -1,7 +1,6 @@
+import { validateQuery } from '@jonahsnider/nextjs-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-
-import { validateQuery } from '@jonahsnider/nextjs-api-utils';
 import { exceptionRouteWrapper } from '../../_lib/exception-route-wrapper';
 import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
 import { V1FindManyTeamsSchema } from '../../_lib/teams/dtos/v1/team.dto';

@@ -1,11 +1,10 @@
+import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
 import { V1FindManyTeamsSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
+import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { teamsService } from '../../../_lib/teams/teams.service';
-
-import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
-import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
 
 export const GET = exceptionRouteWrapper.wrapRoute<
 	V1FindManyTeamsSchema,

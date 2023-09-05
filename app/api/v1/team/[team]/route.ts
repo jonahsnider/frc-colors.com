@@ -1,4 +1,5 @@
 import { authService } from '@/app/api/_lib/auth/auth.service';
+import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
 import { SaveTeamSchema } from '@/app/api/_lib/teams/dtos/save-team.dto';
 import { TeamNumberSchema } from '@/app/api/_lib/teams/dtos/team-number.dto';
 import { V1TeamSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
@@ -6,11 +7,9 @@ import { NoTeamColorsException } from '@/app/api/_lib/teams/exceptions/no-team-c
 import { savedColorsService } from '@/app/api/_lib/teams/saved-colors/saved-colors.service';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
 import { teamsService } from '@/app/api/_lib/teams/teams.service';
+import { NextRouteHandlerContext, validateBody, validateParams } from '@jonahsnider/nextjs-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-
-import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
-import { NextRouteHandlerContext, validateBody, validateParams } from '@jonahsnider/nextjs-api-utils';
 
 export const GET = exceptionRouteWrapper.wrapRoute<V1TeamSchema, NextRouteHandlerContext<{ team: string }>>(
 	async (_request, context) => {

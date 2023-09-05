@@ -1,7 +1,6 @@
+import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import LoadingSkeleton from '../loading-skeleton';
 import BaseTeamCard from './base-team-card';
-
-import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 
 export default function LoadingTeamCard() {
 	return (
