@@ -1,10 +1,10 @@
-import { TbaService, tbaService } from '../../tba/tba.service';
-import { TeamNumberSchema } from '../dtos/team-number.dto';
+import { promisify } from 'util';
 import { Sort } from '@jonahsnider/util';
 import { extractColors } from 'extract-colors';
 import getPixelsCb from 'get-pixels';
 import { NdArray } from 'ndarray';
-import { promisify } from 'util';
+import { TbaService, tbaService } from '../../tba/tba.service';
+import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { ColorGenCacheService, MISSING_AVATAR, colorGenCacheService } from './color-gen-cache.service';
 
@@ -21,7 +21,7 @@ export class ColorGenService {
 		// Not too black
 		!(red < 5 && green < 5 && blue < 5);
 
-	private static readonly NON_STRICT_COLOR_VALIDATOR: ColorValidator = (red, green, blue, alpha = 255) =>
+	private static readonly NON_STRICT_COLOR_VALIDATOR: ColorValidator = (_red, _green, _blue, alpha = 255) =>
 		// Not too transparent
 		alpha > 250;
 

@@ -10,10 +10,10 @@ import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api
 export const GET = exceptionRouteWrapper.wrapRoute<
 	V1FindManyTeamsSchema,
 	NextRouteHandlerContext<{ eventCode: string }>
->(async (request, context) => {
+>(async (_request, context) => {
 	const params = validateParams(context, z.object({ eventCode: z.string().min(1).max(64) }));
 
 	const teamColors = await teamsService.getTeamColorsForEvent(params.eventCode);
 
-	return NextResponse.json(TeamsSerializer.findManyTeamsToV1DTO(teamColors));
+	return NextResponse.json(TeamsSerializer.findManyTeamsToV1Dto(teamColors));
 });

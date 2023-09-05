@@ -30,7 +30,7 @@ export function TeamNumberProvider({ children }: PropsWithChildren) {
 				}
 			}
 		},
-		[setTeamNumberRaw, setTeamNumberValid],
+		[],
 	);
 
 	const contextValue: ContextValue = useMemo(
@@ -39,7 +39,7 @@ export function TeamNumberProvider({ children }: PropsWithChildren) {
 			teamNumber,
 			setTeamNumber,
 		}),
-		[teamNumberRaw, setTeamNumberRaw, setTeamNumber],
+		[teamNumberRaw, setTeamNumber, teamNumber],
 	);
 
 	return <TeamNumberContext.Provider value={contextValue}>{children}</TeamNumberContext.Provider>;

@@ -27,7 +27,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<head>
-				<PlausibleProvider enabled selfHosted domain='frc-colors.com' />
+				<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
 			</head>
 
 			<body className={lato.className}>

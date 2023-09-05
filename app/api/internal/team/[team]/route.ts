@@ -3,19 +3,19 @@ import { InternalTeamSchema } from '@/app/api/_lib/internal/team/dtos/internal-t
 import { TeamNumberSchema } from '@/app/api/_lib/teams/dtos/team-number.dto';
 import { teamsService } from '@/app/api/_lib/teams/teams.service';
 
-import { NextResponse } from 'next/server';
-import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
-import { z } from 'zod';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
+import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
+import { NextResponse } from 'next/server';
+import { z } from 'zod';
 
 export const GET = exceptionRouteWrapper.wrapRoute<InternalTeamSchema, NextRouteHandlerContext<{ team: string }>>(
-	async (request, context) => {
+	async (_request, context) => {
 		const params = validateParams(context, z.object({ team: TeamNumberSchema }));
 
 		const teamNumber = TeamNumberSchema.parse(params.team);
 
 		const internalTeam = await teamsService.getInternalTeam(teamNumber);
 
-		return NextResponse.json(TeamsSerializer.internalTeamToDTO(internalTeam));
+		return NextResponse.json(TeamsSerializer.internalTeamToDto(internalTeam));
 	},
 );

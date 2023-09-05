@@ -6,7 +6,6 @@ import { FindManyTeams } from './interfaces/find-many-colors.interface';
 import { InternalTeam } from './interfaces/internal-team';
 import { TeamColorsSchema } from './saved-colors/dtos/team-colors-dto';
 import { SavedColorsService, savedColorsService } from './saved-colors/saved-colors.service';
-import { TeamsSerializer } from './teams.serializer';
 
 export class TeamsService {
 	constructor(

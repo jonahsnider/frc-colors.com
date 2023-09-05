@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
 import { STATUS_CODES } from 'node:http';
+import { NextResponse } from 'next/server';
 
-import { ExceptionCode } from './enums/exception-code.enum';
-import { ExceptionSchema } from './dtos/exception.dto';
 import { TO_RESPONSE } from '@jonahsnider/nextjs-api-utils';
+import { ExceptionSchema } from './dtos/exception.dto';
+import { ExceptionCode } from './enums/exception-code.enum';
 
 export class BaseHttpException extends Error {
 	readonly error: string;

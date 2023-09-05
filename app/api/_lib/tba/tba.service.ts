@@ -1,11 +1,11 @@
 import convert from 'convert';
 import { ConfigService, configService } from '../config/config.service';
 import { TeamNumberSchema } from '../teams/dtos/team-number.dto';
+import { UnknownEventException } from './exceptions/unknown-event.exception';
+import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import { TbaTeam } from './interfaces/tba-team.interface';
-import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
-import { UnknownEventException } from './exceptions/unknown-event.exception';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {

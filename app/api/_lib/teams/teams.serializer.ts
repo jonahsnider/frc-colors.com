@@ -7,10 +7,10 @@ import { InternalTeam } from './interfaces/internal-team';
 import { TeamColorsSchema } from './saved-colors/dtos/team-colors-dto';
 
 export class TeamsSerializer {
-	static teamColorsToDTO(colors: TeamColorsSchema): V0ColorsSchema;
-	static teamColorsToDTO(colors?: undefined): null;
-	static teamColorsToDTO(colors?: TeamColorsSchema): V0ColorsSchema | null;
-	static teamColorsToDTO(colors?: TeamColorsSchema): V0ColorsSchema | null {
+	static teamColorsToDto(colors: TeamColorsSchema): V0ColorsSchema;
+	static teamColorsToDto(colors?: undefined): null;
+	static teamColorsToDto(colors?: TeamColorsSchema): V0ColorsSchema | null;
+	static teamColorsToDto(colors?: TeamColorsSchema): V0ColorsSchema | null {
 		return colors
 			? {
 					primaryHex: colors.primary,
@@ -20,31 +20,31 @@ export class TeamsSerializer {
 			: null;
 	}
 
-	static teamToV0DTO(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): V0TeamSchema {
+	static teamToV0Dto(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): V0TeamSchema {
 		return {
 			teamNumber,
-			colors: this.teamColorsToDTO(colors),
+			colors: this.teamColorsToDto(colors),
 		};
 	}
 
-	static teamToV1DTO(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): V1TeamSchema;
-	static teamToV1DTO(teamNumber: TeamNumberSchema, colors?: undefined): V1FindManyTeamSchema;
-	static teamToV1DTO(teamNumber: TeamNumberSchema, colors?: TeamColorsSchema): V1TeamSchema | V1FindManyTeamSchema;
-	static teamToV1DTO(teamNumber: TeamNumberSchema, colors?: TeamColorsSchema): V1TeamSchema | V1FindManyTeamSchema {
+	static teamToV1Dto(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): V1TeamSchema;
+	static teamToV1Dto(teamNumber: TeamNumberSchema, colors?: undefined): V1FindManyTeamSchema;
+	static teamToV1Dto(teamNumber: TeamNumberSchema, colors?: TeamColorsSchema): V1TeamSchema | V1FindManyTeamSchema;
+	static teamToV1Dto(teamNumber: TeamNumberSchema, colors?: TeamColorsSchema): V1TeamSchema | V1FindManyTeamSchema {
 		return {
 			teamNumber,
-			colors: this.teamColorsToDTO(colors),
+			colors: this.teamColorsToDto(colors),
 		};
 	}
 
-	static findManyTeamsToV0DTO(teams: FindManyTeams): V0FindManyTeamsSchema {
+	static findManyTeamsToV0Dto(teams: FindManyTeams): V0FindManyTeamsSchema {
 		const response: V0FindManyTeamsSchema = { teams: [] };
 
 		for (const [teamNumber, colors] of Array.from(teams)) {
 			if (colors) {
 				response.teams.push({
 					teamNumber,
-					colors: this.teamColorsToDTO(colors),
+					colors: this.teamColorsToDto(colors),
 				});
 			} else {
 				response.teams.push(null);
@@ -54,20 +54,20 @@ export class TeamsSerializer {
 		return response;
 	}
 
-	static findManyTeamsToV1DTO(teams: FindManyTeams): V1FindManyTeamsSchema {
+	static findManyTeamsToV1Dto(teams: FindManyTeams): V1FindManyTeamsSchema {
 		return {
 			teams: Object.fromEntries(
-				Array.from(teams).map(([teamNumber, colors]) => [teamNumber, this.teamToV1DTO(teamNumber, colors)]),
+				Array.from(teams).map(([teamNumber, colors]) => [teamNumber, this.teamToV1Dto(teamNumber, colors)]),
 			),
 		};
 	}
 
-	static internalTeamToDTO(team: InternalTeam): InternalTeamSchema {
+	static internalTeamToDto(team: InternalTeam): InternalTeamSchema {
 		return {
 			avatarUrl: team.avatarUrl ?? null,
 			teamName: team.teamName ?? null,
 			teamNumber: team.teamNumber,
-			colors: this.teamColorsToDTO(team.colors),
+			colors: this.teamColorsToDto(team.colors),
 		};
 	}
 

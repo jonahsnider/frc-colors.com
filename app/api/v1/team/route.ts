@@ -3,10 +3,10 @@ import { z } from 'zod';
 
 import { validateQuery } from '@jonahsnider/nextjs-api-utils';
 import { exceptionRouteWrapper } from '../../_lib/exception-route-wrapper';
-import { V1FindManyTeamsSchema } from '../../_lib/teams/dtos/v1/team.dto';
 import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
-import { teamsService } from '../../_lib/teams/teams.service';
+import { V1FindManyTeamsSchema } from '../../_lib/teams/dtos/v1/team.dto';
 import { TeamsSerializer } from '../../_lib/teams/teams.serializer';
+import { teamsService } from '../../_lib/teams/teams.service';
 
 export const GET = exceptionRouteWrapper.wrapRoute<V1FindManyTeamsSchema>(async (request) => {
 	const query = validateQuery(
@@ -22,5 +22,5 @@ export const GET = exceptionRouteWrapper.wrapRoute<V1FindManyTeamsSchema>(async 
 
 	const teamColors = await teamsService.getManyTeamColors(teamNumbers);
 
-	return NextResponse.json(TeamsSerializer.findManyTeamsToV1DTO(teamColors));
+	return NextResponse.json(TeamsSerializer.findManyTeamsToV1Dto(teamColors));
 });

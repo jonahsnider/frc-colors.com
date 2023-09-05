@@ -4,8 +4,8 @@ import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
 import { teamsService } from '../../_lib/teams/teams.service';
 
 import { validateQuery } from '@jonahsnider/nextjs-api-utils';
-import { V0FindManyTeamsSchema } from '../../_lib/teams/dtos/v0/team.dto';
 import { exceptionRouteWrapper } from '../../_lib/exception-route-wrapper';
+import { V0FindManyTeamsSchema } from '../../_lib/teams/dtos/v0/team.dto';
 import { TeamsSerializer } from '../../_lib/teams/teams.serializer';
 
 export const GET = exceptionRouteWrapper.wrapRoute<V0FindManyTeamsSchema>(async (request) => {
@@ -22,5 +22,5 @@ export const GET = exceptionRouteWrapper.wrapRoute<V0FindManyTeamsSchema>(async 
 
 	const teamColors = await teamsService.getManyTeamColors(teamNumbers);
 
-	return NextResponse.json(TeamsSerializer.findManyTeamsToV0DTO(teamColors));
+	return NextResponse.json(TeamsSerializer.findManyTeamsToV0Dto(teamColors));
 });

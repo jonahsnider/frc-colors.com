@@ -1,12 +1,12 @@
 'use client';
 
 import { useContext } from 'react';
+import TrackTeam from '../components/analytics/track-team';
 import SearchTeams from '../components/search-teams';
+import LoadingTeamCard from '../components/team-card/loading-team-card';
 import TeamCard from '../components/team-card/team-card';
 import { TeamNumberContext } from '../contexts/team-number-context';
 import { useTeam } from '../hooks/use-team';
-import LoadingTeamCard from '../components/team-card/loading-team-card';
-import TrackTeam from '../components/analytics/track-team';
 
 export default function HomePage() {
 	const { teamNumber } = useContext(TeamNumberContext);

@@ -13,7 +13,7 @@ import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
 import { NextRouteHandlerContext, validateBody, validateParams } from '@jonahsnider/nextjs-api-utils';
 
 export const GET = exceptionRouteWrapper.wrapRoute<V1TeamSchema, NextRouteHandlerContext<{ team: string }>>(
-	async (request, context) => {
+	async (_request, context) => {
 		const params = validateParams(context, z.object({ team: TeamNumberSchema }));
 
 		const teamNumber = TeamNumberSchema.parse(params.team);
@@ -24,7 +24,7 @@ export const GET = exceptionRouteWrapper.wrapRoute<V1TeamSchema, NextRouteHandle
 			throw new NoTeamColorsException(teamNumber);
 		}
 
-		return NextResponse.json(TeamsSerializer.teamToV1DTO(teamNumber, team));
+		return NextResponse.json(TeamsSerializer.teamToV1Dto(teamNumber, team));
 	},
 );
 
@@ -47,6 +47,6 @@ export const POST = exceptionRouteWrapper.wrapRoute<V1TeamSchema, NextRouteHandl
 			throw new NoTeamColorsException(teamNumber);
 		}
 
-		return NextResponse.json(TeamsSerializer.teamToV1DTO(teamNumber, team));
+		return NextResponse.json(TeamsSerializer.teamToV1Dto(teamNumber, team));
 	},
 );

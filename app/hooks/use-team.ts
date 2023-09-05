@@ -1,6 +1,6 @@
+import useSwr from 'swr';
 import { InternalTeamSchema } from '../api/_lib/internal/team/dtos/internal-team.dto';
 import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
-import useSWR from 'swr';
 import { fetcher } from '../swr';
 
 export function useTeam(teamNumber?: TeamNumberSchema): {
@@ -12,7 +12,7 @@ export function useTeam(teamNumber?: TeamNumberSchema): {
 		data: team,
 		error,
 		isLoading,
-	} = useSWR<InternalTeamSchema>(`/api/internal/team/${teamNumber}`, {
+	} = useSwr<InternalTeamSchema>(`/api/internal/team/${teamNumber}`, {
 		fetcher: teamNumber ? fetcher : undefined,
 	});
 

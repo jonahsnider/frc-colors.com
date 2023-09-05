@@ -24,7 +24,7 @@ export default function Navbar() {
 				<NavbarLogo />
 
 				<ul className='flex flex-row space-x-2'>
-					{items.map((item, index) => {
+					{items.map((item, _index) => {
 						return (
 							<li
 								key={item.content}

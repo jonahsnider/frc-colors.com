@@ -1,12 +1,13 @@
-import { kv, VercelKV } from '@vercel/kv';
+import { VercelKV, kv } from '@vercel/kv';
+import convert from 'convert';
+import { ConfigService, configService } from '../../config/config.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
-import convert from 'convert';
 import { CachedColorsSchema } from './dtos/cached-colors.dto';
-import { ConfigService, configService } from '../../config/config.service';
 
 /** Used to mark a team as missing an avatar on TBA, to avoid trying to fetch one. */
 export const MISSING_AVATAR = Symbol('MISSING_AVATAR');
+// rome-ignore lint/nursery/useNamingConvention: Pascal case convention isn't applicable here
 export type MISSING_AVATAR = typeof MISSING_AVATAR;
 
 export class ColorGenCacheService {
@@ -29,7 +30,10 @@ export class ColorGenCacheService {
 				primary: colors.primary,
 				secondary: colors.secondary,
 			});
-			await this.redis.expire(`generated-colors:${teamNumber}`, ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'));
+			await this.redis.expire(
+				`generated-colors:${teamNumber}`,
+				ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
+			);
 		}
 	}
 

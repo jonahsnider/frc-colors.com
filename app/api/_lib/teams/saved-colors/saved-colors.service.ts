@@ -20,7 +20,10 @@ export class SavedColorsService {
 		return this.findManyTeamColors(teamNumber);
 	}
 
-	async saveTeamColors(teamNumber: TeamNumberSchema, colors: Pick<TeamColorsSchema, 'primary' | 'secondary'>): Promise<void> {
+	async saveTeamColors(
+		teamNumber: TeamNumberSchema,
+		colors: Pick<TeamColorsSchema, 'primary' | 'secondary'>,
+	): Promise<void> {
 		const teamColor = { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary };
 
 		await this.prisma.team.upsert({

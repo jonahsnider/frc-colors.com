@@ -1,10 +1,10 @@
 'use client';
 
 import clsx from 'clsx';
-import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
 import { useContext, useState } from 'react';
-import { TeamNumberContext } from '../contexts/team-number-context';
 import { useDebouncedCallback } from 'use-debounce';
+import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
+import { TeamNumberContext } from '../contexts/team-number-context';
 
 export default function SearchTeams() {
 	const [teamNumberRaw, setTeamNumberRaw] = useState('');
@@ -24,8 +24,8 @@ export default function SearchTeams() {
 					setTeamNumberRaw(event.target.value);
 					setTeamNumber(event.target.value);
 				}}
-				// rome-ignore lint/a11y/noAutofocus: <explanation>
-				autoFocus
+				// rome-ignore lint/a11y/noAutofocus: Autofocus is essential here
+				autoFocus={true}
 				value={teamNumberRaw}
 			/>
 		</div>
