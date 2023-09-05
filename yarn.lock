@@ -106,9 +106,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jonahsnider/nextjs-api-utils@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@jonahsnider/nextjs-api-utils@npm:1.0.0"
+"@jonahsnider/nextjs-api-utils@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@jonahsnider/nextjs-api-utils@npm:1.0.4"
   dependencies:
     "@jonahsnider/util": 10.0.2
     yn: 5.0.0
@@ -119,7 +119,7 @@ __metadata:
   peerDependenciesMeta:
     next:
       optional: false
-  checksum: 6c105612769c3fd3ad48bdeb839d0120ff6e7be9e06c583f5f0049fa36dfe09cce6d58be119be96b893e0f20258ff6de68a4c16f19e90b7afd2e19c399862115
+  checksum: 8eb5a1540aea9349e8ae0ec11ff9da1c6d4a4ab6ba9858887024b25856eb72a896fa6f766c1d10be3ca3789db5fc7e97b03420e5a3caeb4c8eee9a798af7f9ce
   languageName: node
   linkType: hard
 
@@ -1111,7 +1111,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": 1.0.0
     "@heroicons/react": 2.0.18
-    "@jonahsnider/nextjs-api-utils": 1.0.0
+    "@jonahsnider/nextjs-api-utils": 1.0.4
     "@jonahsnider/util": 10.0.2
     "@prisma/client": 5.2.0
     "@types/get-pixels": 3.3.2
