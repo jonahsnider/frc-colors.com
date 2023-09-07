@@ -7,7 +7,7 @@ import { CachedColorsSchema } from './dtos/cached-colors.dto';
 
 /** Used to mark a team as missing an avatar on TBA, to avoid trying to fetch one. */
 export const MISSING_AVATAR = Symbol('MISSING_AVATAR');
-// rome-ignore lint/nursery/useNamingConvention: Pascal case convention isn't applicable here
+// biome-ignore lint/nursery/useNamingConvention: Pascal case convention isn't applicable here
 export type MISSING_AVATAR = typeof MISSING_AVATAR;
 
 export class ColorGenCacheService {
