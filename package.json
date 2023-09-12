@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.15",
     "clsx": "2.0.0",
     "color-luminance": "2.1.0",
-    "convert": "4.13.1",
+    "convert": "4.13.2",
     "extract-colors": "4.0.2",
     "get-pixels": "3.3.3",
     "next": "13.4.19",
