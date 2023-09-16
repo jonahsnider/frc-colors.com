@@ -39,7 +39,7 @@
     "zod-validation-error": "1.5.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.2.1",
+    "@biomejs/biome": "1.2.2",
     "@types/get-pixels": "3.3.2",
     "prisma": "5.3.1"
   },
