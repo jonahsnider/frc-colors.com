@@ -24,8 +24,6 @@ export default function SearchTeams() {
 					setTeamNumberRaw(event.target.value);
 					setTeamNumber(event.target.value);
 				}}
-				// biome-ignore lint/a11y/noAutofocus: Autofocus is essential here
-				autoFocus={true}
 				value={teamNumberRaw}
 			/>
 		</div>
