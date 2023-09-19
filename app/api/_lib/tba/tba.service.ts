@@ -13,13 +13,13 @@ export class TbaService {
 	private static readonly BASE_API_URL = 'https://www.thebluealliance.com/api/v3';
 
 	/** Duration to cache response for team media for year. */
-	private static readonly TEAM_MEDIA_FOR_YEAR_CACHE_DURATION = convert(1, 'day');
+	private static readonly TEAM_MEDIA_FOR_YEAR_CACHE_DURATION = convert(1, 'week');
 
 	/** Duration to cache response for team. */
-	private static readonly TEAM_CACHE_DURATION = convert(1, 'day');
+	private static readonly TEAM_CACHE_DURATION = convert(1, 'week');
 
 	/** Duration to cache response for event teams. */
-	private static readonly EVENT_TEAMS_CACHE_DURATION = convert(1, 'day');
+	private static readonly EVENT_TEAMS_CACHE_DURATION = convert(1, 'week');
 
 	constructor(private readonly config: ConfigService) {}
 

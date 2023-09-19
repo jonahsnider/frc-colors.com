@@ -12,7 +12,7 @@ export const MISSING_AVATAR = Symbol('MISSING_AVATAR');
 export type MISSING_AVATAR = typeof MISSING_AVATAR;
 
 export class ColorGenCacheService {
-	private static readonly GENERATED_COLORS_CACHE_TTL = convert(7, 'day');
+	private static readonly GENERATED_COLORS_CACHE_TTL = convert(1, 'week');
 
 	constructor(private readonly redis: VercelKV, private readonly config: ConfigService) {}
 
