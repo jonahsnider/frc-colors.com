@@ -591,12 +591,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@upstash/redis@npm:1.21.0":
-  version: 1.21.0
-  resolution: "@upstash/redis@npm:1.21.0"
+"@upstash/redis@npm:1.22.0":
+  version: 1.22.0
+  resolution: "@upstash/redis@npm:1.22.0"
   dependencies:
     isomorphic-fetch: ^3.0.0
-  checksum: ba2ba971c1f6d0297afddf73aba0817a39fcf8d71e51131030a24541e4564138a11bae50b78da7dd0eca5a11baa1322888688cb206f078603ea3a8d0a639a30e
+  checksum: 894b7d4e318c55fdcbf0f322efd9ace94a37f1b8f9d7cb2cdf8b8b4859814379665c7e00feef3565578455d98492710d14ed4a2b043ec412b5d640a4d5a2dd55
   languageName: node
   linkType: hard
 
@@ -607,12 +607,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/kv@npm:0.2.2":
-  version: 0.2.2
-  resolution: "@vercel/kv@npm:0.2.2"
+"@vercel/kv@npm:0.2.3":
+  version: 0.2.3
+  resolution: "@vercel/kv@npm:0.2.3"
   dependencies:
-    "@upstash/redis": 1.21.0
-  checksum: ba724fe25cc4f2eba6b94ff7cc057e9e30481beb89ada5a9c121544f284e47eed5586996ed1fb3c11b5455e8f67b281713805638c215fb172b3f566e4ad509d1
+    "@upstash/redis": 1.22.0
+  checksum: 3a2b1e3a0ebf605b69341b449bd81edde94f9d00393cc6971759b950c90cff782e1e4fa5daf672f4769aa8301e00f7b7fdec07cdd98d40530652d83c043125ed
   languageName: node
   linkType: hard
 
@@ -1347,7 +1347,7 @@ __metadata:
     "@types/react": 18.2.22
     "@types/react-dom": 18.2.7
     "@vercel/analytics": 1.0.2
-    "@vercel/kv": 0.2.2
+    "@vercel/kv": 0.2.3
     autoprefixer: 10.4.15
     clsx: 2.0.0
     color-luminance: 2.1.0
