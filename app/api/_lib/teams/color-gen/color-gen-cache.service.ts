@@ -4,6 +4,7 @@ import { ConfigService, configService } from '../../config/config.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { CachedColorsSchema } from './dtos/cached-colors.dto';
+import * as Sentry from '@sentry/nextjs';
 
 /** Used to mark a team as missing an avatar on TBA, to avoid trying to fetch one. */
 export const MISSING_AVATAR = Symbol('MISSING_AVATAR');
@@ -20,21 +21,23 @@ export class ColorGenCacheService {
 			return;
 		}
 
-		if (colors === MISSING_AVATAR) {
-			await this.redis.set(this.missingAvatarRedisKey(teamNumber), '1', {
-				ex: ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
-			});
-		} else {
-			await this.redis.del(this.missingAvatarRedisKey(teamNumber));
-			await this.redis.hset(this.generatedColorsRedisKey(teamNumber), {
-				primary: colors.primary,
-				secondary: colors.secondary,
-			});
-			await this.redis.expire(
-				this.generatedColorsRedisKey(teamNumber),
-				ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
-			);
-		}
+		return Sentry.startSpan({ name: 'Set cached generated team colors' }, async () => {
+			if (colors === MISSING_AVATAR) {
+				await this.redis.set(this.missingAvatarRedisKey(teamNumber), '1', {
+					ex: ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
+				});
+			} else {
+				await this.redis.del(this.missingAvatarRedisKey(teamNumber));
+				await this.redis.hset(this.generatedColorsRedisKey(teamNumber), {
+					primary: colors.primary,
+					secondary: colors.secondary,
+				});
+				await this.redis.expire(
+					this.generatedColorsRedisKey(teamNumber),
+					ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
+				);
+			}
+		});
 	}
 
 	async getCachedTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | MISSING_AVATAR | undefined> {
@@ -42,22 +45,24 @@ export class ColorGenCacheService {
 			return undefined;
 		}
 
-		const missingAvatar = await this.redis.exists(this.missingAvatarRedisKey(teamNumber));
+		return Sentry.startSpan({ name: 'Get cached generated team colors' }, async () => {
+			const missingAvatar = await this.redis.exists(this.missingAvatarRedisKey(teamNumber));
 
-		if (missingAvatar) {
-			return MISSING_AVATAR;
-		}
+			if (missingAvatar) {
+				return MISSING_AVATAR;
+			}
 
-		const cachedTeamColors = await this.redis.hgetall(this.generatedColorsRedisKey(teamNumber));
+			const cachedTeamColors = await this.redis.hgetall(this.generatedColorsRedisKey(teamNumber));
 
-		if (cachedTeamColors) {
-			const parsed = CachedColorsSchema.parse(cachedTeamColors);
+			if (cachedTeamColors) {
+				const parsed = CachedColorsSchema.parse(cachedTeamColors);
 
-			return {
-				...parsed,
-				verified: false,
-			};
-		}
+				return {
+					...parsed,
+					verified: false,
+				};
+			}
+		});
 	}
 
 	private generatedColorsRedisKey(teamNumber: number): string {

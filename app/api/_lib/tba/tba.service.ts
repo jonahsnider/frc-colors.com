@@ -6,6 +6,7 @@ import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import { TbaTeam } from './interfaces/tba-team.interface';
+import * as Sentry from '@sentry/nextjs';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {
@@ -24,32 +25,38 @@ export class TbaService {
 
 	/** Get a buffer with a PNG of the team's avatar for the current year. */
 	async getTeamAvatarForThisYear(teamNumber: TeamNumberSchema): Promise<Buffer | undefined> {
-		const currentYear = new Date().getFullYear();
-		const yearsToCheck = [currentYear, currentYear - 1];
+		return Sentry.startSpan({ name: 'Get team avatar for this year from TBA' }, async () => {
+			const currentYear = new Date().getFullYear();
+			const yearsToCheck = [currentYear, currentYear - 1];
 
-		for (const year of yearsToCheck) {
-			const colors = await this.getTeamAvatarForYear(teamNumber, year);
+			for (const year of yearsToCheck) {
+				const colors = await this.getTeamAvatarForYear(teamNumber, year);
 
-			if (colors) {
-				return colors;
+				if (colors) {
+					return colors;
+				}
 			}
-		}
+		});
 	}
 
 	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
-		const team = await this.getTeamRaw(teamNumber);
+		return Sentry.startSpan({ name: 'Get team name from TBA' }, async () => {
+			const team = await this.getTeamRaw(teamNumber);
 
-		if (!team) {
-			return undefined;
-		}
+			if (!team) {
+				return undefined;
+			}
 
-		return team?.nickname ?? team?.name;
+			return team?.nickname ?? team?.name;
+		});
 	}
 
 	async getTeamsForEvent(eventCode: string): Promise<TeamNumberSchema[]> {
-		const eventTeams = await this.getEventRaw(eventCode);
+		return Sentry.startSpan({ name: 'Get teams for event from TBA' }, async () => {
+			const eventTeams = await this.getEventRaw(eventCode);
 
-		return TeamNumberSchema.array().parse(eventTeams.map((team) => team.team_number));
+			return TeamNumberSchema.array().parse(eventTeams.map((team) => team.team_number));
+		});
 	}
 
 	/** Get a buffer with a PNG of the team's avatar for the given year. */

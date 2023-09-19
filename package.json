@@ -14,6 +14,7 @@
     "@heroicons/react": "2.0.18",
     "@jonahsnider/util": "10.2.0",
     "@prisma/client": "5.3.1",
+    "@sentry/nextjs": "7.69.0",
     "@types/node": "20.6.2",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",

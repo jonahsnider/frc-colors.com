@@ -7,6 +7,7 @@ import { TbaService, tbaService } from '../../tba/tba.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { ColorGenCacheService, MISSING_AVATAR, colorGenCacheService } from './color-gen-cache.service';
+import * as Sentry from '@sentry/nextjs';
 
 const getPixels = promisify(getPixelsCb);
 
@@ -28,64 +29,79 @@ export class ColorGenService {
 	constructor(private readonly tba: TbaService, private readonly cache: ColorGenCacheService) {}
 
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		const cached = await this.cache.getCachedTeamColors(teamNumber);
+		return Sentry.startSpan({ name: 'Get generated team colors' }, async () => {
+			const cached = await this.cache.getCachedTeamColors(teamNumber);
 
-		if (cached !== MISSING_AVATAR && cached !== undefined) {
-			return cached;
-		}
+			if (cached !== MISSING_AVATAR && cached !== undefined) {
+				return cached;
+			}
 
-		const teamAvatar = cached === MISSING_AVATAR ? undefined : await this.tba.getTeamAvatarForThisYear(teamNumber);
+			const teamAvatar = cached === MISSING_AVATAR ? undefined : await this.tba.getTeamAvatarForThisYear(teamNumber);
 
-		if (!teamAvatar) {
-			return undefined;
-		}
+			if (!teamAvatar) {
+				return undefined;
+			}
 
-		const pixels = await this.getPixels(teamAvatar);
-
-		if (!pixels) {
-			return undefined;
-		}
-
-		let extractedColors = await this.extractColors(pixels, true);
-
-		// If there aren't enough colors, try extracting again with less strict filtering
-		if (extractedColors.length < 2) {
-			extractedColors = await this.extractColors(pixels, false);
-		}
-
-		extractedColors.sort(Sort.descending((color) => color.area));
-
-		const [primary, secondary] = extractedColors;
-
-		if (!primary) {
-			return undefined;
-		}
-
-		const colors = {
-			primary: primary.hex.toLowerCase(),
-			secondary: secondary?.hex?.toLowerCase() ?? '#ffffff',
-			verified: false,
-		};
-
-		await this.cache.setCachedTeamColors(teamNumber, colors);
-
-		return colors;
+			return this.generateTeamColors(teamAvatar, teamNumber);
+		});
 	}
 
 	private async getPixels(teamAvatar: Buffer): Promise<ReturnType<typeof getPixels> | undefined> {
-		try {
-			return await getPixels(teamAvatar, 'image/png');
-		} catch {}
+		return Sentry.startSpan({ name: 'Get pixels' }, async () => {
+			try {
+				return await getPixels(teamAvatar, 'image/png');
+			} catch {}
+		});
 	}
 
 	private async extractColors(pixels: NdArray<Uint8Array>, strict: boolean): Promise<ReturnType<typeof extractColors>> {
-		return extractColors(
-			{ data: Array.from(pixels.data), width: 40, height: 40 },
-			{
-				pixels: 40 * 40,
-				colorValidator: strict ? ColorGenService.STRICT_COLOR_VALIDATOR : ColorGenService.NON_STRICT_COLOR_VALIDATOR,
-			},
+		return Sentry.startSpan({ name: 'Extract colors' }, async () =>
+			extractColors(
+				{ data: Array.from(pixels.data), width: 40, height: 40 },
+				{
+					pixels: 40 * 40,
+					colorValidator: strict ? ColorGenService.STRICT_COLOR_VALIDATOR : ColorGenService.NON_STRICT_COLOR_VALIDATOR,
+				},
+			),
 		);
+	}
+
+	private async generateTeamColors(
+		teamAvatar: Buffer,
+		teamNumber: TeamNumberSchema,
+	): Promise<TeamColorsSchema | undefined> {
+		return Sentry.startSpan({ name: 'Generate team colors' }, async () => {
+			const pixels = await this.getPixels(teamAvatar);
+
+			if (!pixels) {
+				return undefined;
+			}
+
+			let extractedColors = await this.extractColors(pixels, true);
+
+			// If there aren't enough colors, try extracting again with less strict filtering
+			if (extractedColors.length < 2) {
+				extractedColors = await this.extractColors(pixels, false);
+			}
+
+			extractedColors.sort(Sort.descending((color) => color.area));
+
+			const [primary, secondary] = extractedColors;
+
+			if (!primary) {
+				return undefined;
+			}
+
+			const colors = {
+				primary: primary.hex.toLowerCase(),
+				secondary: secondary?.hex?.toLowerCase() ?? '#ffffff',
+				verified: false,
+			};
+
+			await this.cache.setCachedTeamColors(teamNumber, colors);
+
+			return colors;
+		});
 	}
 }
 

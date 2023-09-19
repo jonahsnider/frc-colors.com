@@ -6,6 +6,7 @@ import { FindManyTeams } from './interfaces/find-many-colors.interface';
 import { InternalTeam } from './interfaces/internal-team';
 import { TeamColorsSchema } from './saved-colors/dtos/team-colors-dto';
 import { SavedColorsService, savedColorsService } from './saved-colors/saved-colors.service';
+import * as Sentry from '@sentry/nextjs';
 
 export class TeamsService {
 	constructor(
@@ -16,71 +17,81 @@ export class TeamsService {
 
 	/** @returns The colors for a team. */
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		const savedTeamColors = await this.savedColors.findTeamColors(teamNumber);
+		return Sentry.startSpan({ name: 'Get team colors' }, async () => {
+			const savedTeamColors = await this.savedColors.findTeamColors(teamNumber);
 
-		if (savedTeamColors) {
-			return savedTeamColors;
-		}
+			if (savedTeamColors) {
+				return savedTeamColors;
+			}
 
-		const colors = await this.colorGen.getTeamColors(teamNumber);
+			const colors = await this.colorGen.getTeamColors(teamNumber);
 
-		if (colors) {
-			return colors;
-		}
+			if (colors) {
+				return colors;
+			}
 
-		return undefined;
+			return undefined;
+		});
 	}
 
 	/** @returns The colors for a team. */
 	async getManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<FindManyTeams> {
-		const savedColors = await this.savedColors.findTeamColors(teamNumbers);
-		const missingColors = difference<TeamNumberSchema>(teamNumbers, savedColors.keys());
+		return Sentry.startSpan({ name: 'Get many team colors' }, async () => {
+			const savedColors = await this.savedColors.findTeamColors(teamNumbers);
+			const missingColors = difference<TeamNumberSchema>(teamNumbers, savedColors.keys());
 
-		const generatedColors = new Map(
-			await Promise.all(
-				Array.from(missingColors).map(
-					async (teamNumber) => [teamNumber, await this.colorGen.getTeamColors(teamNumber)] as const,
+			const generatedColors = new Map(
+				await Promise.all(
+					Array.from(missingColors).map(
+						async (teamNumber) => [teamNumber, await this.colorGen.getTeamColors(teamNumber)] as const,
+					),
 				),
-			),
-		);
+			);
 
-		const result: FindManyTeams = new Map();
+			const result: FindManyTeams = new Map();
 
-		for (const teamNumber of teamNumbers) {
-			const colors = savedColors.get(teamNumber) ?? generatedColors.get(teamNumber);
+			for (const teamNumber of teamNumbers) {
+				const colors = savedColors.get(teamNumber) ?? generatedColors.get(teamNumber);
 
-			result.set(teamNumber, colors);
-		}
+				result.set(teamNumber, colors);
+			}
 
-		return result;
+			return result;
+		});
 	}
 
 	async getTeamColorsForEvent(eventCode: string): Promise<FindManyTeams> {
-		const teams = await this.tba.getTeamsForEvent(eventCode);
+		return Sentry.startSpan({ name: 'Get team colors for event' }, async () => {
+			const teams = await this.tba.getTeamsForEvent(eventCode);
 
-		return this.getManyTeamColors(teams);
+			return this.getManyTeamColors(teams);
+		});
 	}
 
 	/** @returns The team's nickname or name (nickname is used if available). */
 	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
-		return this.tba.getTeamName(teamNumber);
+		return Sentry.startSpan({ name: 'Get team name' }, async () => {
+			return this.tba.getTeamName(teamNumber);
+		});
 	}
 
 	async getInternalTeam(teamNumber: TeamNumberSchema): Promise<InternalTeam> {
-		const [teamName, teamColors, avatarBase64] = await Promise.all([
-			this.getTeamName(teamNumber),
-			this.getTeamColors(teamNumber),
-			this.tba.getTeamAvatarForThisYear(teamNumber),
-		]);
+		return Sentry.startSpan({ name: 'Get internal team' }, async () => {
+			const [teamName, teamColors, avatarBase64] = await Promise.all([
+				this.getTeamName(teamNumber),
+				this.getTeamColors(teamNumber),
+				this.tba.getTeamAvatarForThisYear(teamNumber),
+			]);
 
-		const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;
+			const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;
 
-		return {
-			teamNumber,
-			colors: teamColors,
-			teamName,
-			avatarUrl,
-		};
+			return {
+				teamNumber,
+				colors: teamColors,
+				teamName,
+				avatarUrl,
+			};
+		});
 	}
 }
 
