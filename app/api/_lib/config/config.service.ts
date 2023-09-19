@@ -5,6 +5,7 @@ export class ConfigService {
 	public readonly adminApiToken: string | undefined;
 	public readonly baseUrl: URL | undefined;
 	public readonly redisCacheEnabled: boolean;
+	public readonly redisPrefix: string;
 
 	constructor(source: Readonly<Record<string, unknown>>) {
 		this.tbaApiKey = z.string().min(1).optional().parse(source.TBA_API_KEY);
@@ -21,6 +22,7 @@ export class ConfigService {
 			.transform((value) => value === 'true')
 			.pipe(z.boolean().default(false))
 			.parse(source.REDIS_CACHE_ENABLED);
+		this.redisPrefix = source.NODE_ENV !== 'production' ? 'dev:' : '';
 	}
 }
 

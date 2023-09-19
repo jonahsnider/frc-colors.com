@@ -21,17 +21,17 @@ export class ColorGenCacheService {
 		}
 
 		if (colors === MISSING_AVATAR) {
-			await this.redis.set(`missing-avatar:${teamNumber}`, '1', {
+			await this.redis.set(this.missingAvatarRedisKey(teamNumber), '1', {
 				ex: ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
 			});
 		} else {
-			await this.redis.del(`missing-avatar:${teamNumber}`);
-			await this.redis.hset(`generated-colors:${teamNumber}`, {
+			await this.redis.del(this.missingAvatarRedisKey(teamNumber));
+			await this.redis.hset(this.generatedColorsRedisKey(teamNumber), {
 				primary: colors.primary,
 				secondary: colors.secondary,
 			});
 			await this.redis.expire(
-				`generated-colors:${teamNumber}`,
+				this.generatedColorsRedisKey(teamNumber),
 				ColorGenCacheService.GENERATED_COLORS_CACHE_TTL.to('seconds'),
 			);
 		}
@@ -42,13 +42,13 @@ export class ColorGenCacheService {
 			return undefined;
 		}
 
-		const missingAvatar = await this.redis.exists(`missing-avatar:${teamNumber}`);
+		const missingAvatar = await this.redis.exists(this.missingAvatarRedisKey(teamNumber));
 
 		if (missingAvatar) {
 			return MISSING_AVATAR;
 		}
 
-		const cachedTeamColors = await this.redis.hgetall(`generated-colors:${teamNumber}`);
+		const cachedTeamColors = await this.redis.hgetall(this.generatedColorsRedisKey(teamNumber));
 
 		if (cachedTeamColors) {
 			const parsed = CachedColorsSchema.parse(cachedTeamColors);
@@ -58,6 +58,14 @@ export class ColorGenCacheService {
 				verified: false,
 			};
 		}
+	}
+
+	private generatedColorsRedisKey(teamNumber: number): string {
+		return `${configService.redisPrefix}generated-colors:${teamNumber}`;
+	}
+
+	private missingAvatarRedisKey(teamNumber: number): string {
+		return `${configService.redisPrefix}missing-avatar:${teamNumber}`;
 	}
 }
 
