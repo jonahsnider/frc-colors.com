@@ -7,7 +7,7 @@ import { NoTeamColorsException } from '@/app/api/_lib/teams/exceptions/no-team-c
 import { savedColorsService } from '@/app/api/_lib/teams/saved-colors/saved-colors.service';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
 import { teamsService } from '@/app/api/_lib/teams/teams.service';
-import { NextRouteHandlerContext, validateBody, validateParams } from '@jonahsnider/nextjs-api-utils';
+import { NextRouteHandlerContext, validateBody, validateParams } from 'next-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 

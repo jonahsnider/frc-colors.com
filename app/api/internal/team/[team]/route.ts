@@ -3,7 +3,7 @@ import { InternalTeamSchema } from '@/app/api/_lib/internal/team/dtos/internal-t
 import { TeamNumberSchema } from '@/app/api/_lib/teams/dtos/team-number.dto';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
 import { teamsService } from '@/app/api/_lib/teams/teams.service';
-import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
+import { NextRouteHandlerContext, validateParams } from 'next-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 

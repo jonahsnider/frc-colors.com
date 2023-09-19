@@ -106,31 +106,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jonahsnider/nextjs-api-utils@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@jonahsnider/nextjs-api-utils@npm:1.0.4"
-  dependencies:
-    "@jonahsnider/util": 10.0.2
-    yn: 5.0.0
-    zod: ^3.22.2
-    zod-validation-error: ^1.5.0
-  peerDependencies:
-    next: ^13
-  peerDependenciesMeta:
-    next:
-      optional: false
-  checksum: 8eb5a1540aea9349e8ae0ec11ff9da1c6d4a4ab6ba9858887024b25856eb72a896fa6f766c1d10be3ca3789db5fc7e97b03420e5a3caeb4c8eee9a798af7f9ce
-  languageName: node
-  linkType: hard
-
-"@jonahsnider/util@npm:10.0.2":
-  version: 10.0.2
-  resolution: "@jonahsnider/util@npm:10.0.2"
-  checksum: 0c8d7dbaba24e33ada885d01fc63391433aa8615f0d3faf575f252742a89b2c636ed0b2fae29d445ba07bc50725967ace6f68637fdac03231469a1923e691c0d
-  languageName: node
-  linkType: hard
-
-"@jonahsnider/util@npm:10.2.0":
+"@jonahsnider/util@npm:10.2.0, @jonahsnider/util@npm:^10.1.0":
   version: 10.2.0
   resolution: "@jonahsnider/util@npm:10.2.0"
   checksum: da605c0375bc88d3ed2fc28497e9e97abe4ca8943082354dc6d9956063dd6f4486f32df4749e840ce88599115d55a208eda1332dffa3b86e5730fb895056f9d9
@@ -1129,7 +1105,6 @@ __metadata:
   dependencies:
     "@biomejs/biome": 1.2.2
     "@heroicons/react": 2.0.18
-    "@jonahsnider/nextjs-api-utils": 1.0.4
     "@jonahsnider/util": 10.2.0
     "@prisma/client": 5.3.1
     "@types/get-pixels": 3.3.2
@@ -1145,6 +1120,7 @@ __metadata:
     extract-colors: 4.0.2
     get-pixels: 3.3.3
     next: 13.4.19
+    next-api-utils: 1.0.1
     next-plausible: 3.11.1
     postcss: 8.4.30
     prisma: 5.3.1
@@ -1906,6 +1882,23 @@ __metadata:
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
   checksum: b8ffeb1e262eff7968fc90a2b6767b04cfd9842582a9d0ece0af7049537266e7b2506dfb1d107a32f06dd849ab2aea834d5830f7f4d0e5cb7d36e1ae55d021d9
+  languageName: node
+  linkType: hard
+
+"next-api-utils@npm:1.0.1":
+  version: 1.0.1
+  resolution: "next-api-utils@npm:1.0.1"
+  dependencies:
+    "@jonahsnider/util": ^10.1.0
+    yn: ^5.0.0
+    zod: ^3.22.2
+    zod-validation-error: ^1.5.0
+  peerDependencies:
+    next: ^13
+  peerDependenciesMeta:
+    next:
+      optional: false
+  checksum: 079390062e5269a8ea1999ad339cccaac01f6dc4fc51fad47d1525e087cdaebb73004fec65c5130da4a391400ecd1316a0efccf5ffcad7f256512f7be29b7556
   languageName: node
   linkType: hard
 
@@ -3063,7 +3056,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yn@npm:5.0.0":
+"yn@npm:^5.0.0":
   version: 5.0.0
   resolution: "yn@npm:5.0.0"
   checksum: f0ec7710d3d697e88a67a46e8072542448f04677a7e6580c56b1b78da202fa5cd73fabba94957d58ee306e4ce6366c5c38c1a9fb7fd76d07ad77a4d1908b66b0

@@ -4,7 +4,7 @@ import { V0TeamSchema } from '@/app/api/_lib/teams/dtos/v0/team.dto';
 import { NoTeamColorsException } from '@/app/api/_lib/teams/exceptions/no-team-colors.exception';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
 import { teamsService } from '@/app/api/_lib/teams/teams.service';
-import { NextRouteHandlerContext, validateParams } from '@jonahsnider/nextjs-api-utils';
+import { NextRouteHandlerContext, validateParams } from 'next-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 

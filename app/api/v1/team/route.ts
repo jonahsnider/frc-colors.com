@@ -1,4 +1,4 @@
-import { validateQuery } from '@jonahsnider/nextjs-api-utils';
+import { validateQuery } from 'next-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { exceptionRouteWrapper } from '../../_lib/exception-route-wrapper';
