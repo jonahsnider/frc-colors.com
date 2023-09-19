@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client';
+import * as Sentry from '@sentry/nextjs';
 import { prisma } from '../../prisma';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { HexColorCodeSchema } from './dtos/hex-color-code.dto';
 import { TeamColorsSchema } from './dtos/team-colors-dto';
-import * as Sentry from '@sentry/nextjs';
 
 export class SavedColorsService {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -13,7 +13,7 @@ export class SavedColorsService {
 	async findTeamColors(
 		teamNumber: TeamNumberSchema | TeamNumberSchema[],
 	): Promise<TeamColorsSchema | undefined | Map<TeamNumberSchema, TeamColorsSchema>> {
-		return Sentry.startSpan({ name: 'Find team saved colors' }, async () => {
+		return Sentry.startSpan({ name: 'Find team saved colors', op: 'function' }, async () => {
 			if (typeof teamNumber === 'number') {
 				return this.findOneTeamColors(teamNumber);
 			}
@@ -26,7 +26,7 @@ export class SavedColorsService {
 		teamNumber: TeamNumberSchema,
 		colors: Pick<TeamColorsSchema, 'primary' | 'secondary'>,
 	): Promise<void> {
-		return Sentry.startSpan({ name: 'Save team colors' }, async () => {
+		return Sentry.startSpan({ name: 'Save team colors', op: 'function' }, async () => {
 			const teamColor = { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary };
 
 			await this.prisma.team.upsert({
@@ -52,7 +52,7 @@ export class SavedColorsService {
 	}
 
 	private async findManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>> {
-		return Sentry.startSpan({ name: 'Find many team saved colors' }, async () => {
+		return Sentry.startSpan({ name: 'Find many team saved colors', op: 'function' }, async () => {
 			const teamColors = await this.prisma.teamColor.findMany({
 				where: { teamId: { in: teamNumbers } },
 			});
@@ -71,7 +71,7 @@ export class SavedColorsService {
 	}
 
 	private async findOneTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		return Sentry.startSpan({ name: 'Find one team saved colors' }, async () => {
+		return Sentry.startSpan({ name: 'Find one team saved colors', op: 'function' }, async () => {
 			const teamColors = await this.prisma.teamColor.findUnique({
 				where: { teamId: teamNumber },
 			});

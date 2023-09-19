@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import convert from 'convert';
 import { ConfigService, configService } from '../config/config.service';
 import { TeamNumberSchema } from '../teams/dtos/team-number.dto';
@@ -6,7 +7,6 @@ import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import { TbaTeam } from './interfaces/tba-team.interface';
-import * as Sentry from '@sentry/nextjs';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {
@@ -25,7 +25,7 @@ export class TbaService {
 
 	/** Get a buffer with a PNG of the team's avatar for the current year. */
 	async getTeamAvatarForThisYear(teamNumber: TeamNumberSchema): Promise<Buffer | undefined> {
-		return Sentry.startSpan({ name: 'Get team avatar for this year from TBA' }, async () => {
+		return Sentry.startSpan({ name: 'Get team avatar for this year from TBA', op: 'function' }, async () => {
 			const currentYear = new Date().getFullYear();
 			const yearsToCheck = [currentYear, currentYear - 1];
 
@@ -40,7 +40,7 @@ export class TbaService {
 	}
 
 	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
-		return Sentry.startSpan({ name: 'Get team name from TBA' }, async () => {
+		return Sentry.startSpan({ name: 'Get team name from TBA', op: 'function' }, async () => {
 			const team = await this.getTeamRaw(teamNumber);
 
 			if (!team) {
@@ -52,7 +52,7 @@ export class TbaService {
 	}
 
 	async getTeamsForEvent(eventCode: string): Promise<TeamNumberSchema[]> {
-		return Sentry.startSpan({ name: 'Get teams for event from TBA' }, async () => {
+		return Sentry.startSpan({ name: 'Get teams for event from TBA', op: 'function' }, async () => {
 			const eventTeams = await this.getEventRaw(eventCode);
 
 			return TeamNumberSchema.array().parse(eventTeams.map((team) => team.team_number));

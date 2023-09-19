@@ -1,4 +1,5 @@
 import { difference } from '@jonahsnider/util';
+import * as Sentry from '@sentry/nextjs';
 import { TbaService, tbaService } from '../tba/tba.service';
 import { ColorGenService, colorGenService } from './color-gen/color-gen.service';
 import { TeamNumberSchema } from './dtos/team-number.dto';
@@ -6,7 +7,6 @@ import { FindManyTeams } from './interfaces/find-many-colors.interface';
 import { InternalTeam } from './interfaces/internal-team';
 import { TeamColorsSchema } from './saved-colors/dtos/team-colors-dto';
 import { SavedColorsService, savedColorsService } from './saved-colors/saved-colors.service';
-import * as Sentry from '@sentry/nextjs';
 
 export class TeamsService {
 	constructor(
@@ -17,7 +17,7 @@ export class TeamsService {
 
 	/** @returns The colors for a team. */
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		return Sentry.startSpan({ name: 'Get team colors' }, async () => {
+		return Sentry.startSpan({ name: 'Get team colors', op: 'function' }, async () => {
 			const savedTeamColors = await this.savedColors.findTeamColors(teamNumber);
 
 			if (savedTeamColors) {
@@ -36,7 +36,7 @@ export class TeamsService {
 
 	/** @returns The colors for a team. */
 	async getManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<FindManyTeams> {
-		return Sentry.startSpan({ name: 'Get many team colors' }, async () => {
+		return Sentry.startSpan({ name: 'Get many team colors', op: 'function' }, async () => {
 			const savedColors = await this.savedColors.findTeamColors(teamNumbers);
 			const missingColors = difference<TeamNumberSchema>(teamNumbers, savedColors.keys());
 
@@ -61,7 +61,7 @@ export class TeamsService {
 	}
 
 	async getTeamColorsForEvent(eventCode: string): Promise<FindManyTeams> {
-		return Sentry.startSpan({ name: 'Get team colors for event' }, async () => {
+		return Sentry.startSpan({ name: 'Get team colors for event', op: 'function' }, async () => {
 			const teams = await this.tba.getTeamsForEvent(eventCode);
 
 			return this.getManyTeamColors(teams);
@@ -70,13 +70,13 @@ export class TeamsService {
 
 	/** @returns The team's nickname or name (nickname is used if available). */
 	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
-		return Sentry.startSpan({ name: 'Get team name' }, async () => {
+		return Sentry.startSpan({ name: 'Get team name', op: 'function' }, async () => {
 			return this.tba.getTeamName(teamNumber);
 		});
 	}
 
 	async getInternalTeam(teamNumber: TeamNumberSchema): Promise<InternalTeam> {
-		return Sentry.startSpan({ name: 'Get internal team' }, async () => {
+		return Sentry.startSpan({ name: 'Get internal team', op: 'function' }, async () => {
 			const [teamName, teamColors, avatarBase64] = await Promise.all([
 				this.getTeamName(teamNumber),
 				this.getTeamColors(teamNumber),

@@ -1,5 +1,6 @@
 import { promisify } from 'util';
 import { Sort } from '@jonahsnider/util';
+import * as Sentry from '@sentry/nextjs';
 import { extractColors } from 'extract-colors';
 import getPixelsCb from 'get-pixels';
 import { NdArray } from 'ndarray';
@@ -7,7 +8,6 @@ import { TbaService, tbaService } from '../../tba/tba.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { ColorGenCacheService, MISSING_AVATAR, colorGenCacheService } from './color-gen-cache.service';
-import * as Sentry from '@sentry/nextjs';
 
 const getPixels = promisify(getPixelsCb);
 
@@ -29,7 +29,7 @@ export class ColorGenService {
 	constructor(private readonly tba: TbaService, private readonly cache: ColorGenCacheService) {}
 
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		return Sentry.startSpan({ name: 'Get generated team colors' }, async () => {
+		return Sentry.startSpan({ name: 'Get generated team colors', op: 'function' }, async () => {
 			const cached = await this.cache.getCachedTeamColors(teamNumber);
 
 			if (cached !== MISSING_AVATAR && cached !== undefined) {
@@ -47,7 +47,7 @@ export class ColorGenService {
 	}
 
 	private async getPixels(teamAvatar: Buffer): Promise<ReturnType<typeof getPixels> | undefined> {
-		return Sentry.startSpan({ name: 'Get pixels' }, async () => {
+		return Sentry.startSpan({ name: 'Get pixels', op: 'function' }, async () => {
 			try {
 				return await getPixels(teamAvatar, 'image/png');
 			} catch {}
@@ -55,7 +55,7 @@ export class ColorGenService {
 	}
 
 	private async extractColors(pixels: NdArray<Uint8Array>, strict: boolean): Promise<ReturnType<typeof extractColors>> {
-		return Sentry.startSpan({ name: 'Extract colors' }, async () =>
+		return Sentry.startSpan({ name: 'Extract colors', op: 'function' }, async () =>
 			extractColors(
 				{ data: Array.from(pixels.data), width: 40, height: 40 },
 				{
@@ -70,7 +70,7 @@ export class ColorGenService {
 		teamAvatar: Buffer,
 		teamNumber: TeamNumberSchema,
 	): Promise<TeamColorsSchema | undefined> {
-		return Sentry.startSpan({ name: 'Generate team colors' }, async () => {
+		return Sentry.startSpan({ name: 'Generate team colors', op: 'function' }, async () => {
 			const pixels = await this.getPixels(teamAvatar);
 
 			if (!pixels) {
