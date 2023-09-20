@@ -20,7 +20,7 @@
     "@types/react-dom": "18.2.7",
     "@vercel/analytics": "1.0.2",
     "@vercel/kv": "0.2.3",
-    "autoprefixer": "10.4.15",
+    "autoprefixer": "10.4.16",
     "clsx": "2.0.0",
     "color-luminance": "2.1.0",
     "convert": "4.13.2",
