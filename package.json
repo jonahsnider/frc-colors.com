@@ -26,7 +26,7 @@
     "convert": "4.13.2",
     "extract-colors": "4.0.2",
     "get-pixels": "3.3.3",
-    "next": "13.4.19",
+    "next": "13.5.1",
     "next-api-utils": "1.0.1",
     "next-plausible": "3.11.1",
     "postcss": "8.4.30",
