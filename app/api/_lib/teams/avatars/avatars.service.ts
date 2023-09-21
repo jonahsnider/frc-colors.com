@@ -1,5 +1,5 @@
 import { difference } from '@jonahsnider/util';
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
 import convert from 'convert';
 import { prisma } from '../../prisma';
@@ -37,19 +37,26 @@ export class AvatarsService {
 				// Cache is missing, we should populate it
 				const avatar = await this.tba.getTeamAvatarForThisYear(teamNumber);
 
-				// Even if the avatar is missing from TBA, we store in the DB
-				// Anything we can do to avoid hitting TBA
-				await this.prisma.avatar.create({
-					data: {
-						team: {
-							connectOrCreate: {
-								where: { id: teamNumber },
-								create: { id: teamNumber },
-							},
-						},
-						png: avatar,
-					},
-				});
+				try {
+					// Even if the avatar is missing from TBA, we store in the DB
+					// Anything we can do to avoid hitting TBA
+					await this.prisma.team.upsert({
+						where: { id: teamNumber },
+						create: { id: teamNumber, avatar: { create: { png: avatar } } },
+						update: { avatar: { create: { png: avatar } } },
+					});
+				} catch (error) {
+					if (
+						error instanceof Prisma.PrismaClientKnownRequestError &&
+						(error.code === 'P2002' || error.code === 'P2014')
+					) {
+						// P2002: The team was already created by another request which came in at the same time as this one, usually from the web app
+						// P2014: Not sure what causes this, I assume some kind of race condition with conflicting parallel writes
+						// We can safely ignore these errors, since it's not a problem if we just don't update the avatar cache
+					} else {
+						throw error;
+					}
+				}
 
 				return avatar;
 			});

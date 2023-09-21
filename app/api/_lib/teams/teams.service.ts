@@ -1,6 +1,7 @@
 import { difference } from '@jonahsnider/util';
 import * as Sentry from '@sentry/nextjs';
 import { TbaService, tbaService } from '../tba/tba.service';
+import { AvatarsService, avatarsService } from './avatars/avatars.service';
 import { ColorGenService, colorGenService } from './color-gen/color-gen.service';
 import { TeamNumberSchema } from './dtos/team-number.dto';
 import { FindManyTeams } from './interfaces/find-many-colors.interface';
@@ -13,6 +14,7 @@ export class TeamsService {
 		private readonly colorGen: ColorGenService,
 		private readonly tba: TbaService,
 		private readonly savedColors: SavedColorsService,
+		private readonly avatars: AvatarsService,
 	) {}
 
 	/** @returns The colors for a team. */
@@ -74,7 +76,7 @@ export class TeamsService {
 			const [teamName, teamColors, avatarBase64] = await Promise.all([
 				this.getTeamName(teamNumber),
 				this.getTeamColors(teamNumber),
-				this.tba.getTeamAvatarForThisYear(teamNumber),
+				this.avatars.getAvatar(teamNumber),
 			]);
 
 			const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;
@@ -89,4 +91,4 @@ export class TeamsService {
 	}
 }
 
-export const teamsService = new TeamsService(colorGenService, tbaService, savedColorsService);
+export const teamsService = new TeamsService(colorGenService, tbaService, savedColorsService, avatarsService);
