@@ -30,6 +30,18 @@ export class ColorGenCacheService {
 		});
 	}
 
+	async delCachedTeamColors(teamNumber: TeamNumberSchema): Promise<void> {
+		if (!this.config.redisCacheEnabled) {
+			return;
+		}
+
+		await Sentry.startSpan({ name: 'Delete cached generated team colors', op: 'function' }, async () => {
+			await Sentry.startSpan({ name: 'Delete Redis key for generated colors', op: 'db.redis' }, async () => {
+				await this.redis.del(this.generatedColorsRedisKey(teamNumber));
+			});
+		});
+	}
+
 	async getManyCachedTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>> {
 		if (!this.config.redisCacheEnabled) {
 			return new Map();

@@ -1,12 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
 import { prisma } from '../../prisma';
+import { ColorGenCacheService, colorGenCacheService } from '../color-gen/color-gen-cache.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { HexColorCodeSchema } from './dtos/hex-color-code.dto';
 import { TeamColorsSchema } from './dtos/team-colors-dto';
 
 export class SavedColorsService {
-	constructor(private readonly prisma: PrismaClient) {}
+	constructor(private readonly prisma: PrismaClient, private readonly colorGenCache: ColorGenCacheService) {}
 
 	async findTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined>;
 	async findTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>>;
@@ -29,25 +30,30 @@ export class SavedColorsService {
 		return Sentry.startSpan({ name: 'Save team colors', op: 'function' }, async () => {
 			const teamColor = { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary };
 
-			await this.prisma.team.upsert({
-				where: {
-					id: teamNumber,
-				},
-				update: {
-					teamColor: {
-						upsert: {
-							create: teamColor,
-							update: { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary },
+			await Promise.all([
+				// Remove the cached colors, since the values in DB replace them
+				this.colorGenCache.delCachedTeamColors(teamNumber),
+
+				this.prisma.team.upsert({
+					where: {
+						id: teamNumber,
+					},
+					update: {
+						teamColor: {
+							upsert: {
+								create: teamColor,
+								update: { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary },
+							},
 						},
 					},
-				},
-				create: {
-					id: teamNumber,
-					teamColor: {
-						create: teamColor,
+					create: {
+						id: teamNumber,
+						teamColor: {
+							create: teamColor,
+						},
 					},
-				},
-			});
+				}),
+			]);
 		});
 	}
 
@@ -89,4 +95,4 @@ export class SavedColorsService {
 	}
 }
 
-export const savedColorsService = new SavedColorsService(prisma);
+export const savedColorsService = new SavedColorsService(prisma, colorGenCacheService);
