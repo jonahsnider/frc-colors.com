@@ -16,7 +16,7 @@ export class TbaService {
 	private static readonly TEAM_MEDIA_FOR_YEAR_CACHE_DURATION = convert(1, 'week');
 
 	/** Duration to cache response for team. */
-	private static readonly TEAM_CACHE_DURATION = convert(1, 'week');
+	private static readonly TEAM_CACHE_DURATION = convert(2, 'week');
 
 	/** Duration to cache response for event teams. */
 	private static readonly EVENT_TEAMS_CACHE_DURATION = convert(1, 'week');
