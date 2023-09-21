@@ -1,13 +1,13 @@
 import { promisify } from 'util';
-import { Sort } from '@jonahsnider/util';
+import { Sort, difference } from '@jonahsnider/util';
 import * as Sentry from '@sentry/nextjs';
 import { extractColors } from 'extract-colors';
 import getPixelsCb from 'get-pixels';
 import { NdArray } from 'ndarray';
-import { TbaService, tbaService } from '../../tba/tba.service';
+import { AvatarsService, avatarsService } from '../avatars/avatars.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
-import { ColorGenCacheService, MISSING_AVATAR, colorGenCacheService } from './color-gen-cache.service';
+import { ColorGenCacheService, colorGenCacheService } from './color-gen-cache.service';
 
 const getPixels = promisify(getPixelsCb);
 
@@ -26,23 +26,55 @@ export class ColorGenService {
 		// Not too transparent
 		alpha > 250;
 
-	constructor(private readonly tba: TbaService, private readonly cache: ColorGenCacheService) {}
+	constructor(private readonly avatars: AvatarsService, private readonly cache: ColorGenCacheService) {}
 
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
 		return Sentry.startSpan({ name: 'Get generated team colors', op: 'function' }, async () => {
 			const cached = await this.cache.getCachedTeamColors(teamNumber);
 
-			if (cached !== MISSING_AVATAR && cached !== undefined) {
+			if (cached !== undefined) {
 				return cached;
 			}
 
-			const teamAvatar = cached === MISSING_AVATAR ? undefined : await this.tba.getTeamAvatarForThisYear(teamNumber);
+			const teamAvatar = await this.avatars.getAvatar(teamNumber);
 
 			if (!teamAvatar) {
 				return undefined;
 			}
 
 			return this.generateTeamColors(teamAvatar, teamNumber);
+		});
+	}
+
+	async getManyTeamColors(
+		teamNumbers: TeamNumberSchema[],
+	): Promise<Map<TeamNumberSchema, TeamColorsSchema | undefined>> {
+		return Sentry.startSpan({ name: 'Get many generated team colors', op: 'function' }, async () => {
+			const cached = await this.cache.getManyCachedTeamColors(teamNumbers);
+
+			const missingColors = difference<TeamNumberSchema>(teamNumbers, cached.keys());
+
+			const avatarsToExtractFrom = await this.avatars.getAvatars(Array.from(missingColors));
+
+			const generatedColors = new Map<TeamNumberSchema, TeamColorsSchema | undefined>(
+				await Promise.all(
+					[...avatarsToExtractFrom]
+						.filter((tuple): tuple is [TeamNumberSchema, Buffer] => Boolean(tuple[1]))
+						.map(
+							async ([teamNumber, avatar]) => [teamNumber, await this.generateTeamColors(avatar, teamNumber)] as const,
+						),
+				),
+			);
+
+			const result: Map<TeamNumberSchema, TeamColorsSchema | undefined> = new Map();
+
+			for (const teamNumber of teamNumbers) {
+				const colors = cached.get(teamNumber) ?? generatedColors.get(teamNumber);
+
+				result.set(teamNumber, colors);
+			}
+
+			return result;
 		});
 	}
 
@@ -105,4 +137,4 @@ export class ColorGenService {
 	}
 }
 
-export const colorGenService = new ColorGenService(tbaService, colorGenCacheService);
+export const colorGenService = new ColorGenService(avatarsService, colorGenCacheService);

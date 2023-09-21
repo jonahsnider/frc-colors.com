@@ -24,6 +24,9 @@ model Team {
   /// This team's colors
   teamColor TeamColor?
 
+  /// This team's avatar
+  avatar Avatar?
+
   @@map("teams")
 }
 
@@ -71,4 +74,14 @@ model ColorSuggestion {
   updatedAt DateTime? @updatedAt @map("updated_at")
 
   @@map("color_suggestions")
+}
+
+model Avatar {
+  teamId    Int      @id @map("team_id")
+  team      Team     @relation(fields: [teamId], references: [id])
+  /// The team's avatar PNG. If missing, the team has no avatar.
+  png       Bytes?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("avatars")
 }

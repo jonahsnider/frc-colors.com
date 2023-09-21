@@ -40,13 +40,7 @@ export class TeamsService {
 			const savedColors = await this.savedColors.findTeamColors(teamNumbers);
 			const missingColors = difference<TeamNumberSchema>(teamNumbers, savedColors.keys());
 
-			const generatedColors = new Map(
-				await Promise.all(
-					Array.from(missingColors).map(
-						async (teamNumber) => [teamNumber, await this.colorGen.getTeamColors(teamNumber)] as const,
-					),
-				),
-			);
+			const generatedColors = await this.colorGen.getManyTeamColors([...missingColors]);
 
 			const result: FindManyTeams = new Map();
 

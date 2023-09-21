@@ -1,4 +1,11 @@
 {
 	"buildCommand": "prisma migrate deploy && bun run build",
-	"cleanUrls": true
+	"cleanUrls": true,
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"crons": [
+		{
+			"path": "/api/cron/purge-expired-avatars",
+			"schedule": "0 0 * * *"
+		}
+	]
 }
