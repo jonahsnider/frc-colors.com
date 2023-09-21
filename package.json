@@ -43,7 +43,8 @@
   "devDependencies": {
     "@biomejs/biome": "1.2.2",
     "@types/get-pixels": "3.3.2",
-    "prisma": "5.3.1"
+    "prisma": "5.3.1",
+    "vercel": "32.2.5"
   },
   "packageManager": "bun@1.0.2"
 }
