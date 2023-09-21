@@ -24,8 +24,7 @@
 	"search.exclude": {
 		"**/*.code-search": true,
 		"**/bower_components": true,
-		"**/node_modules": true,
-		".yarn/**": true
+		"**/node_modules": true
 	},
 	"tailwindCSS.experimental.classRegex": [["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]],
 	"typescript.preferences.importModuleSpecifier": "shortest",

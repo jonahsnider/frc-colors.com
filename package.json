@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "postinstall": "prisma generate",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply-unsafe",
     "start": "next start",
@@ -26,7 +27,7 @@
     "convert": "4.13.2",
     "extract-colors": "4.0.2",
     "get-pixels": "3.3.3",
-    "next": "13.5.2",
+    "next": "13.4.19",
     "next-api-utils": "1.0.1",
     "next-plausible": "3.11.1",
     "postcss": "8.4.30",
@@ -44,5 +45,5 @@
     "@types/get-pixels": "3.3.2",
     "prisma": "5.3.1"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "bun@1.0.2"
 }
