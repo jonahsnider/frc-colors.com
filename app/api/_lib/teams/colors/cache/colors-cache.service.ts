@@ -4,6 +4,7 @@ import { configService } from '../../../config/config.service';
 import { CACHE_TTL_GENERATED_COLORS, CACHE_TTL_VERIFIED_COLORS } from '../../../config/ttls-config';
 import { TeamNumberSchema } from '../../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
+import { CachedColorsSchema } from './dtos/cached-colors.dto';
 
 export const MISSING_COLORS = Symbol('Missing colors');
 // biome-ignore lint/style/useNamingConvention: This is a literal
@@ -28,7 +29,7 @@ export class ColorsCacheService {
 	async delTeamColors(teamNumber: TeamNumberSchema): Promise<void> {
 		await Sentry.startSpan({ name: 'Delete cached team colors', op: 'function' }, async () => {
 			await Sentry.startSpan({ name: 'Delete Redis key for colors and missing colors', op: 'db.redis' }, async () => {
-				await this.redis.del(this.colorsRedisKey(teamNumber), this.missingColorsRedisKey(teamNumber));
+				await this.redis.del(this.colorsRedisKey(teamNumber));
 			});
 		});
 	}
@@ -41,19 +42,15 @@ export class ColorsCacheService {
 		}
 
 		return Sentry.startSpan({ name: 'Get many cached team colors', op: 'function' }, async () => {
-			const [rawCached, missingColors] = await Promise.all([
-				Promise.all(teamNumbers.map(async (teamNumber) => [teamNumber, await this.getTeamColors(teamNumber)] as const)),
-				this.getManyMissingColors(teamNumbers),
-			]);
-			const cached = rawCached.filter((tuple): tuple is [TeamNumberSchema, TeamColorsSchema] => Boolean(tuple[1]));
+			const rawCached = await Promise.all(
+				teamNumbers.map(async (teamNumber) => [teamNumber, await this.getTeamColors(teamNumber)] as const),
+			);
 
-			const result = new Map<TeamNumberSchema, TeamColorsSchema | MISSING_COLORS>(cached);
+			const cached = rawCached.filter(
+				(tuple): tuple is [TeamNumberSchema, TeamColorsSchema | MISSING_COLORS] => tuple[1] !== undefined,
+			);
 
-			for (const teamNumber of missingColors) {
-				result.set(teamNumber, MISSING_COLORS);
-			}
-
-			return result;
+			return new Map(cached);
 		});
 	}
 
@@ -63,19 +60,17 @@ export class ColorsCacheService {
 		}
 
 		return Sentry.startSpan({ name: 'Get cached team colors and missing colors', op: 'function' }, async () => {
-			const [cachedTeamColors, missingColors] = await Promise.all([
-				Sentry.startSpan({ name: 'Get cached team colors from Redis', op: 'db.redis' }, async () =>
-					this.redis.hgetall(this.colorsRedisKey(teamNumber)),
-				),
-				this.getMissingColors(teamNumber),
-			]);
-
-			if (missingColors) {
-				return MISSING_COLORS;
-			}
+			const cachedTeamColors = await Sentry.startSpan(
+				{ name: 'Get cached team colors from Redis', op: 'db.redis' },
+				async () => this.redis.hgetall(this.colorsRedisKey(teamNumber)),
+			);
 
 			if (cachedTeamColors) {
-				const parsed = TeamColorsSchema.parse(cachedTeamColors);
+				const parsed = CachedColorsSchema.parse(cachedTeamColors);
+
+				if ('missing' in parsed) {
+					return MISSING_COLORS;
+				}
 
 				return parsed;
 			}
@@ -86,57 +81,20 @@ export class ColorsCacheService {
 		return `${configService.redisPrefix}colors:${teamNumber}`;
 	}
 
-	private missingColorsRedisKey(teamNumber: TeamNumberSchema): string {
-		return `${configService.redisPrefix}missing-colors:${teamNumber}`;
-	}
-
 	private async setMissingColors(teamNumber: TeamNumberSchema): Promise<void> {
 		await Sentry.startSpan({ name: 'Set cached missing colors', op: 'function' }, async () => {
-			await Sentry.startSpan({ name: 'Set Redis key for missing colors', op: 'db.redis' }, async () =>
-				this.redis.set(this.missingColorsRedisKey(teamNumber), 'true', {
-					ex: CACHE_TTL_GENERATED_COLORS.to('seconds'),
-				}),
-			);
+			await Sentry.startSpan({ name: 'Set Redis key for missing colors', op: 'db.redis' }, async () => {
+				await this.redis.hset(this.colorsRedisKey(teamNumber), { missing: true } satisfies CachedColorsSchema);
+				await this.redis.expire(this.colorsRedisKey(teamNumber), CACHE_TTL_GENERATED_COLORS.to('seconds'));
+			});
 		});
 	}
 
 	private async setColors(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): Promise<void> {
 		await Sentry.startSpan({ name: 'Set Redis key for colors', op: 'db.redis' }, async () => {
-			await this.redis.hset(this.colorsRedisKey(teamNumber), colors);
+			await this.redis.hset(this.colorsRedisKey(teamNumber), colors satisfies CachedColorsSchema);
 			const ttl = colors.verified ? CACHE_TTL_VERIFIED_COLORS : CACHE_TTL_GENERATED_COLORS;
 			await this.redis.expire(this.colorsRedisKey(teamNumber), ttl.to('seconds'));
-		});
-	}
-
-	private async getMissingColors(teamNumber: TeamNumberSchema): Promise<boolean> {
-		return Sentry.startSpan({ name: 'Get cached missing colors', op: 'function' }, async () => {
-			const missingColors = await Sentry.startSpan(
-				{ name: 'Get cached missing colors from Redis', op: 'db.redis' },
-				async () => this.redis.exists(this.missingColorsRedisKey(teamNumber)),
-			);
-
-			return Boolean(missingColors);
-		});
-	}
-
-	private async getManyMissingColors(teamNumbers: TeamNumberSchema[]): Promise<Set<TeamNumberSchema>> {
-		return Sentry.startSpan({ name: 'Get many cached missing colors', op: 'function' }, async () => {
-			const missing = new Set<TeamNumberSchema>();
-
-			const missingColors = await Sentry.startSpan(
-				{ name: 'Get many cached missing colors from Redis', op: 'db.redis' },
-				async () =>
-					Promise.all(teamNumbers.map(async (teamNumber) => Boolean(await this.getMissingColors(teamNumber)))),
-			);
-
-			for (const [index, isMissingColors] of missingColors.entries()) {
-				if (isMissingColors) {
-					const teamNumber = teamNumbers[index];
-					missing.add(teamNumber);
-				}
-			}
-
-			return missing;
 		});
 	}
 }
