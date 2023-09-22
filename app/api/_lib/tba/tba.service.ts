@@ -1,17 +1,12 @@
 import * as Sentry from '@sentry/nextjs';
-import convert from 'convert';
 import { ConfigService, configService } from '../config/config.service';
+import { CACHE_TTL_TBA_EVENT_TEAMS, CACHE_TTL_TBA_TEAM, CACHE_TTL_TBA_TEAM_MEDIA } from '../config/ttls-config';
 import { TeamNumberSchema } from '../teams/dtos/team-number.dto';
 import { UnknownEventException } from './exceptions/unknown-event.exception';
 import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import { TbaTeam } from './interfaces/tba-team.interface';
-import {
-	CACHE_TTL_TBA_TEAM,
-	CACHE_TTL_TBA_EVENT_TEAMS,
-	CACHE_TTL_TBA_TEAM_MEDIA,
-} from '../config/ttls-config';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {
