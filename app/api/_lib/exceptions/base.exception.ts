@@ -1,8 +1,8 @@
+import { Http } from '@jonahsnider/util';
 import { TO_RESPONSE } from 'next-api-utils';
 import { NextResponse } from 'next/server';
 import { ExceptionSchema } from './dtos/exception.dto';
 import { ExceptionCode } from './enums/exception-code.enum';
-import { Http } from '@jonahsnider/util';
 
 export class BaseHttpException extends Error {
 	readonly error: string;
