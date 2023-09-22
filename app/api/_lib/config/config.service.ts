@@ -4,7 +4,6 @@ export class ConfigService {
 	public readonly tbaApiKey: string | undefined;
 	public readonly adminApiToken: string | undefined;
 	public readonly baseUrl: URL | undefined;
-	public readonly redisCacheEnabled: boolean;
 	public readonly redisPrefix: string;
 
 	constructor(source: Readonly<Record<string, unknown>>) {
@@ -16,12 +15,6 @@ export class ConfigService {
 			.optional()
 			.transform((url) => (url !== undefined ? new URL(url) : undefined))
 			.parse(source.BASE_URL);
-		this.redisCacheEnabled = z
-			.enum(['true', 'false'])
-			.optional()
-			.transform((value) => value === 'true')
-			.pipe(z.boolean().default(false))
-			.parse(source.REDIS_CACHE_ENABLED);
 		this.redisPrefix = source.NODE_ENV !== 'production' ? 'dev:' : '';
 	}
 }

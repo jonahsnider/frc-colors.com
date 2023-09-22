@@ -12,10 +12,6 @@ export class ColorGenCacheService {
 	constructor(private readonly redis: VercelKV, private readonly config: ConfigService) {}
 
 	async setCachedTeamColors(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): Promise<void> {
-		if (!this.config.redisCacheEnabled) {
-			return;
-		}
-
 		return Sentry.startSpan({ name: 'Set cached generated team colors', op: 'function' }, async () => {
 			await Sentry.startSpan({ name: 'Set Redis key for generated colors', op: 'db.redis' }, async () => {
 				await this.redis.hset(this.generatedColorsRedisKey(teamNumber), {
@@ -31,10 +27,6 @@ export class ColorGenCacheService {
 	}
 
 	async delCachedTeamColors(teamNumber: TeamNumberSchema): Promise<void> {
-		if (!this.config.redisCacheEnabled) {
-			return;
-		}
-
 		await Sentry.startSpan({ name: 'Delete cached generated team colors', op: 'function' }, async () => {
 			await Sentry.startSpan({ name: 'Delete Redis key for generated colors', op: 'db.redis' }, async () => {
 				await this.redis.del(this.generatedColorsRedisKey(teamNumber));
@@ -43,10 +35,6 @@ export class ColorGenCacheService {
 	}
 
 	async getManyCachedTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>> {
-		if (!this.config.redisCacheEnabled) {
-			return new Map();
-		}
-
 		return Sentry.startSpan({ name: 'Get many cached generated team colors', op: 'function' }, async () => {
 			const cached = (
 				await Promise.all(
@@ -59,10 +47,6 @@ export class ColorGenCacheService {
 	}
 
 	async getCachedTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		if (!this.config.redisCacheEnabled) {
-			return undefined;
-		}
-
 		return Sentry.startSpan({ name: 'Get cached generated team colors', op: 'function' }, async () => {
 			const cachedTeamColors = await Sentry.startSpan(
 				{ name: 'Get cached generated team colors from Redis', op: 'db.redis' },
