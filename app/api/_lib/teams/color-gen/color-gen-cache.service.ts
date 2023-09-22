@@ -1,15 +1,16 @@
 import * as Sentry from '@sentry/nextjs';
 import { VercelKV, kv } from '@vercel/kv';
-import { ConfigService, configService } from '../../config/config.service';
+import { configService } from '../../config/config.service';
 import { CACHE_TTL_GENERATED_COLORS } from '../../config/ttls-config';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { CachedColorsSchema } from './dtos/cached-colors.dto';
 
 export class ColorGenCacheService {
-	private static readonly IGNORE_CACHE = true;
+	// biome-ignore lint/complexity/useSimplifiedLogicExpression: This is a redundancy in case a changed value is accidentally committed
+private  static readonly IGNORE_CACHE = false && configService.nodeEnv !== 'production';
 
-	constructor(private readonly redis: VercelKV, private readonly config: ConfigService) {}
+	constructor(private readonly redis: VercelKV) {}
 
 	async setCachedTeamColors(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): Promise<void> {
 		return Sentry.startSpan({ name: 'Set cached generated team colors', op: 'function' }, async () => {
@@ -74,4 +75,4 @@ export class ColorGenCacheService {
 	}
 }
 
-export const colorGenCacheService = new ColorGenCacheService(kv, configService);
+export const colorGenCacheService = new ColorGenCacheService(kv);
