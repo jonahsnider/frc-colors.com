@@ -75,20 +75,19 @@ export class ColorGenService {
 	}
 
 	private async getPixels(teamAvatar: Buffer): Promise<Uint8Array | undefined> {
-		return Sentry.startSpan(
-			{ name: 'Get pixels', op: 'function' },
-			async () =>
-				new Promise((resolve, reject) => {
-					new PNG({ width: 40, height: 40 }).parse(teamAvatar, (error, data) => {
-						if (error) {
-							reject(error);
-							return;
-						}
+		return Sentry.startSpan({ name: 'Get pixels', op: 'function' }, async () => {
+			return new Promise<Uint8Array | undefined>((resolve, reject) => {
+				new PNG({ width: 40, height: 40 }).parse(teamAvatar, (error, data) => {
+					if (error) {
+						// Ignore any errors that may happen from weird input
+						resolve(undefined);
+						return;
+					}
 
-						resolve(data.data);
-					});
-				}),
-		);
+					resolve(data.data);
+				});
+			});
+		});
 	}
 
 	private async extractColors(pixels: Uint8Array, strict: boolean): Promise<ReturnType<typeof extractColors>> {
