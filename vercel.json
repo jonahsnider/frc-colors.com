@@ -1,5 +1,5 @@
 {
-	"buildCommand": "drizzle-kit up:pg && bun run build",
+	"buildCommand": "bun run build",
 	"cleanUrls": true,
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"crons": [
