@@ -1,13 +1,14 @@
-import { PrismaClient } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
-import { prisma } from '../../prisma';
+import { eq, inArray } from 'drizzle-orm';
+import { Db, db } from '../../db/db';
+import { Schema } from '../../db/index';
 import { ColorGenCacheService, colorGenCacheService } from '../color-gen/color-gen-cache.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { HexColorCodeSchema } from './dtos/hex-color-code.dto';
 import { TeamColorsSchema } from './dtos/team-colors-dto';
 
 export class SavedColorsService {
-	constructor(private readonly prisma: PrismaClient, private readonly colorGenCache: ColorGenCacheService) {}
+	constructor(private readonly colorGenCache: ColorGenCacheService, private readonly db: Db) {}
 
 	async findTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined>;
 	async findTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>>;
@@ -34,24 +35,16 @@ export class SavedColorsService {
 				// Remove the cached colors, since the values in DB replace them
 				this.colorGenCache.delCachedTeamColors(teamNumber),
 
-				this.prisma.team.upsert({
-					where: {
-						id: teamNumber,
-					},
-					update: {
-						teamColor: {
-							upsert: {
-								create: teamColor,
-								update: { primaryColorHex: colors.primary, secondaryColorHex: colors.secondary },
-							},
-						},
-					},
-					create: {
-						id: teamNumber,
-						teamColor: {
-							create: teamColor,
-						},
-					},
+				this.db.transaction(async (tx) => {
+					await tx.insert(Schema.teams).values({ id: teamNumber }).onConflictDoNothing();
+
+					await tx
+						.insert(Schema.teamColors)
+						.values({ teamId: teamNumber, ...teamColor })
+						.onConflictDoUpdate({
+							target: Schema.teamColors.teamId,
+							set: teamColor,
+						});
 				}),
 			]);
 		});
@@ -59,8 +52,13 @@ export class SavedColorsService {
 
 	private async findManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>> {
 		return Sentry.startSpan({ name: 'Find many team saved colors', op: 'function' }, async () => {
-			const teamColors = await this.prisma.teamColor.findMany({
-				where: { teamId: { in: teamNumbers } },
+			const teamColors = await this.db.query.teamColors.findMany({
+				where: inArray(Schema.teamColors.teamId, teamNumbers),
+				columns: {
+					teamId: true,
+					primaryColorHex: true,
+					secondaryColorHex: true,
+				},
 			});
 
 			return new Map(
@@ -78,8 +76,12 @@ export class SavedColorsService {
 
 	private async findOneTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
 		return Sentry.startSpan({ name: 'Find one team saved colors', op: 'function' }, async () => {
-			const teamColors = await this.prisma.teamColor.findUnique({
-				where: { teamId: teamNumber },
+			const teamColors = await this.db.query.teamColors.findFirst({
+				where: eq(Schema.teamColors.teamId, teamNumber),
+				columns: {
+					primaryColorHex: true,
+					secondaryColorHex: true,
+				},
 			});
 
 			if (teamColors) {
@@ -95,4 +97,4 @@ export class SavedColorsService {
 	}
 }
 
-export const savedColorsService = new SavedColorsService(prisma, colorGenCacheService);
+export const savedColorsService = new SavedColorsService(colorGenCacheService, db);
