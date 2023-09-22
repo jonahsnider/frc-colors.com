@@ -7,6 +7,8 @@ import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { CachedColorsSchema } from './dtos/cached-colors.dto';
 
 export class ColorGenCacheService {
+	private static readonly IGNORE_CACHE = true;
+
 	constructor(private readonly redis: VercelKV, private readonly config: ConfigService) {}
 
 	async setCachedTeamColors(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): Promise<void> {
@@ -30,6 +32,10 @@ export class ColorGenCacheService {
 	}
 
 	async getManyCachedTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>> {
+		if (ColorGenCacheService.IGNORE_CACHE) {
+			return new Map();
+		}
+
 		return Sentry.startSpan({ name: 'Get many cached generated team colors', op: 'function' }, async () => {
 			const cached = (
 				await Promise.all(
@@ -42,6 +48,10 @@ export class ColorGenCacheService {
 	}
 
 	async getCachedTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
+		if (ColorGenCacheService.IGNORE_CACHE) {
+			return undefined;
+		}
+
 		return Sentry.startSpan({ name: 'Get cached generated team colors', op: 'function' }, async () => {
 			const cachedTeamColors = await Sentry.startSpan(
 				{ name: 'Get cached generated team colors from Redis', op: 'db.redis' },

@@ -1,15 +1,11 @@
-import { promisify } from 'util';
 import { Sort, difference } from '@jonahsnider/util';
 import * as Sentry from '@sentry/nextjs';
 import { extractColors } from 'extract-colors';
-import getPixelsCb from 'get-pixels';
-import { NdArray } from 'ndarray';
+import { PNG } from 'pngjs/browser';
 import { AvatarsService, avatarsService } from '../avatars/avatars.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 import { ColorGenCacheService, colorGenCacheService } from './color-gen-cache.service';
-
-const getPixels = promisify(getPixelsCb);
 
 type ColorValidator = (red: number, green: number, blue: number, alpha?: number) => boolean;
 
@@ -78,18 +74,27 @@ export class ColorGenService {
 		});
 	}
 
-	private async getPixels(teamAvatar: Buffer): Promise<ReturnType<typeof getPixels> | undefined> {
-		return Sentry.startSpan({ name: 'Get pixels', op: 'function' }, async () => {
-			try {
-				return await getPixels(teamAvatar, 'image/png');
-			} catch {}
-		});
+	private async getPixels(teamAvatar: Buffer): Promise<Uint8Array | undefined> {
+		return Sentry.startSpan(
+			{ name: 'Get pixels', op: 'function' },
+			async () =>
+				new Promise((resolve, reject) => {
+					new PNG({ width: 40, height: 40 }).parse(teamAvatar, (error, data) => {
+						if (error) {
+							reject(error);
+							return;
+						}
+
+						resolve(data.data);
+					});
+				}),
+		);
 	}
 
-	private async extractColors(pixels: NdArray<Uint8Array>, strict: boolean): Promise<ReturnType<typeof extractColors>> {
+	private async extractColors(pixels: Uint8Array, strict: boolean): Promise<ReturnType<typeof extractColors>> {
 		return Sentry.startSpan({ name: 'Extract colors', op: 'function' }, async () =>
 			extractColors(
-				{ data: Array.from(pixels.data), width: 40, height: 40 },
+				{ data: Array.from(pixels), width: 40, height: 40 },
 				{
 					pixels: 40 * 40,
 					colorValidator: strict ? ColorGenService.STRICT_COLOR_VALIDATOR : ColorGenService.NON_STRICT_COLOR_VALIDATOR,
