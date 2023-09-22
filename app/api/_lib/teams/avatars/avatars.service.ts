@@ -19,7 +19,7 @@ export class AvatarsService {
 	}
 
 	async getAvatar(teamNumber: TeamNumberSchema): Promise<Buffer | undefined> {
-		return Sentry.startSpan({ name: 'Get avatar for team' }, async () => {
+		return Sentry.startSpan({ name: 'Get avatar for team', op: 'function' }, async () => {
 			const cached = await this.db.query.avatars.findFirst({
 				where: eq(Schema.avatars.teamId, teamNumber),
 			});
@@ -28,7 +28,7 @@ export class AvatarsService {
 				return cached.png ?? undefined;
 			}
 
-			return Sentry.startSpan({ name: 'Get avatar from TBA and cache in DB' }, async () => {
+			return Sentry.startSpan({ name: 'Get avatar from TBA and cache in DB', op: 'function' }, async () => {
 				// Cache is missing, we should populate it
 				const avatar = await this.tba.getTeamAvatarForThisYear(teamNumber);
 
@@ -51,7 +51,7 @@ export class AvatarsService {
 	}
 
 	async getAvatars(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, Buffer | undefined>> {
-		return Sentry.startSpan({ name: 'Get many avatars for teams' }, async () => {
+		return Sentry.startSpan({ name: 'Get many avatars for teams', op: 'function' }, async () => {
 			const cached =
 				teamNumbers.length > 0
 					? await this.db.query.avatars.findMany({
@@ -69,7 +69,7 @@ export class AvatarsService {
 			const missingFromCache = difference<TeamNumberSchema>(teamNumbers, avatars.keys());
 
 			if (missingFromCache.size > 0) {
-				await Sentry.startSpan({ name: 'Get many avatars from TBA and cache in DB' }, async () => {
+				await Sentry.startSpan({ name: 'Get many avatars from TBA and cache in DB', op: 'function' }, async () => {
 					const tbaAvatars = await Promise.all(
 						Array.from(missingFromCache).map(async (teamNumber) => ({
 							teamNumber: teamNumber,
