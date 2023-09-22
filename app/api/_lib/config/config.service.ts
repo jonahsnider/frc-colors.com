@@ -16,8 +16,8 @@ export class ConfigService {
 			.optional()
 			.transform((url) => (url !== undefined ? new URL(url) : undefined))
 			.parse(source.BASE_URL);
-			this.nodeEnv = z.enum(['production', 'development', 'staging']).default('production').parse(source.NODE_ENV);
-			this.redisPrefix = this.nodeEnv !== 'production' ? 'dev:' : '';
+		this.nodeEnv = z.enum(['production', 'development', 'staging']).default('production').parse(source.NODE_ENV);
+		this.redisPrefix = this.nodeEnv !== 'production' ? 'dev:' : '';
 	}
 }
 
