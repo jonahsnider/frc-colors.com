@@ -9,8 +9,6 @@ import { description, metadataBase, siteName } from './shared-metadata';
 
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
-// export const runtime = 'edge';
-
 export const metadata: Metadata = {
 	metadataBase: metadataBase,
 	title: { default: siteName, template: `%s - ${siteName}` },

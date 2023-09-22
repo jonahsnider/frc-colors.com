@@ -7,6 +7,7 @@
     "dev": "next dev",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply-unsafe",
+    "migrate": "bun ./migrate.ts",
     "start": "next start"
   },
   "dependencies": {
@@ -44,7 +45,6 @@
     "@types/get-pixels": "3.3.2",
     "dotenv": "16.3.1",
     "drizzle-kit": "0.19.13",
-    "postgres": "3.3.5",
     "vercel": "32.2.5"
   },
   "packageManager": "bun@1.0.2"
