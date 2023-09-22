@@ -45,9 +45,7 @@ export class ColorGenService {
 				await Promise.all(
 					[...avatarsToExtractFrom]
 						.filter((tuple): tuple is [TeamNumberSchema, Buffer] => Boolean(tuple[1]))
-						.map(
-							async ([teamNumber, avatar]) => [teamNumber, await this.generateTeamColors(avatar, teamNumber)] as const,
-						),
+						.map(async ([teamNumber, avatar]) => [teamNumber, await this.generateTeamColors(avatar)] as const),
 				),
 			);
 
