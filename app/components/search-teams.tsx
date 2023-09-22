@@ -17,6 +17,8 @@ export default function SearchTeams() {
 				className={clsx('transition-all h-14 rounded bg-neutral-200 p-4 outline-none', {
 					'border-4 border-red-400': !valid,
 				})}
+				// biome-ignore lint/a11y/noAutofocus: Autofocus is essential to have here
+				autoFocus={true}
 				placeholder='Enter a team number'
 				type='text'
 				name='team'
