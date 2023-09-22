@@ -54,7 +54,7 @@ export class ColorsService {
 				this.colorGen.getManyTeamColors(notCachedTeams),
 			]);
 
-			const cacheOps: Promise<void>[] = [];
+			const cacheOps: Map<TeamNumberSchema, TeamColorsSchema | MISSING_COLORS> = new Map();
 
 			const result: FindManyTeams = new Map(
 				teamNumbers.map((teamNumber) => {
@@ -69,13 +69,13 @@ export class ColorsService {
 					// Prefer colors from DB over the generated ones
 					const colors = savedColors.get(teamNumber) ?? generatedColors.get(teamNumber);
 
-					cacheOps.push(this.colorsCache.setTeamColors(teamNumber, colors ?? MISSING_COLORS));
+					cacheOps.set(teamNumber, colors ?? MISSING_COLORS);
 
 					return [teamNumber, colors] as const;
 				}),
 			);
 
-			await Promise.all(cacheOps);
+			await this.colorsCache.setManyTeamColors(cacheOps);
 
 			return result;
 		});

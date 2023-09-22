@@ -12,7 +12,7 @@ export type MISSING_COLORS = typeof MISSING_COLORS;
 
 export class ColorsCacheService {
 	// biome-ignore lint/complexity/useSimplifiedLogicExpression: This is a redundancy in case a changed value is accidentally committed
-	private static readonly IGNORE_CACHE = false && configService.nodeEnv !== 'production';
+	private static readonly BYPASS_CACHE = false && configService.nodeEnv !== 'production';
 
 	constructor(private readonly redis: VercelKV) {}
 
@@ -23,6 +23,32 @@ export class ColorsCacheService {
 			} else {
 				await this.setColors(teamNumber, colors);
 			}
+		});
+	}
+
+	async setManyTeamColors(teamColors: Map<TeamNumberSchema, TeamColorsSchema | MISSING_COLORS>): Promise<void> {
+		// biome-ignore lint/nursery/noExcessiveComplexity: Can't be simplified
+		return Sentry.startSpan({ name: 'Set cached team colors', op: 'function' }, async () => {
+			if (teamColors.size === 0) {
+				return;
+			}
+
+			const pipeline = this.redis.pipeline();
+
+			for (const [teamNumber, colors] of teamColors.entries()) {
+				if (colors === MISSING_COLORS) {
+					pipeline.hset(this.colorsRedisKey(teamNumber), { missing: true } satisfies CachedColorsSchema);
+					pipeline.expire(this.colorsRedisKey(teamNumber), CACHE_TTL_GENERATED_COLORS.to('seconds'));
+				} else {
+					pipeline.hset(this.colorsRedisKey(teamNumber), colors satisfies CachedColorsSchema);
+					const ttl = colors.verified ? CACHE_TTL_VERIFIED_COLORS : CACHE_TTL_GENERATED_COLORS;
+					pipeline.expire(this.colorsRedisKey(teamNumber), ttl.to('seconds'));
+				}
+			}
+
+			await Sentry.startSpan({ name: 'Set many Redis keys for colors and missing colors', op: 'db.redis' }, async () =>
+				pipeline.exec(),
+			);
 		});
 	}
 
@@ -37,25 +63,45 @@ export class ColorsCacheService {
 	async getManyTeamColors(
 		teamNumbers: TeamNumberSchema[],
 	): Promise<Map<TeamNumberSchema, TeamColorsSchema | MISSING_COLORS>> {
-		if (ColorsCacheService.IGNORE_CACHE) {
+		if (ColorsCacheService.BYPASS_CACHE) {
 			return new Map();
 		}
 
+		// biome-ignore lint/nursery/noExcessiveComplexity: Not actually complex
 		return Sentry.startSpan({ name: 'Get many cached team colors', op: 'function' }, async () => {
-			const rawCached = await Promise.all(
-				teamNumbers.map(async (teamNumber) => [teamNumber, await this.getTeamColors(teamNumber)] as const),
+			const pipeline = this.redis.pipeline();
+
+			for (const teamNumber of teamNumbers) {
+				pipeline.hgetall(this.colorsRedisKey(teamNumber));
+			}
+
+			const hashes = await Sentry.startSpan(
+				{ name: 'Get many Redis keys for colors and missing colors', op: 'db.redis' },
+				async () => pipeline.exec(),
 			);
 
-			const cached = rawCached.filter(
-				(tuple): tuple is [TeamNumberSchema, TeamColorsSchema | MISSING_COLORS] => tuple[1] !== undefined,
-			);
+			const result = new Map<TeamNumberSchema, TeamColorsSchema | MISSING_COLORS>();
 
-			return new Map(cached);
+			for (const [index, teamNumber] of teamNumbers.entries()) {
+				const value = hashes[index];
+
+				if (value !== null) {
+					const parsed = CachedColorsSchema.parse(value);
+
+					if ('missing' in parsed) {
+						result.set(teamNumber, MISSING_COLORS);
+					} else {
+						result.set(teamNumber, parsed);
+					}
+				}
+			}
+
+			return result;
 		});
 	}
 
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | MISSING_COLORS | undefined> {
-		if (ColorsCacheService.IGNORE_CACHE) {
+		if (ColorsCacheService.BYPASS_CACHE) {
 			return undefined;
 		}
 
