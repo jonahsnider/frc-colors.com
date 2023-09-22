@@ -1,6 +1,6 @@
 import { z } from 'zod';
+import { HexColorCodeSchema } from '../../../teams/colors/saved-colors/dtos/hex-color-code.dto';
 import { TeamNumberSchema } from '../../../teams/dtos/team-number.dto';
-import { HexColorCodeSchema } from '../../../teams/saved-colors/dtos/hex-color-code.dto';
 
 export const InternalTeamSchema = z.object({
 	teamName: z.string().nullable(),

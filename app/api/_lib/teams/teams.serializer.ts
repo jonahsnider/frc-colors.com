@@ -1,10 +1,10 @@
 import { InternalTeamSchema } from '../internal/team/dtos/internal-team.dto';
+import { TeamColorsSchema } from './colors/saved-colors/dtos/team-colors-dto';
 import { TeamNumberSchema } from './dtos/team-number.dto';
 import { V0ColorsSchema, V0FindManyTeamsSchema, V0TeamSchema } from './dtos/v0/team.dto';
 import { V1FindManyTeamSchema, V1FindManyTeamsSchema, V1TeamSchema } from './dtos/v1/team.dto';
-import { FindManyTeams } from './interfaces/find-many-colors.interface';
+import { FindManyTeams } from './interfaces/find-many-teams.interface';
 import { InternalTeam } from './interfaces/internal-team';
-import { TeamColorsSchema } from './saved-colors/dtos/team-colors-dto';
 
 export class TeamsSerializer {
 	static teamColorsToDto(colors: TeamColorsSchema): V0ColorsSchema;

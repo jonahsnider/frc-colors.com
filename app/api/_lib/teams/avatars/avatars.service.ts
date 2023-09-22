@@ -1,19 +1,17 @@
 import { difference } from '@jonahsnider/util';
 import * as Sentry from '@sentry/nextjs';
-import convert from 'convert';
 import { eq, inArray, lt, sql } from 'drizzle-orm';
+import { CACHE_TTL_TEAM_AVATAR } from '../../config/ttls-config';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { TbaService, tbaService } from '../../tba/tba.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 
 export class AvatarsService {
-	private static readonly AVATAR_CACHE_TTL = convert(14, 'days');
-
 	constructor(private readonly tba: TbaService, private readonly db: Db) {}
 
 	async purgeExpiredAvatars(): Promise<void> {
-		const expired = new Date(Date.now() - AvatarsService.AVATAR_CACHE_TTL.to('ms'));
+		const expired = new Date(Date.now() - CACHE_TTL_TEAM_AVATAR.to('ms'));
 
 		await this.db.delete(Schema.avatars).where(lt(Schema.avatars.createdAt, expired));
 	}

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { HexColorCodeSchema } from '../../saved-colors/dtos/hex-color-code.dto';
+import { HexColorCodeSchema } from '../../colors/saved-colors/dtos/hex-color-code.dto';
 import { TeamNumberSchema } from '../team-number.dto';
 
 export const V0ColorsSchema = z.object({

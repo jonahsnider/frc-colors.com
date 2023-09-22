@@ -1,5 +1,5 @@
+import { TeamColorsSchema } from '../colors/saved-colors/dtos/team-colors-dto';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
-import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
 
 export type InternalTeam = {
 	teamName?: string;

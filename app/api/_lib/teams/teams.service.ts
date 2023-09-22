@@ -1,68 +1,18 @@
-import { difference } from '@jonahsnider/util';
 import * as Sentry from '@sentry/nextjs';
 import { TbaService, tbaService } from '../tba/tba.service';
 import { AvatarsService, avatarsService } from './avatars/avatars.service';
-import { ColorGenService, colorGenService } from './color-gen/color-gen.service';
+import { ColorsService, colorsService } from './colors/colors.service';
+import { TeamColorsSchema } from './colors/saved-colors/dtos/team-colors-dto';
 import { TeamNumberSchema } from './dtos/team-number.dto';
-import { FindManyTeams } from './interfaces/find-many-colors.interface';
+import { FindManyTeams } from './interfaces/find-many-teams.interface';
 import { InternalTeam } from './interfaces/internal-team';
-import { TeamColorsSchema } from './saved-colors/dtos/team-colors-dto';
-import { SavedColorsService, savedColorsService } from './saved-colors/saved-colors.service';
 
 export class TeamsService {
 	constructor(
-		private readonly colorGen: ColorGenService,
+		private readonly colors: ColorsService,
 		private readonly tba: TbaService,
-		private readonly savedColors: SavedColorsService,
 		private readonly avatars: AvatarsService,
 	) {}
-
-	/** @returns The colors for a team. */
-	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
-		return Sentry.startSpan({ name: 'Get team colors', op: 'function' }, async () => {
-			const savedTeamColors = await this.savedColors.findTeamColors(teamNumber);
-
-			if (savedTeamColors) {
-				return savedTeamColors;
-			}
-
-			const colors = await this.colorGen.getTeamColors(teamNumber);
-
-			if (colors) {
-				return colors;
-			}
-
-			return undefined;
-		});
-	}
-
-	/** @returns The colors for a team. */
-	async getManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<FindManyTeams> {
-		return Sentry.startSpan({ name: 'Get many team colors', op: 'function' }, async () => {
-			const savedColors = await this.savedColors.findTeamColors(teamNumbers);
-			const missingColors = difference<TeamNumberSchema>(teamNumbers, savedColors.keys());
-
-			const generatedColors = await this.colorGen.getManyTeamColors([...missingColors]);
-
-			const result: FindManyTeams = new Map();
-
-			for (const teamNumber of teamNumbers) {
-				const colors = savedColors.get(teamNumber) ?? generatedColors.get(teamNumber);
-
-				result.set(teamNumber, colors);
-			}
-
-			return result;
-		});
-	}
-
-	async getTeamColorsForEvent(eventCode: string): Promise<FindManyTeams> {
-		return Sentry.startSpan({ name: 'Get team colors for event', op: 'function' }, async () => {
-			const teams = await this.tba.getTeamsForEvent(eventCode);
-
-			return this.getManyTeamColors(teams);
-		});
-	}
 
 	/** @returns The team's nickname or name (nickname is used if available). */
 	async getTeamName(teamNumber: TeamNumberSchema): Promise<string | undefined> {
@@ -75,7 +25,7 @@ export class TeamsService {
 		return Sentry.startSpan({ name: 'Get internal team', op: 'function' }, async () => {
 			const [teamName, teamColors, avatarBase64] = await Promise.all([
 				this.getTeamName(teamNumber),
-				this.getTeamColors(teamNumber),
+				this.colors.getTeamColors(teamNumber),
 				this.avatars.getAvatar(teamNumber),
 			]);
 
@@ -89,6 +39,22 @@ export class TeamsService {
 			};
 		});
 	}
+
+	async getManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<FindManyTeams> {
+		return this.colors.getManyTeamColors(teamNumbers);
+	}
+
+	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
+		return this.colors.getTeamColors(teamNumber);
+	}
+
+	async getTeamColorsForEvent(eventCode: string): Promise<FindManyTeams> {
+		return Sentry.startSpan({ name: 'Get team colors for event', op: 'function' }, async () => {
+			const teams = await this.tba.getTeamsForEvent(eventCode);
+
+			return this.getManyTeamColors(teams);
+		});
+	}
 }
 
-export const teamsService = new TeamsService(colorGenService, tbaService, savedColorsService, avatarsService);
+export const teamsService = new TeamsService(colorsService, tbaService, avatarsService);

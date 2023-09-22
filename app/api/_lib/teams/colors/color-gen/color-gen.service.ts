@@ -1,11 +1,10 @@
-import { Sort, difference } from '@jonahsnider/util';
+import { Sort } from '@jonahsnider/util';
 import * as Sentry from '@sentry/nextjs';
 import { extractColors } from 'extract-colors';
 import { PNG } from 'pngjs/browser';
-import { AvatarsService, avatarsService } from '../avatars/avatars.service';
-import { TeamNumberSchema } from '../dtos/team-number.dto';
+import { AvatarsService, avatarsService } from '../../avatars/avatars.service';
+import { TeamNumberSchema } from '../../dtos/team-number.dto';
 import { TeamColorsSchema } from '../saved-colors/dtos/team-colors-dto';
-import { ColorGenCacheService, colorGenCacheService } from './color-gen-cache.service';
 
 type ColorValidator = (red: number, green: number, blue: number, alpha?: number) => boolean;
 
@@ -22,23 +21,17 @@ export class ColorGenService {
 		// Not too transparent
 		alpha > 250;
 
-	constructor(private readonly avatars: AvatarsService, private readonly cache: ColorGenCacheService) {}
+	constructor(private readonly avatars: AvatarsService) {}
 
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {
 		return Sentry.startSpan({ name: 'Get generated team colors', op: 'function' }, async () => {
-			const cached = await this.cache.getCachedTeamColors(teamNumber);
-
-			if (cached !== undefined) {
-				return cached;
-			}
-
 			const teamAvatar = await this.avatars.getAvatar(teamNumber);
 
 			if (!teamAvatar) {
 				return undefined;
 			}
 
-			return this.generateTeamColors(teamAvatar, teamNumber);
+			return this.generateTeamColors(teamAvatar);
 		});
 	}
 
@@ -46,11 +39,7 @@ export class ColorGenService {
 		teamNumbers: TeamNumberSchema[],
 	): Promise<Map<TeamNumberSchema, TeamColorsSchema | undefined>> {
 		return Sentry.startSpan({ name: 'Get many generated team colors', op: 'function' }, async () => {
-			const cached = await this.cache.getManyCachedTeamColors(teamNumbers);
-
-			const missingColors = difference<TeamNumberSchema>(teamNumbers, cached.keys());
-
-			const avatarsToExtractFrom = await this.avatars.getAvatars(Array.from(missingColors));
+			const avatarsToExtractFrom = await this.avatars.getAvatars(Array.from(teamNumbers));
 
 			const generatedColors = new Map<TeamNumberSchema, TeamColorsSchema | undefined>(
 				await Promise.all(
@@ -62,15 +51,7 @@ export class ColorGenService {
 				),
 			);
 
-			const result: Map<TeamNumberSchema, TeamColorsSchema | undefined> = new Map();
-
-			for (const teamNumber of teamNumbers) {
-				const colors = cached.get(teamNumber) ?? generatedColors.get(teamNumber);
-
-				result.set(teamNumber, colors);
-			}
-
-			return result;
+			return generatedColors;
 		});
 	}
 
@@ -102,10 +83,7 @@ export class ColorGenService {
 		);
 	}
 
-	private async generateTeamColors(
-		teamAvatar: Buffer,
-		teamNumber: TeamNumberSchema,
-	): Promise<TeamColorsSchema | undefined> {
+	private async generateTeamColors(teamAvatar: Buffer): Promise<TeamColorsSchema | undefined> {
 		return Sentry.startSpan({ name: 'Generate team colors', op: 'function' }, async () => {
 			const pixels = await this.getPixels(teamAvatar);
 
@@ -134,11 +112,9 @@ export class ColorGenService {
 				verified: false,
 			};
 
-			await this.cache.setCachedTeamColors(teamNumber, colors);
-
 			return colors;
 		});
 	}
 }
 
-export const colorGenService = new ColorGenService(avatarsService, colorGenCacheService);
+export const colorGenService = new ColorGenService(avatarsService);

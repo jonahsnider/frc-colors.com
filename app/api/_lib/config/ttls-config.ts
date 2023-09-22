@@ -14,3 +14,6 @@ export const CACHE_TTL_TEAM_AVATAR = convert(14, 'days');
 
 /** Lifetime of Redis key for caching generated colors. */
 export const CACHE_TTL_GENERATED_COLORS = CACHE_TTL_TEAM_AVATAR;
+
+/** Lifetime of Redis key for caching verified team colors. */
+export const CACHE_TTL_VERIFIED_COLORS = convert(1, 'month');

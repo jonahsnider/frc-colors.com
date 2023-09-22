@@ -1,14 +1,14 @@
 import * as Sentry from '@sentry/nextjs';
 import { eq, inArray } from 'drizzle-orm';
-import { Db, db } from '../../db/db';
-import { Schema } from '../../db/index';
-import { ColorGenCacheService, colorGenCacheService } from '../color-gen/color-gen-cache.service';
-import { TeamNumberSchema } from '../dtos/team-number.dto';
+import { Db, db } from '../../../db/db';
+import { Schema } from '../../../db/index';
+import { TeamNumberSchema } from '../../dtos/team-number.dto';
+import { ColorsCacheService, colorsCacheService } from '../cache/colors-cache.service';
 import { HexColorCodeSchema } from './dtos/hex-color-code.dto';
 import { TeamColorsSchema } from './dtos/team-colors-dto';
 
 export class SavedColorsService {
-	constructor(private readonly colorGenCache: ColorGenCacheService, private readonly db: Db) {}
+	constructor(private readonly colorGenCache: ColorsCacheService, private readonly db: Db) {}
 
 	async findTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined>;
 	async findTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>>;
@@ -33,7 +33,7 @@ export class SavedColorsService {
 
 			await Promise.all([
 				// Remove the cached colors, since the values in DB replace them
-				this.colorGenCache.delCachedTeamColors(teamNumber),
+				this.colorGenCache.delTeamColors(teamNumber),
 
 				this.db.transaction(async (tx) => {
 					await tx.insert(Schema.teams).values({ id: teamNumber }).onConflictDoNothing();
@@ -52,6 +52,10 @@ export class SavedColorsService {
 
 	private async findManyTeamColors(teamNumbers: TeamNumberSchema[]): Promise<Map<TeamNumberSchema, TeamColorsSchema>> {
 		return Sentry.startSpan({ name: 'Find many team saved colors', op: 'function' }, async () => {
+			if (teamNumbers.length === 0) {
+				return new Map();
+			}
+
 			const teamColors = await this.db.query.teamColors.findMany({
 				where: inArray(Schema.teamColors.teamId, teamNumbers),
 				columns: {
@@ -97,4 +101,4 @@ export class SavedColorsService {
 	}
 }
 
-export const savedColorsService = new SavedColorsService(colorGenCacheService, db);
+export const savedColorsService = new SavedColorsService(colorsCacheService, db);
