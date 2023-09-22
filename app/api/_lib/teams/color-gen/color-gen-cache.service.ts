@@ -8,7 +8,7 @@ import { CachedColorsSchema } from './dtos/cached-colors.dto';
 
 export class ColorGenCacheService {
 	// biome-ignore lint/complexity/useSimplifiedLogicExpression: This is a redundancy in case a changed value is accidentally committed
-private  static readonly IGNORE_CACHE = false && configService.nodeEnv !== 'production';
+	private static readonly IGNORE_CACHE = false && configService.nodeEnv !== 'production';
 
 	constructor(private readonly redis: VercelKV) {}
 

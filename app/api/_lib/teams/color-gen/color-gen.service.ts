@@ -76,7 +76,7 @@ export class ColorGenService {
 
 	private async getPixels(teamAvatar: Buffer): Promise<Uint8Array | undefined> {
 		return Sentry.startSpan({ name: 'Get pixels', op: 'function' }, async () => {
-			return new Promise<Uint8Array | undefined>((resolve, reject) => {
+			return new Promise<Uint8Array | undefined>((resolve, _reject) => {
 				new PNG({ width: 40, height: 40 }).parse(teamAvatar, (error, data) => {
 					if (error) {
 						// Ignore any errors that may happen from weird input
