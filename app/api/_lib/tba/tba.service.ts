@@ -7,19 +7,15 @@ import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import { TbaTeam } from './interfaces/tba-team.interface';
+import {
+	CACHE_TTL_TBA_TEAM,
+	CACHE_TTL_TBA_EVENT_TEAMS,
+	CACHE_TTL_TBA_TEAM_MEDIA,
+} from '../config/ttls-config';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {
 	private static readonly BASE_API_URL = 'https://www.thebluealliance.com/api/v3';
-
-	/** Duration to cache response for team media for year. */
-	private static readonly TEAM_MEDIA_FOR_YEAR_CACHE_DURATION = convert(1, 'week');
-
-	/** Duration to cache response for team. */
-	private static readonly TEAM_CACHE_DURATION = convert(2, 'week');
-
-	/** Duration to cache response for event teams. */
-	private static readonly EVENT_TEAMS_CACHE_DURATION = convert(1, 'week');
 
 	constructor(private readonly config: ConfigService) {}
 
@@ -83,7 +79,7 @@ export class TbaService {
 				'X-TBA-Auth-Key': this.config.tbaApiKey,
 			},
 			next: {
-				revalidate: TbaService.TEAM_MEDIA_FOR_YEAR_CACHE_DURATION.to('seconds'),
+				revalidate: CACHE_TTL_TBA_TEAM_MEDIA.to('seconds'),
 			},
 		});
 
@@ -108,7 +104,7 @@ export class TbaService {
 				'X-TBA-Auth-Key': this.config.tbaApiKey,
 			},
 			next: {
-				revalidate: TbaService.TEAM_CACHE_DURATION.to('seconds'),
+				revalidate: CACHE_TTL_TBA_TEAM.to('seconds'),
 			},
 		});
 
@@ -133,7 +129,7 @@ export class TbaService {
 				'X-TBA-Auth-Key': this.config.tbaApiKey,
 			},
 			next: {
-				revalidate: TbaService.EVENT_TEAMS_CACHE_DURATION.to('seconds'),
+				revalidate: CACHE_TTL_TBA_EVENT_TEAMS.to('seconds'),
 			},
 		});
 
