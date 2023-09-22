@@ -5,26 +5,26 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "postinstall": "prisma generate",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply-unsafe",
-    "start": "next start",
-    "validate-prisma": "prisma validate"
+    "migrate": "bun ./migrate.ts",
+    "start": "next start"
   },
   "dependencies": {
     "@heroicons/react": "2.0.18",
     "@jonahsnider/util": "10.2.0",
-    "@prisma/client": "5.3.1",
     "@sentry/nextjs": "7.70.0",
     "@types/node": "20.6.3",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "@vercel/analytics": "1.0.2",
     "@vercel/kv": "0.2.3",
+    "@vercel/postgres": "0.4.2",
     "autoprefixer": "10.4.16",
     "clsx": "2.0.0",
     "color-luminance": "2.1.0",
     "convert": "4.13.2",
+    "drizzle-orm": "0.28.6",
     "extract-colors": "4.0.2",
     "get-pixels": "3.3.3",
     "next": "13.4.19",
@@ -43,7 +43,8 @@
   "devDependencies": {
     "@biomejs/biome": "1.2.2",
     "@types/get-pixels": "3.3.2",
-    "prisma": "5.3.1",
+    "dotenv": "16.3.1",
+    "drizzle-kit": "0.19.13",
     "vercel": "32.2.5"
   },
   "packageManager": "bun@1.0.2"

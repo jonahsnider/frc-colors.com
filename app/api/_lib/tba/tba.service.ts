@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import * as Sentry from '@sentry/nextjs';
 import { ConfigService, configService } from '../config/config.service';
 import { CACHE_TTL_TBA_EVENT_TEAMS, CACHE_TTL_TBA_TEAM, CACHE_TTL_TBA_TEAM_MEDIA } from '../config/ttls-config';
