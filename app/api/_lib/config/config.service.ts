@@ -5,6 +5,7 @@ export class ConfigService {
 	public readonly adminApiToken: string | undefined;
 	public readonly baseUrl: URL | undefined;
 	public readonly redisPrefix: string;
+	public readonly nodeEnv: 'production' | 'development' | 'staging';
 
 	constructor(source: Readonly<Record<string, unknown>>) {
 		this.tbaApiKey = z.string().min(1).optional().parse(source.TBA_API_KEY);
@@ -16,6 +17,7 @@ export class ConfigService {
 			.transform((url) => (url !== undefined ? new URL(url) : undefined))
 			.parse(source.BASE_URL);
 		this.redisPrefix = source.NODE_ENV !== 'production' ? 'dev:' : '';
+		this.nodeEnv = z.enum(['production', 'development', 'staging']).default('production').parse(source.NODE_ENV);
 	}
 }
 
