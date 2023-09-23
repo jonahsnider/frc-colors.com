@@ -19,7 +19,7 @@ const items: NavbarItem[] = [
 
 export default function Navbar() {
 	return (
-		<nav className='w-full bg-neutral-800 text-zinc-100 px-4 py-2 flex justify-center'>
+		<nav className='w-full text-zinc-100 bg-neutral-800 shadow-lg px-4 py-2 flex justify-center'>
 			<div className='self-center flex justify-between w-full max-w-4xl'>
 				<NavbarLogo />
 

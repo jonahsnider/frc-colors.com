@@ -14,7 +14,7 @@ type Props = {
 
 export default function BaseTeamCard({ title, avatar, verifiedBadge, colors, actions }: Props) {
 	return (
-		<div className='bg-neutral-200 rounded my-4 p-4 flex max-md:flex-col justify-between md:space-x-4'>
+		<div className='rounded my-4 p-4 flex max-md:flex-col justify-between md:space-x-4 bg-neutral-800'>
 			{/* Image container */}
 			<div className='max-h-48 max-md:w-full flex justify-center items-center'>{avatar}</div>
 

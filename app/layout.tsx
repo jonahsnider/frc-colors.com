@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
+import clsx from 'clsx';
 import type { Metadata } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { Lato } from 'next/font/google';
@@ -30,7 +31,7 @@ export default function RootLayout({
 				<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
 			</head>
 
-			<body className={lato.className}>
+			<body className={clsx(lato.className, 'bg-neutral-900 text-white')}>
 				<Navbar />
 				<main className='container mx-auto'>{children}</main>
 				<Footer />
