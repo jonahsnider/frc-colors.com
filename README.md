@@ -100,3 +100,22 @@ Get the colors for all teams at an event.
   }
 }
 ```
+
+## Development
+
+FRC Colors is built with [Next.js](https://nextjs.org/) and uses [Tailwind CSS](https://tailwindcss.com/) for frontend styling.
+
+The backend is built using Next.js's route handler feature.
+It runs on [Vercel's Edge Runtime](https://edge-runtime.vercel.app/) for best performance.
+
+It uses a PostgreSQL database via [Drizzle ORM](https://orm.drizzle.team/) with Redis for caching.
+
+### Caching behavior
+
+To minimize latency, FRC Colors heavily caches team data, such as:
+
+- Team avatars
+- Colors extracted from team avatars
+- Team name (shown on the website)
+
+The cached values will automatically expire 14-30 days after they were stored.
