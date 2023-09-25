@@ -31,15 +31,12 @@ export const teamColors = pgTable(
 	}),
 );
 
-export const colorSuggestions = pgTable('color_suggestions', {
+export const colorVerificationRequests = pgTable('color_verification_requests', {
 	id: text('id').primaryKey().notNull(),
 
 	teamId: integer('teamId')
 		.notNull()
 		.references(() => teams.id, { onDelete: 'restrict', onUpdate: 'cascade' }),
-
-	primaryColorHex: text('primary_color_hex').notNull(),
-	secondaryColorHex: text('secondary_color_hex').notNull(),
 
 	status: suggestionStatus('status').notNull(),
 

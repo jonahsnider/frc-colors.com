@@ -15,6 +15,13 @@
       "when": 1695682295211,
       "tag": "0001_slippery_red_ghost",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1695682493937,
+      "tag": "0002_chubby_bulldozer",
+      "breakpoints": true
     }
   ]
 }
