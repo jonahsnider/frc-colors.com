@@ -1,13 +1,20 @@
 {
-	"version": "5",
-	"dialect": "pg",
-	"entries": [
-		{
-			"idx": 0,
-			"version": "5",
-			"when": 1695363827235,
-			"tag": "0000_neat_cargill",
-			"breakpoints": true
-		}
-	]
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1695363827235,
+      "tag": "0000_neat_cargill",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1695682295211,
+      "tag": "0001_slippery_red_ghost",
+      "breakpoints": true
+    }
+  ]
 }
