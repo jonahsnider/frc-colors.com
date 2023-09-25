@@ -1,5 +1,5 @@
 {
-	"buildCommand": "bun run build",
+	"buildCommand": "bun migrate && bun run build",
 	"cleanUrls": true,
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"crons": [
