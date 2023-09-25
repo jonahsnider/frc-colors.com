@@ -23,7 +23,7 @@ export default function Navbar() {
 			<div className='self-center flex justify-between w-full max-w-4xl'>
 				<NavbarLogo />
 
-				<ul className='flex flex-row space-x-2'>
+				<ul className='flex flex-row gap-x-2'>
 					{items.map((item, _index) => {
 						return (
 							<li

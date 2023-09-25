@@ -12,7 +12,7 @@ export default function SearchTeams() {
 	const valid = teamNumberRaw === '' || TeamNumberSchema.safeParse(teamNumberRaw).success;
 
 	return (
-		<div className='flex flex-col space-y-4'>
+		<div className='flex flex-col gap-y-4'>
 			<input
 				className={clsx('transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow', {
 					'border-4 border-red-400': !valid,
