@@ -39,7 +39,7 @@ export class AvatarsService {
 						.values({ teamId: teamNumber, png: avatar ?? null })
 						.onConflictDoUpdate({
 							target: Schema.avatars.teamId,
-							set: { png: avatar ?? null },
+							set: { png: avatar ?? null, createdAt: new Date() },
 						});
 				});
 
@@ -87,7 +87,7 @@ export class AvatarsService {
 								.values(tbaAvatars.map(({ teamNumber, png }) => ({ teamId: teamNumber, png: png ?? null })))
 								.onConflictDoUpdate({
 									target: Schema.avatars.teamId,
-									set: { png: sql`EXCLUDED.png` },
+									set: { png: sql`EXCLUDED.png`, createdAt: new Date() },
 								});
 						});
 					}

@@ -43,7 +43,7 @@ export class SavedColorsService {
 						.values({ teamId: teamNumber, ...teamColor })
 						.onConflictDoUpdate({
 							target: Schema.teamColors.teamId,
-							set: teamColor,
+							set: { ...teamColor, updatedAt: new Date() },
 						});
 				}),
 			]);
