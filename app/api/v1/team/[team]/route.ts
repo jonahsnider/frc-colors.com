@@ -1,4 +1,5 @@
 import { authService } from '@/app/api/_lib/auth/auth.service';
+import { Schema } from '@/app/api/_lib/db/index';
 import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
 import { colorsCacheService } from '@/app/api/_lib/teams/colors/cache/colors-cache.service';
 import { savedColorsService } from '@/app/api/_lib/teams/colors/saved-colors/saved-colors.service';
@@ -8,6 +9,7 @@ import { V1TeamSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
 import { NoTeamColorsException } from '@/app/api/_lib/teams/exceptions/no-team-colors.exception';
 import { TeamsSerializer } from '@/app/api/_lib/teams/teams.serializer';
 import { teamsService } from '@/app/api/_lib/teams/teams.service';
+import { verificationRequestsService } from '@/app/api/_lib/teams/verification-requests/verification-requests.service';
 import { NextRouteHandlerContext, validateBody, validateParams } from 'next-api-utils';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
@@ -41,6 +43,7 @@ export const POST = exceptionRouteWrapper.wrapRoute<V1TeamSchema, NextRouteHandl
 		await Promise.all([
 			savedColorsService.saveTeamColors(teamNumber, body),
 			colorsCacheService.setTeamColors(teamNumber, { ...body, verified: true }),
+			verificationRequestsService.updateVerificationStatusByTeam(teamNumber, Schema.VerificationRequestStatus.Finished),
 		]);
 
 		const team = await teamsService.getTeamColors(teamNumber);

@@ -14,7 +14,7 @@ type Props = {
 
 export default function BaseTeamCard({ title, avatar, verifiedBadge, colors, actions }: Props) {
 	return (
-		<div className='rounded my-4 p-4 flex max-md:flex-col justify-between md:gap-x-4 bg-neutral-800'>
+		<div className='rounded my-4 p-4 flex max-md:flex-col justify-between md:gap-x-4 bg-neutral-800 shadow shadow-black'>
 			{/* Image container */}
 			<div className='max-h-48 max-md:w-full flex justify-center items-center'>{avatar}</div>
 
@@ -30,16 +30,23 @@ export default function BaseTeamCard({ title, avatar, verifiedBadge, colors, act
 					{verifiedBadge}
 				</div>
 
-				{/* Colors */}
-				{colors && (
-					<div className='w-full flex max-md:flex-row max-md:gap-x-4 max-md:justify-center md:flex-col md:gap-y-4'>
-						{colors.primary}
-						{colors.secondary}
-					</div>
-				)}
+				<div
+					className={clsx('flex gap-x-16', {
+						'justify-between': colors,
+						'justify-end h-full': !colors,
+					})}
+				>
+					{/* Colors */}
+					{colors && (
+						<div className='flex max-md:flex-row max-md:gap-x-4 max-md:justify-center md:flex-col md:gap-y-4'>
+							{colors.primary}
+							{colors.secondary}
+						</div>
+					)}
 
-				{/* Actions */}
-				{actions && <div className='flex gap-x-4'>{actions}</div>}
+					{/* Actions */}
+					{actions && <div className='flex flex-col justify-end'>{actions}</div>}
+				</div>
 			</div>
 		</div>
 	);

@@ -14,7 +14,7 @@ export default function SearchTeams() {
 	return (
 		<div className='flex flex-col gap-y-4'>
 			<input
-				className={clsx('transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow', {
+				className={clsx('transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-900', {
 					'border-4 border-red-400': !valid,
 				})}
 				// biome-ignore lint/a11y/noAutofocus: Autofocus is essential to have here

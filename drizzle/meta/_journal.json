@@ -22,6 +22,34 @@
 			"when": 1695682493937,
 			"tag": "0002_chubby_bulldozer",
 			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "5",
+			"when": 1695857321372,
+			"tag": "0003_nappy_silver_fox",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "5",
+			"when": 1695857328388,
+			"tag": "0004_lumpy_tigra",
+			"breakpoints": true
+		},
+		{
+			"idx": 5,
+			"version": "5",
+			"when": 1695857503147,
+			"tag": "0005_aspiring_ikaris",
+			"breakpoints": true
+		},
+		{
+			"idx": 6,
+			"version": "5",
+			"when": 1695858253704,
+			"tag": "0006_fantastic_red_wolf",
+			"breakpoints": true
 		}
 	]
 }
