@@ -32,27 +32,38 @@ export class VerificationRequestsService {
 		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(created);
 	}
 
-	async updateVerificationStatus(id: number, status: Schema.VerificationRequestStatus): Promise<VerificationRequest> {
-		const [updated] = await this.db
+	async updateVerificationStatus(
+		id: number,
+		status: Schema.VerificationRequestStatus,
+	): Promise<VerificationRequest | undefined> {
+		const updated = await this.db
 			.update(Schema.colorVerificationRequests)
 			.set({ status, updatedAt: new Date() })
 			.where(eq(Schema.colorVerificationRequests.id, id))
 			.returning();
 
-		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(updated);
+		if (updated.length === 0) {
+			return undefined;
+		}
+
+		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(updated[0]);
 	}
 
 	async updateVerificationStatusByTeam(
 		teamNumber: TeamNumberSchema,
 		status: Schema.VerificationRequestStatus,
-	): Promise<VerificationRequest> {
-		const [updated] = await this.db
+	): Promise<VerificationRequest | undefined> {
+		const updated = await this.db
 			.update(Schema.colorVerificationRequests)
 			.set({ status, updatedAt: new Date() })
 			.where(eq(Schema.colorVerificationRequests.teamId, teamNumber))
 			.returning();
 
-		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(updated);
+		if (updated.length === 0) {
+			return undefined;
+		}
+
+		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(updated[0]);
 	}
 }
 
