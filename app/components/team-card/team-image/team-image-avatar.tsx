@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import Image from 'next/image';
 import { useState } from 'react';
 
 enum BackgroundColor {
@@ -29,15 +30,17 @@ export default function TeamImageAvatar({ avatarUrl }: { avatarUrl: string }) {
 				'bg-[#0066B3]': backgroundColor === BackgroundColor.Blue,
 			})}
 		>
-			<img
+			<Image
 				src={avatarUrl}
+				unoptimized={true}
+				priority={true}
 				alt='Team avatar'
-				className='p-1'
+				className='p-1 h-48 w-48'
 				style={{
 					imageRendering: 'pixelated',
 				}}
-				height={192}
-				width={192}
+				height={40}
+				width={40}
 			/>
 		</button>
 	);
