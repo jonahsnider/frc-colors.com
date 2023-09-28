@@ -1,7 +1,7 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.0.0/schema.json",
 	"files": {
-		"ignore": [".next", "node_modules"]
+		"ignore": [".next", "node_modules", ".vercel"]
 	},
 	"formatter": {
 		"formatWithErrors": true,
