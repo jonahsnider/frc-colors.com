@@ -31,14 +31,14 @@ export default function BaseTeamCard({ title, avatar, verifiedBadge, colors, act
 				</div>
 
 				<div
-					className={clsx('flex gap-x-16', {
-						'justify-between': colors,
+					className={clsx('flex gap-x-4 md:gap-x-16', {
+						'md:justify-between': colors,
 						'justify-end h-full': !colors,
 					})}
 				>
 					{/* Colors */}
 					{colors && (
-						<div className='flex max-md:flex-row max-md:gap-x-4 max-md:justify-center md:flex-col md:gap-y-4'>
+						<div className='flex flex-row gap-x-4 justify-center w-full md:flex-col md:gap-y-4 md:w-auto'>
 							{colors.primary}
 							{colors.secondary}
 						</div>

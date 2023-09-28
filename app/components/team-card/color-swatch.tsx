@@ -10,7 +10,7 @@ export default function ColorSwatch({ hex }: { hex: HexColorCodeSchema }) {
 	return (
 		<div
 			className={clsx(
-				'w-full md:w-28 h-12 transition-colors rounded outline-none font-bold text-center flex items-center justify-center',
+				'w-full md:px-8 h-12 transition-colors rounded outline-none font-bold text-center flex items-center justify-center',
 				{
 					'text-neutral-200': isDark,
 					'text-neutral-800': !isDark,
