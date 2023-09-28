@@ -14,7 +14,7 @@ export default function HomePage() {
 
 	const { team, error, isLoading } = useTeam(teamNumber);
 
-	const teamExists = team?.teamName !== undefined;
+	const teamExists = Boolean(team?.teamName);
 
 	return (
 		<>
