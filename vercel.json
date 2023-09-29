@@ -1,11 +1,12 @@
 {
-	"buildCommand": "bun migrate && bun add @sentry/nextjs@7.70.0 && bun run build",
-	"cleanUrls": true,
 	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"buildCommand": "bun migrate && bun run build",
+	"cleanUrls": true,
 	"crons": [
 		{
 			"path": "/api/cron/purge-expired-avatars",
 			"schedule": "0 0 * * *"
 		}
-	]
+	],
+	"installCommand": "bun install --frozen-lockfile && bun add @sentry/nextjs@7.70.0"
 }
