@@ -23,7 +23,9 @@ export default function SearchTeams() {
 				type='text'
 				name='team'
 				onChange={(event) => {
+					// @ts-expect-error bun-types break this
 					setTeamNumberRaw(event.target.value);
+					// @ts-expect-error bun-types break this
 					setTeamNumber(event.target.value);
 				}}
 				value={teamNumberRaw}

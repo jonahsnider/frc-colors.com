@@ -8,7 +8,8 @@
     "lint": "biome check .",
     "lint:fix": "biome check . --apply-unsafe",
     "migrate": "bun ./migrate.ts",
-    "start": "next start"
+    "start": "next start",
+    "test": "bun test"
   },
   "dependencies": {
     "@heroicons/react": "2.0.18",
@@ -41,8 +42,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.2.2",
+    "@tsconfig/bun": "1.0.1",
+    "@tsconfig/strictest": "2.0.2",
     "@types/pngjs": "6.0.2",
     "@upstash/redis": "1.22.0",
+    "bun-types": "1.0.3",
     "dotenv": "16.3.1",
     "drizzle-kit": "0.19.13",
     "vercel": "32.3.1"
