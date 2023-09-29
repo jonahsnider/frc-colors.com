@@ -3,24 +3,9 @@ import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { VerificationRequest } from './interfaces/verification-request.interface';
+import { VerificationRequestsSerializer } from './verification-requests.serializer';
 
 export class VerificationRequestsService {
-	private static dbVerificationRequestToVerificationRequest(row: {
-		id: number;
-		createdAt: Date;
-		updatedAt: Date | null;
-		teamId: number;
-		status: Schema.VerificationRequestStatus;
-	}): VerificationRequest {
-		return {
-			id: row.id,
-			team: row.teamId,
-			createdAt: row.createdAt,
-			status: row.status,
-			updatedAt: row.updatedAt ?? undefined,
-		};
-	}
-
 	constructor(private readonly db: Db) {}
 
 	async requestVerification(teamNumber: TeamNumberSchema): Promise<VerificationRequest> {
@@ -29,7 +14,7 @@ export class VerificationRequestsService {
 			.values({ teamId: teamNumber, status: Schema.VerificationRequestStatus.Pending })
 			.returning();
 
-		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(created);
+		return VerificationRequestsSerializer.dbVerificationRequestToDto(created);
 	}
 
 	async updateVerificationStatus(
@@ -46,7 +31,7 @@ export class VerificationRequestsService {
 			return undefined;
 		}
 
-		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(updated[0]);
+		return VerificationRequestsSerializer.dbVerificationRequestToDto(updated[0]);
 	}
 
 	async updateVerificationStatusByTeam(
@@ -63,7 +48,7 @@ export class VerificationRequestsService {
 			return undefined;
 		}
 
-		return VerificationRequestsService.dbVerificationRequestToVerificationRequest(updated[0]);
+		return VerificationRequestsSerializer.dbVerificationRequestToDto(updated[0]);
 	}
 }
 
