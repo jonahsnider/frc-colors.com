@@ -1,5 +1,5 @@
 {
-	"buildCommand": "bun migrate && bun run build",
+	"buildCommand": "bun migrate && bun add @sentry/nextjs@7.70.0 && bun run build",
 	"cleanUrls": true,
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"crons": [
