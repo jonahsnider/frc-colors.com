@@ -69,6 +69,10 @@ export class ColorsCacheService {
 
 		// biome-ignore lint/nursery/noExcessiveComplexity: Not actually complex
 		return Sentry.startSpan({ name: 'Get many cached team colors', op: 'function' }, async () => {
+			if (teamNumbers.length === 0) {
+				return new Map();
+			}
+
 			const pipeline = this.redis.pipeline();
 
 			for (const teamNumber of teamNumbers) {
