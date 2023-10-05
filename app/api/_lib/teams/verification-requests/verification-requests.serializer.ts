@@ -25,7 +25,8 @@ export class VerificationRequestsSerializer {
 		return {
 			verificationRequests: verificationRequests.map((verificationRequest) => ({
 				...verificationRequest,
-				updatedAt: verificationRequest.updatedAt ?? null,
+				updatedAt: verificationRequest.updatedAt?.toISOString() ?? null,
+				createdAt: verificationRequest.createdAt.toISOString(),
 			})),
 		};
 	}
