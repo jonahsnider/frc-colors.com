@@ -12,14 +12,13 @@ export const GET = exceptionRouteWrapper.wrapRoute<V1FindManyTeamsSchema>(async 
 		request,
 		z.object({
 			team: TeamNumberSchema.array()
+				.max(100)
 				.or(TeamNumberSchema.transform((teamNumber) => [teamNumber]))
 				.default([]),
 		}),
 	);
 
-	const teamNumbers = TeamNumberSchema.array().parse(query.team);
-
-	const teamColors = await teamsService.getManyTeamColors(teamNumbers);
+	const teamColors = await teamsService.getManyTeamColors(query.team);
 
 	return NextResponse.json(TeamsSerializer.findManyTeamsToV1Dto(teamColors));
 });
