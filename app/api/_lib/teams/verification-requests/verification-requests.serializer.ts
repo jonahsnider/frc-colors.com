@@ -1,4 +1,5 @@
 import { Schema } from '../../db/index';
+import { V1FindManyVerificationRequestsSchema } from './dtos/v1/verification-request.dto';
 import { VerificationRequest } from './interfaces/verification-request.interface';
 
 export class VerificationRequestsSerializer {
@@ -15,6 +16,17 @@ export class VerificationRequestsSerializer {
 			createdAt: row.createdAt,
 			status: row.status,
 			updatedAt: row.updatedAt ?? undefined,
+		};
+	}
+
+	static findManyVerificationRequestsToV1Dto(
+		verificationRequests: VerificationRequest[],
+	): V1FindManyVerificationRequestsSchema {
+		return {
+			verificationRequests: verificationRequests.map((verificationRequest) => ({
+				...verificationRequest,
+				updatedAt: verificationRequest.updatedAt ?? null,
+			})),
 		};
 	}
 

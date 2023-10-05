@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
@@ -49,6 +49,15 @@ export class VerificationRequestsService {
 		}
 
 		return VerificationRequestsSerializer.dbVerificationRequestToDto(updated[0]);
+	}
+
+	async findManyVerificationRequests(): Promise<VerificationRequest[]> {
+		const verificationRequests = await this.db
+			.select()
+			.from(Schema.colorVerificationRequests)
+			.orderBy(desc(Schema.colorVerificationRequests.status), desc(Schema.colorVerificationRequests.createdAt));
+
+		return verificationRequests.map(VerificationRequestsSerializer.dbVerificationRequestToDto);
 	}
 }
 
