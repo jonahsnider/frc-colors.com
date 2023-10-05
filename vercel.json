@@ -8,5 +8,5 @@
 			"schedule": "0 0 * * *"
 		}
 	],
-	"installCommand": "bun install --frozen-lockfile && bun add @sentry/nextjs@7.70.0"
+	"installCommand": "bun install --frozen-lockfile && bun add @sentry/nextjs@7.70.0 zod@3.22.2"
 }
