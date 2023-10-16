@@ -28,7 +28,7 @@ export class HttpError extends Error {
 	}
 }
 
-export const fetcher = async (url: string, apiKey?: string) => {
+export const fetcher = async <T>(url: string, apiKey?: string) => {
 	const response = await fetch(url, {
 		headers: {
 			authorization: `Bearer ${apiKey}`,
@@ -36,10 +36,10 @@ export const fetcher = async (url: string, apiKey?: string) => {
 	});
 
 	if (response.ok) {
-		return response.json();
+		return response.json() as Promise<T>;
 	}
 
 	throw await HttpError.create(response);
 };
 
-export const fetcherWithApiKey = ([url, apiKey]: [string, string | undefined]) => fetcher(url, apiKey);
+export const fetcherWithApiKey = <T>([url, apiKey]: [string, string | undefined]) => fetcher<T>(url, apiKey);

@@ -87,7 +87,7 @@ export class TbaService {
 			throw new Error(`Failed to fetch team media for team ${teamNumber} from TBA: ${await response.text()}`);
 		}
 
-		return response.json();
+		return response.json() as Promise<TbaTeamMediaForYear>;
 	}
 
 	private async getTeamRaw(teamNumber: TeamNumberSchema): Promise<TbaTeam | undefined> {
@@ -112,7 +112,7 @@ export class TbaService {
 			throw new Error(`Failed to fetch team ${teamNumber} from TBA: ${await response.text()}`);
 		}
 
-		return response.json();
+		return response.json() as Promise<TbaTeam>;
 	}
 
 	private async getEventRaw(eventCode: string): Promise<TbaEventTeams> {
@@ -137,7 +137,7 @@ export class TbaService {
 			throw new Error(`Failed to fetch teams for event ${eventCode} from TBA: ${await response.text()}`);
 		}
 
-		return response.json();
+		return response.json() as Promise<TbaEventTeams>;
 	}
 }
 

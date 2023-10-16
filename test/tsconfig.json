@@ -1,4 +1,4 @@
 {
-	"include": ["./**/*.test.ts"],
+	"include": ["./**/*.ts"],
 	"extends": ["@tsconfig/strictest", "@tsconfig/bun"]
 }
