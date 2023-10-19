@@ -16,7 +16,7 @@
     "@jonahsnider/util": "10.2.0",
     "@sentry/nextjs": "7.74.0",
     "@types/node": "20.8.7",
-    "@types/react": "18.2.29",
+    "@types/react": "18.2.30",
     "@types/react-dom": "18.2.14",
     "@vercel/analytics": "1.1.1",
     "@vercel/kv": "0.2.3",
