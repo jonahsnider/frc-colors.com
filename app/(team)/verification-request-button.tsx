@@ -19,13 +19,14 @@ type State = {
 function getStatus(state: State): 'loading' | 'error' | 'success' | 'idle' {
 	if (state.error) {
 		return 'error';
-	} else if (state.loading) {
-		return 'loading';
-	} else if (state.finishedAt) {
-		return 'success';
-	} else {
-		return 'idle';
 	}
+	if (state.loading) {
+		return 'loading';
+	}
+	if (state.finishedAt) {
+		return 'success';
+	}
+	return 'idle';
 }
 
 function ButtonContents({ state }: { state: State }): React.ReactNode {
@@ -43,9 +44,11 @@ function ButtonContents({ state }: { state: State }): React.ReactNode {
 			inner = <ExclamationCircleIcon className='h-6' />;
 			alt = 'Report incorrect colors';
 		} else {
+			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 			inner = 'Request verification';
 		}
 	} else {
+		// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 		inner = 'Request colors';
 	}
 
@@ -61,7 +64,7 @@ export default function VerificationRequestButton({ team }: Props) {
 	const [error, setError] = useState(false);
 	const [finishedAt, setFinishedAt] = useState<number | undefined>(undefined);
 
-	// biome-ignore lint/nursery/useExhaustiveDependencies: This is to reset the state when the team changes or when the colors are updated by SWR
+	// biome-ignore lint/correctness/useExhaustiveDependencies: This is to reset the state when the team changes or when the colors are updated by SWR
 	useEffect(() => {
 		setLoading(false);
 		setError(false);
@@ -75,10 +78,12 @@ export default function VerificationRequestButton({ team }: Props) {
 
 		try {
 			await requestVerification(team.teamNumber);
+			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 		} catch (error) {
 			setError(true);
 			captureException(error);
 		} finally {
+			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 			setLoading(false);
 			setFinishedAt(Date.now());
 		}

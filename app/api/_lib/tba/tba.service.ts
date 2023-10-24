@@ -13,6 +13,7 @@ import { TbaTeam } from './interfaces/tba-team.interface';
 export class TbaService {
 	private static readonly BASE_API_URL = 'https://www.thebluealliance.com/api/v3';
 
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
 	constructor(private readonly config: ConfigService) {}
 
 	/** Get a buffer with a PNG of the team's avatar for the current year. */

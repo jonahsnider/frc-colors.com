@@ -8,6 +8,7 @@ import { HexColorCodeSchema } from './dtos/hex-color-code.dto';
 import { TeamColorsSchema } from './dtos/team-colors-dto';
 
 export class SavedColorsService {
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has parameter properties
 	constructor(private readonly colorGenCache: ColorsCacheService, private readonly db: Db) {}
 
 	async findTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined>;

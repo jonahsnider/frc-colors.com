@@ -8,6 +8,7 @@ import { TbaService, tbaService } from '../../tba/tba.service';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 
 export class AvatarsService {
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has parameter properties
 	constructor(private readonly tba: TbaService, private readonly db: Db) {}
 
 	async purgeExpiredAvatars(): Promise<void> {

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 
-// biome-ignore lint/nursery/noConfusingVoidType: This is a return type
 export function useApiKey(): [string | undefined, (key: string | undefined) => void] {
 	const [apiKey, setApiKey] = useState<string | undefined>(
 		// @ts-expect-error bun-types breaks this
@@ -15,6 +14,7 @@ export function useApiKey(): [string | undefined, (key: string | undefined) => v
 				// @ts-expect-error bun-types breaks this
 				globalThis.window?.localStorage.setItem('apiKey', key);
 			} else {
+				// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 				// @ts-expect-error bun-types breaks this
 				globalThis.window?.localStorage.removeItem('apiKey');
 			}

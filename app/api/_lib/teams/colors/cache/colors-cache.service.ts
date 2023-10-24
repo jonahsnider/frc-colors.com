@@ -14,6 +14,7 @@ export class ColorsCacheService {
 	// biome-ignore lint/complexity/useSimplifiedLogicExpression: This is a redundancy in case a changed value is accidentally committed
 	private static readonly BYPASS_CACHE = false && configService.nodeEnv !== 'production';
 
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
 	constructor(private readonly redis: VercelKV) {}
 
 	async setTeamColors(teamNumber: TeamNumberSchema, colors: TeamColorsSchema | MISSING_COLORS): Promise<void> {
@@ -21,13 +22,13 @@ export class ColorsCacheService {
 			if (colors === MISSING_COLORS) {
 				await this.setMissingColors(teamNumber);
 			} else {
+				// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 				await this.setColors(teamNumber, colors);
 			}
 		});
 	}
 
 	async setManyTeamColors(teamColors: Map<TeamNumberSchema, TeamColorsSchema | MISSING_COLORS>): Promise<void> {
-		// biome-ignore lint/nursery/noExcessiveComplexity: Can't be simplified
 		return Sentry.startSpan({ name: 'Set cached team colors', op: 'function' }, async () => {
 			if (teamColors.size === 0) {
 				return;
@@ -67,7 +68,6 @@ export class ColorsCacheService {
 			return new Map();
 		}
 
-		// biome-ignore lint/nursery/noExcessiveComplexity: Not actually complex
 		return Sentry.startSpan({ name: 'Get many cached team colors', op: 'function' }, async () => {
 			if (teamNumbers.length === 0) {
 				return new Map();
@@ -92,11 +92,7 @@ export class ColorsCacheService {
 				if (value !== null) {
 					const parsed = CachedColorsSchema.parse(value);
 
-					if ('missing' in parsed) {
-						result.set(teamNumber, MISSING_COLORS);
-					} else {
-						result.set(teamNumber, parsed);
-					}
+					result.set(teamNumber, 'missing' in parsed ? MISSING_COLORS : parsed);
 				}
 			}
 

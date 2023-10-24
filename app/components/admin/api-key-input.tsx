@@ -4,14 +4,13 @@ import { useApiKey } from '@/app/hooks/use-api-key';
 import { useEffect } from 'react';
 
 type Props = {
-	// biome-ignore lint/nursery/noConfusingVoidType: This is a return type
 	onChange: (apiKey: string | undefined) => void;
 };
 
 export default function ApiKeyInput({ onChange }: Props) {
 	const [apiKey, setApiKey] = useApiKey();
 
-	// biome-ignore lint/nursery/useExhaustiveDependencies: This should only run once on render
+	// biome-ignore lint/correctness/useExhaustiveDependencies: This should only run once on render
 	useEffect(() => {
 		onChange?.(apiKey);
 	}, []);

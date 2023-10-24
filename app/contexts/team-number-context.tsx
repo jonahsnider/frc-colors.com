@@ -4,12 +4,12 @@ import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
 type ContextValue = {
 	teamNumberRaw: string;
 	teamNumber?: TeamNumberSchema;
-	// biome-ignore lint/nursery/noConfusingVoidType: This is a return type
 	setTeamNumber: (teamNumberRaw: string) => void;
 };
 
 export const TeamNumberContext = createContext<ContextValue>({
 	teamNumberRaw: '',
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This is a no-op function
 	setTeamNumber: () => {},
 });
 

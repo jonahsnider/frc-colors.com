@@ -12,6 +12,7 @@ export class TeamsService {
 		private readonly colors: ColorsService,
 		private readonly tba: TbaService,
 		private readonly avatars: AvatarsService,
+		// biome-ignore lint/nursery/noEmptyBlockStatements: This has parameter properties
 	) {}
 
 	/** @returns The team's nickname or name (nickname is used if available). */

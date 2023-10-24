@@ -41,14 +41,14 @@ export class TeamsSerializer {
 		const response: V0FindManyTeamsSchema = { teams: [] };
 
 		for (const [teamNumber, colors] of Array.from(teams)) {
-			if (colors) {
-				response.teams.push({
-					teamNumber,
-					colors: this.teamColorsToDto(colors),
-				});
-			} else {
-				response.teams.push(null);
-			}
+			response.teams.push(
+				colors
+					? {
+							teamNumber,
+							colors: this.teamColorsToDto(colors),
+					  }
+					: null,
+			);
 		}
 
 		return response;
@@ -71,5 +71,6 @@ export class TeamsSerializer {
 		};
 	}
 
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This class shouldn't have a public constructor
 	private constructor() {}
 }

@@ -6,6 +6,8 @@ export class HttpError extends Error {
 		let json: Record<string, unknown> | undefined;
 		try {
 			json = JSON.parse(text);
+			// biome-ignore lint/nursery/noEmptyBlockStatements: This is intentionally empty
+			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 		} catch {}
 
 		return new HttpError(json, text, response.status, response.statusText);

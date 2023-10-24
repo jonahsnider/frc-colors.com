@@ -31,5 +31,6 @@ export class VerificationRequestsSerializer {
 		};
 	}
 
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This class shouldn't have a public constructor
 	private constructor() {}
 }
