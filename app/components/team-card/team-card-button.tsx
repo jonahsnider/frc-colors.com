@@ -3,7 +3,6 @@ import { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
 	status?: 'idle' | 'loading' | 'success' | 'error';
-	// biome-ignore lint/nursery/noConfusingVoidType: This is a return type
 	onClick?: () => void;
 }>;
 

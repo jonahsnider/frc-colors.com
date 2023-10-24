@@ -6,6 +6,7 @@ import { VerificationRequest } from './interfaces/verification-request.interface
 import { VerificationRequestsSerializer } from './verification-requests.serializer';
 
 export class VerificationRequestsService {
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
 	constructor(private readonly db: Db) {}
 
 	async requestVerification(teamNumber: TeamNumberSchema): Promise<VerificationRequest> {

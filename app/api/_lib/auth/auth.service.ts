@@ -4,6 +4,7 @@ import { IncorrectTokenException } from './exceptions/incorrect-token.exception'
 import { MissingTokenException } from './exceptions/missing-token.exception';
 
 export class AuthService {
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
 	constructor(private readonly config: ConfigService) {}
 
 	public async assertRequestAuthenticated(request: NextRequest): Promise<void> {

@@ -21,6 +21,7 @@ export class ColorGenService {
 		// Not too transparent
 		alpha > 250;
 
+	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
 	constructor(private readonly avatars: AvatarsService) {}
 
 	async getTeamColors(teamNumber: TeamNumberSchema): Promise<TeamColorsSchema | undefined> {

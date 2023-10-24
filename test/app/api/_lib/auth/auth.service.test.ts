@@ -1,10 +1,10 @@
+import { describe, expect, test } from 'bun:test';
 import { name } from '@jonahsnider/util';
 import { NextRequest } from 'next/server';
 import { AuthService } from '../../../../../app/api/_lib/auth/auth.service';
 import { IncorrectTokenException } from '../../../../../app/api/_lib/auth/exceptions/incorrect-token.exception';
 import { MissingTokenException } from '../../../../../app/api/_lib/auth/exceptions/missing-token.exception';
 import { ConfigService } from '../../../../../app/api/_lib/config/config.service';
-import { describe, expect, test } from 'bun:test';
 
 describe(name(AuthService, AuthService.prototype.assertRequestAuthenticated), () => {
 	const authService = new AuthService({ adminApiToken: 'token' } as ConfigService);

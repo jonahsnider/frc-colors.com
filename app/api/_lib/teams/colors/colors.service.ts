@@ -12,6 +12,7 @@ export class ColorsService {
 		private readonly colorGen: ColorGenService,
 		private readonly savedColors: SavedColorsService,
 		private readonly colorsCache: ColorsCacheService,
+		// biome-ignore lint/nursery/noEmptyBlockStatements: This has parameter properties
 	) {}
 
 	/** @returns The colors for a team. */
@@ -21,7 +22,8 @@ export class ColorsService {
 
 			if (cachedColors === MISSING_COLORS) {
 				return undefined;
-			} else if (cachedColors) {
+			}
+			if (cachedColors) {
 				return cachedColors;
 			}
 
@@ -62,7 +64,8 @@ export class ColorsService {
 
 					if (cached === MISSING_COLORS) {
 						return [teamNumber, undefined] as const;
-					} else if (cached) {
+					}
+					if (cached) {
 						return [teamNumber, cached] as const;
 					}
 

@@ -14,11 +14,7 @@ export default function TeamImageAvatar({ avatarUrl }: { avatarUrl: string }) {
 	const [backgroundColor, setBackgroundColor] = useState<BackgroundColor>(BackgroundColor.None);
 
 	const cycleBackgroundColor = () => {
-		if (backgroundColor === BackgroundColor.Blue) {
-			setBackgroundColor(BackgroundColor.None);
-		} else {
-			setBackgroundColor(backgroundColor + 1);
-		}
+		setBackgroundColor(backgroundColor === BackgroundColor.Blue ? BackgroundColor.None : backgroundColor + 1);
 	};
 
 	return (
