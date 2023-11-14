@@ -9,9 +9,6 @@ const nextConfig = withSentryConfig(
 			hideSourceMaps: true,
 			disableClientWebpackPlugin: true,
 		},
-		experimental: {
-			serverActions: true,
-		},
 	}),
 	{
 		org: 'frc-colors',
