@@ -1,8 +1,9 @@
 import { Schema } from '@/app/api/_lib/db/index';
 import { ColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
 import { V1ModifyColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/v1/modify-color-submission.dto';
-import { colorsCacheService } from '@/app/api/_lib/teams/colors/cache/colors-cache.service';
-import { savedColorsService } from '@/app/api/_lib/teams/colors/saved-colors/saved-colors.service';
+
+import { colorsService } from '@/app/api/_lib/teams/colors/colors.service';
+import { TeamColorsSchema } from '@/app/api/_lib/teams/colors/saved-colors/dtos/team-colors-dto';
 import { verificationRequestsService } from '@/app/api/_lib/teams/verification-requests/verification-requests.service';
 import { NextRouteHandlerContext, validateBody, validateParams } from 'next-api-utils';
 import { NextResponse } from 'next/server';
@@ -27,14 +28,14 @@ export const PUT = exceptionRouteWrapper.wrapRoute<ColorSubmissionSchema, NextRo
 		const updated = await colorSubmissionsService.modifyColorSubmissionStatus(params.id, body.status);
 
 		if (body.status === Schema.VerificationRequestStatus.Finished) {
-			const updatedColors = {
+			const updatedColors: TeamColorsSchema = {
 				primary: updated.primaryHex,
 				secondary: updated.secondaryHex,
+				verified: true,
 			};
 
 			await Promise.all([
-				savedColorsService.saveTeamColors(updated.teamNumber, updatedColors),
-				colorsCacheService.setTeamColors(updated.teamNumber, { ...updatedColors, verified: true }),
+				colorsService.setTeamColors(updated.teamNumber, updatedColors),
 				verificationRequestsService.updateVerificationStatusByTeam(
 					updated.teamNumber,
 					Schema.VerificationRequestStatus.Finished,

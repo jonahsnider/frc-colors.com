@@ -83,6 +83,13 @@ export class ColorsService {
 			return result;
 		});
 	}
+
+	async setTeamColors(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): Promise<void> {
+		await Promise.all([
+			this.colorsCache.setTeamColors(teamNumber, colors),
+			this.savedColors.saveTeamColors(teamNumber, colors),
+		]);
+	}
 }
 
 export const colorsService = new ColorsService(colorGenService, savedColorsService, colorsCacheService);

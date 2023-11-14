@@ -1,8 +1,10 @@
 import { authService } from '@/app/api/_lib/auth/auth.service';
 import { Schema } from '@/app/api/_lib/db/index';
 import { exceptionRouteWrapper } from '@/app/api/_lib/exception-route-wrapper';
-import { colorsCacheService } from '@/app/api/_lib/teams/colors/cache/colors-cache.service';
-import { savedColorsService } from '@/app/api/_lib/teams/colors/saved-colors/saved-colors.service';
+
+import { colorsService } from '@/app/api/_lib/teams/colors/colors.service';
+import { TeamColorsSchema } from '@/app/api/_lib/teams/colors/saved-colors/dtos/team-colors-dto';
+
 import { SaveTeamSchema } from '@/app/api/_lib/teams/dtos/save-team.dto';
 import { TeamNumberSchema } from '@/app/api/_lib/teams/dtos/team-number.dto';
 import { V1TeamSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
@@ -40,9 +42,14 @@ export const POST = exceptionRouteWrapper.wrapRoute<V1TeamSchema, NextRouteHandl
 
 		const body = await validateBody(request, SaveTeamSchema);
 
+		const colors: TeamColorsSchema = {
+			primary: body.primary,
+			secondary: body.secondary,
+			verified: true,
+		};
+
 		await Promise.all([
-			savedColorsService.saveTeamColors(teamNumber, body),
-			colorsCacheService.setTeamColors(teamNumber, { ...body, verified: true }),
+			colorsService.setTeamColors(teamNumber, colors),
 			verificationRequestsService.updateVerificationStatusByTeam(teamNumber, Schema.VerificationRequestStatus.Finished),
 		]);
 
