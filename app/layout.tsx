@@ -31,9 +31,9 @@ export default function RootLayout({
 				<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
 			</head>
 
-			<body className={clsx(lato.className, 'bg-neutral-900 text-white')}>
+			<body className={clsx(lato.className, 'bg-neutral-900 text-white flex flex-col min-h-screen')}>
 				<Navbar />
-				<main className='container mx-auto'>{children}</main>
+				<main className='container mx-auto grow'>{children}</main>
 				<Footer />
 				<Analytics />
 			</body>
