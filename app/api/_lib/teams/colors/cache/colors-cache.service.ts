@@ -22,7 +22,6 @@ export class ColorsCacheService {
 			if (colors === MISSING_COLORS) {
 				await this.setMissingColors(teamNumber);
 			} else {
-				// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 				await this.setColors(teamNumber, colors);
 			}
 		});

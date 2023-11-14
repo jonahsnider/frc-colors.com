@@ -23,7 +23,7 @@ export class TeamsSerializer {
 	static teamToV0Dto(teamNumber: TeamNumberSchema, colors: TeamColorsSchema): V0TeamSchema {
 		return {
 			teamNumber,
-			colors: this.teamColorsToDto(colors),
+			colors: TeamsSerializer.teamColorsToDto(colors),
 		};
 	}
 
@@ -33,7 +33,7 @@ export class TeamsSerializer {
 	static teamToV1Dto(teamNumber: TeamNumberSchema, colors?: TeamColorsSchema): V1TeamSchema | V1FindManyTeamSchema {
 		return {
 			teamNumber,
-			colors: this.teamColorsToDto(colors),
+			colors: TeamsSerializer.teamColorsToDto(colors),
 		};
 	}
 
@@ -45,7 +45,7 @@ export class TeamsSerializer {
 				colors
 					? {
 							teamNumber,
-							colors: this.teamColorsToDto(colors),
+							colors: TeamsSerializer.teamColorsToDto(colors),
 					  }
 					: null,
 			);
@@ -57,7 +57,7 @@ export class TeamsSerializer {
 	static findManyTeamsToV1Dto(teams: FindManyTeams): V1FindManyTeamsSchema {
 		return {
 			teams: Object.fromEntries(
-				Array.from(teams).map(([teamNumber, colors]) => [teamNumber, this.teamToV1Dto(teamNumber, colors)]),
+				Array.from(teams).map(([teamNumber, colors]) => [teamNumber, TeamsSerializer.teamToV1Dto(teamNumber, colors)]),
 			),
 		};
 	}
@@ -67,7 +67,7 @@ export class TeamsSerializer {
 			avatarUrl: team.avatarUrl ?? null,
 			teamName: team.teamName ?? null,
 			teamNumber: team.teamNumber,
-			colors: this.teamColorsToDto(team.colors),
+			colors: TeamsSerializer.teamColorsToDto(team.colors),
 		};
 	}
 

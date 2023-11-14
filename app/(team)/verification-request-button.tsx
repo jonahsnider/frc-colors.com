@@ -44,11 +44,9 @@ function ButtonContents({ state }: { state: State }): React.ReactNode {
 			inner = <ExclamationCircleIcon className='h-6' />;
 			alt = 'Report incorrect colors';
 		} else {
-			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 			inner = 'Request verification';
 		}
 	} else {
-		// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
 		inner = 'Request colors';
 	}
 

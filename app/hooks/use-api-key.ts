@@ -9,17 +9,17 @@ export function useApiKey(): [string | undefined, (key: string | undefined) => v
 	);
 
 	const onChange = useMemo(
-		() => (key: string | undefined): void => {
-			if (key) {
-				// @ts-expect-error bun-types breaks this
-				globalThis.window?.localStorage.setItem('apiKey', key);
-			} else {
-				// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
-				// @ts-expect-error bun-types breaks this
-				globalThis.window?.localStorage.removeItem('apiKey');
-			}
-			setApiKey(key);
-		},
+		() =>
+			(key: string | undefined): void => {
+				if (key) {
+					// @ts-expect-error bun-types breaks this
+					globalThis.window?.localStorage.setItem('apiKey', key);
+				} else {
+					// @ts-expect-error bun-types breaks this
+					globalThis.window?.localStorage.removeItem('apiKey');
+				}
+				setApiKey(key);
+			},
 		[],
 	);
 
