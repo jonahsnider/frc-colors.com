@@ -30,7 +30,7 @@ export class TeamsService {
 				this.avatars.getAvatar(teamNumber),
 			]);
 
-			const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64?.toString('base64')}` : undefined;
+			const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64.toString('base64')}` : undefined;
 
 			return {
 				teamNumber,
