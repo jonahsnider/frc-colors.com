@@ -50,6 +50,13 @@
 			"when": 1695858253704,
 			"tag": "0006_fantastic_red_wolf",
 			"breakpoints": true
+		},
+		{
+			"idx": 7,
+			"version": "5",
+			"when": 1699946340888,
+			"tag": "0007_slippery_tana_nile",
+			"breakpoints": true
 		}
 	]
 }

@@ -61,6 +61,29 @@ export const colorVerificationRequests = pgTable(
 	}),
 );
 
+export const colorFormSubmissions = pgTable(
+	'color_form_submissions',
+	{
+		id: serial('id').primaryKey().notNull(),
+
+		teamId: integer('teamId')
+			.notNull()
+			.references(() => teams.id, { onDelete: 'restrict', onUpdate: 'cascade' }),
+		primaryColorHex: text('primary_color_hex').notNull(),
+		secondaryColorHex: text('secondary_color_hex').notNull(),
+
+		status: verificationRequestStatus('status').notNull(),
+
+		createdAt: timestamp('created_at', { precision: 3, mode: 'date', withTimezone: true }).defaultNow().notNull(),
+		updatedAt: timestamp('updated_at', { precision: 3, mode: 'date', withTimezone: true }),
+	},
+	(colorFormSubmissions) => ({
+		teamIdKey: index('color_form_submissions_team_id_key').on(colorFormSubmissions.teamId),
+		createdAtIndex: index('color_form_submissions_created_at_index').on(colorFormSubmissions.createdAt),
+		statusIndex: index('color_form_submissions_status_index').on(colorFormSubmissions.status),
+	}),
+);
+
 const bytea = customType<{ data: Buffer; notNull: false; default: false }>({
 	dataType() {
 		return 'bytea';
