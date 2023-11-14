@@ -54,7 +54,7 @@ jobs:
       - name: Install dependencies with Bun
         run: bun install --frozen-lockfile
       - name: Run tsc
-        run: bun run tsc
+        run: bun tsc
   test:
     name: Test
 
