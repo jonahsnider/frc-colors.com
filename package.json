@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "dev": "next dev",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply-unsafe",
