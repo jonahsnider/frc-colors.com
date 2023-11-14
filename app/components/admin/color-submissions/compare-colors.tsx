@@ -2,7 +2,6 @@ import { Schema } from '@/app/api/_lib/db/index';
 import { ColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
 import { V1TeamSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
-import colors from 'tailwindcss/colors';
 import ColorSwatch from '../../team-card/color-swatch';
 
 type Props = {
@@ -12,8 +11,8 @@ type Props = {
 };
 
 export default function CompareColors({ loading, submission, team }: Props) {
-	const primaryBefore = loading ? colors.neutral[300] : team?.colors.primaryHex;
-	const secondaryBefore = loading ? colors.neutral[300] : team?.colors.secondaryHex;
+	const primaryBefore = loading ? undefined : team?.colors.primaryHex;
+	const secondaryBefore = loading ? undefined : team?.colors.secondaryHex;
 	const verificationBadge = team?.colors.verified ? (
 		<CheckBadgeIcon className='h-6' color={team.colors?.primaryHex} stroke={team.colors?.secondaryHex} />
 	) : (
