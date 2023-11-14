@@ -27,6 +27,7 @@ export class ColorSubmissionsService {
 		const colorSubmissions = await this.db
 			.select()
 			.from(Schema.colorFormSubmissions)
+			.where(eq(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending))
 			.orderBy(desc(Schema.colorFormSubmissions.createdAt));
 
 		return colorSubmissions.map((row) => ColorSubmissionsSerializer.dbColorSubmissionToInterface(row));
