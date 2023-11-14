@@ -6,4 +6,6 @@ export enum ExceptionCode {
 
 	MissingToken = 'E_MISSING_TOKEN',
 	IncorrectToken = 'E_INCORRECT_TOKEN',
+
+	ColorSubmissionNotFound = 'E_COLOR_SUBMISSION_NOT_FOUND',
 }

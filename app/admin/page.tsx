@@ -1,31 +1,25 @@
 'use client';
 
 import { useState } from 'react';
-import useSwr from 'swr';
-import { V1FindManyVerificationRequestsSchema } from '../api/_lib/teams/verification-requests/dtos/v1/verification-request.dto';
 import ApiKeyInput from '../components/admin/api-key-input';
-import VerificationRequestsTable from '../components/admin/verification-requests/table';
-import { fetcherWithApiKey } from '../swr';
+import H2 from '../components/headings/h2';
+import ColorSubmissionsList from './color-submissions-list';
+import VerificationRequestsList from './verification-requests-list';
 
 export default function Admin() {
 	const [apiKey, setApiKey] = useState<string | undefined>();
 
-	const { data, error, isLoading } = useSwr<V1FindManyVerificationRequestsSchema>(
-		['/api/v1/verification-requests', apiKey],
-		{
-			fetcher: apiKey ? fetcherWithApiKey : undefined,
-		},
-	);
-
 	return (
-		<div className='flex flex-col items-center gap-y-4 pt-4'>
-			<ApiKeyInput onChange={setApiKey} />
+		<div className='pt-4 flex flex-col gap-y-8'>
+			<div className='flex flex-col items-center gap-y-8'>
+				<H2>API key</H2>
+				<ApiKeyInput onChange={setApiKey} />
 
-			{data && <VerificationRequestsTable requests={data.verificationRequests} />}
-
-			{isLoading && <div>Loading...</div>}
-
-			{error && !isLoading && <div>Error: {error.message}</div>}
+				<div className='flex items-center gap-4'>
+					{apiKey && <VerificationRequestsList apiKey={apiKey} />}
+					{apiKey && <ColorSubmissionsList apiKey={apiKey} />}
+				</div>
+			</div>
 		</div>
 	);
 }

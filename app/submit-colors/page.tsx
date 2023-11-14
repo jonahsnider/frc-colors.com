@@ -5,6 +5,7 @@ import { V1CreateColorSubmissionSchema } from '../api/_lib/teams/color-submissio
 import { HexColorCodeSchema } from '../api/_lib/teams/colors/saved-colors/dtos/hex-color-code.dto';
 import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
 import ColorInput from '../components/color-input';
+import H1 from '../components/headings/h1';
 import SubmitButton, { State } from '../components/submit-button';
 import TeamInput from '../components/team-input';
 
@@ -74,7 +75,7 @@ export default function SubmitColors() {
 	return (
 		<div className='flex justify-center p-4'>
 			<div className='flex flex-col gap-4 items-center'>
-				<h1 className='text-3xl font-bold'>Submit colors for a team</h1>
+				<H1>Submit colors for a team</H1>
 				<TeamInput onChange={setTeamNumber} />
 				<ColorInput kind='primary' onChange={setPrimaryColor} />
 				<ColorInput kind='secondary' onChange={setSecondaryColor} />
