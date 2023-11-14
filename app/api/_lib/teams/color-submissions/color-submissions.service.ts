@@ -45,7 +45,7 @@ export class ColorSubmissionsService {
 	async modifyColorSubmissionStatus(id: number, status: Schema.VerificationRequestStatus): Promise<ColorSubmission> {
 		const updated = await this.db
 			.update(Schema.colorFormSubmissions)
-			.set({ status })
+			.set({ status, updatedAt: new Date() })
 			.where(eq(Schema.colorFormSubmissions.id, id))
 			.returning();
 
