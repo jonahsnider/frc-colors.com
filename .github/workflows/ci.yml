@@ -50,7 +50,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.0.3"
+          bun-version: "1.0.11"
       - name: Install dependencies with Bun
         run: bun install --frozen-lockfile
       - name: Pull environment variables
@@ -81,7 +81,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.0.3"
+          bun-version: "1.0.11"
       - name: Install dependencies with Bun
         run: bun install --frozen-lockfile
       - name: Lint
