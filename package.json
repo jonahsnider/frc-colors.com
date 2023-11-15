@@ -15,7 +15,7 @@
     "@heroicons/react": "2.0.18",
     "@jonahsnider/util": "10.2.0",
     "@sentry/nextjs": "7.80.1",
-    "@types/node": "20.8.10",
+    "@types/node": "20.9.0",
     "@types/react": "18.2.37",
     "@types/react-dom": "18.2.15",
     "@vercel/analytics": "1.1.1",
