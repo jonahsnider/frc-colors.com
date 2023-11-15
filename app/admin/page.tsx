@@ -17,10 +17,17 @@ export default function Admin() {
 				<H2>API key</H2>
 				<ApiKeyInput onChange={setApiKey} />
 
-				<div className='flex gap-4'>
-					{apiKey && <VerificationRequestsList apiKey={apiKey} />}
-					{apiKey && <ColorSubmissionsList apiKey={apiKey} />}
-				</div>
+				{apiKey && (
+					<div className='flex gap-16'>
+						<VerificationRequestsList />
+						<ColorSubmissionsList />
+					</div>
+				)}
+				{!apiKey && (
+					<div>
+						<p>No API key defined</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
