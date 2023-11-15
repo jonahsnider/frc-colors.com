@@ -123,7 +123,7 @@ export class ColorsCacheService {
 	}
 
 	private colorsRedisKey(teamNumber: TeamNumberSchema): string {
-		return `${configService.redisPrefix}colors:${teamNumber}`;
+		return `colors:${teamNumber}`;
 	}
 
 	private async setMissingColors(teamNumber: TeamNumberSchema): Promise<void> {
