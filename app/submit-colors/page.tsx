@@ -9,6 +9,28 @@ import H1 from '../components/headings/h1';
 import SubmitButton, { State } from '../components/submit-button';
 import TeamInput from '../components/team-input';
 
+function determineState({
+	isError,
+	isLoading,
+	isReady,
+	isSuccess,
+}: { isLoading: boolean; isError: boolean; isSuccess: boolean; isReady: boolean }): State {
+	if (isLoading) {
+		return 'loading';
+	}
+	if (isError) {
+		return 'error';
+	}
+	if (isSuccess) {
+		return 'success';
+	}
+	if (isReady) {
+		return 'ready';
+	}
+
+	return 'invalid';
+}
+
 export default function SubmitColors() {
 	const [teamNumber, setTeamNumber] = useState<TeamNumberSchema | undefined>(undefined);
 	const [primaryColor, setPrimaryColor] = useState<HexColorCodeSchema | undefined>(undefined);
@@ -26,19 +48,7 @@ export default function SubmitColors() {
 
 	const isReady = body.success;
 
-	let state: State = 'invalid';
-
-	if (isLoading) {
-		state = 'loading';
-	} else if (isError) {
-		state = 'error';
-	} else if (isSuccess) {
-		state = 'success';
-	} else if (isReady) {
-		state = 'ready';
-	} else {
-		state = 'invalid';
-	}
+	const state = determineState({ isLoading, isError, isSuccess, isReady });
 
 	const onClick = () => {
 		if (!isReady) {
