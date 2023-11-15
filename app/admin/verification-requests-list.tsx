@@ -3,12 +3,10 @@ import { V1FindManyVerificationRequestsSchema } from '../api/_lib/teams/verifica
 import VerificationRequestsTable from '../components/admin/verification-requests/table';
 import H2 from '../components/headings/h2';
 import { fetcherWithApiKey } from '../swr';
+import { useApiKey } from '../hooks/use-api-key';
 
-type Props = {
-	apiKey: string;
-};
-
-export default function VerificationRequestsList({ apiKey }: Props) {
+export default function VerificationRequestsList() {
+	const [apiKey] = useApiKey();
 	const { data, error, isLoading } = useSwr<V1FindManyVerificationRequestsSchema>(
 		['/api/v1/verification-requests', apiKey],
 		{

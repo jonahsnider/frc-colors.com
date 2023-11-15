@@ -25,6 +25,7 @@
     "clsx": "2.0.0",
     "color-luminance": "2.1.0",
     "convert": "4.13.2",
+    "date-fns": "2.30.0",
     "drizzle-orm": "0.28.6",
     "extract-colors": "4.0.2",
     "next": "14.0.2",

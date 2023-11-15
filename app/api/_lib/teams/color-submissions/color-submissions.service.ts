@@ -1,10 +1,11 @@
-import { desc, eq } from 'drizzle-orm';
+import { and, desc, eq, gt, ne, or } from 'drizzle-orm';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { ColorSubmissionsSerializer } from './color-submissions.serializer';
 import { V1CreateColorSubmissionSchema } from './dtos/v1/create-color-submission.dto';
 import { ColorSubmissionNotFoundException } from './exceptions/color-submission-not-found.exception';
 import { ColorSubmission } from './interfaces/color-submission.interface';
+import { ms } from 'convert';
 
 export class ColorSubmissionsService {
 	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
@@ -27,8 +28,20 @@ export class ColorSubmissionsService {
 		const colorSubmissions = await this.db
 			.select()
 			.from(Schema.colorFormSubmissions)
-			.where(eq(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending))
-			.orderBy(desc(Schema.colorFormSubmissions.createdAt));
+			.where(
+				or(
+					eq(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending),
+					and(
+						ne(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending),
+						gt(Schema.colorFormSubmissions.updatedAt, new Date(Date.now() - ms('7d'))),
+					),
+				),
+			)
+			.orderBy(
+				desc(Schema.colorFormSubmissions.status),
+				desc(Schema.colorFormSubmissions.updatedAt),
+				desc(Schema.colorFormSubmissions.createdAt),
+			);
 
 		return colorSubmissions.map((row) => ColorSubmissionsSerializer.dbColorSubmissionToInterface(row));
 	}

@@ -3,12 +3,10 @@ import { V1FindManyColorSubmissionsSchema } from '../api/_lib/teams/color-submis
 import ColorSubmissionsTable from '../components/admin/color-submissions/table';
 import H2 from '../components/headings/h2';
 import { fetcherWithApiKey } from '../swr';
+import { useApiKey } from '../hooks/use-api-key';
 
-type Props = {
-	apiKey: string;
-};
-
-export default function ColorSubmissionsList({ apiKey }: Props) {
+export default function ColorSubmissionsList() {
+	const [apiKey] = useApiKey();
 	const { data, error, isLoading } = useSwr<V1FindManyColorSubmissionsSchema>(['/api/v1/color-submissions', apiKey], {
 		fetcher: apiKey ? fetcherWithApiKey : undefined,
 	});
@@ -17,7 +15,7 @@ export default function ColorSubmissionsList({ apiKey }: Props) {
 		<div className='flex flex-col items-center gap-y-4'>
 			<H2>Color submissions</H2>
 
-			{data && <ColorSubmissionsTable colorSubmissions={data.colorSubmissions} apiKey={apiKey} />}
+			{data && <ColorSubmissionsTable colorSubmissions={data.colorSubmissions} />}
 
 			{isLoading && <div>Loading...</div>}
 
