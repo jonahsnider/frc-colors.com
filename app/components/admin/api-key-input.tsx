@@ -12,7 +12,7 @@ export default function ApiKeyInput({ onChange }: Props) {
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This should only run once on render
 	useEffect(() => {
-		onChange?.(apiKey);
+		onChange(apiKey);
 	}, []);
 
 	useEffect(() => {
