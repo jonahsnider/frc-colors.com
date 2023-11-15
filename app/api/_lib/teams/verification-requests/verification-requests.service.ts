@@ -1,10 +1,10 @@
-import { desc, eq, or, ne, and, gt } from 'drizzle-orm';
+import { ms } from 'convert';
+import { and, desc, eq, gt, ne, or } from 'drizzle-orm';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { VerificationRequest } from './interfaces/verification-request.interface';
 import { VerificationRequestsSerializer } from './verification-requests.serializer';
-import { ms } from 'convert';
 
 export class VerificationRequestsService {
 	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property

@@ -2,8 +2,8 @@ import useSwr from 'swr';
 import { V1FindManyVerificationRequestsSchema } from '../api/_lib/teams/verification-requests/dtos/v1/verification-request.dto';
 import VerificationRequestsTable from '../components/admin/verification-requests/table';
 import H2 from '../components/headings/h2';
-import { fetcherWithApiKey } from '../swr';
 import { useApiKey } from '../hooks/use-api-key';
+import { fetcherWithApiKey } from '../swr';
 
 export default function VerificationRequestsList() {
 	const [apiKey] = useApiKey();

@@ -1,9 +1,9 @@
 import { Schema } from '@/app/api/_lib/db/index';
 import { VerificationRequestSchema } from '@/app/api/_lib/teams/verification-requests/dtos/verification-request.dto';
 import clsx from 'clsx';
-import RequestStatus from './request-status';
 import { formatDistanceToNow } from 'date-fns';
 import Link from 'next/link';
+import RequestStatus from './request-status';
 
 type Props = {
 	request: VerificationRequestSchema;

@@ -2,8 +2,8 @@ import useSwr from 'swr';
 import { V1FindManyColorSubmissionsSchema } from '../api/_lib/teams/color-submissions/dtos/v1/color-submission.dto';
 import ColorSubmissionsTable from '../components/admin/color-submissions/table';
 import H2 from '../components/headings/h2';
-import { fetcherWithApiKey } from '../swr';
 import { useApiKey } from '../hooks/use-api-key';
+import { fetcherWithApiKey } from '../swr';
 
 export default function ColorSubmissionsList() {
 	const [apiKey] = useApiKey();

@@ -1,3 +1,4 @@
+import { ms } from 'convert';
 import { and, desc, eq, gt, ne, or } from 'drizzle-orm';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
@@ -5,7 +6,6 @@ import { ColorSubmissionsSerializer } from './color-submissions.serializer';
 import { V1CreateColorSubmissionSchema } from './dtos/v1/create-color-submission.dto';
 import { ColorSubmissionNotFoundException } from './exceptions/color-submission-not-found.exception';
 import { ColorSubmission } from './interfaces/color-submission.interface';
-import { ms } from 'convert';
 
 export class ColorSubmissionsService {
 	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property

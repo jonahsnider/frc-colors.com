@@ -1,19 +1,18 @@
 'use client';
 
 import { ColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
-import { V1FindManyTeamSchema, V1TeamSchema } from '@/app/api/_lib/teams/dtos/v1/team.dto';
-import { formatDistanceToNow } from 'date-fns';
-import useSwr from 'swr';
 
-import { HttpError, fetcher } from '@/app/swr';
+import { formatDistanceToNow } from 'date-fns';
+
+import { HttpError } from '@/app/swr';
 
 import { Schema } from '@/app/api/_lib/db/index';
 import { V1ModifyColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/v1/modify-color-submission.dto';
+import { V0ColorsSchema } from '@/app/api/_lib/teams/dtos/v0/team.dto';
+import { useApiKey } from '@/app/hooks/use-api-key';
 import { useState } from 'react';
 import ColorSubmissionCardActions from './color-submission-card-actions';
 import CompareColors from './compare-colors';
-import { useApiKey } from '@/app/hooks/use-api-key';
-import { V0ColorsSchema } from '@/app/api/_lib/teams/dtos/v0/team.dto';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
