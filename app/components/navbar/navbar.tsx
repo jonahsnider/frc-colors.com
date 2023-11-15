@@ -1,12 +1,8 @@
-import Link from 'next/link';
+import AdminNavbarLink from './admin-navbar-links';
+import NavbarLink from './navbar-link';
 import NavbarLogo from './navbar-logo';
 
-type NavbarItem = {
-	content: string;
-	href: string;
-};
-
-const items: NavbarItem[] = [
+const DEFAULT_NAVBAR_ITEMS = [
 	{
 		content: 'API Docs',
 		href: 'https://github.com/jonahsnider/frc-colors#api-usage',
@@ -24,18 +20,10 @@ export default function Navbar() {
 				<NavbarLogo />
 
 				<ul className='flex flex-row gap-x-2'>
-					{items.map((item, _index) => {
-						return (
-							<li
-								key={item.content}
-								className='px-1.5 py-0.5 self-center rounded transition-colors hover:bg-neutral-700 active:bg-neutral-600'
-							>
-								<Link href={item.href} className='text-lg'>
-									{item.content}
-								</Link>
-							</li>
-						);
-					})}
+					{DEFAULT_NAVBAR_ITEMS.map((item) => (
+						<NavbarLink key={item.content} item={item} />
+					))}
+					<AdminNavbarLink />
 				</ul>
 			</div>
 		</nav>
