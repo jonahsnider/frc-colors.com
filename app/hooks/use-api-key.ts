@@ -1,12 +1,16 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export function useApiKey(): [string | undefined, (key: string | undefined) => void] {
-	const [apiKey, setApiKey] = useState<string | undefined>(
+	const [apiKey, setApiKey] = useState<string | undefined>(undefined);
+
+	useEffect(() => {
 		// @ts-expect-error bun-types breaks this
-		globalThis.window?.localStorage.getItem('apiKey') ?? undefined,
-	);
+		const rawApiKey = globalThis.window?.localStorage.getItem('apiKey') ?? undefined;
+
+		setApiKey(rawApiKey);
+	}, []);
 
 	const onChange = useMemo(
 		() =>
