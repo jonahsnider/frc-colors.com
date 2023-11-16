@@ -9,17 +9,18 @@ type Props = {
 export default function TableRowActions({ onApprove, onReject, status }: Props) {
 	if (status === 'idle') {
 		return (
-			<div className='flex gap-x-1 pt-1'>
+			<div className='flex gap-x-1 pt-1 justify-between'>
 				<button
 					onClick={onApprove}
-					className='transition-colors p-2 bg-neutral-700 text-green-400 hover:bg-green-400 hover:text-black rounded w-full flex items-center justify-center'
+					className='transition-colors p-2 bg-neutral-700 text-green-400 hover:bg-green-400 hover:text-black rounded w-1/3 flex items-center justify-center'
 					type='button'
 				>
 					<CheckIcon className='h-6' />
 				</button>
+
 				<button
 					onClick={onReject}
-					className='transition-colors p-2 bg-neutral-700 text-red-400 hover:bg-red-400 hover:text-black rounded w-full flex items-center justify-center'
+					className='transition-colors p-2 bg-neutral-700 text-red-400 hover:bg-red-400 hover:text-black rounded w-1/3 flex items-center justify-center'
 					type='button'
 				>
 					<XMarkIcon className='h-6' />
