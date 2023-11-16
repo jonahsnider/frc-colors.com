@@ -1,4 +1,3 @@
-import { Schema } from '@/app/api/_lib/db/index';
 import { ColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
 import { V0ColorsSchema } from '@/app/api/_lib/teams/dtos/v0/team.dto';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
@@ -15,16 +14,16 @@ export default function CompareColors({ loading, submission, colors }: Props) {
 	const secondaryBefore = loading ? undefined : colors?.secondaryHex;
 	const verificationBadge = colors?.verified ? (
 		<CheckBadgeIcon className='h-6' color={colors?.primaryHex} stroke={colors?.secondaryHex} />
-	) : (
-		<></>
-	);
+	) : undefined;
+
+	const colorsAreDifferent = submission.primaryHex !== primaryBefore || submission.secondaryHex !== secondaryBefore;
 
 	return (
 		<>
-			{submission.status !== Schema.VerificationRequestStatus.Finished && (
+			{colorsAreDifferent && (
 				<div className='flex flex-col gap-y-1'>
 					<div className='flex justify-between'>
-						<p>Before:</p>
+						<p>Current:</p>
 						{verificationBadge}
 					</div>
 
@@ -36,7 +35,7 @@ export default function CompareColors({ loading, submission, colors }: Props) {
 				</div>
 			)}
 			<div className='flex flex-col gap-y-1'>
-				<p>After:</p>
+				<p>Proposed:</p>
 				<div className='flex gap-x-2'>
 					{<ColorSwatch hex={submission.primaryHex} />}
 					{<ColorSwatch hex={submission.secondaryHex} />}
