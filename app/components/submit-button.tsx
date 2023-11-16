@@ -28,11 +28,10 @@ export default function SubmitButton({ onClick, children, state }: Props) {
 
 	return (
 		<button
-			className={clsx('transition-all font-bold py-2 px-4 rounded', {
-				'shadow shadow-black': !disabled,
-				'bg-green-400 hover:bg-green-300 text-black': state === 'ready',
+			className={clsx('transition-all font-bold py-2 px-4 rounded shadow shadow-neutral-900 disabled:shadow-none', {
+				'bg-green-400 hover:bg-green-300 active:bg-green-200 text-black': state === 'ready',
 				'bg-green-400 text-black': state === 'success',
-				'bg-red-400 text-black': state === 'error',
+				'bg-red-400 hover:bg-red-300 active:bg-red-200 text-black': state === 'error',
 				'bg-neutral-600 text-neutral-400': state === 'loading' || state === 'invalid',
 			})}
 			onClick={onClick}
