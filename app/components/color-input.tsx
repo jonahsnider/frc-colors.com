@@ -43,28 +43,38 @@ export default function ColorInput({ kind, onChange }: Props) {
 
 	return (
 		<div className='flex flex-col gap-y-4'>
-			<input
-				className={clsx('transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-950', {
-					'border-4 border-red-400': !valid,
-				})}
-				placeholder={`${capitalize(kind)} color hex`}
-				type='text'
-				name={kind}
-				onChange={(event) => {
-					// @ts-expect-error bun-types breaks this
-					setRawColor(event.target.value);
+			<div className={clsx('rounded bg-neutral-800 shadow shadow-neutral-950 relative')}>
+				<input
+					className={clsx('transition-colors h-16 p-4 bg-neutral-800 outline-none rounded border-4', {
+						'border-red-400': !valid,
+						'border-transparent': valid,
+					})}
+					placeholder={`${capitalize(kind)} color hex`}
+					type='text'
+					name={kind}
+					onChange={(event) => {
+						// @ts-expect-error bun-types breaks this
+						setRawColor(event.target.value);
 
-					// @ts-expect-error bun-types breaks this
-					const parsed = HexColorCodeSchema.safeParse(parseRawColor(event.target.value).hex);
+						// @ts-expect-error bun-types breaks this
+						const parsed = HexColorCodeSchema.safeParse(parseRawColor(event.target.value).hex);
 
-					if (parsed.success) {
-						onChange(parsed.data);
-					} else {
-						onChange(undefined);
-					}
-				}}
-				value={color.display}
-			/>
+						if (parsed.success) {
+							onChange(parsed.data);
+						} else {
+							onChange(undefined);
+						}
+					}}
+					value={color.display}
+				/>
+
+				<div
+					style={valid ? { backgroundColor: color.hex } : undefined}
+					className={clsx('h-8 w-8 right-2 top-[1em] rounded absolute transition-colors', {
+						'bg-neutral-800': !valid,
+					})}
+				/>
+			</div>
 		</div>
 	);
 }
