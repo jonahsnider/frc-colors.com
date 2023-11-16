@@ -64,11 +64,15 @@ export class VerificationRequestsService {
 					),
 			  );
 
+		const order = team
+			? [desc(Schema.colorVerificationRequests.createdAt)]
+			: [desc(Schema.colorFormSubmissions.status), desc(Schema.colorFormSubmissions.createdAt)];
+
 		const verificationRequests = await this.db
 			.select()
 			.from(Schema.colorVerificationRequests)
 			.where(condition)
-			.orderBy(desc(Schema.colorVerificationRequests.status), desc(Schema.colorVerificationRequests.createdAt));
+			.orderBy(...order);
 
 		return verificationRequests.map(VerificationRequestsSerializer.dbVerificationRequestToDto);
 	}

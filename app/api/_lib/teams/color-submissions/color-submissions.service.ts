@@ -36,15 +36,19 @@ export class ColorSubmissionsService {
 					),
 			  );
 
+		const order = team
+			? [desc(Schema.colorFormSubmissions.createdAt)]
+			: [
+					desc(Schema.colorFormSubmissions.status),
+					desc(Schema.colorFormSubmissions.updatedAt),
+					desc(Schema.colorFormSubmissions.createdAt),
+			  ];
+
 		const colorSubmissions = await this.db
 			.select()
 			.from(Schema.colorFormSubmissions)
 			.where(condition)
-			.orderBy(
-				desc(Schema.colorFormSubmissions.status),
-				desc(Schema.colorFormSubmissions.updatedAt),
-				desc(Schema.colorFormSubmissions.createdAt),
-			);
+			.orderBy(...order);
 
 		return colorSubmissions.map((row) => ColorSubmissionsSerializer.dbColorSubmissionToInterface(row));
 	}
