@@ -32,6 +32,7 @@ export default function ColorSubmissionsTable({ colorSubmissions }: Props) {
 					oldColorsLoading={oldColorsLoading}
 				/>
 			))}
+			{colorSubmissions.length === 0 && <p>No color submissions</p>}
 		</div>
 	);
 }

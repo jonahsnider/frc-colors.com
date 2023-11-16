@@ -2,6 +2,7 @@ import { ms } from 'convert';
 import { and, desc, eq, gt, ne, or } from 'drizzle-orm';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
+import { TeamNumberSchema } from '../dtos/team-number.dto';
 import { ColorSubmissionsSerializer } from './color-submissions.serializer';
 import { V1CreateColorSubmissionSchema } from './dtos/v1/create-color-submission.dto';
 import { ColorSubmissionNotFoundException } from './exceptions/color-submission-not-found.exception';
@@ -24,19 +25,21 @@ export class ColorSubmissionsService {
 		return ColorSubmissionsSerializer.dbColorSubmissionToInterface(submissions[0]);
 	}
 
-	async findManyColorSubmissions(): Promise<ColorSubmission[]> {
-		const colorSubmissions = await this.db
-			.select()
-			.from(Schema.colorFormSubmissions)
-			.where(
-				or(
+	async findManyColorSubmissions(team?: TeamNumberSchema): Promise<ColorSubmission[]> {
+		const condition = team
+			? eq(Schema.colorFormSubmissions.teamId, team)
+			: or(
 					eq(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending),
 					and(
 						ne(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending),
 						gt(Schema.colorFormSubmissions.updatedAt, new Date(Date.now() - ms('7d'))),
 					),
-				),
-			)
+			  );
+
+		const colorSubmissions = await this.db
+			.select()
+			.from(Schema.colorFormSubmissions)
+			.where(condition)
 			.orderBy(
 				desc(Schema.colorFormSubmissions.status),
 				desc(Schema.colorFormSubmissions.updatedAt),

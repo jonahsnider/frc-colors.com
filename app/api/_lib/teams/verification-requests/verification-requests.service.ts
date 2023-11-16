@@ -53,19 +53,21 @@ export class VerificationRequestsService {
 		return VerificationRequestsSerializer.dbVerificationRequestToDto(updated[0]);
 	}
 
-	async findManyVerificationRequests(): Promise<VerificationRequest[]> {
-		const verificationRequests = await this.db
-			.select()
-			.from(Schema.colorVerificationRequests)
-			.where(
-				or(
+	async findManyVerificationRequests(team?: TeamNumberSchema): Promise<VerificationRequest[]> {
+		const condition = team
+			? eq(Schema.colorVerificationRequests.teamId, team)
+			: or(
 					eq(Schema.colorVerificationRequests.status, Schema.VerificationRequestStatus.Pending),
 					and(
 						ne(Schema.colorVerificationRequests.status, Schema.VerificationRequestStatus.Pending),
 						gt(Schema.colorVerificationRequests.updatedAt, new Date(Date.now() - ms('7d'))),
 					),
-				),
-			)
+			  );
+
+		const verificationRequests = await this.db
+			.select()
+			.from(Schema.colorVerificationRequests)
+			.where(condition)
 			.orderBy(desc(Schema.colorVerificationRequests.status), desc(Schema.colorVerificationRequests.createdAt));
 
 		return verificationRequests.map(VerificationRequestsSerializer.dbVerificationRequestToDto);

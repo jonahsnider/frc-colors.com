@@ -1,6 +1,7 @@
 'use client';
 
 import { useContext } from 'react';
+import AdminTeamSummary from '../components/admin/admin-team-summary';
 import TrackTeam from '../components/analytics/track-team';
 import SearchTeams from '../components/search-teams';
 import LoadingTeamCard from '../components/team-card/loading-team-card';
@@ -33,6 +34,8 @@ export default function HomePage() {
 			)}
 			{error && <p>An error occurred while fetching team {teamNumber}'s information</p>}
 			{isLoading && <LoadingTeamCard />}
+
+			<AdminTeamSummary team={team} />
 		</>
 	);
 }
