@@ -18,7 +18,7 @@ export default function Admin() {
 				<ApiKeyInput onChange={setApiKey} />
 
 				{apiKey && (
-					<div className='flex gap-16'>
+					<div className='flex flex-col md:flex-row gap-4 md:gap-16'>
 						<VerificationRequestsList />
 						<ColorSubmissionsList />
 					</div>
