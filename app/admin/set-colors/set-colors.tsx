@@ -12,6 +12,7 @@ import { useApiKey } from '@/app/hooks/use-api-key';
 import { useTeam } from '@/app/hooks/use-team';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect, useState } from 'react';
+import { mutate } from 'swr';
 
 function determineState({
 	isError,
@@ -116,6 +117,7 @@ export default function SetColors() {
 			})
 			.finally(() => {
 				actualTeamData.mutate?.();
+				mutate(['/api/v1/verification-requests', apiKey]);
 				setIsLoading(false);
 			});
 	};
