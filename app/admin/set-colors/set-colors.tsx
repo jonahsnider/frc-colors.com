@@ -88,7 +88,7 @@ export default function SetColors() {
 	}, [succeededAt]);
 
 	const onSubmit = () => {
-		if (!(isReady && apiKey)) {
+		if (!(isReady && apiKey && team)) {
 			return;
 		}
 
@@ -118,6 +118,7 @@ export default function SetColors() {
 			.finally(() => {
 				actualTeamData.mutate?.();
 				mutate(['/api/v1/verification-requests', apiKey]);
+				mutate([`/api/internal/team/${team}`, apiKey]);
 				setIsLoading(false);
 			});
 	};
