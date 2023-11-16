@@ -22,7 +22,7 @@ export default function CompareColors({ loading, submission, colors }: Props) {
 	return (
 		<>
 			{submission.status !== Schema.VerificationRequestStatus.Finished && (
-				<div>
+				<div className='flex flex-col gap-y-1'>
 					<div className='flex justify-between'>
 						<p>Before:</p>
 						{verificationBadge}
@@ -35,7 +35,7 @@ export default function CompareColors({ loading, submission, colors }: Props) {
 					</div>
 				</div>
 			)}
-			<div>
+			<div className='flex flex-col gap-y-1'>
 				<p>After:</p>
 				<div className='flex gap-x-2'>
 					{<ColorSwatch hex={submission.primaryHex} />}
