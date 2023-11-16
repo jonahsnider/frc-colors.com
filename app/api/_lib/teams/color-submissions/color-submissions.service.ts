@@ -1,5 +1,6 @@
+import { Comparable, Sort } from '@jonahsnider/util';
 import { ms } from 'convert';
-import { and, desc, eq, gt, ne, or } from 'drizzle-orm';
+import { and, eq, gt, ne, or } from 'drizzle-orm';
 import { Db, db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { TeamNumberSchema } from '../dtos/team-number.dto';
@@ -9,6 +10,16 @@ import { ColorSubmissionNotFoundException } from './exceptions/color-submission-
 import { ColorSubmission } from './interfaces/color-submission.interface';
 
 export class ColorSubmissionsService {
+	private static orderVerificationRequestStatus(status: Schema.VerificationRequestStatus): Comparable {
+		switch (status) {
+			case Schema.VerificationRequestStatus.Pending:
+				return 0;
+			case Schema.VerificationRequestStatus.Finished:
+			case Schema.VerificationRequestStatus.Rejected:
+				return 1;
+		}
+	}
+
 	// biome-ignore lint/nursery/noEmptyBlockStatements: This has a parameter property
 	constructor(private readonly db: Db) {}
 
@@ -36,19 +47,19 @@ export class ColorSubmissionsService {
 					),
 			  );
 
-		const order = team
-			? [desc(Schema.colorFormSubmissions.createdAt)]
-			: [
-					desc(Schema.colorFormSubmissions.status),
-					desc(Schema.colorFormSubmissions.updatedAt),
-					desc(Schema.colorFormSubmissions.createdAt),
-			  ];
+		const colorSubmissions = await this.db.select().from(Schema.colorFormSubmissions).where(condition);
 
-		const colorSubmissions = await this.db
-			.select()
-			.from(Schema.colorFormSubmissions)
-			.where(condition)
-			.orderBy(...order);
+		if (team) {
+			colorSubmissions.sort(Sort.descending((submission) => submission.createdAt));
+		} else {
+			colorSubmissions.sort(
+				Sort.combine(
+					Sort.ascending((submission) => ColorSubmissionsService.orderVerificationRequestStatus(submission.status)),
+					Sort.descending((submission) => submission.updatedAt),
+					Sort.descending((submission) => submission.createdAt),
+				),
+			);
+		}
 
 		return colorSubmissions.map((row) => ColorSubmissionsSerializer.dbColorSubmissionToInterface(row));
 	}

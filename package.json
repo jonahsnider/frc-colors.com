@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@heroicons/react": "2.0.18",
-    "@jonahsnider/util": "10.2.0",
+    "@jonahsnider/util": "10.3.0",
     "@sentry/nextjs": "7.80.1",
     "@types/node": "20.9.0",
     "@types/react": "18.2.37",
