@@ -11,6 +11,7 @@ import { V1ModifyColorSubmissionSchema } from '@/app/api/_lib/teams/color-submis
 import { V0ColorsSchema } from '@/app/api/_lib/teams/dtos/v0/team.dto';
 import { useApiKey } from '@/app/hooks/use-api-key';
 import { useState } from 'react';
+import { mutate } from 'swr';
 import ColorSubmissionCardActions from './color-submission-card-actions';
 import CompareColors from './compare-colors';
 
@@ -40,6 +41,8 @@ function CardActions({
 			},
 			body: JSON.stringify(body),
 		});
+
+		mutate(['/api/v1/verification-requests', apiKey]);
 
 		if (response.ok) {
 			const body = await response.json();
