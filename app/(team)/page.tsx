@@ -14,11 +14,11 @@ export default function HomePage() {
 
 	const { team, error, isLoading } = useTeam(teamNumber);
 
-	const teamExists = Boolean(team?.teamName);
+	const teamExists = isLoading || Boolean(team?.teamName);
 
 	return (
 		<>
-			<SearchTeams />
+			<SearchTeams invalidTeam={!teamExists} />
 
 			<TrackTeam teamNumber={teamNumber} />
 
