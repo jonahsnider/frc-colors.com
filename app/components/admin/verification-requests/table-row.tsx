@@ -25,7 +25,7 @@ export default function TableRow({ request }: Props) {
 				{request.team}
 			</a>
 
-			<p>{formatDistanceToNow(new Date(request.createdAt))} ago</p>
+			<p title={new Date(request.createdAt).toLocaleString()}>{formatDistanceToNow(new Date(request.createdAt))} ago</p>
 			<Link href={`/?team=${request.team}`}>
 				<RequestStatus request={request} />
 			</Link>
