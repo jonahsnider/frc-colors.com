@@ -64,6 +64,11 @@ export default function SetColors() {
 		setRawTeam('');
 		setRawPrimaryColor('');
 		setRawSecondaryColor('');
+
+		setTeam(undefined);
+		setPrimaryColor(undefined);
+		setSecondaryColor(undefined);
+
 		setIsError(false);
 		setSucceededAt(undefined);
 		setIsLoading(false);
