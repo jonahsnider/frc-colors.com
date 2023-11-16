@@ -14,8 +14,7 @@ export default function TeamCardButton({ children, onClick, status = 'idle' }: P
 			type='button'
 			onClick={onClick}
 			disabled={disabled}
-			className={clsx('rounded shadow-neutral-900 transition-all', {
-				shadow: disabled,
+			className={clsx('rounded shadow-neutral-900 transition-all shadow disabled:shadow-none', {
 				'bg-green-400 text-black': status === 'success',
 				'bg-red-400 text-black': status === 'error',
 				'bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-700': status === 'idle',
