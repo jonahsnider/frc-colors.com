@@ -118,7 +118,8 @@ export default function SetColors() {
 			.finally(() => {
 				actualTeamData.mutate?.();
 				mutate(['/api/v1/verification-requests', apiKey]);
-				mutate([`/api/internal/team/${team}`, apiKey]);
+				mutate([`/api/v1/verification-requests?team=${team}`, apiKey]);
+				mutate(`/api/internal/team/${team}`);
 				setIsLoading(false);
 			});
 	};

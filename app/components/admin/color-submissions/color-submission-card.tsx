@@ -43,7 +43,8 @@ function CardActions({
 		});
 
 		mutate(['/api/v1/verification-requests', apiKey]);
-		mutate([`/api/internal/team/${submission.teamNumber}`, apiKey]);
+		mutate([`/api/v1/verification-requests?team=${submission.teamNumber}`, apiKey]);
+		mutate(`/api/internal/team/${submission.teamNumber}`);
 
 		if (response.ok) {
 			const body = await response.json();
