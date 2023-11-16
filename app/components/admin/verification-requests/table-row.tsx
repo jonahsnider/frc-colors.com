@@ -12,7 +12,7 @@ type Props = {
 export default function TableRow({ request }: Props) {
 	return (
 		<div
-			className={clsx('flex bg-neutral-800 rounded gap-x-4 py-1 px-2 justify-between', {
+			className={clsx('flex bg-neutral-800 rounded gap-x-4 py-1 px-2 justify-between shadow', {
 				'text-gray-400': request.status === Schema.VerificationRequestStatus.Finished,
 			})}
 		>
