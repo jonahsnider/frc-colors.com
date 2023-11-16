@@ -88,7 +88,7 @@ export default function ColorSubmissionCard({ submission: originalSubmission, ol
 	const [submission, setSubmission] = useState(originalSubmission);
 
 	return (
-		<div className='flex flex-col gap-y-1 rounded bg-neutral-800 p-2 shadow'>
+		<div className='flex flex-col gap-y-1 rounded bg-neutral-800 p-2 shadow w-full'>
 			<div className='flex justify-between pb-1 gap-x-4'>
 				<a
 					className='font-bold underline'

@@ -7,12 +7,10 @@ type Props = {
 
 export default function VerificationRequestsTable({ requests }: Props) {
 	return (
-		<div>
-			<div className='flex flex-col gap-y-1'>
-				{requests.map((verificationRequest) => (
-					<TableRow key={verificationRequest.id} request={verificationRequest} />
-				))}
-			</div>
+		<div className='flex flex-col gap-y-1 w-full md:w-auto'>
+			{requests.map((verificationRequest) => (
+				<TableRow key={verificationRequest.id} request={verificationRequest} />
+			))}
 		</div>
 	);
 }

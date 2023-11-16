@@ -33,7 +33,7 @@ export default function RootLayout({
 
 			<body className={clsx(lato.className, 'bg-neutral-900 text-white flex flex-col min-h-screen')}>
 				<Navbar />
-				<main className='container mx-auto grow'>{children}</main>
+				<main className='container mx-auto grow px-2'>{children}</main>
 				<Footer />
 				<Analytics />
 			</body>

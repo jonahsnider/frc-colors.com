@@ -22,7 +22,7 @@ export default function Admin() {
 					<>
 						<SetColors />
 
-						<div className='flex flex-col md:flex-row gap-4 md:gap-16'>
+						<div className='flex flex-col md:flex-row gap-x-4 gap-y-8 md:gap-16 w-full md:min-w-min justify-center'>
 							<VerificationRequestsList />
 							<ColorSubmissionsList />
 						</div>

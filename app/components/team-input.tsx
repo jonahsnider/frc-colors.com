@@ -16,7 +16,7 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 	return (
 		<input
 			className={clsx(
-				'max-w-min transition-all h-14 rounded p-4 outline-none border-4',
+				'w-full md:w-auto md:max-w-min transition-all h-14 rounded p-4 outline-none border-4',
 				{
 					'border-red-400': !valid,
 					'border-transparent': valid,

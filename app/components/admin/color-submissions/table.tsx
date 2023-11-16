@@ -23,17 +23,15 @@ export default function ColorSubmissionsTable({ colorSubmissions }: Props) {
 	);
 
 	return (
-		<div>
-			<div className='flex flex-col gap-y-2'>
-				{colorSubmissions.map((colorSubmission) => (
-					<ColorSubmissionCard
-						key={colorSubmission.id}
-						submission={colorSubmission}
-						oldColors={oldColors?.teams[colorSubmission.teamNumber].colors ?? undefined}
-						oldColorsLoading={oldColorsLoading}
-					/>
-				))}
-			</div>
+		<div className='flex flex-col gap-y-2 w-full'>
+			{colorSubmissions.map((colorSubmission) => (
+				<ColorSubmissionCard
+					key={colorSubmission.id}
+					submission={colorSubmission}
+					oldColors={oldColors?.teams[colorSubmission.teamNumber].colors ?? undefined}
+					oldColorsLoading={oldColorsLoading}
+				/>
+			))}
 		</div>
 	);
 }

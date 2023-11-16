@@ -45,7 +45,7 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 	return (
 		<div className={clsx('rounded relative', className)}>
 			<input
-				className={clsx('transition-colors h-16 p-4 bg-transparent outline-none rounded border-4', {
+				className={clsx('transition-colors h-16 p-2 md:p-4 bg-transparent outline-none rounded border-4', {
 					'border-red-400': !valid,
 					'border-transparent': valid,
 				})}
