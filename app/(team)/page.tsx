@@ -35,7 +35,7 @@ export default function HomePage() {
 			{error && <p>An error occurred while fetching team {teamNumber}'s information</p>}
 			{isLoading && <LoadingTeamCard />}
 
-			<AdminTeamSummary team={team} />
+			<AdminTeamSummary teamNumber={teamNumber} />
 		</>
 	);
 }

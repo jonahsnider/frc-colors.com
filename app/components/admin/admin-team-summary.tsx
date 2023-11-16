@@ -1,6 +1,5 @@
 'use client';
 
-import { InternalTeamSchema } from '@/app/api/_lib/internal/team/dtos/internal-team.dto';
 import { V1FindManyVerificationRequestsSchema } from '@/app/api/_lib/teams/verification-requests/dtos/v1/verification-request.dto';
 import { fetcherWithApiKey } from '@/app/swr';
 import useSwr from 'swr';
@@ -9,20 +8,21 @@ import H2 from '../headings/h2';
 import VerificationRequestsTable from './verification-requests/table';
 
 import { V1FindManyColorSubmissionsSchema } from '@/app/api/_lib/teams/color-submissions/dtos/v1/color-submission.dto';
+import { TeamNumberSchema } from '@/app/api/_lib/teams/dtos/team-number.dto';
 import H3 from '../headings/h3';
 import ColorSubmissionsTable from './color-submissions/table';
 
 type Props = {
-	team: InternalTeamSchema | undefined;
+	teamNumber: TeamNumberSchema | undefined;
 };
 
-export default function AdminTeamSummary({ team }: Props) {
+export default function AdminTeamSummary({ teamNumber }: Props) {
 	const [apiKey] = useApiKey();
 
 	const query = new URLSearchParams();
 
-	if (team) {
-		query.set('team', team.teamNumber.toString());
+	if (teamNumber) {
+		query.set('team', teamNumber.toString());
 	}
 
 	const verificationRequests = useSwr<V1FindManyVerificationRequestsSchema>(
@@ -35,7 +35,7 @@ export default function AdminTeamSummary({ team }: Props) {
 		fetcher: apiKey ? fetcherWithApiKey : undefined,
 	});
 
-	if (!apiKey) {
+	if (!(apiKey && teamNumber)) {
 		return undefined;
 	}
 
