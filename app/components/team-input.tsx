@@ -15,10 +15,13 @@ export default function TeamInput({ onChange }: Props) {
 	return (
 		<div className='flex flex-col gap-y-4'>
 			<input
-				className={clsx('transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-950 border-4', {
-					'border-red-400': !valid,
-					'border-transparent': valid,
-				})}
+				className={clsx(
+					'transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-950 border-4',
+					{
+						'border-red-400': !valid,
+						'border-transparent': valid,
+					},
+				)}
 				placeholder='Team number'
 				type='text'
 				name='team'
