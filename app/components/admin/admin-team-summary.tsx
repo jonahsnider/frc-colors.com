@@ -40,7 +40,7 @@ export default function AdminTeamSummary({ team }: Props) {
 	}
 
 	return (
-		<div className='flex flex-col gap-4 pt-8'>
+		<div className='flex flex-col gap-4 pt-8 w-full md:w-auto'>
 			<H2>Admin data</H2>
 
 			<div className='flex flex-col md:flex-row gap-4 md:gap-16'>
