@@ -66,7 +66,7 @@ export class VerificationRequestsService {
 
 		const order = team
 			? [desc(Schema.colorVerificationRequests.createdAt)]
-			: [desc(Schema.colorFormSubmissions.status), desc(Schema.colorFormSubmissions.createdAt)];
+			: [desc(Schema.colorVerificationRequests.status), desc(Schema.colorVerificationRequests.createdAt)];
 
 		const verificationRequests = await this.db
 			.select()
