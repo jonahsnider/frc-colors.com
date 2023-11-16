@@ -32,6 +32,10 @@ function determineState({
 }
 
 export default function SubmitColors() {
+	const [rawTeam, setRawTeam] = useState<string>('');
+	const [rawPrimaryColor, setRawPrimaryColor] = useState<string>('');
+	const [rawSecondaryColor, setRawSecondaryColor] = useState<string>('');
+
 	const [teamNumber, setTeamNumber] = useState<TeamNumberSchema | undefined>(undefined);
 	const [primaryColor, setPrimaryColor] = useState<HexColorCodeSchema | undefined>(undefined);
 	const [secondaryColor, setSecondaryColor] = useState<HexColorCodeSchema | undefined>(undefined);
@@ -86,9 +90,26 @@ export default function SubmitColors() {
 		<div className='flex justify-center p-4'>
 			<div className='flex flex-col gap-4 items-center'>
 				<H1>Submit colors for a team</H1>
-				<TeamInput onChange={setTeamNumber} />
-				<ColorInput kind='primary' onChange={setPrimaryColor} />
-				<ColorInput kind='secondary' onChange={setSecondaryColor} />
+				<TeamInput
+					teamNumber={rawTeam}
+					onChange={setRawTeam}
+					onValidChange={setTeamNumber}
+					className='shadow shadow-neutral-950 bg-neutral-800'
+				/>
+				<ColorInput
+					kind='primary'
+					rawColor={rawPrimaryColor}
+					onChange={setRawPrimaryColor}
+					onValidChange={setPrimaryColor}
+					className='shadow shadow-neutral-950 bg-neutral-800'
+				/>
+				<ColorInput
+					kind='secondary'
+					rawColor={rawSecondaryColor}
+					onChange={setRawSecondaryColor}
+					onValidChange={setSecondaryColor}
+					className='shadow shadow-neutral-950 bg-neutral-800'
+				/>
 				<SubmitButton onClick={onClick} state={state}>
 					Submit
 				</SubmitButton>

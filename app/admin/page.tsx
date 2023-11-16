@@ -5,6 +5,7 @@ import ApiKeyInput from '../components/admin/api-key-input';
 import H1 from '../components/headings/h1';
 import H2 from '../components/headings/h2';
 import ColorSubmissionsList from './color-submissions-list';
+import SetColors from './set-colors/set-colors';
 import VerificationRequestsList from './verification-requests-list';
 
 export default function Admin() {
@@ -18,10 +19,14 @@ export default function Admin() {
 				<ApiKeyInput onChange={setApiKey} />
 
 				{apiKey && (
-					<div className='flex flex-col md:flex-row gap-4 md:gap-16'>
-						<VerificationRequestsList />
-						<ColorSubmissionsList />
-					</div>
+					<>
+						<SetColors />
+
+						<div className='flex flex-col md:flex-row gap-4 md:gap-16'>
+							<VerificationRequestsList />
+							<ColorSubmissionsList />
+						</div>
+					</>
 				)}
 				{!apiKey && (
 					<div>
