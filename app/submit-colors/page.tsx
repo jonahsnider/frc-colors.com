@@ -88,7 +88,7 @@ export default function SubmitColors() {
 
 	return (
 		<div className='flex justify-center p-4'>
-			<div className='flex flex-col gap-4 items-center'>
+			<div className='flex flex-col gap-4 items-center w-2/3'>
 				<H1>Submit colors for a team</H1>
 				<TeamInput
 					teamNumber={rawTeam}

@@ -43,12 +43,15 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 	const valid = color.hex === '' || HexColorCodeSchema.safeParse(color.hex).success;
 
 	return (
-		<div className={clsx('rounded relative', className)}>
+		<div className={clsx('rounded relative w-full md:w-auto md:max-w-min', className)}>
 			<input
-				className={clsx('transition-colors h-16 p-2 md:p-4 bg-transparent outline-none rounded border-4', {
-					'border-red-400': !valid,
-					'border-transparent': valid,
-				})}
+				className={clsx(
+					'w-full md:w-auto transition-colors h-16 p-2 md:p-4 bg-transparent outline-none rounded border-4',
+					{
+						'border-red-400': !valid,
+						'border-transparent': valid,
+					},
+				)}
 				placeholder={`${capitalize(kind)} color hex`}
 				type='text'
 				name={kind}
@@ -70,7 +73,7 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 
 			<div
 				style={valid ? { backgroundColor: color.hex } : undefined}
-				className={clsx('h-8 w-8 right-4 top-4 rounded absolute transition-colors', {
+				className={clsx('h-10 w-10 right-2 top-3 rounded absolute transition-colors', {
 					'bg-transparent': !valid,
 				})}
 			/>
