@@ -1,10 +1,10 @@
 import { HttpError } from '@/app/swr';
 import { NextResponse } from 'next/server';
 import { configService } from '../../_lib/config/config.service';
-import { exceptionRouteWrapper } from '../../_lib/exception-route-wrapper';
-import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
 import { db } from '../../_lib/db/db';
 import { Schema } from '../../_lib/db/index';
+import { exceptionRouteWrapper } from '../../_lib/exception-route-wrapper';
+import { TeamNumberSchema } from '../../_lib/teams/dtos/team-number.dto';
 
 const url = 'https://www.thebluealliance.com/avatars';
 const IMAGE_REG_EXP =
