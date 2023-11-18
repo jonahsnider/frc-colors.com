@@ -70,7 +70,7 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 
 			<div
 				style={valid ? { backgroundColor: color.hex } : undefined}
-				className={clsx('h-8 w-8 right-2 top-[1em] rounded absolute transition-colors', {
+				className={clsx('h-8 w-8 right-4 top-4 rounded absolute transition-colors', {
 					'bg-transparent': !valid,
 				})}
 			/>
