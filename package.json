@@ -50,7 +50,7 @@
     "bun-types": "1.0.13",
     "dotenv": "16.3.1",
     "drizzle-kit": "0.20.4",
-    "vercel": "32.5.5"
+    "vercel": "32.5.6"
   },
   "packageManager": "bun@1.0.3"
 }
