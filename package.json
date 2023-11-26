@@ -49,7 +49,7 @@
     "@upstash/redis": "1.25.1",
     "bun-types": "1.0.14",
     "dotenv": "16.3.1",
-    "drizzle-kit": "0.20.4",
+    "drizzle-kit": "0.20.6",
     "vercel": "32.5.6"
   },
   "packageManager": "bun@1.0.3"
