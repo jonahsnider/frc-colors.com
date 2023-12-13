@@ -29,7 +29,7 @@
     "drizzle-orm": "0.29.1",
     "extract-colors": "4.0.2",
     "next": "14.0.2",
-    "next-api-utils": "1.0.3",
+    "next-api-utils": "1.0.4",
     "next-plausible": "3.12.0",
     "pngjs": "7.0.0",
     "postcss": "8.4.32",
