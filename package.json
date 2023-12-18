@@ -12,7 +12,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@heroicons/react": "2.0.18",
+    "@heroicons/react": "2.1.1",
     "@jonahsnider/util": "10.3.0",
     "@sentry/nextjs": "7.88.0",
     "@types/node": "20.10.1",
