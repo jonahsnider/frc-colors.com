@@ -46,7 +46,7 @@
     "@tsconfig/bun": "1.0.1",
     "@tsconfig/strictest": "2.0.2",
     "@types/pngjs": "6.0.4",
-    "@upstash/redis": "1.25.2",
+    "@upstash/redis": "1.27.1",
     "bun-types": "1.0.18",
     "dotenv": "16.3.1",
     "drizzle-kit": "0.20.7",
