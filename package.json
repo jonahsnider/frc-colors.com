@@ -14,7 +14,7 @@
   "dependencies": {
     "@heroicons/react": "2.1.1",
     "@jonahsnider/util": "10.3.0",
-    "@sentry/nextjs": "7.90.0",
+    "@sentry/nextjs": "7.91.0",
     "@types/node": "20.10.1",
     "@types/react": "18.2.45",
     "@types/react-dom": "18.2.18",
