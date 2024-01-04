@@ -2,7 +2,7 @@
 
 import { ColorSubmissionSchema } from '@/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
 
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, formatRelative } from 'date-fns';
 
 import { HttpError } from '@/app/swr';
 
@@ -73,7 +73,7 @@ function CardActions({
 		<div className='pt-1'>
 			<div className='bg-neutral-700 rounded flex flex-col gap-y-1 justify-center items-center py-1'>
 				{submission.updatedAt && (
-					<p>
+					<p title={`Updated ${formatRelative(new Date(submission.updatedAt), new Date())}`}>
 						{result} {formatDistanceToNow(new Date(submission.updatedAt))} ago
 					</p>
 				)}
@@ -103,7 +103,9 @@ export default function ColorSubmissionCard({ submission: originalSubmission, ol
 				>
 					{submission.teamNumber}
 				</a>
-				<p>{formatDistanceToNow(new Date(submission.createdAt))} ago</p>
+				<p title={`Created ${formatRelative(new Date(submission.createdAt), new Date())}`}>
+					{formatDistanceToNow(new Date(submission.createdAt))} ago
+				</p>
 				<p>#{submission.id}</p>
 			</div>
 
