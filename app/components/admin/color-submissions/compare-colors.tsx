@@ -34,11 +34,11 @@ export default function CompareColors({ loading, submission, colors }: Props) {
 					</div>
 				</div>
 			)}
-			<div className='flex flex-col gap-y-1 items-start'>
-				<p>Proposed:</p>
+			<div className='flex flex-col gap-y-1'>
+				<p className='text-start'>Proposed:</p>
 				<div className='flex gap-x-2'>
-					{<ColorSwatch hex={submission.primaryHex} />}
-					{<ColorSwatch hex={submission.secondaryHex} />}
+					<ColorSwatch hex={submission.primaryHex} />
+					<ColorSwatch hex={submission.secondaryHex} />
 				</div>
 			</div>
 		</>
