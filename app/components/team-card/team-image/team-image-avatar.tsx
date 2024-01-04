@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
+import styles from './team-image-avatar.module.css';
 
 enum BackgroundColor {
 	None = 0,
@@ -31,10 +32,7 @@ export default function TeamImageAvatar({ avatarUrl }: { avatarUrl: string }) {
 				unoptimized={true}
 				priority={true}
 				alt='Team avatar'
-				className='p-1 h-48 w-48'
-				style={{
-					imageRendering: 'pixelated',
-				}}
+				className={clsx('p-1 h-48 w-48', styles.image)}
 				height={40}
 				width={40}
 			/>

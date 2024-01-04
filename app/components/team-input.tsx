@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
 import { useTeam } from '../hooks/use-team';
+import styles from './team-input.module.css';
 
 type Props = {
 	teamNumber: string;
@@ -60,10 +61,7 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 				<img
 					src={lastAvatarUrl}
 					alt={`Team ${teamNumber} avatar`}
-					style={{
-						imageRendering: 'pixelated',
-					}}
-					className={clsx('h-10 w-10 p-1 right-2 top-3 rounded absolute transition-all', {
+					className={clsx('h-10 w-10 p-1 right-2 top-3 rounded absolute transition-all', styles.image, {
 						'opacity-0': !(valid && team.team?.avatarUrl),
 						'bg-[#0066B3]': !backgroundRed,
 						'bg-[#ED1C24]': backgroundRed,
