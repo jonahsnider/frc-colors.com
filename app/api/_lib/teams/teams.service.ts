@@ -1,3 +1,4 @@
+import { getTeamAvatarUrl } from '@/app/components/util/team-avatar-url';
 import * as Sentry from '@sentry/nextjs';
 import { TbaService, tbaService } from '../tba/tba.service';
 import { AvatarsService, avatarsService } from './avatars/avatars.service';
@@ -24,13 +25,12 @@ export class TeamsService {
 
 	async getInternalTeam(teamNumber: TeamNumberSchema): Promise<InternalTeam> {
 		return Sentry.startSpan({ name: 'Get internal team', op: 'function' }, async () => {
-			const [teamName, teamColors, avatarBase64] = await Promise.all([
+			const [teamName, teamColors] = await Promise.all([
 				this.getTeamName(teamNumber),
 				this.colors.getTeamColors(teamNumber),
-				this.avatars.getAvatar(teamNumber),
 			]);
 
-			const avatarUrl = avatarBase64 ? `data:image/png;base64,${avatarBase64.toString('base64')}` : undefined;
+			const avatarUrl = getTeamAvatarUrl(teamNumber);
 
 			return {
 				teamNumber,

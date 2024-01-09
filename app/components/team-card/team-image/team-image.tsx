@@ -9,7 +9,7 @@ type Props = {
 
 export default function TeamImage({ avatarUrl, colors }: Props) {
 	if (avatarUrl) {
-		return <TeamImageAvatar avatarUrl={avatarUrl} />;
+		return <TeamImageAvatar colors={colors} avatarUrl={avatarUrl} />;
 	}
 
 	if (colors) {

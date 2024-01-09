@@ -4,7 +4,6 @@ import { TeamNumberSchema } from '../../../teams/dtos/team-number.dto';
 
 export const InternalTeamSchema = z.object({
 	teamName: z.string().nullable(),
-	avatarUrl: z.string().nullable(),
 	teamNumber: TeamNumberSchema,
 	colors: z
 		.object({

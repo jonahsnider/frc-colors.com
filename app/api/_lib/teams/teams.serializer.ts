@@ -64,7 +64,6 @@ export class TeamsSerializer {
 
 	static internalTeamToDto(team: InternalTeam): InternalTeamSchema {
 		return {
-			avatarUrl: team.avatarUrl ?? null,
 			teamName: team.teamName ?? null,
 			teamNumber: team.teamNumber,
 			colors: TeamsSerializer.teamColorsToDto(team.colors),

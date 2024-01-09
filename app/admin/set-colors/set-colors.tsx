@@ -8,6 +8,7 @@ import H2 from '@/app/components/headings/h2';
 import SubmitButton, { State } from '@/app/components/submit-button';
 import TeamCard from '@/app/components/team-card/team-card';
 import TeamInput from '@/app/components/team-input';
+import { getTeamAvatarUrl } from '@/app/components/util/team-avatar-url';
 import { useApiKey } from '@/app/hooks/use-api-key';
 import { useTeam } from '@/app/hooks/use-team';
 import { XMarkIcon } from '@heroicons/react/20/solid';
@@ -167,9 +168,10 @@ export default function SetColors() {
 			{team && (
 				<TeamCard
 					teamNumber={team}
-					avatarUrl={actualTeamData.team?.avatarUrl ?? undefined}
+					avatarUrl={getTeamAvatarUrl(team)}
 					colors={actualTeamData.team?.colors ?? undefined}
 					teamName={actualTeamData.team?.teamName ?? undefined}
+					isLoading={actualTeamData.isLoading}
 				/>
 			)}
 		</div>

@@ -3,6 +3,7 @@ export enum ExceptionCode {
 
 	TeamNotFound = 'E_TEAM_NOT_FOUND',
 	EventNotFound = 'E_EVENT_NOT_FOUND',
+	AvatarNotFound = 'E_AVATAR_NOT_FOUND',
 
 	MissingToken = 'E_MISSING_TOKEN',
 	IncorrectToken = 'E_INCORRECT_TOKEN',
