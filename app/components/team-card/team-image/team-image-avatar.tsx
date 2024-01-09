@@ -51,7 +51,10 @@ export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 			{/* Always display colors as the base layer */}
 			{colors && (
 				<TeamImageGradient
-					colors={imageState === 'loading' ? colors : { primaryHex: 'transparent', secondaryHex: 'transparent' }}
+					colors={colors}
+					className={clsx({
+						'opacity-0': imageState === 'success',
+					})}
 				/>
 			)}
 			{/* If we don't have colors and the avatar is loading, show the loading indicator */}
