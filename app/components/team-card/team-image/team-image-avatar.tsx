@@ -24,7 +24,7 @@ type Props = {
 
 type ImageState = 'loading' | 'success' | 'error';
 
-type ImageStates = Map<string, ImageState>;
+type ImageStates = ReadonlyMap<string, ImageState>;
 
 export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 	const [backgroundColor, setBackgroundColor] = useState<BackgroundColor>(BackgroundColor.None);

@@ -15,7 +15,7 @@ type Props = {
 
 type ImageState = 'loading' | 'success' | 'error';
 
-type ImageStates = Map<string, ImageState>;
+type ImageStates = ReadonlyMap<string, ImageState>;
 
 export default function TeamInput({ onChange, onValidChange, className, teamNumber }: Props) {
 	const valid = teamNumber === '' || TeamNumberSchema.safeParse(teamNumber).success;
