@@ -24,6 +24,8 @@ type Props = {
 
 type ImageState = 'loading' | 'success' | 'error';
 
+type ImageStates = Map<string, ImageState>;
+
 export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 	const [backgroundColor, setBackgroundColor] = useState<BackgroundColor>(BackgroundColor.None);
 
@@ -31,11 +33,15 @@ export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 		setBackgroundColor(backgroundColor === BackgroundColor.Blue ? BackgroundColor.None : backgroundColor + 1);
 	};
 
-	const [imageState, setImageState] = useState<ImageState>('loading');
+	// Using a Map for this helps avoid a race condition where the avatar URL changes before the previous avatar loads
+	const [imageStates, setImageStates] = useState<ImageStates>(new Map());
+	const imageStateForUrl = imageStates.get(avatarUrl) ?? 'loading';
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This is intentional
 	useEffect(() => {
-		setImageState('loading');
+		if (!imageStates.has(avatarUrl)) {
+			setImageStates(new Map(imageStates).set(avatarUrl, 'loading'));
+		}
 	}, [avatarUrl]);
 
 	return (
@@ -53,18 +59,18 @@ export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 				<TeamImageGradient
 					colors={colors}
 					className={clsx({
-						'opacity-0': imageState === 'success',
+						'opacity-0': imageStateForUrl === 'success',
 					})}
 				/>
 			)}
 			{/* If we don't have colors and the avatar is loading, show the loading indicator */}
-			{!colors && imageState === 'loading' && (
+			{!colors && imageStateForUrl === 'loading' && (
 				<LoadingSkeleton className='w-48 h-48 rounded bg-gradient-to-br from-gray-500 to-gray-700' bar={false} />
 			)}
 			{/* If we dont' have colors and there is no avatar, display a blank avatar */}
-			{!colors && imageState === 'error' && <TeamImageBlank />}
+			{!colors && imageStateForUrl === 'error' && <TeamImageBlank />}
 			{/* If the image is loading or successful, render it */}
-			{imageState !== 'error' && (
+			{imageStateForUrl !== 'error' && (
 				<Image
 					src={avatarUrl}
 					unoptimized={true}
@@ -72,14 +78,20 @@ export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 					alt='Team avatar'
 					className={clsx('p-1 h-48 w-48 transition-opacity', styles.image, {
 						// Hide the image until it's loaded
-						'opacity-0': imageState !== 'success',
+						'opacity-0': imageStateForUrl !== 'success',
 						// Use absolute positioning if the color base layer is being rendered (colors or the loading indicator)
-						'absolute top-0 left-0': Boolean(colors) || imageState === 'loading',
+						'absolute top-0 left-0': Boolean(colors) || imageStateForUrl === 'loading',
 					})}
 					height={40}
 					width={40}
-					onLoad={() => setImageState('success')}
-					onError={() => setImageState('error')}
+					onLoad={(event) => {
+						const path = new URL((event.target as unknown as { src: string }).src).pathname;
+						setImageStates(new Map(imageStates).set(path, 'success'));
+					}}
+					onError={(event) => {
+						const path = new URL((event.target as unknown as { src: string }).src).pathname;
+						setImageStates(new Map(imageStates).set(path, 'error'));
+					}}
 				/>
 			)}
 		</button>

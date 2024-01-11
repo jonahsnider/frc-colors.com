@@ -15,13 +15,13 @@ type Props = {
 
 type ImageState = 'loading' | 'success' | 'error';
 
+type ImageStates = Map<string, ImageState>;
+
 export default function TeamInput({ onChange, onValidChange, className, teamNumber }: Props) {
 	const valid = teamNumber === '' || TeamNumberSchema.safeParse(teamNumber).success;
 
 	const [lastAvatarUrl, setLastAvatarUrl] = useState<string | undefined>(undefined);
 	const [backgroundRed, setBackgroundRed] = useState(false);
-
-	const [imageState, setImageState] = useState<ImageState>('loading');
 
 	const avatarUrl = getTeamAvatarUrl(teamNumber);
 
@@ -29,9 +29,15 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 		setLastAvatarUrl(avatarUrl);
 	}
 
+	// Using a Map for this helps avoid a race condition where the avatar URL changes before the previous avatar loads
+	const [imageStates, setImageStates] = useState<ImageStates>(new Map());
+	const imageStateForUrl = imageStates.get(avatarUrl) ?? 'loading';
+
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This is intentional
 	useEffect(() => {
-		setImageState('loading');
+		if (!imageStates.has(avatarUrl)) {
+			setImageStates(new Map(imageStates).set(avatarUrl, 'loading'));
+		}
 	}, [avatarUrl]);
 
 	return (
@@ -65,17 +71,23 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 			/>
 
 			<button type='button' onClick={() => setBackgroundRed((old) => !old)}>
-				{imageState !== 'error' && (
+				{imageStateForUrl !== 'error' && (
 					<img
 						src={lastAvatarUrl}
 						alt={`Team ${teamNumber} avatar`}
 						className={clsx('h-10 w-10 p-1 right-2 top-3 rounded absolute transition-all', styles.image, {
-							'opacity-0': imageState !== 'success' || !valid,
+							'opacity-0': imageStateForUrl !== 'success' || !valid,
 							'bg-[#0066B3]': !backgroundRed,
 							'bg-[#ED1C24]': backgroundRed,
 						})}
-						onLoad={() => setImageState('success')}
-						onError={() => setImageState('error')}
+						onLoad={(event) => {
+							const path = new URL((event.target as unknown as { src: string }).src).pathname;
+							setImageStates(new Map(imageStates).set(path, 'success'));
+						}}
+						onError={(event) => {
+							const path = new URL((event.target as unknown as { src: string }).src).pathname;
+							setImageStates(new Map(imageStates).set(path, 'error'));
+						}}
 					/>
 				)}
 			</button>
