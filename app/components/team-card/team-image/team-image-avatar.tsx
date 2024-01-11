@@ -44,10 +44,12 @@ export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 		}
 	}, [avatarUrl]);
 
+	const imageHidden = imageStateForUrl !== 'success';
 	return (
 		<button
 			type='button'
 			onClick={cycleBackgroundColor}
+			disabled={imageHidden}
 			className={clsx('transition-colors rounded relative', {
 				'bg-neutral-800': backgroundColor === BackgroundColor.None,
 				'bg-[#ED1C24]': backgroundColor === BackgroundColor.Red,
@@ -78,7 +80,7 @@ export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
 					alt='Team avatar'
 					className={clsx('p-1 h-48 w-48 transition-opacity', styles.image, {
 						// Hide the image until it's loaded
-						'opacity-0': imageStateForUrl !== 'success',
+						'opacity-0': imageHidden,
 						// Use absolute positioning if the color base layer is being rendered (colors or the loading indicator)
 						'absolute top-0 left-0': Boolean(colors) || imageStateForUrl === 'loading',
 					})}

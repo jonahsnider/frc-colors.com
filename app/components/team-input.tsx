@@ -40,6 +40,7 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 		}
 	}, [avatarUrl]);
 
+	const buttonHidden = imageStateForUrl !== 'success' || !valid;
 	return (
 		<div className={clsx('rounded relative w-full md:w-auto md:max-w-min', className)}>
 			<input
@@ -70,13 +71,13 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 				value={teamNumber}
 			/>
 
-			<button type='button' onClick={() => setBackgroundRed((old) => !old)}>
+			<button type='button' onClick={() => setBackgroundRed((old) => !old)} disabled={buttonHidden}>
 				{imageStateForUrl !== 'error' && (
 					<img
 						src={lastAvatarUrl}
 						alt={`Team ${teamNumber} avatar`}
 						className={clsx('h-10 w-10 p-1 right-2 top-3 rounded absolute transition-all', styles.image, {
-							'opacity-0': imageStateForUrl !== 'success' || !valid,
+							'opacity-0': buttonHidden,
 							'bg-[#0066B3]': !backgroundRed,
 							'bg-[#ED1C24]': backgroundRed,
 						})}
