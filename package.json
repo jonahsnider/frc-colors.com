@@ -21,7 +21,7 @@
     "@vercel/analytics": "1.1.1",
     "@vercel/kv": "0.2.4",
     "@vercel/postgres": "0.5.1",
-    "autoprefixer": "10.4.16",
+    "autoprefixer": "10.4.17",
     "clsx": "2.1.0",
     "color-luminance": "2.1.0",
     "convert": "4.14.1",
