@@ -20,7 +20,7 @@
     "@types/react-dom": "18.2.18",
     "@vercel/analytics": "1.1.2",
     "@vercel/kv": "0.2.4",
-    "@vercel/postgres": "0.7.1",
+    "@vercel/postgres": "0.7.2",
     "autoprefixer": "10.4.17",
     "clsx": "2.1.0",
     "color-luminance": "2.1.0",
