@@ -4,7 +4,7 @@ FROM oven/bun:1-alpine as builder
 
 WORKDIR /usr/src/app
 
-# Add files for buildings
+# Add files for building
 ADD ./apps/ ./apps/
 ADD package.json bun.lockb turbo.json ./
 
