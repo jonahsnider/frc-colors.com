@@ -18,8 +18,6 @@ export default function TeamCard({ teamNumber }: Props) {
 
 	const title = teamNameQuery.data?.name ? `Team ${teamNumber} - ${teamNameQuery.data.name}` : `Team ${teamNumber}`;
 
-	const _teamExists = teamNameQuery.isLoading || Boolean(teamNameQuery.data);
-
 	if (teamNameQuery.error || colorsQuery.error) {
 		return <p>An error occurred while fetching team {teamNumber}'s information</p>;
 	}
