@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
-		"start": "bun run --env-file ../../.env src/index.ts"
+		"start": "bun run src/index.ts"
 	},
 	"dependencies": {
 		"@jonahsnider/util": "10.3.0",
