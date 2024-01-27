@@ -57,11 +57,9 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 				type='text'
 				name='team'
 				onChange={(event) => {
-					// @ts-expect-error bun-types breaks this
 					onChange(event.target.value);
 
 					const parsed = TeamNumber.safeParse(
-						// @ts-expect-error bun-types breaks this
 						event.target.value,
 					);
 

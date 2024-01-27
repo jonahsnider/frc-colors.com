@@ -27,7 +27,6 @@ export default function ApiKeyInput({ onChange }: Props) {
 				placeholder='API Key'
 				className='transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-900'
 				onChange={(event) => {
-					// @ts-expect-error bun-types breaks this
 					setApiKey(event.target.value);
 				}}
 			/>

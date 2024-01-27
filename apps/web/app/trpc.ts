@@ -12,7 +12,6 @@ export const trpc = createTRPCNext<AppRouter>({
 			httpBatchLink({
 				url: new URL('/trpc', getBaseApiUrl()),
 				headers: async () => {
-					// @ts-expect-error bun-types breaks this
 					const apiKey = globalThis.window?.localStorage.getItem('apiKey');
 
 					if (!apiKey) {

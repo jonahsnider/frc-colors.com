@@ -56,12 +56,10 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 				type='text'
 				name={kind}
 				onChange={(event) => {
-					// @ts-expect-error bun-types breaks this
 					onChange(event.target.value);
 
 					const parsed = HexColorCode.safeParse(
 						parseRawColor(
-							// @ts-expect-error bun-types breaks this
 							event.target.value,
 						).hex,
 					);

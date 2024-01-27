@@ -53,9 +53,7 @@ export default function SearchTeams({ invalidTeam }: Props) {
 				type='text'
 				name='team'
 				onChange={(event) => {
-					// @ts-expect-error bun-types breaks this
 					setTeamNumberRaw(event.target.value);
-					// @ts-expect-error bun-types breaks this
 					setTeamNumber(event.target.value);
 				}}
 				value={teamNumberRaw}
