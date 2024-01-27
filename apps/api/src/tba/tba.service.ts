@@ -91,7 +91,17 @@ export class TbaService {
 
 	private async getTeamRaw(teamNumber: TeamNumber): Promise<TbaTeam | undefined> {
 		try {
-			return await this.fetcher.get(`team/frc${teamNumber}`).json<TbaTeam>();
+			const response = await this.fetcher.get(`team/frc${teamNumber}`);
+
+			const body = await response.json<TbaTeam>();
+
+			if (typeof body !== 'object') {
+				logger.warn('TBA returned non-object response for team:');
+				console.warn({ response });
+				return undefined;
+			}
+
+			return body;
 		} catch (error) {
 			if (error instanceof HTTPError && error.response.status === 404) {
 				return undefined;
