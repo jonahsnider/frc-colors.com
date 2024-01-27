@@ -59,9 +59,7 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 				onChange={(event) => {
 					onChange(event.target.value);
 
-					const parsed = TeamNumber.safeParse(
-						event.target.value,
-					);
+					const parsed = TeamNumber.safeParse(event.target.value);
 
 					if (parsed.success) {
 						onValidChange(parsed.data);

@@ -58,11 +58,7 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 				onChange={(event) => {
 					onChange(event.target.value);
 
-					const parsed = HexColorCode.safeParse(
-						parseRawColor(
-							event.target.value,
-						).hex,
-					);
+					const parsed = HexColorCode.safeParse(parseRawColor(event.target.value).hex);
 
 					if (parsed.success) {
 						onValidChange(parsed.data);
