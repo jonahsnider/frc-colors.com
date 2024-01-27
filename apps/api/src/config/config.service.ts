@@ -3,7 +3,6 @@ import { z } from 'zod';
 export class ConfigService {
 	public readonly tbaApiKey: string | undefined;
 	public readonly adminApiToken: string | undefined;
-	public readonly baseUrl: URL | undefined;
 	public readonly nodeEnv: 'production' | 'development' | 'staging';
 	public readonly frcEventsApi: Readonly<{ username: string; password: string }>;
 
@@ -18,12 +17,6 @@ export class ConfigService {
 			.min(1)
 			.optional()
 			.parse(source['ADMIN_PASSWORD']);
-		this.baseUrl = z
-			.string()
-			.url()
-			.optional()
-			.transform((url) => (url !== undefined ? new URL(url) : undefined))
-			.parse(source['BASE_URL']);
 		this.nodeEnv = z
 			.enum(['production', 'development', 'staging'])
 			.default('production')
