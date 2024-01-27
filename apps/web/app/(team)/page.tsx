@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import AdminTeamSummary from '../components/admin/admin-team-summary';
 import TrackTeam from '../components/analytics/track-team';
 import SearchTeams from '../components/search-teams';
