@@ -2,8 +2,12 @@
  * @returns {string}
  */
 function getBaseApiUrl() {
-	if (process.env.VERCEL_URL) {
-		return `https://${process.env.VERCEL_URL}`;
+	if (process.env.NEXT_PUBLIC_API_URL) {
+		return process.env.NEXT_PUBLIC_API_URL;
+	}
+
+	if (process.env.API_URL) {
+		return process.env.API_URL;
 	}
 
 	return 'http://localhost:3001';

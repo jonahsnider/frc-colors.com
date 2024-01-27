@@ -16,6 +16,10 @@ const nextConfig = withSentryConfig(
 			hideSourceMaps: false,
 			disableClientWebpackPlugin: true,
 		},
+		env: {
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			NEXT_PUBLIC_API_URL: process.env.API_URL,
+		},
 	}),
 	{
 		org: 'frc-colors',
