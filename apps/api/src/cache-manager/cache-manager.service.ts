@@ -1,7 +1,8 @@
 import { chunk } from '@jonahsnider/util';
 import convert from 'convert';
-import { inArray } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import pLimit from 'p-limit';
+import { generatedColors } from '../colors/generated/generated-colors.service';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
 import { firstService } from '../first/first.service';
@@ -10,10 +11,10 @@ import { tbaService } from '../tba/tba.service';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 
 export class CacheManager {
-	private static readonly BATCH_SIZE = 100;
+	private static readonly COLOR_GEN_BATCH_SIZE = 100;
 	private static readonly CACHE_SWEEP_INTERVAL = convert(1, 'day');
 	private static readonly AVATAR_TTL = convert(1, 'day');
-	private readonly avatarExpiredTeams: TeamNumber[] = [];
+
 	// biome-ignore lint/correctness/noUndeclaredVariables: Global type from Bun
 	private timer: Timer | undefined;
 	private readonly logger = baseLogger.withTag('cache manager');
@@ -28,35 +29,32 @@ export class CacheManager {
 	}
 
 	async refresh(): Promise<void> {
-		this.logger.start('Refreshing stale cached avatars');
+		this.logger.start('Cache refresh started');
+		this.logger.withTag('avatar sweep').start('Refreshing stale cached avatars');
+
+		const avatarExpiredTeams: TeamNumber[] = [];
 
 		this.allTeamNumbers ??= await firstService.getAllTeamNumbers();
 
-		const allTeamsBatches = chunk(this.allTeamNumbers, CacheManager.BATCH_SIZE);
+		const outdatedTeams = new Set(this.allTeamNumbers);
+		const avatars = await db.select().from(Schema.avatars);
 
-		for (const [index, batch] of allTeamsBatches.entries()) {
-			const outdatedTeams = new Set(batch);
-			const avatars = await db.select().from(Schema.avatars).where(inArray(Schema.avatars.teamId, batch));
-
-			for (const avatar of avatars) {
-				if (avatar.createdAt.getTime() + CacheManager.AVATAR_TTL.to('ms') > Date.now()) {
-					outdatedTeams.delete(avatar.teamId);
-				}
+		for (const avatar of avatars) {
+			if (avatar.createdAt.getTime() + CacheManager.AVATAR_TTL.to('ms') > Date.now()) {
+				outdatedTeams.delete(avatar.teamId);
 			}
-
-			this.avatarExpiredTeams.push(...outdatedTeams);
-
-			this.logger
-				.withTag(`batch ${index + 1}/${allTeamsBatches.length}`)
-				.debug(`Found ${outdatedTeams.size} expired avatars`);
 		}
 
-		this.logger.success(`Found ${this.avatarExpiredTeams.length} expired avatars`);
+		avatarExpiredTeams.push(...outdatedTeams);
 
-		const limit = pLimit(10);
+		this.logger.withTag('avatar sweep').debug(`Found ${outdatedTeams.size} expired or missing avatars`);
 
-		const avatarCacheOperations = this.avatarExpiredTeams.map((team) =>
-			limit(async () => {
+		this.logger.withTag('avatar sweep').success(`Found ${avatarExpiredTeams.length} expired avatars`);
+
+		const avatarCacheLimit = pLimit(10);
+
+		const avatarCacheOperations = avatarExpiredTeams.map((team) =>
+			avatarCacheLimit(async () => {
 				const avatar = await tbaService.getTeamAvatarForThisYear(team);
 
 				await db.transaction(async (tx) => {
@@ -72,12 +70,14 @@ export class CacheManager {
 			}),
 		);
 
-		this.logger.start('Loading avatars from TBA and storing them in cache');
+		this.logger.withTag('avatar cache').start('Loading avatars from TBA and storing them in cache');
 		const avatarCacheLogInterval = setInterval(() => {
 			this.logger
 				.withTag('avatar cache')
 				.debug(
-					`Completed ${avatarCacheOperations.length - limit.pendingCount}/${avatarCacheOperations.length} operations`,
+					`Saved ${avatarCacheOperations.length - avatarCacheLimit.pendingCount}/${
+						avatarCacheOperations.length
+					} avatars to cache`,
 				);
 		}, 1000);
 		try {
@@ -86,7 +86,52 @@ export class CacheManager {
 			clearInterval(avatarCacheLogInterval);
 		}
 
-		this.logger.success('Finished refreshing stale cached avatars');
+		this.logger.withTag('avatar cache').success('Finished refreshing stale cached avatars');
+
+		this.logger.withTag('extract colors').start('Extracting colors from newly cached avatars');
+		const teamsWithNewAvatars = chunk(avatarExpiredTeams, CacheManager.COLOR_GEN_BATCH_SIZE);
+
+		for (const [index, batch] of teamsWithNewAvatars.entries()) {
+			const teamColors = await generatedColors.getTeamColors(batch);
+
+			await db.transaction(async (tx) => {
+				for (const [team, color] of teamColors) {
+					if (color) {
+						// Store colors in DB unless verified colors already exist
+						await tx
+							.insert(Schema.teamColors)
+							.values({
+								teamId: team,
+								primaryColorHex: color.primary,
+								secondaryColorHex: color.secondary,
+								verified: false,
+							})
+							.onConflictDoUpdate({
+								target: Schema.teamColors.teamId,
+								set: {
+									primaryColorHex: color.primary,
+									secondaryColorHex: color.secondary,
+									verified: false,
+								},
+								where: eq(Schema.teamColors.verified, false),
+							});
+					} else {
+						// Clear colors from DB, unless they're verified
+						await tx
+							.delete(Schema.teamColors)
+							.where(and(eq(Schema.teamColors.teamId, team), eq(Schema.teamColors.verified, false)));
+					}
+				}
+			});
+
+			this.logger
+				.withTag('extract colors')
+				.withTag(`batch ${index + 1}/${teamsWithNewAvatars.length}`)
+				.debug(`Extracted colors from ${batch.length} avatars`);
+		}
+		this.logger.withTag('extract colors').success('Finished extracting colors from newly cached avatars');
+
+		this.logger.success('Cache refresh finished');
 	}
 }
 
