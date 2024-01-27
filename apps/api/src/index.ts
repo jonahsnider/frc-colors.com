@@ -1,7 +1,7 @@
 import { App } from '@tinyhttp/app';
-
 import { logger as loggerMiddleware } from '@tinyhttp/logger';
 import cors from 'cors';
+import { listen } from 'listhen';
 import { errorHandler } from './api/error-handler';
 import { Controllers } from './api/index';
 import { cacheManager } from './cache-manager/cache-manager.service';
@@ -18,9 +18,17 @@ for (const registerController of Object.values(Controllers)) {
 	registerController(server);
 }
 
-server.listen(configService.port);
+// biome-ignore lint/suspicious/noExplicitAny: This is safe
+const listener = await listen(server.attach as any, {
+	port: configService.port,
+	qr: false,
+	// biome-ignore lint/style/useNamingConvention: This is a library
+	showURL: false,
+});
 
-logger.withTag('server').success(`Listening on port ${configService.port}`);
+for (const url of await listener.getURLs()) {
+	logger.withTag('server').success(`Listening on ${url.url}`);
+}
 
 cacheManager.init();
 // Initial refresh on boot, but only if not in development (hot reload reruns this too often)
