@@ -21,6 +21,7 @@
 		"cors": "2.8.5",
 		"devalue": "4.3.2",
 		"drizzle-orm": "0.29.3",
+		"envalid": "8.0.0",
 		"extract-colors": "4.0.2",
 		"ky": "1.2.0",
 		"next-api-utils": "1.0.4",

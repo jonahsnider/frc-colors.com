@@ -1,37 +1,39 @@
-import { z } from 'zod';
+import { cleanEnv, port, str } from 'envalid';
+
+type NodeEnv = 'production' | 'development' | 'staging';
 
 export class ConfigService {
 	public readonly tbaApiKey: string | undefined;
 	public readonly adminApiToken: string | undefined;
-	public readonly nodeEnv: 'production' | 'development' | 'staging';
+	public readonly nodeEnv: NodeEnv;
 	public readonly frcEventsApi: Readonly<{ username: string; password: string }>;
+	public readonly port: number;
 
-	constructor(source: Readonly<Record<string, unknown>>) {
-		this.tbaApiKey = z
-			.string()
-			.min(1)
-			.optional()
-			.parse(source['TBA_API_KEY']);
-		this.adminApiToken = z
-			.string()
-			.min(1)
-			.optional()
-			.parse(source['ADMIN_PASSWORD']);
-		this.nodeEnv = z
-			.enum(['production', 'development', 'staging'])
-			.default('production')
-			.parse(source['NODE_ENV']);
+	constructor() {
+		const env = cleanEnv(process.env, {
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			TBA_API_KEY: str({ desc: 'TBA API key' }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			ADMIN_PASSWORD: str({ desc: 'Password for accessing admin API' }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			FRC_EVENTS_USERNAME: str({ desc: 'Username for FRC Events API' }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			FRC_EVENTS_API_KEY: str({ desc: 'Password for FRC Events API' }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			NODE_ENV: str({ default: 'production', choices: ['production', 'development', 'staging'] }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			PORT: port({ default: 3000 }),
+		});
+
+		this.tbaApiKey = env.TBA_API_KEY;
+		this.adminApiToken = env.ADMIN_PASSWORD;
+		this.nodeEnv = env.NODE_ENV;
 		this.frcEventsApi = {
-			username: z
-				.string()
-				.min(1)
-				.parse(source['FRC_EVENTS_USERNAME']),
-			password: z
-				.string()
-				.min(1)
-				.parse(source['FRC_EVENTS_API_KEY']),
+			username: env.FRC_EVENTS_USERNAME,
+			password: env.FRC_EVENTS_API_KEY,
 		};
+		this.port = env.PORT;
 	}
 }
 
-export const configService = new ConfigService(process.env);
+export const configService = new ConfigService();
