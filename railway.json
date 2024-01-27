@@ -6,7 +6,8 @@
 		"nixpacksPlan": {
 			"phases": {
 				"install": {
-					"cmds": ["bun upgrade", "bun install --frozen-lockfile"]
+					"nixPkgs": ["bun"],
+					"cmds": ["bun install --frozen-lockfile"]
 				}
 			}
 		}
