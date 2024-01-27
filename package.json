@@ -1,13 +1,17 @@
 {
   "name": "frc-colors",
   "private": true,
-  "workspaces": ["apps/*"],
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
+    "build": "turbo run build",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply-unsafe",
     "migrate": "bun ./migrate.ts",
     "migrate:create": "drizzle-kit generate:pg",
-    "build": "turbo run build"
+		"type-check": "turbo run type-check",
+		"test": "bun run lint && turbo run build type-check"
   },
   "devDependencies": {
     "dotenv": "16.3.1",

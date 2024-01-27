@@ -1,4 +1,4 @@
-import ky, { HTTPError } from 'ky';
+import ky from 'ky';
 import { configService } from '../config/config.service';
 import { logger as baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';

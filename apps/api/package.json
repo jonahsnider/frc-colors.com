@@ -1,12 +1,12 @@
 {
   "name": "@frc-colors/api",
   "private": true,
+  "main": "./src/index.ts",
   "scripts": {
     "build": "tsc",
     "dev": "PORT=3001 bun run --inspect --env-file ../../.env --watch src/index.ts",
     "start": "bun run --env-file ../../.env src/index.ts"
   },
-  "main": "./src/index.ts",
   "dependencies": {
     "@jonahsnider/util": "10.3.0",
     "@tinyhttp/app": "2.2.3",

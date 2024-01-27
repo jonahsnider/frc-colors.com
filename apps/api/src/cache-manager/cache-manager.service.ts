@@ -76,7 +76,9 @@ export class CacheManager {
 		const avatarCacheLogInterval = setInterval(() => {
 			this.logger
 				.withTag('avatar cache')
-				.debug(`Completed ${avatarCacheOperations.length - limit.pendingCount}/${avatarCacheOperations.length} operations`);
+				.debug(
+					`Completed ${avatarCacheOperations.length - limit.pendingCount}/${avatarCacheOperations.length} operations`,
+				);
 		}, 1000);
 		try {
 			await Promise.all(avatarCacheOperations);
