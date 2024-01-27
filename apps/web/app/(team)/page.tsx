@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext } from 'react';
+import { useContext, Suspense } from 'react';
 import AdminTeamSummary from '../components/admin/admin-team-summary';
 import TrackTeam from '../components/analytics/track-team';
 import SearchTeams from '../components/search-teams';
@@ -18,7 +18,9 @@ export default function HomePage() {
 
 	return (
 		<>
-			<SearchTeams invalidTeam={!teamExists} />
+			<Suspense>
+				<SearchTeams invalidTeam={!teamExists} />
+			</Suspense>
 
 			<TrackTeam teamNumber={teamNumber} />
 
