@@ -16,7 +16,8 @@ export default function TeamCard({ teamNumber }: Props) {
 	const teamNameQuery = trpc.teams.getName.useQuery(teamNumber);
 	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
 
-	const title = teamNameQuery.data?.name ? `Team ${teamNumber} - ${teamNameQuery.data.name}` : `Team ${teamNumber}`;
+	const teamName = teamNameQuery.data?.name;
+	const title = teamName ? `Team ${teamNumber} - ${teamName}` : `Team ${teamNumber}`;
 
 	if (teamNameQuery.error || colorsQuery.error) {
 		return <p>An error occurred while fetching team {teamNumber}'s information</p>;
