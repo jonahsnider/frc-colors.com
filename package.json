@@ -14,6 +14,7 @@
     "type-check": "turbo run type-check"
   },
   "devDependencies": {
+    "@vercel/postgres": "0.7.2",
     "dotenv": "16.3.1",
     "drizzle-kit": "0.20.13",
     "turbo": "1.11.3",

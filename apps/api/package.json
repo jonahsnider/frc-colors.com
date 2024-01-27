@@ -12,6 +12,7 @@
     "@tinyhttp/app": "2.2.3",
     "@tinyhttp/logger": "2.0.0",
     "@trpc/server": "next",
+    "@vercel/postgres": "0.7.2",
     "consola": "3.2.3",
     "convert": "4.14.1",
     "cors": "2.8.5",
