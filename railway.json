@@ -6,8 +6,8 @@
 		"nixpacksPlan": {
 			"phases": {
 				"install": {
-					"nixPkgs": ["bun"],
-					"cmds": ["bun install --frozen-lockfile"]
+					"aptPkgs": ["unzip"],
+					"cmds": ["bun upgrade", "bun install --frozen-lockfile"]
 				}
 			}
 		}
