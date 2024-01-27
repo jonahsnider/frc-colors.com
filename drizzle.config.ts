@@ -8,7 +8,7 @@ const connectionString = process.env.POSTGRES_URL_NON_POOLING ?? process.env.POS
 assert(connectionString, 'POSTGRES_URL_NON_POOLING or POSTGRES_URL environment variable must be defined');
 
 export default {
-	schema: 'app/api/_lib/db/schema.ts',
+	schema: 'apps/api/src/db/schema.ts',
 	driver: 'pg',
 	dbCredentials: {
 		connectionString,

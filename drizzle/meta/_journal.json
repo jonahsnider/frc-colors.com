@@ -57,6 +57,13 @@
 			"when": 1699946340888,
 			"tag": "0007_slippery_tana_nile",
 			"breakpoints": true
+		},
+		{
+			"idx": 8,
+			"version": "5",
+			"when": 1705657662378,
+			"tag": "0008_far_jazinda",
+			"breakpoints": true
 		}
 	]
 }
