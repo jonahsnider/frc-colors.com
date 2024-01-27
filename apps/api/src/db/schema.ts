@@ -49,6 +49,7 @@ export const teamColors = pgTable(
 	},
 	(teamColors) => ({
 		teamIdKey: uniqueIndex('team_colors_team_id_key').on(teamColors.teamId),
+		verifiedIndex: index('team_colors_verified_index').on(teamColors.verified),
 	}),
 );
 
@@ -92,6 +93,7 @@ export const colorFormSubmissions = pgTable(
 	(colorFormSubmissions) => ({
 		teamIdKey: index('color_form_submissions_team_id_key').on(colorFormSubmissions.teamId),
 		createdAtIndex: index('color_form_submissions_created_at_index').on(colorFormSubmissions.createdAt),
+		updatedAtIndex: index('color_form_submissions_updated_at_index').on(colorFormSubmissions.updatedAt),
 		statusIndex: index('color_form_submissions_status_index').on(colorFormSubmissions.status),
 	}),
 );

@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS "team_colors_verified_index" ON "team_colors" ("verified");
