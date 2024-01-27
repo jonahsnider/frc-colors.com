@@ -8,7 +8,6 @@
 		"lint:fix": "biome check . --apply-unsafe",
 		"migrate": "bun ./migrate.ts",
 		"migrate:create": "drizzle-kit generate:pg",
-		"start:api": "bun run --cwd ./apps/api start",
 		"test": "bun run lint && turbo run build type-check",
 		"type-check": "turbo run type-check"
 	},

@@ -3,9 +3,11 @@
 	"private": true,
 	"main": "./src/index.ts",
 	"scripts": {
-		"build": "tsc",
+		"prebuild": "rm -rf dist",
+		"build": "bun build ./src/index.ts --minify --compile --outfile=dist/frc-colors",
 		"dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
-		"start": "bun run src/index.ts"
+		"start": "bun run src/index.ts",
+		"type-check": "tsc"
 	},
 	"dependencies": {
 		"@jonahsnider/util": "10.3.0",
@@ -22,7 +24,7 @@
 		"extract-colors": "4.0.2",
 		"ky": "1.2.0",
 		"next-api-utils": "1.0.4",
-		"p-limit": "5.0.0",
+		"p-limit": "4.0.0",
 		"pngjs": "7.0.0",
 		"superjson": "2.2.1",
 		"zod": "3.22.4"
