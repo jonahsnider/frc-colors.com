@@ -2,14 +2,15 @@
 
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
+
+import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import styles from './team-input.module.css';
 import { getTeamAvatarUrl } from './util/team-avatar-url';
 
 type Props = {
 	teamNumber: string;
 	onChange: (teamNumberRaw: string) => void;
-	onValidChange: (teamNumber: TeamNumberSchema | undefined) => void;
+	onValidChange: (teamNumber: TeamNumber | undefined) => void;
 	className?: string;
 };
 
@@ -18,7 +19,7 @@ type ImageState = 'loading' | 'success' | 'error';
 type ImageStates = ReadonlyMap<string, ImageState>;
 
 export default function TeamInput({ onChange, onValidChange, className, teamNumber }: Props) {
-	const valid = teamNumber === '' || TeamNumberSchema.safeParse(teamNumber).success;
+	const valid = teamNumber === '' || TeamNumber.safeParse(teamNumber).success;
 
 	const [lastAvatarUrl, setLastAvatarUrl] = useState<string | undefined>(undefined);
 	const [backgroundRed, setBackgroundRed] = useState(false);
@@ -59,8 +60,10 @@ export default function TeamInput({ onChange, onValidChange, className, teamNumb
 					// @ts-expect-error bun-types breaks this
 					onChange(event.target.value);
 
-					// @ts-expect-error bun-types breaks this
-					const parsed = TeamNumberSchema.safeParse(event.target.value);
+					const parsed = TeamNumber.safeParse(
+						// @ts-expect-error bun-types breaks this
+						event.target.value,
+					);
 
 					if (parsed.success) {
 						onValidChange(parsed.data);

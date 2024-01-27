@@ -1,17 +1,12 @@
 'use client';
 
-import { ColorSubmissionSchema } from '@/apps/web/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
-
 import { formatDistanceToNow, formatRelative } from 'date-fns';
 
-import { HttpError } from '@/apps/web/app/swr';
-
-import { Schema } from '@/apps/web/app/api/_lib/db/index';
-import { V1ModifyColorSubmissionSchema } from '@/apps/web/app/api/_lib/teams/color-submissions/dtos/v1/modify-color-submission.dto';
-import { V0ColorsSchema } from '@/apps/web/app/api/_lib/teams/dtos/v0/team.dto';
-import { useApiKey } from '@/apps/web/app/hooks/use-api-key';
+import { trpc } from '@/app/trpc';
+import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
+import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import { Schema } from '@frc-colors/api/src/db/index';
 import { useState } from 'react';
-import { mutate } from 'swr';
 import ColorSubmissionCardActions from './color-submission-card-actions';
 import CompareColors from './compare-colors';
 
@@ -20,49 +15,28 @@ type Status = 'idle' | 'loading' | 'success' | 'error';
 function CardActions({
 	submission,
 	setSubmission,
-}: { submission: ColorSubmissionSchema; setSubmission: (submission: ColorSubmissionSchema) => void }) {
+}: { submission: ColorSubmission; setSubmission: (submission: ColorSubmission) => void }) {
 	const [status, setStatus] = useState<Status>('idle');
-	const [apiKey] = useApiKey();
 
-	const update = async (status: Schema.VerificationRequestStatus) => {
-		if (!apiKey) {
-			return;
-		}
-
-		setStatus('loading');
-		const body: V1ModifyColorSubmissionSchema = {
-			status,
-		};
-		const response = await fetch(`/api/v1/color-submissions/${submission.id}`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: `Bearer ${apiKey}`,
-			},
-			body: JSON.stringify(body),
-		});
-
-		mutate(['/api/v1/verification-requests', apiKey]);
-		mutate([`/api/v1/verification-requests?team=${submission.teamNumber}`, apiKey]);
-		mutate(`/api/internal/team/${submission.teamNumber}`);
-
-		if (response.ok) {
-			const body = await response.json();
-			const newSubmission = ColorSubmissionSchema.parse(body);
-			setSubmission(newSubmission);
+	const mutation = trpc.colorSubmissions.updateStatus.useMutation({
+		onMutate: () => {
+			setStatus('loading');
+		},
+		onSuccess: (submission) => {
+			setSubmission(submission);
 			setStatus('success');
-		} else {
-			console.error(await HttpError.create(response));
+		},
+		onError: () => {
 			setStatus('error');
-		}
-	};
+		},
+	});
 
 	if (submission.status === Schema.VerificationRequestStatus.Pending) {
 		return (
 			<ColorSubmissionCardActions
 				status={status}
-				onApprove={() => update(Schema.VerificationRequestStatus.Finished)}
-				onReject={() => update(Schema.VerificationRequestStatus.Rejected)}
+				onApprove={() => mutation.mutate({ id: submission.id, status: Schema.VerificationRequestStatus.Finished })}
+				onReject={() => mutation.mutate({ id: submission.id, status: Schema.VerificationRequestStatus.Rejected })}
 			/>
 		);
 	}
@@ -84,9 +58,9 @@ function CardActions({
 }
 
 type Props = {
-	submission: ColorSubmissionSchema;
+	submission: ColorSubmission;
 	oldColorsLoading: boolean;
-	oldColors: V0ColorsSchema | undefined;
+	oldColors: TeamColors | undefined;
 };
 
 export default function ColorSubmissionCard({ submission: originalSubmission, oldColors, oldColorsLoading }: Props) {

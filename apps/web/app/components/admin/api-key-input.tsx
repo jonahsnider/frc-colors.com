@@ -1,6 +1,6 @@
 'use client';
 
-import { useApiKey } from '@/apps/web/app/hooks/use-api-key';
+import { useApiKey } from '@/app/hooks/use-api-key';
 import { useEffect } from 'react';
 
 type Props = {

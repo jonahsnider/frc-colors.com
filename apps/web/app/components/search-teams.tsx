@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
+
+import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { TeamNumberContext } from '../contexts/team-number-context';
 
 type Props = {
@@ -18,7 +19,7 @@ export default function SearchTeams({ invalidTeam }: Props) {
 
 	const [teamNumberRaw, setTeamNumberRaw] = useState(urlTeam ?? '');
 	const setTeamNumber = useDebouncedCallback(useContext(TeamNumberContext).setTeamNumber, 100, { maxWait: 1000 });
-	const valid = teamNumberRaw === '' || (TeamNumberSchema.safeParse(teamNumberRaw).success && !invalidTeam);
+	const valid = teamNumberRaw === '' || (TeamNumber.safeParse(teamNumberRaw).success && !invalidTeam);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This is only supposed to run once on render
 	useEffect(() => {

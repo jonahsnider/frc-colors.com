@@ -1,56 +1,61 @@
+import VerificationRequestButton from '@/app/(team)/verification-request-button';
+import { trpc } from '@/app/trpc';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import LoadingSkeleton from '../loading-skeleton';
+import { getTeamAvatarUrl } from '../util/team-avatar-url';
 import BaseTeamCard from './base-team-card';
 import ColorSwatch from './color-swatch';
 import TeamImage from './team-image/team-image';
 
 type Props = {
 	teamNumber: number;
-	teamName?: string;
-	avatarUrl?: string;
-	colors?: {
-		primaryHex: string;
-		secondaryHex: string;
-		verified: boolean;
-	};
-	actions?: React.ReactNode;
-	isLoading: boolean;
 };
 
-export default function TeamCard({ teamName, teamNumber, avatarUrl, colors, actions, isLoading }: Props) {
-	const title = teamName ? `Team ${teamNumber} - ${teamName}` : `Team ${teamNumber}`;
+export default function TeamCard({ teamNumber }: Props) {
+	const teamNameQuery = trpc.teams.getName.useQuery(teamNumber);
+	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
+
+	const title = teamNameQuery.data?.name ? `Team ${teamNumber} - ${teamNameQuery.data.name}` : `Team ${teamNumber}`;
+
+	const _teamExists = teamNameQuery.isLoading || Boolean(teamNameQuery.data);
+
+	if (teamNameQuery.error || colorsQuery.error) {
+		return <p>An error occurred while fetching team {teamNumber}'s information</p>;
+	}
 
 	return (
 		<BaseTeamCard
 			title={
-				isLoading ? (
+				teamNameQuery.isLoading ? (
 					<LoadingSkeleton className='w-72 h-6 bg-gray-500 mt-2' />
 				) : (
 					<p className='text-2xl font-bold'>{title}</p>
 				)
 			}
-			avatar={<TeamImage avatarUrl={avatarUrl} colors={colors} />}
+			avatar={<TeamImage avatarUrl={getTeamAvatarUrl(teamNumber)} colors={colorsQuery.data?.colors} />}
 			colors={
-				colors && {
-					primary: <ColorSwatch hex={colors.primaryHex} />,
-					secondary: <ColorSwatch hex={colors.secondaryHex} />,
+				colorsQuery.data?.colors && {
+					primary: <ColorSwatch hex={colorsQuery.data.colors?.primary} />,
+					secondary: <ColorSwatch hex={colorsQuery.data.colors?.secondary} />,
 				}
 			}
 			verifiedBadge={
-				isLoading ? (
+				colorsQuery.isLoading ? (
 					<CheckBadgeIcon className='max-md:h-0 md:h-6 invisible' />
 				) : (
 					<CheckBadgeIcon
 						className={clsx('h-6 transition-opacity', {
-							'opacity-0 max-md:h-0': !colors?.verified,
+							'opacity-0 max-md:h-0': !colorsQuery.data?.colors?.verified,
 						})}
-						color={colors?.primaryHex}
-						stroke={colors?.secondaryHex}
+						color={colorsQuery.data?.colors?.primary}
+						stroke={colorsQuery.data?.colors?.secondary}
 					/>
 				)
 			}
-			actions={actions}
+			actions={
+				!colorsQuery.data?.colors?.verified && colorsQuery.data && <VerificationRequestButton teamNumber={teamNumber} />
+			}
 		/>
 	);
 }

@@ -1,29 +1,18 @@
 import { count } from '@jonahsnider/util';
-import useSwr from 'swr';
-import { Schema } from '../api/_lib/db/index';
-import { V1FindManyVerificationRequestsSchema } from '../api/_lib/teams/verification-requests/dtos/v1/verification-request.dto';
+
+import { Schema } from '@frc-colors/api/src/db/index';
 import VerificationRequestsTable from '../components/admin/verification-requests/table';
 import H2 from '../components/headings/h2';
-import { useApiKey } from '../hooks/use-api-key';
-import { fetcherWithApiKey } from '../swr';
+import { trpc } from '../trpc';
 
 export default function VerificationRequestsList() {
-	const [apiKey] = useApiKey();
-	const { data, error, isLoading } = useSwr<V1FindManyVerificationRequestsSchema>(
-		['/api/v1/verification-requests', apiKey],
-		{
-			fetcher: apiKey ? fetcherWithApiKey : undefined,
-		},
-	);
+	const { data, error, isLoading } = trpc.verificationRequests.getAll.useQuery();
 
 	const pendingRequests = {
-		total: count(
-			data?.verificationRequests ?? [],
-			(request) => request.status === Schema.VerificationRequestStatus.Pending,
-		),
+		total: count(data ?? [], (request) => request.status === Schema.VerificationRequestStatus.Pending),
 		unique: count(
 			new Set(
-				(data?.verificationRequests ?? [])
+				(data ?? [])
 					.filter((request) => request.status === Schema.VerificationRequestStatus.Pending)
 					.map((request) => request.team),
 			),
@@ -42,7 +31,7 @@ export default function VerificationRequestsList() {
 							unique teams)
 						</p>
 					)}
-					<VerificationRequestsTable requests={data.verificationRequests} />
+					<VerificationRequestsTable requests={data} />
 				</>
 			)}
 

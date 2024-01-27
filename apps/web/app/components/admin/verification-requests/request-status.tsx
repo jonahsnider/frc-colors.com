@@ -1,10 +1,10 @@
-import { Schema } from '@/apps/web/app/api/_lib/db/index';
-import { VerificationRequestSchema } from '@/apps/web/app/api/_lib/teams/verification-requests/dtos/verification-request.dto';
+import { Schema } from '@frc-colors/api/src/db/index';
+import { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import { formatDistanceToNow } from 'date-fns';
 
 type Props = {
-	request: VerificationRequestSchema;
+	request: VerificationRequest;
 };
 
 export default function RequestStatus({ request }: Props) {

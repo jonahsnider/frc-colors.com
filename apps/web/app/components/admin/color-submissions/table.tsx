@@ -1,26 +1,13 @@
-import { ColorSubmissionSchema } from '@/apps/web/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
-import { V1FindManyTeamsSchema } from '@/apps/web/app/api/_lib/teams/dtos/v1/team.dto';
-import { fetcher } from '@/apps/web/app/swr';
-import useSwr from 'swr';
+import { trpc } from '@/app/trpc';
+import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
 import ColorSubmissionCard from './color-submission-card';
 
 type Props = {
-	colorSubmissions: ColorSubmissionSchema[];
+	colorSubmissions: ColorSubmission[];
 };
 
 export default function ColorSubmissionsTable({ colorSubmissions }: Props) {
-	const query = new URLSearchParams();
-
-	for (const submission of colorSubmissions) {
-		query.append('team', submission.teamNumber.toString());
-	}
-
-	const { data: oldColors, isLoading: oldColorsLoading } = useSwr<V1FindManyTeamsSchema>(
-		`/api/v1/team?${query.toString()}`,
-		{
-			fetcher,
-		},
-	);
+	const oldColors = trpc.teams.colors.getMany.useQuery([581]);
 
 	return (
 		<div className='flex flex-col gap-y-2 w-full'>
@@ -28,8 +15,8 @@ export default function ColorSubmissionsTable({ colorSubmissions }: Props) {
 				<ColorSubmissionCard
 					key={colorSubmission.id}
 					submission={colorSubmission}
-					oldColors={oldColors?.teams[colorSubmission.teamNumber].colors ?? undefined}
-					oldColorsLoading={oldColorsLoading}
+					oldColors={oldColors.data?.get(colorSubmission.teamNumber)}
+					oldColorsLoading={oldColors.isLoading}
 				/>
 			))}
 			{colorSubmissions.length === 0 && <p>No color submissions</p>}

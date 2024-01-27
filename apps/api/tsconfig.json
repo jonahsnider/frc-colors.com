@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"exactOptionalPropertyTypes": false
+	},
+	"extends": ["@tsconfig/strictest", "@tsconfig/bun"],
+	"include": ["src", "types"]
+}

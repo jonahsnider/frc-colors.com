@@ -1,10 +1,11 @@
+import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import TeamImageAvatar from './team-image-avatar';
 import TeamImageBlank from './team-image-blank';
 import TeamImageGradient from './team-image-gradient';
 
 type Props = {
 	avatarUrl?: string;
-	colors?: { primaryHex: string; secondaryHex: string };
+	colors?: TeamColors;
 };
 
 export default function TeamImage({ avatarUrl, colors }: Props) {

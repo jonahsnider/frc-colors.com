@@ -23,12 +23,16 @@
 		"rules": {
 			"all": true,
 			"nursery": {
-				"all": true,
-				"useImportRestrictions": "off"
+				"all": false
 			},
 			"style": {
 				"all": true,
 				"noParameterProperties": "off"
+			},
+			"complexity": {
+				"all": true,
+				"useLiteralKeys": "off",
+				"noStaticOnlyClass": "off"
 			}
 		}
 	}

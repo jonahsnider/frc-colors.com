@@ -1,19 +1,19 @@
-import { ColorSubmissionSchema } from '@/apps/web/app/api/_lib/teams/color-submissions/dtos/color-submission.dto';
-import { V0ColorsSchema } from '@/apps/web/app/api/_lib/teams/dtos/v0/team.dto';
+import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
+import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
 import ColorSwatch from '../../team-card/color-swatch';
 
 type Props = {
 	loading: boolean;
-	colors: V0ColorsSchema | undefined;
-	submission: ColorSubmissionSchema;
+	colors: TeamColors | undefined;
+	submission: ColorSubmission;
 };
 
 export default function CompareColors({ loading, submission, colors }: Props) {
-	const primaryBefore = loading ? undefined : colors?.primaryHex;
-	const secondaryBefore = loading ? undefined : colors?.secondaryHex;
+	const primaryBefore = loading ? undefined : colors?.primary;
+	const secondaryBefore = loading ? undefined : colors?.secondary;
 	const verificationBadge = colors?.verified ? (
-		<CheckBadgeIcon className='h-6' color={colors?.primaryHex} stroke={colors?.secondaryHex} />
+		<CheckBadgeIcon className='h-6' color={colors?.primary} stroke={colors?.secondary} />
 	) : undefined;
 
 	const colorsAreDifferent = submission.primaryHex !== primaryBefore || submission.secondaryHex !== secondaryBefore;

@@ -1,8 +1,8 @@
-import { VerificationRequestSchema } from '@/apps/web/app/api/_lib/teams/verification-requests/dtos/verification-request.dto';
+import type { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
 import TableRow from './table-row';
 
 type Props = {
-	requests: VerificationRequestSchema[];
+	requests: VerificationRequest[];
 };
 
 export default function VerificationRequestsTable({ requests }: Props) {

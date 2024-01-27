@@ -1,33 +1,31 @@
 'use client';
 
-import { HexColorCodeSchema } from '@/apps/web/app/api/_lib/teams/colors/saved-colors/dtos/hex-color-code.dto';
-import { SaveTeamSchema } from '@/apps/web/app/api/_lib/teams/dtos/save-team.dto';
-import { TeamNumberSchema } from '@/apps/web/app/api/_lib/teams/dtos/team-number.dto';
-import ColorInput from '@/apps/web/app/components/color-input';
-import H2 from '@/apps/web/app/components/headings/h2';
-import SubmitButton, { State } from '@/apps/web/app/components/submit-button';
-import TeamCard from '@/apps/web/app/components/team-card/team-card';
-import TeamInput from '@/apps/web/app/components/team-input';
-import { getTeamAvatarUrl } from '@/apps/web/app/components/util/team-avatar-url';
-import { useApiKey } from '@/apps/web/app/hooks/use-api-key';
-import { useTeam } from '@/apps/web/app/hooks/use-team';
+import ColorInput from '@/app/components/color-input';
+import H2 from '@/app/components/headings/h2';
+import SubmitButton, { State } from '@/app/components/submit-button';
+import TeamCard from '@/app/components/team-card/team-card';
+import TeamInput from '@/app/components/team-input';
+import { trpc } from '@/app/trpc';
+import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import { SetColorsInput } from '@frc-colors/api/src/teams/dtos/set-colors-input.dto';
+import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect, useState } from 'react';
-import { mutate } from 'swr';
+import type { PartialDeep } from 'type-fest';
 
 function determineState({
 	isError,
 	isLoading,
 	isReady,
-	isSuccess,
-}: { isLoading: boolean; isError: boolean; isSuccess: boolean; isReady: boolean }): State {
+	succeededAt,
+}: { isLoading: boolean; isError: boolean; succeededAt: number | undefined; isReady: boolean }): State {
 	if (isLoading) {
 		return 'loading';
 	}
 	if (isError) {
 		return 'error';
 	}
-	if (isSuccess) {
+	if (succeededAt && Date.now() - succeededAt < 3000) {
 		return 'success';
 	}
 	if (isReady) {
@@ -38,29 +36,44 @@ function determineState({
 }
 
 export default function SetColors() {
-	const [apiKey] = useApiKey();
+	const [succeededAt, setSucceededAt] = useState<number | undefined>();
 
 	const [rawTeam, setRawTeam] = useState<string>('');
 	const [rawPrimaryColor, setRawPrimaryColor] = useState<string>('');
 	const [rawSecondaryColor, setRawSecondaryColor] = useState<string>('');
 
-	const [team, setTeam] = useState<TeamNumberSchema | undefined>();
-	const [primaryColor, setPrimaryColor] = useState<HexColorCodeSchema | undefined>();
-	const [secondaryColor, setSecondaryColor] = useState<HexColorCodeSchema | undefined>();
+	const [team, setTeam] = useState<TeamNumber | undefined>();
+	const [primaryColor, setPrimaryColor] = useState<HexColorCode | undefined>();
+	const [secondaryColor, setSecondaryColor] = useState<HexColorCode | undefined>();
 
-	const actualTeamData = useTeam(team);
+	const isReady = SetColorsInput.safeParse({
+		team: team,
+		colors: {
+			primary: primaryColor,
+			secondary: secondaryColor,
+		},
+	} satisfies PartialDeep<SetColorsInput>).success;
 
-	const body = SaveTeamSchema.safeParse({
-		primary: primaryColor,
-		secondary: secondaryColor,
-	} satisfies Partial<SaveTeamSchema>);
+	const utils = trpc.useUtils();
+	const mutation = trpc.teams.colors.set.useMutation({
+		onMutate: () => {
+			setSucceededAt(undefined);
+		},
+		onSuccess: () => {
+			setSucceededAt(Date.now());
+			utils.teams.colors.get.invalidate(team);
+			utils.teams.colors.getMany.invalidate([team]);
+			utils.verificationRequests.getAll.invalidate();
+			utils.verificationRequests.getAllForTeam.invalidate(team);
+		},
+	});
 
-	const [isLoading, setIsLoading] = useState(false);
-	const [isError, setIsError] = useState(false);
-	const [succeededAt, setSucceededAt] = useState<number | undefined>();
-	const isReady = body.success;
-
-	const state = determineState({ isLoading, isError, isSuccess: Boolean(succeededAt), isReady });
+	const state = determineState({
+		isLoading: mutation.isPending,
+		isError: mutation.isError,
+		succeededAt,
+		isReady,
+	});
 
 	const reset = () => {
 		setRawTeam('');
@@ -70,10 +83,6 @@ export default function SetColors() {
 		setTeam(undefined);
 		setPrimaryColor(undefined);
 		setSecondaryColor(undefined);
-
-		setIsError(false);
-		setSucceededAt(undefined);
-		setIsLoading(false);
 	};
 
 	useEffect(() => {
@@ -89,40 +98,17 @@ export default function SetColors() {
 	}, [succeededAt]);
 
 	const onSubmit = () => {
-		if (!(isReady && apiKey && team)) {
+		if (!(isReady && primaryColor && secondaryColor && team)) {
 			return;
 		}
 
-		setIsLoading(true);
-		setIsError(false);
-		setSucceededAt(undefined);
-
-		fetch(`/api/v1/team/${team}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: `Bearer ${apiKey}`,
+		mutation.mutate({
+			team,
+			colors: {
+				primary: primaryColor,
+				secondary: secondaryColor,
 			},
-			body: JSON.stringify(body.data),
-		})
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error('Failed to submit colors');
-				}
-			})
-			.then(() => {
-				setSucceededAt(Date.now());
-			})
-			.catch(() => {
-				setIsError(true);
-			})
-			.finally(() => {
-				actualTeamData.mutate?.();
-				mutate(['/api/v1/verification-requests', apiKey]);
-				mutate([`/api/v1/verification-requests?team=${team}`, apiKey]);
-				mutate(`/api/internal/team/${team}`);
-				setIsLoading(false);
-			});
+		});
 	};
 
 	return (
@@ -157,7 +143,7 @@ export default function SetColors() {
 					<button
 						type='reset'
 						onClick={reset}
-						disabled={isLoading || !(rawTeam || rawPrimaryColor || rawSecondaryColor)}
+						disabled={mutation.isPending || !(rawTeam || rawPrimaryColor || rawSecondaryColor)}
 						className='transition-colors py-2 px-4 w-1/4 rounded bg-neutral-700 hover:bg-neutral-600 flex items-center justify-center disabled:bg-neutral-600 disabled:text-neutral-400 active:bg-neutral-500'
 					>
 						<XMarkIcon className='h-6' />
@@ -165,15 +151,7 @@ export default function SetColors() {
 				</div>
 			</div>
 
-			{team && (
-				<TeamCard
-					teamNumber={team}
-					avatarUrl={getTeamAvatarUrl(team)}
-					colors={actualTeamData.team?.colors ?? undefined}
-					teamName={actualTeamData.team?.teamName ?? undefined}
-					isLoading={actualTeamData.isLoading}
-				/>
-			)}
+			{team && <TeamCard teamNumber={team} />}
 		</div>
 	);
 }

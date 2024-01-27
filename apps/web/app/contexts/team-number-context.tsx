@@ -1,21 +1,20 @@
+import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { PropsWithChildren, createContext, useMemo, useState } from 'react';
-import { TeamNumberSchema } from '../api/_lib/teams/dtos/team-number.dto';
 
 type ContextValue = {
 	teamNumberRaw: string;
-	teamNumber?: TeamNumberSchema;
+	teamNumber?: TeamNumber;
 	setTeamNumber: (teamNumberRaw: string) => void;
 };
 
 export const TeamNumberContext = createContext<ContextValue>({
 	teamNumberRaw: '',
-	// biome-ignore lint/nursery/noEmptyBlockStatements: This is a no-op function
 	setTeamNumber: () => {},
 });
 
 export function TeamNumberProvider({ children }: PropsWithChildren) {
 	const [teamNumberRaw, setTeamNumberRaw] = useState('');
-	const [teamNumber, setTeamNumberValid] = useState<TeamNumberSchema>();
+	const [teamNumber, setTeamNumberValid] = useState<TeamNumber>();
 
 	const setTeamNumber = useMemo(
 		() => (teamNumberRaw: string) => {
@@ -24,7 +23,7 @@ export function TeamNumberProvider({ children }: PropsWithChildren) {
 			if (teamNumberRaw === '') {
 				setTeamNumberValid(undefined);
 			} else {
-				const parsed = TeamNumberSchema.safeParse(teamNumberRaw);
+				const parsed = TeamNumber.safeParse(teamNumberRaw);
 
 				if (parsed.success) {
 					setTeamNumberValid(parsed.data);

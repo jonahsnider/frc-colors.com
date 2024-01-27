@@ -1,5 +1,6 @@
 'use client';
 
+import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -15,10 +16,7 @@ enum BackgroundColor {
 }
 
 type Props = {
-	colors?: {
-		primaryHex: string;
-		secondaryHex: string;
-	};
+	colors?: TeamColors;
 	avatarUrl: string;
 };
 

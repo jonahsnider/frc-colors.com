@@ -1,26 +1,18 @@
 import { count } from '@jonahsnider/util';
-import useSwr from 'swr';
-import { Schema } from '../api/_lib/db/index';
-import { V1FindManyColorSubmissionsSchema } from '../api/_lib/teams/color-submissions/dtos/v1/color-submission.dto';
+
+import { Schema } from '@frc-colors/api/src/db/index';
 import ColorSubmissionsTable from '../components/admin/color-submissions/table';
 import H2 from '../components/headings/h2';
-import { useApiKey } from '../hooks/use-api-key';
-import { fetcherWithApiKey } from '../swr';
+import { trpc } from '../trpc';
 
 export default function ColorSubmissionsList() {
-	const [apiKey] = useApiKey();
-	const { data, error, isLoading } = useSwr<V1FindManyColorSubmissionsSchema>(['/api/v1/color-submissions', apiKey], {
-		fetcher: apiKey ? fetcherWithApiKey : undefined,
-	});
+	const { data, error, isLoading } = trpc.colorSubmissions.getAll.useQuery();
 
 	const pendingSubmissions = {
-		total: count(
-			data?.colorSubmissions ?? [],
-			(submission) => submission.status === Schema.VerificationRequestStatus.Pending,
-		),
+		total: count(data ?? [], (submission) => submission.status === Schema.VerificationRequestStatus.Pending),
 		unique: count(
 			new Set(
-				(data?.colorSubmissions ?? [])
+				(data ?? [])
 					.filter((submission) => submission.status === Schema.VerificationRequestStatus.Pending)
 					.map((submission) => submission.teamNumber),
 			),
@@ -39,7 +31,7 @@ export default function ColorSubmissionsList() {
 							{pendingSubmissions.unique.toLocaleString()} unique teams)
 						</p>
 					)}
-					<ColorSubmissionsTable colorSubmissions={data.colorSubmissions} />
+					<ColorSubmissionsTable colorSubmissions={data} />
 				</>
 			)}
 

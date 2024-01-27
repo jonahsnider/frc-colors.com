@@ -1,13 +1,13 @@
 'use client';
 
-import { TeamNumberSchema } from '@/apps/web/app/api/_lib/teams/dtos/team-number.dto';
-import { usePlausible } from '@/apps/web/app/hooks/plausible';
+import { usePlausible } from '@/app/hooks/plausible';
+import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
-export default function TrackTeam({ teamNumber }: { teamNumber?: TeamNumberSchema }) {
+export default function TrackTeam({ teamNumber }: { teamNumber?: TeamNumber }) {
 	const plausible = usePlausible();
-	const [previousTeamNumber, setPreviousTeamNumber] = useState<TeamNumberSchema>();
+	const [previousTeamNumber, setPreviousTeamNumber] = useState<TeamNumber>();
 
 	const [debouncedTeamNumber] = useDebounce(teamNumber, 1500);
 

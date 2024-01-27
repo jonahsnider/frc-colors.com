@@ -1,13 +1,13 @@
 'use client';
 
+import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { capitalize } from '@jonahsnider/util';
 import clsx from 'clsx';
-import { HexColorCodeSchema } from '../api/_lib/teams/colors/saved-colors/dtos/hex-color-code.dto';
 
 type Props = {
 	kind: 'primary' | 'secondary';
 	rawColor: string;
-	onValidChange: (color: HexColorCodeSchema | undefined) => void;
+	onValidChange: (color: HexColorCode | undefined) => void;
 	onChange: (color: string) => void;
 	className?: string;
 };
@@ -40,7 +40,7 @@ function parseRawColor(rawColor: string): ParsedColor {
 
 export default function ColorInput({ kind, onValidChange, onChange, rawColor, className }: Props) {
 	const color = parseRawColor(rawColor);
-	const valid = color.hex === '' || HexColorCodeSchema.safeParse(color.hex).success;
+	const valid = color.hex === '' || HexColorCode.safeParse(color.hex).success;
 
 	return (
 		<div className={clsx('rounded relative w-full md:w-auto md:max-w-min', className)}>
@@ -59,8 +59,12 @@ export default function ColorInput({ kind, onValidChange, onChange, rawColor, cl
 					// @ts-expect-error bun-types breaks this
 					onChange(event.target.value);
 
-					// @ts-expect-error bun-types breaks this
-					const parsed = HexColorCodeSchema.safeParse(parseRawColor(event.target.value).hex);
+					const parsed = HexColorCode.safeParse(
+						parseRawColor(
+							// @ts-expect-error bun-types breaks this
+							event.target.value,
+						).hex,
+					);
 
 					if (parsed.success) {
 						onValidChange(parsed.data);

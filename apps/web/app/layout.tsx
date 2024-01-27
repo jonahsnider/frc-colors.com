@@ -5,6 +5,7 @@ import PlausibleProvider from 'next-plausible';
 import { Lato } from 'next/font/google';
 import Footer from './components/footer';
 import Navbar from './components/navbar/navbar';
+import { TrpcProvider } from './components/trpc/trpc-provider';
 import './globals.css';
 import { description, metadataBase, siteName } from './shared-metadata';
 
@@ -33,7 +34,9 @@ export default function RootLayout({
 
 			<body className={clsx(lato.className, 'bg-neutral-900 text-white flex flex-col min-h-screen')}>
 				<Navbar />
-				<main className='container mx-auto grow px-2'>{children}</main>
+				<main className='container mx-auto grow px-2'>
+					<TrpcProvider>{children}</TrpcProvider>
+				</main>
 				<Footer />
 				<Analytics />
 			</body>

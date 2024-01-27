@@ -1,19 +1,20 @@
+import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { ArrowPathIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import { captureException } from '@sentry/nextjs';
 import { useEffect, useState } from 'react';
-import { InternalTeamSchema } from '../api/_lib/internal/team/dtos/internal-team.dto';
 import TeamCardButton from '../components/team-card/team-card-button';
-import { requestVerification } from './action';
+import { trpc } from '../trpc';
 
 type Props = {
-	team: InternalTeamSchema;
+	teamNumber: TeamNumber;
 };
 
 type State = {
 	loading: boolean;
 	error: boolean;
 	finishedAt: number | undefined;
-	team: InternalTeamSchema;
+	colors: TeamColors | undefined;
 };
 
 function getStatus(state: State): 'loading' | 'error' | 'success' | 'idle' {
@@ -39,8 +40,8 @@ function ButtonContents({ state }: { state: State }): React.ReactNode {
 		inner = <ArrowPathIcon className='h-6 animate-spin' />;
 	} else if (state.finishedAt) {
 		inner = <CheckIcon className='h-6' />;
-	} else if (state.team.colors) {
-		if (state.team.colors.verified) {
+	} else if (state.colors) {
+		if (state.colors.verified) {
 			inner = <ExclamationCircleIcon className='h-6' />;
 			alt = 'Report incorrect colors';
 		} else {
@@ -57,37 +58,39 @@ function ButtonContents({ state }: { state: State }): React.ReactNode {
 	);
 }
 
-export default function VerificationRequestButton({ team }: Props) {
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
+export default function VerificationRequestButton({ teamNumber }: Props) {
 	const [finishedAt, setFinishedAt] = useState<number | undefined>(undefined);
+	const mutation = trpc.verificationRequests.createForTeam.useMutation({
+		onMutate: () => {
+			setFinishedAt(undefined);
+		},
+		onSettled: () => {
+			setFinishedAt(Date.now());
+		},
+	});
+	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This is to reset the state when the team changes or when the colors are updated by SWR
 	useEffect(() => {
-		setLoading(false);
-		setError(false);
 		setFinishedAt(undefined);
-	}, [team]);
+	}, [teamNumber]);
 
 	const onClick = async () => {
-		setLoading(true);
-		setError(false);
 		setFinishedAt(undefined);
 
 		try {
-			await requestVerification(team.teamNumber);
-			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
+			await mutation.mutateAsync(teamNumber);
 		} catch (error) {
-			setError(true);
 			captureException(error);
-		} finally {
-			// biome-ignore lint/nursery/noUselessLoneBlockStatements: This is not a useless block statement
-			setLoading(false);
-			setFinishedAt(Date.now());
 		}
 	};
 
-	const state: State = { loading, error, finishedAt, team };
+	const state: State = {
+		loading: mutation.isPending,
+		error: mutation.isError,
+		finishedAt,
+		colors: colorsQuery.data?.colors,
+	};
 
 	const status = getStatus(state);
 
