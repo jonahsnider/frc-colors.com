@@ -10,12 +10,13 @@
     "lint:fix": "biome check . --apply-unsafe",
     "migrate": "bun ./migrate.ts",
     "migrate:create": "drizzle-kit generate:pg",
-		"type-check": "turbo run type-check",
-		"test": "bun run lint && turbo run build type-check"
+    "type-check": "turbo run type-check",
+    "test": "bun run lint && turbo run build type-check"
   },
   "devDependencies": {
     "dotenv": "16.3.1",
     "drizzle-kit": "0.20.13",
-    "turbo": "1.11.3"
+    "turbo": "1.11.3",
+    "vercel": "33.3.0"
   }
 }
