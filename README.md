@@ -10,7 +10,7 @@ Automatically extracts colors from team avatars uploaded to FIRST if verified co
 
 ### Base URL
 
-The API is publicly available at `https://frc-colors.com/api`.
+The API is publicly available at `https://api.frc-colors.com`.
 
 ### `GET /v1/team/:teamNumber`
 
