@@ -7,8 +7,8 @@ import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/colo
 import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { Schema } from '@frc-colors/api/src/db/index';
 import { useState } from 'react';
-import ColorSubmissionCardActions from './color-submission-card-actions';
-import CompareColors from './compare-colors';
+import { TableRowActions as ColorSubmissionCardActions } from './color-submission-card-actions';
+import { CompareColors } from './compare-colors';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -63,7 +63,7 @@ type Props = {
 	oldColors: TeamColors | undefined;
 };
 
-export default function ColorSubmissionCard({ submission: originalSubmission, oldColors, oldColorsLoading }: Props) {
+export function ColorSubmissionCard({ submission: originalSubmission, oldColors, oldColorsLoading }: Props) {
 	const [submission, setSubmission] = useState(originalSubmission);
 
 	return (

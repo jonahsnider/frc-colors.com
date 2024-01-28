@@ -18,7 +18,7 @@ type ImageState = 'loading' | 'success' | 'error';
 
 type ImageStates = ReadonlyMap<string, ImageState>;
 
-export default function TeamInput({ onChange, onValidChange, className, teamNumber }: Props) {
+export function TeamInput({ onChange, onValidChange, className, teamNumber }: Props) {
 	const valid = teamNumber === '' || TeamNumber.safeParse(teamNumber).success;
 
 	const [lastAvatarUrl, setLastAvatarUrl] = useState<string | undefined>(undefined);

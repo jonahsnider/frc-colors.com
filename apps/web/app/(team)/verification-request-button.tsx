@@ -2,7 +2,7 @@ import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { ArrowPathIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import { useEffect, useState } from 'react';
-import TeamCardButton from '../components/team-card/team-card-button';
+import { TeamCardButton } from '../components/team-card/team-card-button';
 import { trpc } from '../trpc';
 
 type Props = {
@@ -57,7 +57,7 @@ function ButtonContents({ state }: { state: State }): React.ReactNode {
 	);
 }
 
-export default function VerificationRequestButton({ teamNumber }: Props) {
+export function VerificationRequestButton({ teamNumber }: Props) {
 	const [finishedAt, setFinishedAt] = useState<number | undefined>(undefined);
 	const mutation = trpc.verificationRequests.createForTeam.useMutation({
 		onMutate: () => {

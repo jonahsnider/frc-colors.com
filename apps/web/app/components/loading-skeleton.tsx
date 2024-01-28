@@ -5,7 +5,7 @@ type Props = {
 	bar?: boolean;
 } & React.JSX.IntrinsicElements['div'];
 
-export default function LoadingSkeleton({ className, bar = true, ...rest }: Props) {
+export function LoadingSkeleton({ className, bar = true, ...rest }: Props) {
 	return (
 		<div role='status' className='animate-pulse'>
 			<div

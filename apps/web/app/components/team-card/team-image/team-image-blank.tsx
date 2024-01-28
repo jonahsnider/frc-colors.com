@@ -1,7 +1,7 @@
 import { gray } from 'tailwindcss/colors';
-import TeamImageGradient from './team-image-gradient';
+import { TeamImageGradient } from './team-image-gradient';
 
-export default function TeamImageBlank() {
+export function TeamImageBlank() {
 	return (
 		<TeamImageGradient
 			colors={{

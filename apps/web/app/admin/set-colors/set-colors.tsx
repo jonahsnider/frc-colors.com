@@ -1,10 +1,10 @@
 'use client';
 
-import ColorInput from '@/app/components/color-input';
-import H2 from '@/app/components/headings/h2';
-import SubmitButton, { State } from '@/app/components/submit-button';
-import TeamCard from '@/app/components/team-card/team-card';
-import TeamInput from '@/app/components/team-input';
+import { ColorInput } from '@/app/components/color-input';
+import { H2 } from '@/app/components/headings/h2';
+import { State, SubmitButton } from '@/app/components/submit-button';
+import { TeamCard } from '@/app/components/team-card/team-card';
+import { TeamInput } from '@/app/components/team-input';
 import { trpc } from '@/app/trpc';
 import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { SetColorsInput } from '@frc-colors/api/src/teams/dtos/set-colors-input.dto';
@@ -35,7 +35,7 @@ function determineState({
 	return 'invalid';
 }
 
-export default function SetColors() {
+export function SetColors() {
 	const [succeededAt, setSucceededAt] = useState<number | undefined>();
 
 	const [rawTeam, setRawTeam] = useState<string>('');

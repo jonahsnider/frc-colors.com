@@ -1,6 +1,6 @@
-import AdminNavbarLink from './admin-navbar-links';
-import NavbarLink from './navbar-link';
-import NavbarLogo from './navbar-logo';
+import { AdminNavbarLink } from './admin-navbar-links';
+import { NavbarLink } from './navbar-link';
+import { NavbarLogo } from './navbar-logo';
 
 const DEFAULT_NAVBAR_ITEMS = [
 	{
@@ -13,7 +13,7 @@ const DEFAULT_NAVBAR_ITEMS = [
 	},
 ];
 
-export default function Navbar() {
+export function Navbar() {
 	return (
 		<nav className='bg-neutral-800 shadow-lg px-4 py-2 flex justify-center'>
 			<div className='flex justify-between w-full max-w-4xl'>

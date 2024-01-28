@@ -1,9 +1,9 @@
 'use client';
 
 import { useApiKey } from '@/app/hooks/use-api-key';
-import NavbarLink from './navbar-link';
+import { NavbarLink } from './navbar-link';
 
-export default function AdminNavbarLink() {
+export function AdminNavbarLink() {
 	const [apiKey] = useApiKey();
 
 	if (apiKey) {

@@ -1,8 +1,9 @@
 'use client';
 
-import H1 from '../components/headings/h1';
+import { H1 } from '../components/headings/h1';
 import { TeamNumberProvider } from '../contexts/team-number-context';
 
+// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function TeamLayout({
 	children,
 }: {

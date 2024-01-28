@@ -1,18 +1,18 @@
-import VerificationRequestButton from '@/app/(team)/verification-request-button';
+import { VerificationRequestButton } from '@/app/(team)/verification-request-button';
 import { trpc } from '@/app/trpc';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import LoadingSkeleton from '../loading-skeleton';
+import { LoadingSkeleton } from '../loading-skeleton';
 import { getTeamAvatarUrl } from '../util/team-avatar-url';
-import BaseTeamCard from './base-team-card';
-import ColorSwatch from './color-swatch';
-import TeamImage from './team-image/team-image';
+import { BaseTeamCard } from './base-team-card';
+import { ColorSwatch } from './color-swatch';
+import { TeamImage } from './team-image/team-image';
 
 type Props = {
 	teamNumber: number;
 };
 
-export default function TeamCard({ teamNumber }: Props) {
+export function TeamCard({ teamNumber }: Props) {
 	const teamNameQuery = trpc.teams.getName.useQuery(teamNumber);
 	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
 

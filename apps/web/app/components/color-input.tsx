@@ -38,7 +38,7 @@ function parseRawColor(rawColor: string): ParsedColor {
 	};
 }
 
-export default function ColorInput({ kind, onValidChange, onChange, rawColor, className }: Props) {
+export function ColorInput({ kind, onValidChange, onChange, rawColor, className }: Props) {
 	const color = parseRawColor(rawColor);
 	const valid = color.hex === '' || HexColorCode.safeParse(color.hex).success;
 

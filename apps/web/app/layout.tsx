@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { Lato } from 'next/font/google';
-import Footer from './components/footer';
-import Navbar from './components/navbar/navbar';
+import { Footer } from './components/footer';
+import { Navbar } from './components/navbar/navbar';
 import { TrpcProvider } from './components/trpc/trpc-provider';
 import './globals.css';
 import { description, metadataBase, siteName } from './shared-metadata';
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 	},
 };
 
+// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function RootLayout({
 	children,
 }: {

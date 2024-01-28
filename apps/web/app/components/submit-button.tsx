@@ -23,7 +23,7 @@ function ButtonContents({ state, children }: PropsWithChildren<{ state: State }>
 	}
 }
 
-export default function SubmitButton({ onClick, children, state }: Props) {
+export function SubmitButton({ onClick, children, state }: Props) {
 	const disabled = state === 'loading' || state === 'success' || state === 'invalid';
 
 	return (

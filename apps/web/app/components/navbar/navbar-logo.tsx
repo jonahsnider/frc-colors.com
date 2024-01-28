@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import frcColors from './frc-colors.svg';
 
-export default function NavbarLogo() {
+export function NavbarLogo() {
 	return (
 		<Link href='/'>
 			<div className='flex gap-x-4 rounded px-2 py-2 transition-colors hover:bg-neutral-700 active:bg-neutral-600'>

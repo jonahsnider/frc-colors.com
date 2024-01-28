@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
 
-export default function H1({ children }: PropsWithChildren) {
+export function H1({ children }: PropsWithChildren) {
 	return <h1 className='text-4xl font-bold my-6 text-center'>{children}</h1>;
 }

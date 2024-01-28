@@ -6,7 +6,7 @@ type Props = {
 	className?: string;
 };
 
-export default function TeamImageGradient({ colors, className }: Props) {
+export function TeamImageGradient({ colors, className }: Props) {
 	return (
 		<div
 			className={clsx('rounded transition-colors w-48 h-48', className)}

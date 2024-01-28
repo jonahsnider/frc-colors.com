@@ -1,12 +1,12 @@
 import { trpc } from '@/app/trpc';
 import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
-import ColorSubmissionCard from './color-submission-card';
+import { ColorSubmissionCard } from './color-submission-card';
 
 type Props = {
 	colorSubmissions: ColorSubmission[];
 };
 
-export default function ColorSubmissionsTable({ colorSubmissions }: Props) {
+export function ColorSubmissionsTable({ colorSubmissions }: Props) {
 	const oldColors = trpc.teams.colors.getMany.useQuery([581]);
 
 	return (

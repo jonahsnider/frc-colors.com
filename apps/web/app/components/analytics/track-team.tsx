@@ -5,7 +5,7 @@ import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
-export default function TrackTeam({ teamNumber }: { teamNumber?: TeamNumber }) {
+export function TrackTeam({ teamNumber }: { teamNumber?: TeamNumber }) {
 	const plausible = usePlausible();
 	const [previousTeamNumber, setPreviousTeamNumber] = useState<TeamNumber>();
 

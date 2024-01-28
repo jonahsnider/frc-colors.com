@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import ApiKeyInput from '../components/admin/api-key-input';
-import H1 from '../components/headings/h1';
-import H2 from '../components/headings/h2';
-import ColorSubmissionsList from './color-submissions-list';
-import SetColors from './set-colors/set-colors';
-import VerificationRequestsList from './verification-requests-list';
+import { ApiKeyInput } from '../components/admin/api-key-input';
+import { H1 } from '../components/headings/h1';
+import { H2 } from '../components/headings/h2';
+import { ColorSubmissionsList } from './color-submissions-list';
+import { SetColors } from './set-colors/set-colors';
+import { VerificationRequestsList } from './verification-requests-list';
 
+// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function Admin() {
 	const [apiKey, setApiKey] = useState<string | undefined>();
 

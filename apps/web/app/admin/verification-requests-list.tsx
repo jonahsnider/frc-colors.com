@@ -1,11 +1,11 @@
 import { count } from '@jonahsnider/util';
 
 import { Schema } from '@frc-colors/api/src/db/index';
-import VerificationRequestsTable from '../components/admin/verification-requests/table';
-import H2 from '../components/headings/h2';
+import { VerificationRequestsTable } from '../components/admin/verification-requests/table';
+import { H2 } from '../components/headings/h2';
 import { trpc } from '../trpc';
 
-export default function VerificationRequestsList() {
+export function VerificationRequestsList() {
 	const { data, error, isLoading } = trpc.verificationRequests.getAll.useQuery();
 
 	const pendingRequests = {

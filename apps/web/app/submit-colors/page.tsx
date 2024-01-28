@@ -4,10 +4,10 @@ import { CreateColorSubmission } from '@frc-colors/api/src/color-submissions/dto
 import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { useState } from 'react';
-import ColorInput from '../components/color-input';
-import H1 from '../components/headings/h1';
-import SubmitButton, { State } from '../components/submit-button';
-import TeamInput from '../components/team-input';
+import { ColorInput } from '../components/color-input';
+import { H1 } from '../components/headings/h1';
+import { State, SubmitButton } from '../components/submit-button';
+import { TeamInput } from '../components/team-input';
 import { trpc } from '../trpc';
 
 function determineState({
@@ -32,6 +32,7 @@ function determineState({
 	return 'invalid';
 }
 
+// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function SubmitColors() {
 	const [rawTeam, setRawTeam] = useState<string>('');
 	const [rawPrimaryColor, setRawPrimaryColor] = useState<string>('');

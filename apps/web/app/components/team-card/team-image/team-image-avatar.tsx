@@ -4,10 +4,10 @@ import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import LoadingSkeleton from '../../loading-skeleton';
+import { LoadingSkeleton } from '../../loading-skeleton';
 import styles from './team-image-avatar.module.css';
-import TeamImageBlank from './team-image-blank';
-import TeamImageGradient from './team-image-gradient';
+import { TeamImageBlank } from './team-image-blank';
+import { TeamImageGradient } from './team-image-gradient';
 
 enum BackgroundColor {
 	None = 0,
@@ -24,7 +24,7 @@ type ImageState = 'loading' | 'success' | 'error';
 
 type ImageStates = ReadonlyMap<string, ImageState>;
 
-export default function TeamImageAvatar({ colors, avatarUrl }: Props) {
+export function TeamImageAvatar({ colors, avatarUrl }: Props) {
 	const [backgroundColor, setBackgroundColor] = useState<BackgroundColor>(BackgroundColor.None);
 
 	const cycleBackgroundColor = () => {

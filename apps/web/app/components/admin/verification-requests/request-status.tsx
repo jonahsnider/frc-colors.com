@@ -7,7 +7,7 @@ type Props = {
 	request: VerificationRequest;
 };
 
-export default function RequestStatus({ request }: Props) {
+export function RequestStatus({ request }: Props) {
 	const updatedAt = request.updatedAt ? `Updated ${formatDistanceToNow(new Date(request.updatedAt))} ago` : undefined;
 
 	if (request.status === Schema.VerificationRequestStatus.Finished) {

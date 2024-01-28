@@ -1,7 +1,7 @@
 import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
 import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
-import ColorSwatch from '../../team-card/color-swatch';
+import { ColorSwatch } from '../../team-card/color-swatch';
 
 type Props = {
 	loading: boolean;
@@ -9,7 +9,7 @@ type Props = {
 	submission: ColorSubmission;
 };
 
-export default function CompareColors({ loading, submission, colors }: Props) {
+export function CompareColors({ loading, submission, colors }: Props) {
 	const primaryBefore = loading ? undefined : colors?.primary;
 	const secondaryBefore = loading ? undefined : colors?.secondary;
 	const verificationBadge = colors?.verified ? (

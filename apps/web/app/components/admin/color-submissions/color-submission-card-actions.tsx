@@ -6,7 +6,7 @@ type Props = {
 	onReject: () => void;
 };
 
-export default function TableRowActions({ onApprove, onReject, status }: Props) {
+export function TableRowActions({ onApprove, onReject, status }: Props) {
 	if (status === 'idle') {
 		return (
 			<div className='flex gap-x-1 pt-1 justify-between'>

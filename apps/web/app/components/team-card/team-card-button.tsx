@@ -6,7 +6,7 @@ type Props = PropsWithChildren<{
 	onClick?: () => void;
 }>;
 
-export default function TeamCardButton({ children, onClick, status = 'idle' }: Props) {
+export function TeamCardButton({ children, onClick, status = 'idle' }: Props) {
 	const disabled = status === 'loading' || status === 'success';
 
 	return (

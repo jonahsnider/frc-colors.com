@@ -1,11 +1,11 @@
 import type { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
-import TableRow from './table-row';
+import { TableRow } from './table-row';
 
 type Props = {
 	requests: VerificationRequest[];
 };
 
-export default function VerificationRequestsTable({ requests }: Props) {
+export function VerificationRequestsTable({ requests }: Props) {
 	return (
 		<div className='flex flex-col gap-y-1 w-full md:w-auto'>
 			{requests.map((verificationRequest) => (

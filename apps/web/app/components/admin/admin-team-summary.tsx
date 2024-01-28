@@ -1,18 +1,18 @@
 'use client';
 
-import H2 from '../headings/h2';
-import VerificationRequestsTable from './verification-requests/table';
+import { H2 } from '../headings/h2';
+import { VerificationRequestsTable } from './verification-requests/table';
 
 import { trpc } from '@/app/trpc';
 import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
-import H3 from '../headings/h3';
-import ColorSubmissionsTable from './color-submissions/table';
+import { H3 } from '../headings/h3';
+import { ColorSubmissionsTable } from './color-submissions/table';
 
 type Props = {
 	teamNumber: TeamNumber | undefined;
 };
 
-export default function AdminTeamSummary({ teamNumber }: Props) {
+export function AdminTeamSummary({ teamNumber }: Props) {
 	if (!teamNumber) {
 		return <></>;
 	}

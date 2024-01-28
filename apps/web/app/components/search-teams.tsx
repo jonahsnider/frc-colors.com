@@ -12,7 +12,7 @@ type Props = {
 	invalidTeam: boolean;
 };
 
-export default function SearchTeams({ invalidTeam }: Props) {
+export function SearchTeams({ invalidTeam }: Props) {
 	const searchParams = useSearchParams();
 	const urlTeam = searchParams.get('team') ?? undefined;
 	const router = useRouter();

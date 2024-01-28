@@ -1,11 +1,11 @@
 import { count } from '@jonahsnider/util';
 
 import { Schema } from '@frc-colors/api/src/db/index';
-import ColorSubmissionsTable from '../components/admin/color-submissions/table';
-import H2 from '../components/headings/h2';
+import { ColorSubmissionsTable } from '../components/admin/color-submissions/table';
+import { H2 } from '../components/headings/h2';
 import { trpc } from '../trpc';
 
-export default function ColorSubmissionsList() {
+export function ColorSubmissionsList() {
 	const { data, error, isLoading } = trpc.colorSubmissions.getAll.useQuery();
 
 	const pendingSubmissions = {

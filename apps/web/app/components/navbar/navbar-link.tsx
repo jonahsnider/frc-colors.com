@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { NavbarItem } from './types';
 
-export default function NavbarLink({ item }: { item: NavbarItem }) {
+export function NavbarLink({ item }: { item: NavbarItem }) {
 	return (
 		<li className='flex items-center justify-center'>
 			<Link

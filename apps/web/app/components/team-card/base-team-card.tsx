@@ -12,7 +12,7 @@ type Props = {
 	actions?: ReactNode;
 };
 
-export default function BaseTeamCard({ title, avatar, verifiedBadge, colors, actions }: Props) {
+export function BaseTeamCard({ title, avatar, verifiedBadge, colors, actions }: Props) {
 	return (
 		<div className='rounded my-4 p-4 flex max-md:flex-col justify-between md:gap-x-4 bg-neutral-800 shadow shadow-neutral-950'>
 			{/* Image container */}
