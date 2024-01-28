@@ -6,7 +6,6 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
-		"build:docker": "docker build . --tag frc-colors",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --apply-unsafe",
 		"migrate": "bun ./migrate.ts",
