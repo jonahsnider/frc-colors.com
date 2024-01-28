@@ -1,5 +1,5 @@
 import { TeamNumber } from '../teams/dtos/team-number.dto';
-import { adminProcedure, router } from '../trpc/trpc';
+import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
 import { colorSubmissionsService } from './color-submissions.service';
 import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
 
@@ -11,7 +11,7 @@ export const colorSubmissionsRouter = router({
 		.input(TeamNumber)
 		.output(ColorSubmission.array())
 		.query(({ input }) => colorSubmissionsService.findManyColorSubmissions(input)),
-	createForTeam: adminProcedure
+	createForTeam: publicProcedure
 		.input(CreateColorSubmission)
 		.output(ColorSubmission)
 		.mutation(({ input }) => colorSubmissionsService.createColorSubmission(input)),
