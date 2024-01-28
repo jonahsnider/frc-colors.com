@@ -2,11 +2,5 @@
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"buildCommand": "bun migrate && bun run build",
 	"cleanUrls": true,
-	"crons": [
-		{
-			"path": "/api/cron/purge-expired-avatars",
-			"schedule": "0 0 * * *"
-		}
-	],
 	"installCommand": "bun install --frozen-lockfile"
 }
