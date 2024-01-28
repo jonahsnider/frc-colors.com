@@ -1,23 +1,23 @@
 {
-  "name": "frc-colors",
-  "private": true,
-  "workspaces": [
-    "apps/*"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "lint": "biome check .",
-    "lint:fix": "biome check . --apply-unsafe",
-    "migrate": "bun ./migrate.ts",
-    "migrate:create": "drizzle-kit generate:pg",
-    "test": "bun run lint && turbo run build type-check",
-    "type-check": "turbo run type-check"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@vercel/postgres": "0.7.2",
-    "drizzle-kit": "0.20.13",
-    "turbo": "1.11.3",
-    "vercel": "33.3.0"
-  }
+	"name": "frc-colors",
+	"private": true,
+	"workspaces": ["apps/*"],
+	"scripts": {
+		"build": "turbo run build",
+		"lint": "biome check .",
+		"lint:fix": "biome check . --apply-unsafe",
+		"migrate": "bun ./migrate.ts",
+		"migrate:create": "drizzle-kit generate:pg",
+		"test": "bun run lint && turbo run build type-check",
+		"type-check": "turbo run type-check"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.5.3",
+		"consola": "3.2.3",
+		"drizzle-kit": "0.20.13",
+		"envalid": "8.0.0",
+		"postgres": "3.4.3",
+		"turbo": "1.11.3",
+		"vercel": "33.3.0"
+	}
 }

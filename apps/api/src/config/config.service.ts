@@ -8,6 +8,7 @@ export class ConfigService {
 	public readonly nodeEnv: NodeEnv;
 	public readonly frcEventsApi: Readonly<{ username: string; password: string }>;
 	public readonly port: number;
+	public readonly databaseUrl: string;
 
 	constructor() {
 		const env = cleanEnv(process.env, {
@@ -23,6 +24,8 @@ export class ConfigService {
 			NODE_ENV: str({ default: 'production', choices: ['production', 'development', 'staging'] }),
 			// biome-ignore lint/style/useNamingConvention: This is an environment variable
 			PORT: port({ default: 3000 }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			DATABASE_URL: str({ desc: 'PostgreSQL URL' }),
 		});
 
 		this.tbaApiKey = env.TBA_API_KEY;
@@ -33,6 +36,7 @@ export class ConfigService {
 			password: env.FRC_EVENTS_API_KEY,
 		};
 		this.port = env.PORT;
+		this.databaseUrl = env.DATABASE_URL;
 	}
 }
 
