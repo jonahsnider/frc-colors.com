@@ -3,8 +3,6 @@
 	"private": true,
 	"main": "./src/index.ts",
 	"scripts": {
-		"prebuild": "rm -rf dist",
-		"build": "bun build ./src/index.ts --compile --sourcemap=inline --outfile=dist/frc-colors",
 		"dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
 		"start": "bun run src/index.ts",
 		"type-check": "tsc"
