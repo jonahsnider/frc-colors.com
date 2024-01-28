@@ -12,7 +12,7 @@ const nextConfig = withPlausibleProxy()({
 	productionBrowserSourceMaps: true,
 	env: {
 		// biome-ignore lint/style/useNamingConvention: This is an environment variable
-		NEXT_PUBLIC_API_URL: process.env.API_URL,
+		NEXT_PUBLIC_API_URL: getBaseApiUrl(),
 	},
 });
 
