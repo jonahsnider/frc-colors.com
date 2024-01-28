@@ -1,7 +1,6 @@
 import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { ArrowPathIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
-import { captureException } from '@sentry/nextjs';
 import { useEffect, useState } from 'react';
 import TeamCardButton from '../components/team-card/team-card-button';
 import { trpc } from '../trpc';
@@ -81,7 +80,7 @@ export default function VerificationRequestButton({ teamNumber }: Props) {
 		try {
 			await mutation.mutateAsync(teamNumber);
 		} catch (error) {
-			captureException(error);
+			console.error('Error while requesting verification:', error);
 		}
 	};
 
