@@ -78,6 +78,13 @@
 			"when": 1706356523936,
 			"tag": "0010_wild_hawkeye",
 			"breakpoints": true
+		},
+		{
+			"idx": 11,
+			"version": "5",
+			"when": 1706601838586,
+			"tag": "0011_majestic_talkback",
+			"breakpoints": true
 		}
 	]
 }

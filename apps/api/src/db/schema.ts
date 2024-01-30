@@ -28,7 +28,6 @@ export const teams = pgTable(
 		number: integer('id').primaryKey().notNull(),
 
 		createdAt: timestamp('created_at', { precision: 3, mode: 'date', withTimezone: true }).defaultNow().notNull(),
-		updatedAt: timestamp('updated_at', { precision: 3, mode: 'date', withTimezone: true }),
 	},
 	(teams) => ({
 		numberKey: uniqueIndex('teams_id_key').on(teams.number),
