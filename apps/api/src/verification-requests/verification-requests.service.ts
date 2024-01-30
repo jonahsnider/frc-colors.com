@@ -31,14 +31,20 @@ export class VerificationRequestsService {
 	}
 
 	async requestVerification(teamNumber: TeamNumber): Promise<VerificationRequest> {
-		const [created] = await db
-			.insert(Schema.colorVerificationRequests)
-			.values({ teamId: teamNumber, status: Schema.VerificationRequestStatus.Pending })
-			.returning();
+		let insertedRow: typeof Schema.colorVerificationRequests.$inferSelect | undefined;
 
-		assert(created);
+		await db.transaction(async (tx) => {
+			await tx.insert(Schema.teams).values({ id: teamNumber }).onConflictDoNothing();
 
-		return VerificationRequestsService.dbVerificationRequestToDto(created);
+			[insertedRow] = await db
+				.insert(Schema.colorVerificationRequests)
+				.values({ teamId: teamNumber, status: Schema.VerificationRequestStatus.Pending })
+				.returning();
+		});
+
+		assert(insertedRow);
+
+		return VerificationRequestsService.dbVerificationRequestToDto(insertedRow);
 	}
 
 	async updateVerificationStatus(

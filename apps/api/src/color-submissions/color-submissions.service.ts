@@ -75,17 +75,21 @@ export class ColorSubmissionsService {
 	}
 
 	async createColorSubmission(body: CreateColorSubmission): Promise<ColorSubmission> {
-		const inserted = await db
-			.insert(Schema.colorFormSubmissions)
-			.values({
-				teamId: body.teamNumber,
-				primaryColorHex: body.primaryHex,
-				secondaryColorHex: body.secondaryHex,
-				status: Schema.VerificationRequestStatus.Pending,
-			})
-			.returning();
+		let insertedRow: typeof Schema.colorFormSubmissions.$inferSelect | undefined;
 
-		const [insertedRow] = inserted;
+		await db.transaction(async (tx) => {
+			await tx.insert(Schema.teams).values({ id: body.teamNumber }).onConflictDoNothing();
+
+			[insertedRow] = await tx
+				.insert(Schema.colorFormSubmissions)
+				.values({
+					teamId: body.teamNumber,
+					primaryColorHex: body.primaryHex,
+					secondaryColorHex: body.secondaryHex,
+					status: Schema.VerificationRequestStatus.Pending,
+				})
+				.returning();
+		});
 
 		if (!insertedRow) {
 			throw new TRPCError({
