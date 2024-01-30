@@ -47,7 +47,7 @@ export const teamColors = pgTable(
 		updatedAt: timestamp('updated_at', { precision: 3, mode: 'date', withTimezone: true }),
 	},
 	(teamColors) => ({
-		teamIdKey: uniqueIndex('team_colors_team_id_key').on(teamColors.team),
+		teamKey: uniqueIndex('team_colors_team_id_key').on(teamColors.team),
 		verifiedIndex: index('team_colors_verified_index').on(teamColors.verified),
 	}),
 );
@@ -57,7 +57,7 @@ export const verificationRequests = pgTable(
 	{
 		id: serial('id').primaryKey().notNull(),
 
-		teamId: integer('teamId')
+		team: integer('teamId')
 			.notNull()
 			.references(() => teams.number, { onDelete: 'restrict', onUpdate: 'cascade' }),
 
@@ -67,7 +67,7 @@ export const verificationRequests = pgTable(
 		updatedAt: timestamp('updated_at', { precision: 3, mode: 'date', withTimezone: true }),
 	},
 	(verificationRequests) => ({
-		teamKey: index('color_verification_requests_team_id_key').on(verificationRequests.teamId),
+		teamKey: index('color_verification_requests_team_id_key').on(verificationRequests.team),
 		createdAtIndex: index('color_verification_requests_created_at_index').on(verificationRequests.createdAt),
 		statusIndex: index('color_verification_requests_status_index').on(verificationRequests.status),
 	}),

@@ -13,7 +13,7 @@ export class VerificationRequestsService {
 			id: row.id,
 			createdAt: row.createdAt,
 			updatedAt: row.updatedAt ?? undefined,
-			team: row.teamId,
+			team: row.team,
 			status: row.status,
 		};
 	}
@@ -32,11 +32,11 @@ export class VerificationRequestsService {
 		let insertedRow: typeof Schema.verificationRequests.$inferSelect | undefined;
 
 		await db.transaction(async (tx) => {
-			await tx.insert(Schema.teams).values({ number: teamNumber }).onConflictDoNothing();
+			await tx.insert(Schema.teams).values({ number: teamNumber, createdAt: new Date() }).onConflictDoNothing();
 
 			[insertedRow] = await db
 				.insert(Schema.verificationRequests)
-				.values({ teamId: teamNumber, status: Schema.VerificationRequestStatus.Pending })
+				.values({ team: teamNumber, status: Schema.VerificationRequestStatus.Pending })
 				.returning();
 		});
 
@@ -73,7 +73,7 @@ export class VerificationRequestsService {
 			.set({ status, updatedAt: new Date() })
 			.where(
 				and(
-					eq(Schema.verificationRequests.teamId, teamNumber),
+					eq(Schema.verificationRequests.team, teamNumber),
 					eq(Schema.verificationRequests.status, Schema.VerificationRequestStatus.Pending),
 				),
 			)
@@ -84,7 +84,7 @@ export class VerificationRequestsService {
 
 	async findManyVerificationRequests(team?: TeamNumber): Promise<VerificationRequest[]> {
 		const condition = team
-			? eq(Schema.verificationRequests.teamId, team)
+			? eq(Schema.verificationRequests.team, team)
 			: or(
 					eq(Schema.verificationRequests.status, Schema.VerificationRequestStatus.Pending),
 					and(
