@@ -16,11 +16,11 @@ export class StoredColors implements ColorFetcher {
 		}
 
 		const teamColors = await db.query.teamColors.findMany({
-			where: inArray(Schema.teamColors.teamId, teams),
+			where: inArray(Schema.teamColors.team, teams),
 			columns: {
-				teamId: true,
-				primaryColorHex: true,
-				secondaryColorHex: true,
+				team: true,
+				primaryHex: true,
+				secondaryHex: true,
 				verified: true,
 			},
 		});
@@ -29,9 +29,9 @@ export class StoredColors implements ColorFetcher {
 			const result: ManyTeamColors = new Map();
 
 			for (const colors of teamColors) {
-				result.set(colors.teamId, {
-					primary: HexColorCode.parse(colors.primaryColorHex.toLowerCase()),
-					secondary: HexColorCode.parse(colors.secondaryColorHex.toLowerCase()),
+				result.set(colors.team, {
+					primary: HexColorCode.parse(colors.primaryHex.toLowerCase()),
+					secondary: HexColorCode.parse(colors.secondaryHex.toLowerCase()),
 					verified: colors.verified,
 				});
 			}
@@ -52,27 +52,27 @@ export class StoredColors implements ColorFetcher {
 		}
 
 		return {
-			primary: HexColorCode.parse(teamColor.primaryColorHex.toLowerCase()),
-			secondary: HexColorCode.parse(teamColor.secondaryColorHex.toLowerCase()),
+			primary: HexColorCode.parse(teamColor.primaryHex.toLowerCase()),
+			secondary: HexColorCode.parse(teamColor.secondaryHex.toLowerCase()),
 			verified: teamColor.verified,
 		};
 	}
 
 	async setTeamColors(team: TeamNumber, colors: TeamColors): Promise<void> {
 		const teamColor = {
-			primaryColorHex: colors.primary,
-			secondaryColorHex: colors.secondary,
+			primaryHex: colors.primary,
+			secondaryHex: colors.secondary,
 			verified: colors.verified,
-		};
+		} satisfies Partial<typeof Schema.teamColors.$inferSelect>;
 
 		await db.transaction(async (tx) => {
-			await tx.insert(Schema.teams).values({ id: team }).onConflictDoNothing();
+			await tx.insert(Schema.teams).values({ number: team }).onConflictDoNothing();
 
 			await tx
 				.insert(Schema.teamColors)
-				.values({ teamId: team, ...teamColor })
+				.values({ team, ...teamColor })
 				.onConflictDoUpdate({
-					target: Schema.teamColors.teamId,
+					target: Schema.teamColors.team,
 					set: { ...teamColor, updatedAt: new Date() },
 				});
 		});

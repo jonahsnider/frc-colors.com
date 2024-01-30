@@ -8,9 +8,7 @@ import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { VerificationRequest } from './dtos/verification-request.dto';
 
 export class VerificationRequestsService {
-	private static dbVerificationRequestToDto(
-		row: typeof Schema.colorVerificationRequests.$inferSelect,
-	): VerificationRequest {
+	private static dbVerificationRequestToDto(row: typeof Schema.verificationRequests.$inferSelect): VerificationRequest {
 		return {
 			id: row.id,
 			createdAt: row.createdAt,
@@ -31,13 +29,13 @@ export class VerificationRequestsService {
 	}
 
 	async requestVerification(teamNumber: TeamNumber): Promise<VerificationRequest> {
-		let insertedRow: typeof Schema.colorVerificationRequests.$inferSelect | undefined;
+		let insertedRow: typeof Schema.verificationRequests.$inferSelect | undefined;
 
 		await db.transaction(async (tx) => {
-			await tx.insert(Schema.teams).values({ id: teamNumber }).onConflictDoNothing();
+			await tx.insert(Schema.teams).values({ number: teamNumber }).onConflictDoNothing();
 
 			[insertedRow] = await db
-				.insert(Schema.colorVerificationRequests)
+				.insert(Schema.verificationRequests)
 				.values({ teamId: teamNumber, status: Schema.VerificationRequestStatus.Pending })
 				.returning();
 		});
@@ -52,9 +50,9 @@ export class VerificationRequestsService {
 		status: Schema.VerificationRequestStatus,
 	): Promise<VerificationRequest | undefined> {
 		const updated = await db
-			.update(Schema.colorVerificationRequests)
+			.update(Schema.verificationRequests)
 			.set({ status, updatedAt: new Date() })
-			.where(eq(Schema.colorVerificationRequests.id, id))
+			.where(eq(Schema.verificationRequests.id, id))
 			.returning();
 
 		const verificationRequest = updated[0];
@@ -71,12 +69,12 @@ export class VerificationRequestsService {
 		status: Schema.VerificationRequestStatus,
 	): Promise<VerificationRequest[]> {
 		const updated = await db
-			.update(Schema.colorVerificationRequests)
+			.update(Schema.verificationRequests)
 			.set({ status, updatedAt: new Date() })
 			.where(
 				and(
-					eq(Schema.colorVerificationRequests.teamId, teamNumber),
-					eq(Schema.colorVerificationRequests.status, Schema.VerificationRequestStatus.Pending),
+					eq(Schema.verificationRequests.teamId, teamNumber),
+					eq(Schema.verificationRequests.status, Schema.VerificationRequestStatus.Pending),
 				),
 			)
 			.returning();
@@ -86,16 +84,16 @@ export class VerificationRequestsService {
 
 	async findManyVerificationRequests(team?: TeamNumber): Promise<VerificationRequest[]> {
 		const condition = team
-			? eq(Schema.colorVerificationRequests.teamId, team)
+			? eq(Schema.verificationRequests.teamId, team)
 			: or(
-					eq(Schema.colorVerificationRequests.status, Schema.VerificationRequestStatus.Pending),
+					eq(Schema.verificationRequests.status, Schema.VerificationRequestStatus.Pending),
 					and(
-						ne(Schema.colorVerificationRequests.status, Schema.VerificationRequestStatus.Pending),
-						gt(Schema.colorVerificationRequests.updatedAt, new Date(Date.now() - ms('7d'))),
+						ne(Schema.verificationRequests.status, Schema.VerificationRequestStatus.Pending),
+						gt(Schema.verificationRequests.updatedAt, new Date(Date.now() - ms('7d'))),
 					),
 			  );
 
-		const verificationRequests = await db.select().from(Schema.colorVerificationRequests).where(condition);
+		const verificationRequests = await db.select().from(Schema.verificationRequests).where(condition);
 
 		if (team) {
 			verificationRequests.sort(Sort.descending((request) => request.createdAt));

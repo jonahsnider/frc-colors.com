@@ -41,7 +41,7 @@ export class CacheManager {
 
 		for (const avatar of avatars) {
 			if (avatar.createdAt.getTime() + CacheManager.AVATAR_TTL.to('ms') > Date.now()) {
-				outdatedTeams.delete(avatar.teamId);
+				outdatedTeams.delete(avatar.team);
 			}
 		}
 
@@ -58,12 +58,12 @@ export class CacheManager {
 				const avatar = await tbaService.getTeamAvatarForThisYear(team);
 
 				await db.transaction(async (tx) => {
-					await tx.insert(Schema.teams).values({ id: team }).onConflictDoNothing();
+					await tx.insert(Schema.teams).values({ number: team }).onConflictDoNothing();
 					await tx
 						.insert(Schema.avatars)
-						.values({ teamId: team, createdAt: new Date(), png: avatar })
+						.values({ team: team, createdAt: new Date(), png: avatar })
 						.onConflictDoUpdate({
-							target: Schema.avatars.teamId,
+							target: Schema.avatars.team,
 							set: { createdAt: new Date(), png: avatar },
 						});
 				});
@@ -101,16 +101,16 @@ export class CacheManager {
 						await tx
 							.insert(Schema.teamColors)
 							.values({
-								teamId: team,
-								primaryColorHex: color.primary,
-								secondaryColorHex: color.secondary,
+								team: team,
+								primaryHex: color.primary,
+								secondaryHex: color.secondary,
 								verified: false,
 							})
 							.onConflictDoUpdate({
-								target: Schema.teamColors.teamId,
+								target: Schema.teamColors.team,
 								set: {
-									primaryColorHex: color.primary,
-									secondaryColorHex: color.secondary,
+									primaryHex: color.primary,
+									secondaryHex: color.secondary,
 									verified: false,
 								},
 								where: eq(Schema.teamColors.verified, false),
@@ -119,7 +119,7 @@ export class CacheManager {
 						// Clear colors from DB, unless they're verified
 						await tx
 							.delete(Schema.teamColors)
-							.where(and(eq(Schema.teamColors.teamId, team), eq(Schema.teamColors.verified, false)));
+							.where(and(eq(Schema.teamColors.team, team), eq(Schema.teamColors.verified, false)));
 					}
 				}
 			});

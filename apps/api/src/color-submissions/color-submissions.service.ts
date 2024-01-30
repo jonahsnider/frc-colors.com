@@ -8,16 +8,16 @@ import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
 
 export class ColorSubmissionsService {
-	static dbColorSubmissionToDto(row: typeof Schema.colorFormSubmissions.$inferSelect): ColorSubmission {
+	static dbColorSubmissionToDto(row: typeof Schema.colorSubmissions.$inferSelect): ColorSubmission {
 		return {
 			id: row.id,
 			createdAt: row.createdAt,
 			updatedAt: row.updatedAt ?? undefined,
 
-			teamNumber: row.teamId,
+			teamNumber: row.team,
 			status: row.status,
-			primaryHex: row.primaryColorHex,
-			secondaryHex: row.secondaryColorHex,
+			primaryHex: row.primaryHex,
+			secondaryHex: row.secondaryHex,
 		};
 	}
 
@@ -32,10 +32,7 @@ export class ColorSubmissionsService {
 	}
 
 	async findColorSubmission(id: number): Promise<ColorSubmission | undefined> {
-		const submissions = await db
-			.select()
-			.from(Schema.colorFormSubmissions)
-			.where(eq(Schema.colorFormSubmissions.id, id));
+		const submissions = await db.select().from(Schema.colorSubmissions).where(eq(Schema.colorSubmissions.id, id));
 
 		const [submission] = submissions;
 
@@ -48,16 +45,16 @@ export class ColorSubmissionsService {
 
 	async findManyColorSubmissions(team?: TeamNumber): Promise<ColorSubmission[]> {
 		const condition = team
-			? eq(Schema.colorFormSubmissions.teamId, team)
+			? eq(Schema.colorSubmissions.team, team)
 			: or(
-					eq(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending),
+					eq(Schema.colorSubmissions.status, Schema.VerificationRequestStatus.Pending),
 					and(
-						ne(Schema.colorFormSubmissions.status, Schema.VerificationRequestStatus.Pending),
-						gt(Schema.colorFormSubmissions.updatedAt, new Date(Date.now() - ms('7d'))),
+						ne(Schema.colorSubmissions.status, Schema.VerificationRequestStatus.Pending),
+						gt(Schema.colorSubmissions.updatedAt, new Date(Date.now() - ms('7d'))),
 					),
 			  );
 
-		const colorSubmissions = await db.select().from(Schema.colorFormSubmissions).where(condition);
+		const colorSubmissions = await db.select().from(Schema.colorSubmissions).where(condition);
 
 		if (team) {
 			colorSubmissions.sort(Sort.descending((submission) => submission.createdAt));
@@ -75,17 +72,17 @@ export class ColorSubmissionsService {
 	}
 
 	async createColorSubmission(body: CreateColorSubmission): Promise<ColorSubmission> {
-		let insertedRow: typeof Schema.colorFormSubmissions.$inferSelect | undefined;
+		let insertedRow: typeof Schema.colorSubmissions.$inferSelect | undefined;
 
 		await db.transaction(async (tx) => {
-			await tx.insert(Schema.teams).values({ id: body.teamNumber }).onConflictDoNothing();
+			await tx.insert(Schema.teams).values({ number: body.teamNumber }).onConflictDoNothing();
 
 			[insertedRow] = await tx
-				.insert(Schema.colorFormSubmissions)
+				.insert(Schema.colorSubmissions)
 				.values({
-					teamId: body.teamNumber,
-					primaryColorHex: body.primaryHex,
-					secondaryColorHex: body.secondaryHex,
+					team: body.teamNumber,
+					primaryHex: body.primaryHex,
+					secondaryHex: body.secondaryHex,
 					status: Schema.VerificationRequestStatus.Pending,
 				})
 				.returning();
@@ -103,9 +100,9 @@ export class ColorSubmissionsService {
 
 	async modifyColorSubmissionStatus(id: number, status: Schema.VerificationRequestStatus): Promise<ColorSubmission> {
 		const updated = await db
-			.update(Schema.colorFormSubmissions)
+			.update(Schema.colorSubmissions)
 			.set({ status, updatedAt: new Date() })
-			.where(eq(Schema.colorFormSubmissions.id, id))
+			.where(eq(Schema.colorSubmissions.id, id))
 			.returning();
 
 		const [updatedRow] = updated;
