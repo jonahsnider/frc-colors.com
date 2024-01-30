@@ -32,9 +32,9 @@ export class VerificationRequestsService {
 		let insertedRow: typeof Schema.verificationRequests.$inferSelect | undefined;
 
 		await db.transaction(async (tx) => {
-			await tx.insert(Schema.teams).values({ number: teamNumber, createdAt: new Date() }).onConflictDoNothing();
+			await tx.insert(Schema.teams).values({ number: teamNumber }).onConflictDoNothing();
 
-			[insertedRow] = await db
+			[insertedRow] = await tx
 				.insert(Schema.verificationRequests)
 				.values({ team: teamNumber, status: Schema.VerificationRequestStatus.Pending })
 				.returning();
