@@ -8,19 +8,15 @@ import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { VerificationRequest } from './dtos/verification-request.dto';
 
 export class VerificationRequestsService {
-	private static dbVerificationRequestToDto(dbVerificationRequest: {
-		id: number;
-		createdAt: Date;
-		updatedAt: Date | null;
-		teamId: number;
-		status: Schema.VerificationRequestStatus;
-	}): VerificationRequest {
+	private static dbVerificationRequestToDto(
+		row: typeof Schema.colorVerificationRequests.$inferSelect,
+	): VerificationRequest {
 		return {
-			id: dbVerificationRequest.id,
-			createdAt: dbVerificationRequest.createdAt,
-			updatedAt: dbVerificationRequest.updatedAt ?? undefined,
-			team: dbVerificationRequest.teamId,
-			status: dbVerificationRequest.status,
+			id: row.id,
+			createdAt: row.createdAt,
+			updatedAt: row.updatedAt ?? undefined,
+			team: row.teamId,
+			status: row.status,
 		};
 	}
 

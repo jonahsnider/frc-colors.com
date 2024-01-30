@@ -2,22 +2,13 @@ import { Comparable, Sort } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { ms } from 'convert';
 import { and, eq, gt, ne, or } from 'drizzle-orm';
-import { HexColorCode } from '../colors/dtos/colors.dto';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
 
 export class ColorSubmissionsService {
-	static dbColorSubmissionToDto(row: {
-		id: number;
-		createdAt: Date;
-		updatedAt: Date | null;
-		teamId: number;
-		status: Schema.VerificationRequestStatus;
-		primaryColorHex: HexColorCode;
-		secondaryColorHex: HexColorCode;
-	}): ColorSubmission {
+	static dbColorSubmissionToDto(row: typeof Schema.colorFormSubmissions.$inferSelect): ColorSubmission {
 		return {
 			id: row.id,
 			createdAt: row.createdAt,
