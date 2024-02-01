@@ -14,7 +14,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.5.3",
 		"consola": "3.2.3",
-		"drizzle-kit": "0.20.13",
+		"drizzle-kit": "0.20.14",
 		"envalid": "8.0.0",
 		"postgres": "3.4.3",
 		"turbo": "1.12.2",
