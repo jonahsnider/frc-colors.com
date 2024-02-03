@@ -5,7 +5,6 @@ import {
 	integer,
 	pgEnum,
 	pgTable,
-	serial,
 	text,
 	timestamp,
 	uniqueIndex,
@@ -55,7 +54,6 @@ export const teamColors = pgTable(
 export const verificationRequests = pgTable(
 	'color_verification_requests',
 	{
-		id: serial('id').notNull(),
 		uuid: uuid('uuid').primaryKey().notNull().defaultRandom(),
 		team: integer('teamId')
 			.notNull()
@@ -74,7 +72,6 @@ export const verificationRequests = pgTable(
 export const colorSubmissions = pgTable(
 	'color_form_submissions',
 	{
-		id: serial('id').notNull(),
 		uuid: uuid('uuid').primaryKey().notNull().defaultRandom(),
 		team: integer('teamId')
 			.notNull()
