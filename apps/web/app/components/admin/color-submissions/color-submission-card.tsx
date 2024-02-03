@@ -80,7 +80,7 @@ export function ColorSubmissionCard({ submission: originalSubmission, oldColors,
 				<p title={`Created ${formatRelative(new Date(submission.createdAt), new Date())}`}>
 					{formatDistanceToNow(new Date(submission.createdAt))} ago
 				</p>
-				<p>#{submission.id}</p>
+				<p title={submission.id}>{submission.id.split('-', 1)[0]}</p>
 			</div>
 
 			<CompareColors loading={oldColorsLoading} colors={oldColors ?? undefined} submission={submission} />
