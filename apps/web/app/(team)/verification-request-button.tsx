@@ -58,6 +58,7 @@ function ButtonContents({ state }: { state: State }): React.ReactNode {
 }
 
 export function VerificationRequestButton({ teamNumber }: Props) {
+	const utils = trpc.useUtils();
 	const [finishedAt, setFinishedAt] = useState<number | undefined>(undefined);
 	const mutation = trpc.verificationRequests.createForTeam.useMutation({
 		onMutate: () => {
@@ -65,6 +66,10 @@ export function VerificationRequestButton({ teamNumber }: Props) {
 		},
 		onSettled: () => {
 			setFinishedAt(Date.now());
+		},
+		onSuccess: () => {
+			utils.verificationRequests.getAll.invalidate();
+			utils.verificationRequests.getAllForTeam.invalidate(teamNumber);
 		},
 	});
 	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
