@@ -1,40 +1,41 @@
 {
-	"name": "@frc-colors/api",
-	"private": true,
-	"main": "./src/index.ts",
-	"scripts": {
-		"dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
-		"start": "bun run src/index.ts",
-		"type-check": "tsc"
-	},
-	"dependencies": {
-		"@jonahsnider/util": "10.3.0",
-		"@tinyhttp/app": "2.2.3",
-		"@tinyhttp/logger": "2.0.0",
-		"@trpc/server": "next",
-		"color-luminance": "2.1.0",
-		"consola": "3.2.3",
-		"convert": "4.14.1",
-		"cors": "2.8.5",
-		"devalue": "4.3.2",
-		"drizzle-orm": "0.29.3",
-		"envalid": "8.0.0",
-		"extract-colors": "4.0.2",
-		"ky": "1.2.0",
-		"listhen": "1.6.0",
-		"next-api-utils": "1.0.4",
-		"p-limit": "4.0.0",
-		"pngjs": "7.0.0",
-		"postgres": "3.4.3",
-		"superjson": "2.2.1",
-		"zod": "3.22.4"
-	},
-	"devDependencies": {
-		"@tsconfig/bun": "1.0.1",
-		"@tsconfig/strictest": "2.0.2",
-		"@types/cors": "2.8.17",
-		"@types/pngjs": "6.0.4",
-		"bun-types": "1.0.25",
-		"typescript": "5.3.3"
-	}
+  "name": "@frc-colors/api",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@jonahsnider/util": "10.3.0",
+    "@sentry/bun": "7.99.0",
+    "@tinyhttp/app": "2.2.3",
+    "@tinyhttp/logger": "2.0.0",
+    "@trpc/server": "next",
+    "color-luminance": "2.1.0",
+    "consola": "3.2.3",
+    "convert": "4.14.1",
+    "cors": "2.8.5",
+    "devalue": "4.3.2",
+    "drizzle-orm": "0.29.3",
+    "envalid": "8.0.0",
+    "extract-colors": "4.0.2",
+    "ky": "1.2.0",
+    "listhen": "1.6.0",
+    "next-api-utils": "1.0.4",
+    "p-limit": "4.0.0",
+    "pngjs": "7.0.0",
+    "postgres": "3.4.3",
+    "superjson": "2.2.1",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@tsconfig/bun": "1.0.1",
+    "@tsconfig/strictest": "2.0.2",
+    "@types/cors": "2.8.17",
+    "@types/pngjs": "6.0.4",
+    "bun-types": "1.0.25",
+    "typescript": "5.3.3"
+  }
 }

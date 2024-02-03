@@ -9,6 +9,7 @@ export class ConfigService {
 	public readonly frcEventsApi: Readonly<{ username: string; password: string }>;
 	public readonly port: number;
 	public readonly databaseUrl: string;
+	public readonly sentryDsn: string | undefined;
 
 	constructor() {
 		const env = cleanEnv(process.env, {
@@ -26,6 +27,8 @@ export class ConfigService {
 			PORT: port({ default: 3000 }),
 			// biome-ignore lint/style/useNamingConvention: This is an environment variable
 			DATABASE_URL: str({ desc: 'PostgreSQL URL' }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			SENTRY_DSN: str({ desc: 'Sentry DSN', default: undefined }),
 		});
 
 		this.tbaApiKey = env.TBA_API_KEY;

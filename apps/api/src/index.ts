@@ -7,6 +7,12 @@ import { Controllers } from './api/index';
 import { cacheManager } from './cache-manager/cache-manager.service';
 import { configService } from './config/config.service';
 import { logger } from './logger/logger';
+import * as Sentry from '@sentry/bun';
+
+Sentry.init({
+	dsn: configService.sentryDsn,
+	tracesSampleRate: 1.0,
+});
 
 const server = new App({
 	onError: errorHandler,
