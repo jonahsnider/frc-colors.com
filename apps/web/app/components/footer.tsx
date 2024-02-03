@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function Footer() {
 	return (
-		<footer className='text-center py-5 text-neutral-200 w-full shrink-0'>
+		<footer className='text-center py-5 lg:pt-10 text-neutral-200 w-full shrink-0 lg:text-lg xl:text-xl'>
 			<p>
 				<Link className='underline' href='/submit-colors'>
 					Submit colors for a team

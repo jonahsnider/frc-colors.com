@@ -31,7 +31,7 @@ export function BaseTeamCard({ title, avatar, verifiedBadge, colors, actions }: 
 				</div>
 
 				<div
-					className={clsx('flex gap-x-4 md:gap-x-16', {
+					className={clsx('flex gap-x-4', {
 						'md:justify-between': colors,
 						'justify-end h-full': !colors,
 					})}

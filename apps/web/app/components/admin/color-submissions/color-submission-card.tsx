@@ -47,7 +47,7 @@ function CardActions({
 		<div className='pt-1'>
 			<div className='bg-neutral-700 rounded flex flex-col gap-y-1 justify-center items-center py-1'>
 				{submission.updatedAt && (
-					<p title={`Updated ${formatRelative(new Date(submission.updatedAt), new Date())}`}>
+					<p title={`Updated ${formatRelative(new Date(submission.updatedAt), new Date())}`} className='text-lg'>
 						{result} {formatDistanceToNow(new Date(submission.updatedAt))} ago
 					</p>
 				)}
@@ -68,19 +68,21 @@ export function ColorSubmissionCard({ submission: originalSubmission, oldColors,
 
 	return (
 		<div className='flex flex-col gap-y-1 rounded bg-neutral-800 p-2 shadow w-full'>
-			<div className='flex justify-between pb-1 gap-x-4'>
+			<div className='flex justify-between pb-1 gap-4'>
 				<a
-					className='font-bold underline'
+					className='text-lg font-bold underline'
 					target='_blank'
 					rel='noreferrer'
 					href={`https://www.google.com/search?q=frc+team+${submission.teamNumber}`}
 				>
 					{submission.teamNumber}
 				</a>
-				<p title={`Created ${formatRelative(new Date(submission.createdAt), new Date())}`}>
+				<p className='text-lg' title={`Created ${formatRelative(new Date(submission.createdAt), new Date())}`}>
 					{formatDistanceToNow(new Date(submission.createdAt))} ago
 				</p>
-				<p title={submission.id}>{submission.id.split('-', 1)[0]}</p>
+				<p className='text-lg' title={submission.id}>
+					{submission.id.split('-', 1)[0]}
+				</p>
 			</div>
 
 			<CompareColors loading={oldColorsLoading} colors={oldColors ?? undefined} submission={submission} />

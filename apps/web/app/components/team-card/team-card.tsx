@@ -29,7 +29,7 @@ export function TeamCard({ teamNumber }: Props) {
 				teamNameQuery.isLoading ? (
 					<LoadingSkeleton className='w-72 h-6 bg-gray-500 mt-2' />
 				) : (
-					<p className='text-2xl font-bold'>{title}</p>
+					<p className='text-2xl lg:text-3xl font-bold'>{title}</p>
 				)
 			}
 			avatar={<TeamImage avatarUrl={getTeamAvatarUrl(teamNumber)} colors={colorsQuery.data?.colors} />}
@@ -41,10 +41,10 @@ export function TeamCard({ teamNumber }: Props) {
 			}
 			verifiedBadge={
 				colorsQuery.isLoading ? (
-					<CheckBadgeIcon className='max-md:h-0 md:h-6 invisible' />
+					<CheckBadgeIcon className='h-0 md:h-6 lg:h-8 invisible' />
 				) : (
 					<CheckBadgeIcon
-						className={clsx('h-6 transition-opacity', {
+						className={clsx('h-6 lg:h-8 transition-opacity', {
 							'opacity-0 max-md:h-0': !colorsQuery.data?.colors?.verified,
 						})}
 						color={colorsQuery.data?.colors?.primary}

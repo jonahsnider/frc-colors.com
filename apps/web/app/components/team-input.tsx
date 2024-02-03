@@ -43,10 +43,10 @@ export function TeamInput({ onChange, onValidChange, className, teamNumber }: Pr
 
 	const buttonHidden = imageStateForUrl !== 'success' || !valid;
 	return (
-		<div className={clsx('rounded relative w-full md:w-auto md:max-w-min', className)}>
+		<div className={clsx('rounded relative w-full md:w-auto md:max-w-min text-lg xl:text-xl', className)}>
 			<input
 				className={clsx(
-					'w-full md:w-auto transition-all h-16 rounded p-4 outline-none border-4',
+					'w-full md:w-auto transition-all rounded p-4 outline-none border-4',
 					{
 						'border-red-400': !valid,
 						'border-transparent': valid,

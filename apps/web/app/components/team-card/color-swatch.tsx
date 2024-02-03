@@ -10,7 +10,7 @@ export function ColorSwatch({ hex }: { hex: HexColorCode }) {
 	return (
 		<div
 			className={clsx(
-				'w-full md:px-8 h-12 transition-colors rounded outline-none font-bold text-center flex items-center justify-center',
+				'w-full md:px-8 min-h-12 transition-colors rounded outline-none font-bold text-center flex items-center justify-center lg:text-xl',
 				{
 					'text-white': isDark,
 					'text-black': !isDark,

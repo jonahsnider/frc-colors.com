@@ -11,7 +11,7 @@ export function VerificationRequestsTable({ requests }: Props) {
 			{requests.map((verificationRequest) => (
 				<TableRow key={verificationRequest.id} request={verificationRequest} />
 			))}
-			{requests.length === 0 && <p>No verification requests</p>}
+			{requests.length === 0 && <p className='text-lg lg:text-xl'>No verification requests</p>}
 		</div>
 	);
 }

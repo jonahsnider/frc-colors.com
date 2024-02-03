@@ -41,7 +41,7 @@ export function SearchTeams({ invalidTeam }: Props) {
 		<div className='flex flex-col gap-y-4'>
 			<input
 				className={clsx(
-					'transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-950 border-4',
+					'transition-all min-h-14 rounded p-4 lg:p-5 outline-none bg-neutral-800 shadow shadow-neutral-950 border-4 text-lg lg:text-xl',
 					{
 						'border-red-400': !valid,
 						'border-transparent': valid,

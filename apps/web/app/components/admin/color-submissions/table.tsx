@@ -19,7 +19,7 @@ export function ColorSubmissionsTable({ colorSubmissions }: Props) {
 					oldColorsLoading={oldColors.isLoading}
 				/>
 			))}
-			{colorSubmissions.length === 0 && <p>No color submissions</p>}
+			{colorSubmissions.length === 0 && <p className='text-lg lg:text-xl'>No color submissions</p>}
 		</div>
 	);
 }

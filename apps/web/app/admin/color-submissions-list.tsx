@@ -26,7 +26,7 @@ export function ColorSubmissionsList() {
 			{data && (
 				<>
 					{Boolean(pendingSubmissions.total) && (
-						<p>
+						<p className='text-lg lg:text-xl'>
 							{pendingSubmissions.total.toLocaleString()} submissions pending (
 							{pendingSubmissions.unique.toLocaleString()} unique teams)
 						</p>

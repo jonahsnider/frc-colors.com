@@ -115,7 +115,7 @@ export function SetColors() {
 		<div className='flex flex-col gap-4 items-center w-full md:w-auto'>
 			<H2>Set colors</H2>
 
-			<div className='flex flex-col bg-neutral-800 rounded p-2 gap-2 md:gap-4 w-full'>
+			<div className='flex flex-col bg-neutral-800 rounded p-2 lg:p-4 gap-2 md:gap-4 w-full'>
 				<TeamInput teamNumber={rawTeam} onChange={setRawTeam} onValidChange={setTeam} className='bg-neutral-700' />
 
 				<div className='flex gap-2 flex-col md:flex-row'>
@@ -146,7 +146,7 @@ export function SetColors() {
 						disabled={mutation.isPending || !(rawTeam || rawPrimaryColor || rawSecondaryColor)}
 						className='transition-colors py-2 px-4 w-1/4 rounded bg-neutral-700 hover:bg-neutral-600 flex items-center justify-center disabled:bg-neutral-600 disabled:text-neutral-400 active:bg-neutral-500'
 					>
-						<XMarkIcon className='h-6' />
+						<XMarkIcon className='h-8' />
 					</button>
 				</div>
 			</div>

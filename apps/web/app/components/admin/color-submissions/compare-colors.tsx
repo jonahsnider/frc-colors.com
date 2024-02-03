@@ -21,22 +21,22 @@ export function CompareColors({ loading, submission, colors }: Props) {
 	return (
 		<>
 			{colorsAreDifferent && (
-				<div className='flex flex-col gap-y-1'>
+				<div className='flex flex-col gap-1'>
 					<div className='flex justify-between'>
-						<p>Current:</p>
+						<p className='text-lg'>Current:</p>
 						{verificationBadge}
 					</div>
 
-					<div className='flex gap-x-2'>
+					<div className='flex gap-2'>
 						{primaryBefore && <ColorSwatch hex={primaryBefore} />}
-						{!primaryBefore && <p className='bg-neutral-700 p-2 w-full rounded text-center'>None</p>}
+						{!primaryBefore && <p className='bg-neutral-700 p-2 w-full rounded text-center text-lg'>None</p>}
 						{secondaryBefore && <ColorSwatch hex={secondaryBefore} />}
 					</div>
 				</div>
 			)}
-			<div className='flex flex-col gap-y-1'>
-				<p className='text-start'>Proposed:</p>
-				<div className='flex gap-x-2'>
+			<div className='flex flex-col gap-1'>
+				<p className='text-start text-lg'>Proposed:</p>
+				<div className='flex gap-2'>
 					<ColorSwatch hex={submission.primaryHex} />
 					<ColorSwatch hex={submission.secondaryHex} />
 				</div>

@@ -12,9 +12,12 @@ type Props = {
 export function TableRow({ request }: Props) {
 	return (
 		<div
-			className={clsx('flex bg-neutral-800 rounded md:gap-x-4 py-1 px-2 justify-between shadow w-full', {
-				'text-gray-400': request.status === Schema.VerificationRequestStatus.Finished,
-			})}
+			className={clsx(
+				'flex bg-neutral-800 rounded md:gap-x-4 py-1 px-2 justify-between items-center shadow w-full text-lg xl:text-xl xl:px-3 xl:py-1.5',
+				{
+					'text-gray-400': request.status === Schema.VerificationRequestStatus.Finished,
+				},
+			)}
 		>
 			<a
 				className='font-bold underline'

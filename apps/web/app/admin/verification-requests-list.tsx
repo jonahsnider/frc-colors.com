@@ -26,7 +26,7 @@ export function VerificationRequestsList() {
 			{data && (
 				<>
 					{Boolean(pendingRequests.total) && (
-						<p>
+						<p className='text-lg lg:text-xl'>
 							{pendingRequests.total.toLocaleString()} requests pending ({pendingRequests.unique.toLocaleString()}{' '}
 							unique teams)
 						</p>
