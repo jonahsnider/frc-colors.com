@@ -11,7 +11,16 @@ import {
 	uniqueIndex,
 } from 'drizzle-orm/pg-core';
 
-export const verificationRequestStatus = pgEnum('verification_request_status', ['REJECTED', 'PENDING', 'FINISHED']);
+export enum VerificationRequestStatus {
+	Rejected = 'REJECTED',
+	Finished = 'FINISHED',
+	Pending = 'PENDING',
+}
+export const verificationRequestStatus = pgEnum('verification_request_status', [
+	VerificationRequestStatus.Finished,
+	VerificationRequestStatus.Pending,
+	VerificationRequestStatus.Rejected,
+]);
 
 export const teams = pgTable(
 	'teams',
@@ -60,7 +69,7 @@ export const verificationRequests = pgTable(
 	}),
 );
 
-export const colorFormSubmissions = pgTable(
+export const colorSubmissions = pgTable(
 	'color_form_submissions',
 	{
 		id: serial('id').primaryKey().notNull(),
