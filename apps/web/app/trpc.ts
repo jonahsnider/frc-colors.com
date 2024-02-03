@@ -6,10 +6,11 @@ import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 import getBaseApiUrl from '../shared.js';
 
 export const trpc = createTRPCNext<AppRouter>({
+	transformer,
 	config: () => ({
-		transformer,
 		links: [
 			httpBatchLink({
+				transformer,
 				url: new URL('/trpc', getBaseApiUrl()),
 				headers: async () => {
 					const apiKey = globalThis.window?.localStorage.getItem('apiKey');
