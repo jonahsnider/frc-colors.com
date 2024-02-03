@@ -56,7 +56,7 @@ export const verificationRequests = pgTable(
 	'color_verification_requests',
 	{
 		id: serial('id').notNull(),
-		uuid: uuid('uuid').notNull().defaultRandom(),
+		uuid: uuid('uuid').primaryKey().notNull().defaultRandom(),
 		team: integer('teamId')
 			.notNull()
 			.references(() => teams.number, { onDelete: 'restrict', onUpdate: 'cascade' }),
@@ -75,7 +75,7 @@ export const colorSubmissions = pgTable(
 	'color_form_submissions',
 	{
 		id: serial('id').notNull(),
-		uuid: uuid('uuid').notNull().defaultRandom(),
+		uuid: uuid('uuid').primaryKey().notNull().defaultRandom(),
 		team: integer('teamId')
 			.notNull()
 			.references(() => teams.number, { onDelete: 'restrict', onUpdate: 'cascade' }),
