@@ -6,7 +6,7 @@ import { TeamNumber } from '../../teams/dtos/team-number.dto';
 export const ColorSubmission = z.object({
 	createdAt: z.date(),
 	updatedAt: z.date().optional(),
-	id: z.number().int().positive(),
+	id: z.string().uuid(),
 	status: z.nativeEnum(Schema.VerificationRequestStatus),
 	teamNumber: TeamNumber,
 	primaryHex: HexColorCode,

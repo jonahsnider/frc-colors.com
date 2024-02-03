@@ -10,7 +10,7 @@ import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.
 export class ColorSubmissionsService {
 	static dbColorSubmissionToDto(row: typeof Schema.colorSubmissions.$inferSelect): ColorSubmission {
 		return {
-			id: row.id,
+			id: row.uuid,
 			createdAt: row.createdAt,
 			updatedAt: row.updatedAt ?? undefined,
 
@@ -31,8 +31,8 @@ export class ColorSubmissionsService {
 		}
 	}
 
-	async findColorSubmission(id: number): Promise<ColorSubmission | undefined> {
-		const submissions = await db.select().from(Schema.colorSubmissions).where(eq(Schema.colorSubmissions.id, id));
+	async findColorSubmission(id: string): Promise<ColorSubmission | undefined> {
+		const submissions = await db.select().from(Schema.colorSubmissions).where(eq(Schema.colorSubmissions.uuid, id));
 
 		const [submission] = submissions;
 
@@ -98,11 +98,11 @@ export class ColorSubmissionsService {
 		return ColorSubmissionsService.dbColorSubmissionToDto(insertedRow);
 	}
 
-	async modifyColorSubmissionStatus(id: number, status: Schema.VerificationRequestStatus): Promise<ColorSubmission> {
+	async modifyColorSubmissionStatus(id: string, status: Schema.VerificationRequestStatus): Promise<ColorSubmission> {
 		const updated = await db
 			.update(Schema.colorSubmissions)
 			.set({ status, updatedAt: new Date() })
-			.where(eq(Schema.colorSubmissions.id, id))
+			.where(eq(Schema.colorSubmissions.uuid, id))
 			.returning();
 
 		const [updatedRow] = updated;

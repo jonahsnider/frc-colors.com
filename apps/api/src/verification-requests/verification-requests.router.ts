@@ -19,7 +19,7 @@ export const verificationRequestsRouter = router({
 		.output(VerificationRequest)
 		.mutation(({ input }) => verificationRequestsService.requestVerification(input)),
 	updateStatus: adminProcedure
-		.input(z.object({ id: z.number(), status: z.nativeEnum(Schema.VerificationRequestStatus) }))
+		.input(z.object({ id: z.string().uuid(), status: z.nativeEnum(Schema.VerificationRequestStatus) }))
 		.mutation(({ input }) => verificationRequestsService.updateVerificationStatus(input.id, input.status)),
 	updateStatusForTeam: adminProcedure
 		.input(z.object({ team: TeamNumber, status: z.nativeEnum(Schema.VerificationRequestStatus) }))

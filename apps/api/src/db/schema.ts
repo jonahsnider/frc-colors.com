@@ -9,6 +9,7 @@ import {
 	text,
 	timestamp,
 	uniqueIndex,
+	uuid,
 } from 'drizzle-orm/pg-core';
 
 export enum VerificationRequestStatus {
@@ -55,6 +56,7 @@ export const verificationRequests = pgTable(
 	'color_verification_requests',
 	{
 		id: serial('id').primaryKey().notNull(),
+		uuid: uuid('uuid').notNull().defaultRandom(),
 		team: integer('teamId')
 			.notNull()
 			.references(() => teams.number, { onDelete: 'restrict', onUpdate: 'cascade' }),
@@ -73,6 +75,7 @@ export const colorSubmissions = pgTable(
 	'color_form_submissions',
 	{
 		id: serial('id').primaryKey().notNull(),
+		uuid: uuid('uuid').notNull().defaultRandom(),
 		team: integer('teamId')
 			.notNull()
 			.references(() => teams.number, { onDelete: 'restrict', onUpdate: 'cascade' }),

@@ -10,7 +10,7 @@ import { VerificationRequest } from './dtos/verification-request.dto';
 export class VerificationRequestsService {
 	private static dbVerificationRequestToDto(row: typeof Schema.verificationRequests.$inferSelect): VerificationRequest {
 		return {
-			id: row.id,
+			id: row.uuid,
 			createdAt: row.createdAt,
 			updatedAt: row.updatedAt ?? undefined,
 			team: row.team,
@@ -46,13 +46,13 @@ export class VerificationRequestsService {
 	}
 
 	async updateVerificationStatus(
-		id: number,
+		id: string,
 		status: Schema.VerificationRequestStatus,
 	): Promise<VerificationRequest | undefined> {
 		const updated = await db
 			.update(Schema.verificationRequests)
 			.set({ status, updatedAt: new Date() })
-			.where(eq(Schema.verificationRequests.id, id))
+			.where(eq(Schema.verificationRequests.uuid, id))
 			.returning();
 
 		const verificationRequest = updated[0];
