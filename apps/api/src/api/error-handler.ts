@@ -1,4 +1,5 @@
 import { Http } from '@jonahsnider/util';
+import { captureException } from '@sentry/bun';
 import { ErrorHandler } from '@tinyhttp/app';
 import { BaseValidationException } from 'next-api-utils';
 import { logger } from '../logger/logger';
@@ -28,6 +29,8 @@ export const errorHandler: ErrorHandler = (error, _req, res, _next) => {
 		);
 
 		res.writeHead(genericException.statusCode).json(genericException.toResponse());
+
+		captureException(error);
 
 		logger.error(error);
 	}
