@@ -23,7 +23,7 @@ export function ApiKeyInput({ onChange }: Props) {
 		<div>
 			<input
 				type='password'
-				value={apiKey}
+				value={apiKey ?? ''}
 				placeholder='API Key'
 				className='transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-900'
 				onChange={(event) => {
