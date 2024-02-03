@@ -24,7 +24,7 @@ export function TeamInput({ onChange, onValidChange, className, teamNumber }: Pr
 	const [lastAvatarUrl, setLastAvatarUrl] = useState<string | undefined>(undefined);
 	const [backgroundRed, setBackgroundRed] = useState(false);
 
-	const avatarUrl = getTeamAvatarUrl(teamNumber);
+	const avatarUrl = TeamNumber.safeParse(teamNumber).success ? getTeamAvatarUrl(teamNumber) : undefined;
 
 	if (avatarUrl !== lastAvatarUrl) {
 		setLastAvatarUrl(avatarUrl);
@@ -32,11 +32,11 @@ export function TeamInput({ onChange, onValidChange, className, teamNumber }: Pr
 
 	// Using a Map for this helps avoid a race condition where the avatar URL changes before the previous avatar loads
 	const [imageStates, setImageStates] = useState<ImageStates>(new Map());
-	const imageStateForUrl = imageStates.get(avatarUrl) ?? 'loading';
+	const imageStateForUrl = (avatarUrl ? imageStates.get(avatarUrl) : undefined) ?? 'loading';
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: This is intentional
 	useEffect(() => {
-		if (!imageStates.has(avatarUrl)) {
+		if (avatarUrl && !imageStates.has(avatarUrl)) {
 			setImageStates(new Map(imageStates).set(avatarUrl, 'loading'));
 		}
 	}, [avatarUrl]);
