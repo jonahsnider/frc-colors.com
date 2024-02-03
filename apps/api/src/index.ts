@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/bun';
 import { App } from '@tinyhttp/app';
 import { logger as loggerMiddleware } from '@tinyhttp/logger';
 import cors from 'cors';
@@ -7,7 +8,6 @@ import { Controllers } from './api/index';
 import { cacheManager } from './cache-manager/cache-manager.service';
 import { configService } from './config/config.service';
 import { logger } from './logger/logger';
-import * as Sentry from '@sentry/bun';
 
 Sentry.init({
 	dsn: configService.sentryDsn,
