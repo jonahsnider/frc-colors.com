@@ -12,6 +12,7 @@ import { logger } from './logger/logger';
 Sentry.init({
 	dsn: configService.sentryDsn,
 	tracesSampleRate: 1.0,
+	environment: configService.nodeEnv,
 });
 
 const server = new App({
