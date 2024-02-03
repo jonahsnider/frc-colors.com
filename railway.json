@@ -17,7 +17,7 @@
 		"healthcheckTimeout": 10,
 		"numReplicas": 1,
 		"restartPolicyMaxRetries": 3,
-		"restartPolicyType": "ON_FAILURE",
+		"restartPolicyType": "ALWAYS",
 		"startCommand": "bun --pwd ./apps/api start"
 	}
 }
