@@ -10,6 +10,12 @@ export function Footer() {
 			</p>
 
 			<p>
+				<a className='underline' href='https://status.frc-colors.com'>
+					Status page
+				</a>
+			</p>
+
+			<p>
 				FRC Colors is licensed under{' '}
 				<a className='underline' href='https://www.apache.org/licenses/LICENSE-2.0'>
 					Apache 2.0
