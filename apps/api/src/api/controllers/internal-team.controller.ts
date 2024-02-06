@@ -19,4 +19,6 @@ export const internalTeamController = new Hono().get('/:team/avatar.png', async 
 	if (!avatar) {
 		throw new BaseHttpException(`Team ${params.team} had no stored avatar.`, Http.Status.NotFound, 'E_TEAM_NOT_FOUND');
 	}
+
+	return context.body(avatar.buffer as ArrayBuffer, { headers: { 'Content-Type': 'image/png' } });
 });
