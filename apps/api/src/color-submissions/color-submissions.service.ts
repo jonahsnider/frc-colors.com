@@ -2,9 +2,11 @@ import { Comparable, Sort } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { ms } from 'convert';
 import { and, eq, gt, ne, or } from 'drizzle-orm';
+import { storedColors } from '../colors/stored/stored-colors.service';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
+import { verificationRequestsService } from '../verification-requests/verification-requests.service';
 import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
 
 export class ColorSubmissionsService {
@@ -112,6 +114,18 @@ export class ColorSubmissionsService {
 				code: 'NOT_FOUND',
 				message: 'Color submission not found',
 			});
+		}
+
+		if (updatedRow.status === Schema.VerificationRequestStatus.Finished) {
+			await storedColors.setTeamColors(updatedRow.team, {
+				primary: updatedRow.primaryHex,
+				secondary: updatedRow.secondaryHex,
+				verified: true,
+			});
+			await verificationRequestsService.updatePendingVerificationStatusesByTeam(
+				updatedRow.team,
+				Schema.VerificationRequestStatus.Finished,
+			);
 		}
 
 		return ColorSubmissionsService.dbColorSubmissionToDto(updatedRow);
