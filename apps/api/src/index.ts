@@ -43,15 +43,6 @@ const server = Bun.serve({
 	development: configService.nodeEnv === 'development',
 });
 
-cacheManager.init();
-
-// Initial refresh on boot, but only if not in development (hot reload reruns this too often)
-if (configService.nodeEnv !== 'development') {
-	await cacheManager.refresh();
-}
-
-export { type AppRouter } from './trpc/app.router';
-
 logger.withTag('server').success('Listening at', server.url.toString());
 
 if (configService.nodeEnv === 'development') {
@@ -62,3 +53,12 @@ if (configService.nodeEnv === 'development') {
 		}
 	}
 }
+
+cacheManager.init();
+
+// Initial refresh on boot, but only if not in development (hot reload reruns this too often)
+if (configService.nodeEnv !== 'development') {
+	await cacheManager.refresh();
+}
+
+export { type AppRouter } from './trpc/app.router';
