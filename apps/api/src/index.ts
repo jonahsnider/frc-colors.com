@@ -1,10 +1,10 @@
 import * as Sentry from '@sentry/bun';
-import { App } from '@tinyhttp/app';
-import { logger as loggerMiddleware } from '@tinyhttp/logger';
-import cors from 'cors';
-import { listen } from 'listhen';
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { inspectRoutes } from 'hono/dev';
+import { logger as honoLogger } from 'hono/logger';
+import { controllers } from './api/controllers/index';
 import { errorHandler } from './api/error-handler';
-import { Controllers } from './api/index';
 import { cacheManager } from './cache-manager/cache-manager.service';
 import { configService } from './config/config.service';
 import { logger } from './logger/logger';
@@ -15,32 +15,47 @@ Sentry.init({
 	environment: configService.nodeEnv,
 });
 
-const server = new App({
-	onError: errorHandler,
-})
-	.use(loggerMiddleware())
-	.use(cors());
+const app = new Hono()
+	.onError(errorHandler)
+	.use('*', honoLogger())
+	.use('/v1/*', cors())
+	.use(
+		'/internal/*',
+		cors({
+			origin: configService.websiteUrl,
+		}),
+	)
+	.use(
+		'/trpc/*',
+		cors({
+			origin: configService.websiteUrl,
+		}),
+	)
+	.route('/', controllers);
 
-for (const registerController of Object.values(Controllers)) {
-	registerController(server);
-}
-
-// biome-ignore lint/suspicious/noExplicitAny: This is safe
-const listener = await listen(server.attach as any, {
+// biome-ignore lint/correctness/noUndeclaredVariables: This is a global
+const server = Bun.serve({
+	fetch: app.fetch,
 	port: configService.port,
-	qr: false,
-	// biome-ignore lint/style/useNamingConvention: This is a library
-	showURL: false,
+	development: configService.nodeEnv === 'development',
 });
 
-for (const url of await listener.getURLs()) {
-	logger.withTag('server').success(`Listening on ${url.url}`);
-}
-
 cacheManager.init();
+
 // Initial refresh on boot, but only if not in development (hot reload reruns this too often)
 if (configService.nodeEnv !== 'development') {
 	await cacheManager.refresh();
 }
 
 export { type AppRouter } from './trpc/app.router';
+
+logger.withTag('server').success('Listening at', server.url.toString());
+
+if (configService.nodeEnv === 'development') {
+	logger.withTag('server').debug('Routes:');
+	for (const route of inspectRoutes(app)) {
+		if (!route.isMiddleware) {
+			logger.withTag('server').debug(route.method, route.path);
+		}
+	}
+}

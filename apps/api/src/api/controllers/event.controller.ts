@@ -1,16 +1,18 @@
+import { zValidator } from '@hono/zod-validator';
 import { Http } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
-import { validateParams } from 'next-api-utils';
+import { Hono } from 'hono';
 import { z } from 'zod';
 import { ManyTeamColors } from '../../colors/dtos/colors.dto';
 import { eventsService } from '../../events/events.service';
 import { ApiService } from '../api.service';
 import { BaseHttpException } from '../exceptions/base.exception';
-import { RegisterController } from '../interfaces/controller.interface';
 
-export const eventController: RegisterController = (app) =>
-	app.get('/v1/event/:event', async (req, res) => {
-		const params = validateParams(req, z.object({ event: z.string().max(64) }));
+export const eventController = new Hono().get(
+	'/:event',
+	zValidator('param', z.object({ event: z.string().max(64) })),
+	async (context) => {
+		const params = context.req.valid('param');
 
 		let colors: ManyTeamColors;
 
@@ -28,5 +30,6 @@ export const eventController: RegisterController = (app) =>
 			throw error;
 		}
 
-		res.json(ApiService.manyTeamColorsToDto(colors));
-	});
+		return context.json(ApiService.manyTeamColorsToDto(colors));
+	},
+);

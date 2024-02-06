@@ -1,15 +1,15 @@
-import { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { configService } from '../config/config.service';
 
 export class AuthService {
-	requestHasToken({ req }: CreateHTTPContextOptions): boolean {
-		const header = req.headers.authorization;
+	requestHasToken({ req }: FetchCreateContextFnOptions): boolean {
+		const header = req.headers.get('authorization');
 
 		return Boolean(header);
 	}
 
-	requestHasValidToken({ req }: CreateHTTPContextOptions): boolean {
-		const header = req.headers.authorization;
+	requestHasValidToken({ req }: FetchCreateContextFnOptions): boolean {
+		const header = req.headers.get('authorization');
 
 		if (!header) {
 			return false;

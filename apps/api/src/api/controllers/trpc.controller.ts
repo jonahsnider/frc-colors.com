@@ -1,20 +1,22 @@
-import { createHTTPHandler } from '@trpc/server/adapters/standalone';
+import { trpcServer } from '@hono/trpc-server';
+import { Hono } from 'hono';
 import { appRouter } from '../../trpc/app.router';
 import { createContext } from '../../trpc/context';
-import { RegisterController } from '../interfaces/controller.interface';
 
-const handler = createHTTPHandler({
-	router: appRouter,
-	createContext,
-	onError: (options) => {
-		if (options.error.code === 'INTERNAL_SERVER_ERROR') {
-			// Actual server error, should throw
-			throw options.error;
-		}
+export const trpcController = new Hono();
 
-		// Use default TRPC error response for client errors
-		return;
-	},
-});
+trpcController.use(
+	'/*',
+	trpcServer({
+		router: appRouter,
+		createContext,
+		onError: (options) => {
+			if (options.error.code === 'INTERNAL_SERVER_ERROR') {
+				// Actual server error, should throw
+				throw options.error;
+			}
 
-export const trpcController: RegisterController = (app) => app.use('/trpc', handler).use('/trpc/*', handler);
+			// Use default TRPC error response for client errors
+		},
+	}),
+);

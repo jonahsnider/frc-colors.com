@@ -1,8 +1,8 @@
 import { TRPCError } from '@trpc/server';
-import { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { authService } from '../auth/auth.service';
 
-export function createContext(options: CreateHTTPContextOptions): Context {
+export function createContext(options: FetchCreateContextFnOptions): Context {
 	if (authService.requestHasToken(options)) {
 		if (!authService.requestHasValidToken(options)) {
 			throw new TRPCError({
