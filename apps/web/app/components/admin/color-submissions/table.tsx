@@ -7,7 +7,7 @@ type Props = {
 };
 
 export function ColorSubmissionsTable({ colorSubmissions }: Props) {
-	const oldColors = trpc.teams.colors.getMany.useQuery([581]);
+	const oldColors = trpc.teams.colors.getMany.useQuery(colorSubmissions.map((submission) => submission.teamNumber));
 
 	return (
 		<div className='flex flex-col gap-y-2 w-full'>
