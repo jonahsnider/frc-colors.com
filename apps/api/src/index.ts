@@ -17,7 +17,10 @@ Sentry.init({
 
 const app = new Hono()
 	.onError(errorHandler)
-	.use('*', honoLogger())
+	.use(
+		'*',
+		honoLogger((...messages) => logger.withTag('server').info(...messages)),
+	)
 	.use('/v1/*', cors())
 	.use(
 		'/internal/*',
