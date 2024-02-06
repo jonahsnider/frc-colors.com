@@ -7,5 +7,5 @@ export type TeamColorsHttp = {
 };
 
 export type ManyTeamColorsHttp = {
-	colors: Record<TeamNumber, TeamColorsHttp | null>;
+	teams: Record<TeamNumber, TeamColorsHttp | null>;
 };

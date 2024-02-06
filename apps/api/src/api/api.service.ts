@@ -18,7 +18,7 @@ export class ApiService {
 		}
 
 		return {
-			colors: mapped,
+			teams: mapped,
 		};
 	}
 }
