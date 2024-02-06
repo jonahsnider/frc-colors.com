@@ -26,7 +26,7 @@ export function TeamInput({ onChange, onValidChange, className, teamNumber }: Pr
 
 	const avatarUrl = TeamNumber.safeParse(teamNumber).success ? getTeamAvatarUrl(teamNumber) : undefined;
 
-	if (avatarUrl !== lastAvatarUrl) {
+	if (avatarUrl && avatarUrl !== lastAvatarUrl) {
 		setLastAvatarUrl(avatarUrl);
 	}
 
