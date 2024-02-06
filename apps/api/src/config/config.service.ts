@@ -3,13 +3,13 @@ import { cleanEnv, port, str } from 'envalid';
 type NodeEnv = 'production' | 'development' | 'staging';
 
 export class ConfigService {
-	public readonly tbaApiKey: string | undefined;
-	public readonly adminApiToken: string | undefined;
+	public readonly tbaApiKey: string;
+	public readonly adminApiToken: string;
 	public readonly nodeEnv: NodeEnv;
 	public readonly frcEventsApi: Readonly<{ username: string; password: string }>;
 	public readonly port: number;
 	public readonly databaseUrl: string;
-	public readonly sentryDsn: string | undefined;
+	public readonly sentryDsn: string;
 
 	constructor() {
 		const env = cleanEnv(process.env, {
@@ -40,6 +40,7 @@ export class ConfigService {
 		};
 		this.port = env.PORT;
 		this.databaseUrl = env.DATABASE_URL;
+		this.sentryDsn = env.SENTRY_DSN;
 	}
 }
 
