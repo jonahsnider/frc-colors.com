@@ -1,19 +1,15 @@
 import { Http } from '@jonahsnider/util';
 
 import { captureException } from '@sentry/bun';
-import { Context, ErrorHandler } from 'hono';
+import { ErrorHandler } from 'hono';
 import { BaseValidationException } from 'next-api-utils';
 import { logger } from '../logger/logger';
 import { BaseHttpException } from './exceptions/base.exception';
 
-function createResponse(context: Context, error: BaseHttpException): Response {
-	context.status(error.statusCode);
-	return context.json(error.toResponse());
-}
-
 export const errorHandler: ErrorHandler = (error, context) => {
 	if (error instanceof BaseHttpException) {
-		return createResponse(context, error);
+		context.status(error.statusCode);
+		return context.json(error.toResponse());
 	}
 
 	if (error instanceof BaseValidationException) {
@@ -41,5 +37,6 @@ export const errorHandler: ErrorHandler = (error, context) => {
 		throw error;
 	}
 
-	return createResponse(context, genericException);
+	context.status(genericException.statusCode);
+	return context.json(genericException.toResponse());
 };
