@@ -33,8 +33,9 @@ export const errorHandler: ErrorHandler = (error, context) => {
 
 	if (error instanceof Error && error.message.toLowerCase().includes('connect_timeout')) {
 		// See https://github.com/porsager/postgres/issues/749
-		logger.fatal('DB connection timeout occurred, throwing error to restart the app');
-		throw error;
+		logger.fatal('DB connection timeout occurred, exiting with code 1');
+
+		process.exit(1);
 	}
 
 	context.status(genericException.statusCode);
