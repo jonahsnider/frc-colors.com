@@ -52,7 +52,7 @@ export const teamColors = pgTable(
 );
 
 export const verificationRequests = pgTable(
-	'color_verification_requests',
+	'verification_requests',
 	{
 		uuid: uuid('id').primaryKey().notNull().defaultRandom(),
 		team: integer('team_number')
@@ -70,7 +70,7 @@ export const verificationRequests = pgTable(
 );
 
 export const colorSubmissions = pgTable(
-	'color_form_submissions',
+	'color_submissions',
 	{
 		uuid: uuid('id').primaryKey().notNull().defaultRandom(),
 		team: integer('team_number')

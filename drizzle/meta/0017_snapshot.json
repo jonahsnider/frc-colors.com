@@ -1,0 +1,314 @@
+{
+	"id": "05d90f59-98df-4d35-80fe-381a8df6c1f7",
+	"prevId": "9bfdb777-143a-4b24-8ff6-a3b8604e51fb",
+	"version": "5",
+	"dialect": "pg",
+	"tables": {
+		"avatars": {
+			"name": "avatars",
+			"schema": "",
+			"columns": {
+				"team_number": {
+					"name": "team_number",
+					"type": "integer",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"png": {
+					"name": "png",
+					"type": "bytea",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"avatars_team_number_teams_team_number_fk": {
+					"name": "avatars_team_number_teams_team_number_fk",
+					"tableFrom": "avatars",
+					"tableTo": "teams",
+					"columnsFrom": ["team_number"],
+					"columnsTo": ["team_number"],
+					"onDelete": "restrict",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"color_submissions": {
+			"name": "color_submissions",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"team_number": {
+					"name": "team_number",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"primary_hex": {
+					"name": "primary_hex",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"secondary_hex": {
+					"name": "secondary_hex",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"status": {
+					"name": "status",
+					"type": "verification_request_status",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"color_submissions_team_number_index": {
+					"name": "color_submissions_team_number_index",
+					"columns": ["team_number"],
+					"isUnique": false
+				},
+				"color_submissions_created_at_index": {
+					"name": "color_submissions_created_at_index",
+					"columns": ["created_at"],
+					"isUnique": false
+				},
+				"color_submissions_status_index": {
+					"name": "color_submissions_status_index",
+					"columns": ["status"],
+					"isUnique": false
+				},
+				"color_submissions_updated_at_index": {
+					"name": "color_submissions_updated_at_index",
+					"columns": ["updated_at"],
+					"isUnique": false
+				}
+			},
+			"foreignKeys": {
+				"color_submissions_team_number_teams_team_number_fk": {
+					"name": "color_submissions_team_number_teams_team_number_fk",
+					"tableFrom": "color_submissions",
+					"tableTo": "teams",
+					"columnsFrom": ["team_number"],
+					"columnsTo": ["team_number"],
+					"onDelete": "restrict",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"team_colors": {
+			"name": "team_colors",
+			"schema": "",
+			"columns": {
+				"team_number": {
+					"name": "team_number",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"primary_hex": {
+					"name": "primary_hex",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"secondary_hex": {
+					"name": "secondary_hex",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"verified": {
+					"name": "verified",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": true
+				}
+			},
+			"indexes": {
+				"team_colors_team_number_index": {
+					"name": "team_colors_team_number_index",
+					"columns": ["team_number"],
+					"isUnique": true
+				},
+				"team_colors_verified_index": {
+					"name": "team_colors_verified_index",
+					"columns": ["verified"],
+					"isUnique": false
+				}
+			},
+			"foreignKeys": {
+				"team_colors_team_number_teams_team_number_fk": {
+					"name": "team_colors_team_number_teams_team_number_fk",
+					"tableFrom": "team_colors",
+					"tableTo": "teams",
+					"columnsFrom": ["team_number"],
+					"columnsTo": ["team_number"],
+					"onDelete": "restrict",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"teams": {
+			"name": "teams",
+			"schema": "",
+			"columns": {
+				"team_number": {
+					"name": "team_number",
+					"type": "integer",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {
+				"teams_team_number_index": {
+					"name": "teams_team_number_index",
+					"columns": ["team_number"],
+					"isUnique": true
+				}
+			},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"verification_requests": {
+			"name": "verification_requests",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"team_number": {
+					"name": "team_number",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"status": {
+					"name": "status",
+					"type": "verification_request_status",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp (3) with time zone",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {
+				"verification_requests_team_number_index": {
+					"name": "verification_requests_team_number_index",
+					"columns": ["team_number"],
+					"isUnique": false
+				},
+				"verification_requests_created_at_index": {
+					"name": "verification_requests_created_at_index",
+					"columns": ["created_at"],
+					"isUnique": false
+				},
+				"verification_requests_status_index": {
+					"name": "verification_requests_status_index",
+					"columns": ["status"],
+					"isUnique": false
+				}
+			},
+			"foreignKeys": {
+				"verification_requests_team_number_teams_team_number_fk": {
+					"name": "verification_requests_team_number_teams_team_number_fk",
+					"tableFrom": "verification_requests",
+					"tableTo": "teams",
+					"columnsFrom": ["team_number"],
+					"columnsTo": ["team_number"],
+					"onDelete": "restrict",
+					"onUpdate": "cascade"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		}
+	},
+	"enums": {
+		"verification_request_status": {
+			"name": "verification_request_status",
+			"values": {
+				"FINISHED": "FINISHED",
+				"PENDING": "PENDING",
+				"REJECTED": "REJECTED"
+			}
+		}
+	},
+	"schemas": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
+}
