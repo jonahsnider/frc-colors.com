@@ -6,6 +6,11 @@ export type TeamColorsHttp = {
 	verified: boolean;
 };
 
+export type ManyTeamColorsHttpEntry = {
+	colors: TeamColorsHttp | null;
+	teamNumber: TeamNumber;
+};
+
 export type ManyTeamColorsHttp = {
-	teams: Record<TeamNumber, TeamColorsHttp | null>;
+	teams: Record<TeamNumber, ManyTeamColorsHttpEntry>;
 };

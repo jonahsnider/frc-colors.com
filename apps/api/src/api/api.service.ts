@@ -1,5 +1,6 @@
 import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
-import { ManyTeamColorsHttp, TeamColorsHttp } from './interfaces/http.interface';
+import { TeamNumber } from '../teams/dtos/team-number.dto';
+import { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
 export class ApiService {
 	static teamColorsToDto(colors: TeamColors): TeamColorsHttp {
@@ -11,10 +12,14 @@ export class ApiService {
 	}
 
 	static manyTeamColorsToDto(colors: ManyTeamColors): ManyTeamColorsHttp {
-		const mapped: Record<string, TeamColorsHttp | null> = {};
+		const mapped: Record<TeamNumber, ManyTeamColorsHttpEntry> = {};
 
 		for (const [team, teamColors] of colors) {
-			mapped[team] = teamColors ? ApiService.teamColorsToDto(teamColors) : null;
+			const colors = teamColors ? ApiService.teamColorsToDto(teamColors) : null;
+			mapped[team] = {
+				colors,
+				teamNumber: team,
+			};
 		}
 
 		return {
