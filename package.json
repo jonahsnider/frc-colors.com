@@ -17,7 +17,7 @@
 		"drizzle-kit": "0.20.14",
 		"envalid": "8.0.0",
 		"postgres": "3.4.3",
-		"turbo": "1.12.2",
+		"turbo": "1.12.3",
 		"vercel": "33.4.1"
 	}
 }
