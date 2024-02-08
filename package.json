@@ -13,9 +13,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.5.3",
-		"consola": "3.2.3",
 		"drizzle-kit": "0.20.14",
 		"envalid": "8.0.0",
+		"pino": "8.18.0",
+		"pino-pretty": "10.3.1",
 		"postgres": "3.4.3",
 		"turbo": "1.12.3",
 		"vercel": "33.4.1"

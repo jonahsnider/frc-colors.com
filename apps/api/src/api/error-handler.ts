@@ -3,7 +3,7 @@ import { Http } from '@jonahsnider/util';
 import { captureException } from '@sentry/bun';
 import { ErrorHandler } from 'hono';
 import { BaseValidationException } from 'next-api-utils';
-import { logger } from '../logger/logger';
+import { baseLogger } from '../logger/logger';
 import { BaseHttpException } from './exceptions/base.exception';
 
 export const errorHandler: ErrorHandler = (error, context) => {
@@ -29,11 +29,11 @@ export const errorHandler: ErrorHandler = (error, context) => {
 	);
 
 	captureException(error);
-	logger.error(error);
+	baseLogger.error(error);
 
 	if (error instanceof Error && error.message.toLowerCase().includes('connect_timeout')) {
 		// See https://github.com/porsager/postgres/issues/749
-		logger.fatal('DB connection timeout occurred, exiting with code 1');
+		baseLogger.fatal('DB connection timeout occurred, exiting with code 1');
 
 		process.exit(1);
 	}

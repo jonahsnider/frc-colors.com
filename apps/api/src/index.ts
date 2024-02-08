@@ -7,7 +7,7 @@ import { controllers } from './api/controllers/index';
 import { errorHandler } from './api/error-handler';
 import { cacheManager } from './cache-manager/cache-manager.service';
 import { configService } from './config/config.service';
-import { logger } from './logger/logger';
+import { baseLogger } from './logger/logger';
 
 Sentry.init({
 	dsn: configService.sentryDsn,
@@ -15,11 +15,13 @@ Sentry.init({
 	environment: configService.nodeEnv,
 });
 
+const logger = baseLogger.child({ module: 'server' });
+
 const app = new Hono()
 	.onError(errorHandler)
 	.use(
 		'*',
-		honoLogger((...messages) => logger.withTag('server').info(...messages)),
+		honoLogger((...messages) => logger.info(...messages)),
 	)
 	.use('/v1/*', cors())
 	.use(
@@ -43,13 +45,13 @@ const server = Bun.serve({
 	development: configService.nodeEnv === 'development',
 });
 
-logger.withTag('server').success('Listening at', server.url.toString());
+logger.info(`Listening at ${server.url.toString()}`);
 
 if (configService.nodeEnv === 'development') {
-	logger.withTag('server').debug('Routes:');
+	logger.debug('Routes:');
 	for (const route of inspectRoutes(app)) {
 		if (!route.isMiddleware) {
-			logger.withTag('server').debug(route.method, route.path);
+			logger.debug(`${route.method} ${route.path}`);
 		}
 	}
 }

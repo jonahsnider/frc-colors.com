@@ -1,6 +1,6 @@
 import ky from 'ky';
 import { configService } from '../config/config.service';
-import { logger as baseLogger } from '../logger/logger';
+import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { FrcTeamListings } from './interfaces/frc-team-listings.interface';
 
@@ -18,7 +18,7 @@ export class FirstService {
 		prefixUrl: 'https://frc-api.firstinspires.org/v3.0',
 	});
 
-	private readonly logger = baseLogger.withTag('first');
+	private readonly logger = baseLogger.child({ module: 'first' });
 
 	async getAllTeamNumbers(): Promise<TeamNumber[]> {
 		if (FirstService.MOCK_TEAMS && configService.nodeEnv === 'development') {
@@ -29,7 +29,7 @@ export class FirstService {
 
 		let pages = 2;
 
-		this.logger.start('Fetching all team numbers');
+		this.logger.info('Fetching all team numbers');
 
 		for (let page = 1; page < pages; page++) {
 			const response = await this.http.get(`${new Date().getFullYear()}/teams?page=${page}`);
@@ -39,10 +39,12 @@ export class FirstService {
 			pages = body.pageTotal;
 
 			result.push(...body.teams.map((team) => team.teamNumber));
-			this.logger.withTag(`page ${page}/${pages}`).debug(`Fetched ${result.length}/${body.teamCountTotal} teams`);
+			this.logger
+				.child({ module: `page ${page}/${pages}` })
+				.debug(`Fetched ${result.length}/${body.teamCountTotal} teams`);
 		}
 
-		this.logger.success(`Fetched ${result.length} teams`);
+		this.logger.info(`Fetched ${result.length} teams`);
 
 		return result;
 	}

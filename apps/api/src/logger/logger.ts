@@ -1,3 +1,12 @@
-import { LogLevels, createConsola } from 'consola';
+import pino from 'pino';
+import { configService } from '../config/config.service';
 
-export const logger = createConsola({ level: LogLevels.verbose });
+export const baseLogger = pino({
+	level: 'trace',
+	transport:
+		configService.nodeEnv === 'development'
+			? {
+					target: 'pino-pretty',
+			  }
+			: undefined,
+});

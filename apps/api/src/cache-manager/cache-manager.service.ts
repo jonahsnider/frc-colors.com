@@ -6,7 +6,7 @@ import { generatedColors } from '../colors/generated/generated-colors.service';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
 import { firstService } from '../first/first.service';
-import { logger as baseLogger } from '../logger/logger';
+import { baseLogger } from '../logger/logger';
 import { tbaService } from '../tba/tba.service';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 
@@ -17,7 +17,7 @@ export class CacheManager {
 
 	// biome-ignore lint/correctness/noUndeclaredVariables: Global type from Bun
 	private timer: Timer | undefined;
-	private readonly logger = baseLogger.withTag('cache manager');
+	private readonly logger = baseLogger.child({ module: 'cache manager' });
 	private allTeamNumbers: TeamNumber[] | undefined;
 
 	init() {
@@ -29,8 +29,8 @@ export class CacheManager {
 	}
 
 	async refresh(): Promise<void> {
-		this.logger.start('Cache refresh started');
-		this.logger.withTag('avatar sweep').start('Refreshing stale cached avatars');
+		this.logger.info('Cache refresh started');
+		this.logger.child({ module: 'avatar sweep' }).info('Refreshing stale cached avatars');
 
 		const avatarExpiredTeams: TeamNumber[] = [];
 
@@ -47,9 +47,9 @@ export class CacheManager {
 
 		avatarExpiredTeams.push(...outdatedTeams);
 
-		this.logger.withTag('avatar sweep').debug(`Found ${outdatedTeams.size} expired or missing avatars`);
+		this.logger.child({ module: 'avatar sweep' }).debug(`Found ${outdatedTeams.size} expired or missing avatars`);
 
-		this.logger.withTag('avatar sweep').success(`Found ${avatarExpiredTeams.length} expired avatars`);
+		this.logger.child({ module: 'avatar sweep' }).info(`Found ${avatarExpiredTeams.length} expired avatars`);
 
 		const avatarCacheLimit = pLimit(10);
 
@@ -70,10 +70,10 @@ export class CacheManager {
 			}),
 		);
 
-		this.logger.withTag('avatar cache').start('Loading avatars from TBA and storing them in cache');
+		this.logger.child({ module: 'avatar cache' }).info('Loading avatars from TBA and storing them in cache');
 		const avatarCacheLogInterval = setInterval(() => {
 			this.logger
-				.withTag('avatar cache')
+				.child({ module: 'avatar cache' })
 				.debug(
 					`Saved ${avatarCacheOperations.length - avatarCacheLimit.pendingCount}/${
 						avatarCacheOperations.length
@@ -86,9 +86,9 @@ export class CacheManager {
 			clearInterval(avatarCacheLogInterval);
 		}
 
-		this.logger.withTag('avatar cache').success('Finished refreshing stale cached avatars');
+		this.logger.child({ module: 'avatar cache' }).info('Finished refreshing stale cached avatars');
 
-		this.logger.withTag('extract colors').start('Extracting colors from newly cached avatars');
+		this.logger.child({ module: 'extract colors' }).info('Extracting colors from newly cached avatars');
 		const teamsWithNewAvatars = chunk(avatarExpiredTeams, CacheManager.COLOR_GEN_BATCH_SIZE);
 
 		for (const [index, batch] of teamsWithNewAvatars.entries()) {
@@ -125,13 +125,13 @@ export class CacheManager {
 			});
 
 			this.logger
-				.withTag('extract colors')
-				.withTag(`batch ${index + 1}/${teamsWithNewAvatars.length}`)
+				.child({ module: 'extract colors' })
+				.child({ module: `batch ${index + 1}/${teamsWithNewAvatars.length}` })
 				.debug(`Extracted colors from ${batch.length} avatars`);
 		}
-		this.logger.withTag('extract colors').success('Finished extracting colors from newly cached avatars');
+		this.logger.child({ module: 'extract colors' }).info('Finished extracting colors from newly cached avatars');
 
-		this.logger.success('Cache refresh finished');
+		this.logger.info('Cache refresh finished');
 	}
 }
 

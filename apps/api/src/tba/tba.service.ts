@@ -3,7 +3,7 @@ import { Buffer } from 'node:buffer';
 import { TRPCError } from '@trpc/server';
 import ky, { HTTPError, KyResponse } from 'ky';
 import { configService } from '../config/config.service';
-import { logger } from '../logger/logger';
+import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
@@ -71,7 +71,7 @@ export class TbaService {
 			const body = await response.json<TbaTeamMediaForYear>();
 
 			if (!Array.isArray(body)) {
-				logger.warn('TBA returned non-array response for team media:');
+				baseLogger.warn('TBA returned non-array response for team media:');
 				console.warn({ response });
 				return [];
 			}
@@ -96,7 +96,7 @@ export class TbaService {
 			const body = await response.json<TbaTeam>();
 
 			if (typeof body !== 'object') {
-				logger.warn('TBA returned non-object response for team:');
+				baseLogger.warn('TBA returned non-object response for team:');
 				console.warn({ response });
 				return undefined;
 			}
