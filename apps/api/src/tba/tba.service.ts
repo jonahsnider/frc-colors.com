@@ -5,6 +5,7 @@ import ky, { HTTPError, KyResponse } from 'ky';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
+import { trackDuration } from '../timing/timing';
 import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import { TbaMediaAvatar } from './interfaces/tba-media.interface';
 import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
@@ -46,7 +47,7 @@ export class TbaService {
 	}
 
 	async getTeamsForEvent(eventCode: string): Promise<TeamNumber[]> {
-		const eventTeams = await this.getEventRaw(eventCode);
+		const eventTeams = await trackDuration('tba', 'teams for event', this.getEventRaw(eventCode));
 
 		return TeamNumber.array().parse(eventTeams.map((team) => team.team_number));
 	}

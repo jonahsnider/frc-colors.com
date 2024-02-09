@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger as honoLogger } from 'hono/logger';
+import { timing } from 'hono/timing';
 import { configService } from '../../config/config.service';
 import { baseLogger } from '../../logger/logger';
 import { errorHandler } from '../error-handler';
@@ -18,7 +19,7 @@ export const appController = new Hono()
 		'*',
 		honoLogger((...messages) => logger.info(...messages)),
 	)
-	.use('/v1/*', cors())
+	.use('/v1/*', cors(), timing({ crossOrigin: true }))
 	.use(
 		'/internal/*',
 		cors({
