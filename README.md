@@ -105,6 +105,6 @@ Get the colors for all teams at an event.
 
 FRC Colors is built with [Next.js](https://nextjs.org/) and uses [Tailwind CSS](https://tailwindcss.com/) for frontend styling.
 
-The backend is built in TypeScript and uses [tRPC](https://trpc.io/) for internal functionality, and [a minimal HTTP server](https://tinyhttp.v1rtl.site/) for the public API.
+The backend is built in TypeScript and uses [tRPC](https://trpc.io/) for internal functionality, and [a minimal HTTP server](https://hono.dev/) for the public API.
 
 It uses a PostgreSQL database via [Drizzle ORM](https://orm.drizzle.team/) for persisting data.
