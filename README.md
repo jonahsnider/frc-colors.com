@@ -22,12 +22,12 @@ Get the colors for a team by number.
 
 ```json
 {
-  "teamNumber": 581,
-  "colors": {
-    "primaryHex": "#e86d38",
-    "secondaryHex": "#7c7c7c",
-    "verified": false
-  }
+	"teamNumber": 581,
+	"colors": {
+		"primaryHex": "#e86d38",
+		"secondaryHex": "#7c7c7c",
+		"verified": false
+	}
 }
 ```
 
@@ -41,28 +41,28 @@ Get the colors for several teams by number.
 
 ```json
 {
-  "teams": {
-    "254": {
-      "teamNumber": 254,
-      "colors": {
-        "primaryHex": "#0070ff",
-        "secondaryHex": "#232323",
-        "verified": true
-      }
-    },
-    "581": {
-      "teamNumber": 581,
-      "colors": {
-        "primaryHex": "#e86d38",
-        "secondaryHex": "#7c7c7c",
-        "verified": false
-      }
-    },
-    "1678": {
-      "teamNumber": 1678,
-      "colors": null
-    }
-  }
+	"teams": {
+		"254": {
+			"teamNumber": 254,
+			"colors": {
+				"primaryHex": "#0070ff",
+				"secondaryHex": "#232323",
+				"verified": true
+			}
+		},
+		"581": {
+			"teamNumber": 581,
+			"colors": {
+				"primaryHex": "#e86d38",
+				"secondaryHex": "#7c7c7c",
+				"verified": false
+			}
+		},
+		"1678": {
+			"teamNumber": 1678,
+			"colors": null
+		}
+	}
 }
 ```
 
@@ -76,28 +76,28 @@ Get the colors for all teams at an event.
 
 ```json
 {
-  "teams": {
-    "254": {
-      "teamNumber": 254,
-      "colors": {
-        "primaryHex": "#0070ff",
-        "secondaryHex": "#232323",
-        "verified": true
-      }
-    },
-    "581": {
-      "teamNumber": 581,
-      "colors": {
-        "primaryHex": "#e86d38",
-        "secondaryHex": "#7c7c7c",
-        "verified": false
-      }
-    },
-    "1678": {
-      "teamNumber": 1678,
-      "colors": null
-    }
-  }
+	"teams": {
+		"254": {
+			"teamNumber": 254,
+			"colors": {
+				"primaryHex": "#0070ff",
+				"secondaryHex": "#232323",
+				"verified": true
+			}
+		},
+		"581": {
+			"teamNumber": 581,
+			"colors": {
+				"primaryHex": "#e86d38",
+				"secondaryHex": "#7c7c7c",
+				"verified": false
+			}
+		},
+		"1678": {
+			"teamNumber": 1678,
+			"colors": null
+		}
+	}
 }
 ```
 

@@ -1,42 +1,42 @@
 {
-  "name": "@frc-colors/api",
-  "private": true,
-  "main": "./src/index.ts",
-  "scripts": {
-    "dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
-    "start": "bun run src/index.ts",
-    "type-check": "tsc"
-  },
-  "dependencies": {
-    "@hono/trpc-server": "0.1.0",
-    "@hono/zod-validator": "0.1.11",
-    "@jonahsnider/util": "10.3.0",
-    "@sentry/bun": "7.99.0",
-    "@trpc/server": "next",
-    "color-luminance": "2.1.0",
-    "convert": "4.14.1",
-    "devalue": "4.3.2",
-    "drizzle-orm": "0.29.3",
-    "envalid": "8.0.0",
-    "extract-colors": "4.0.2",
-    "hono": "3.12.11",
-    "ky": "1.2.0",
-    "next-api-utils": "1.0.4",
-    "p-limit": "4.0.0",
-    "pino": "8.18.0",
-    "pino-http": "9.0.0",
-    "pino-pretty": "10.3.1",
-    "pngjs": "7.0.0",
-    "postgres": "3.4.3",
-    "superjson": "2.2.1",
-    "zod": "3.22.4"
-  },
-  "devDependencies": {
-    "@tsconfig/bun": "1.0.2",
-    "@tsconfig/strictest": "2.0.2",
-    "@types/bun": "1.0.4",
-    "@types/cors": "2.8.17",
-    "@types/pngjs": "6.0.4",
-    "typescript": "5.3.3"
-  }
+	"name": "@frc-colors/api",
+	"private": true,
+	"main": "./src/index.ts",
+	"scripts": {
+		"dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
+		"start": "bun run src/index.ts",
+		"type-check": "tsc"
+	},
+	"dependencies": {
+		"@hono/trpc-server": "0.1.0",
+		"@hono/zod-validator": "0.1.11",
+		"@jonahsnider/util": "10.3.0",
+		"@sentry/bun": "7.99.0",
+		"@trpc/server": "next",
+		"color-luminance": "2.1.0",
+		"convert": "4.14.1",
+		"devalue": "4.3.2",
+		"drizzle-orm": "0.29.3",
+		"envalid": "8.0.0",
+		"extract-colors": "4.0.2",
+		"hono": "3.12.11",
+		"ky": "1.2.0",
+		"next-api-utils": "1.0.4",
+		"p-limit": "4.0.0",
+		"pino": "8.18.0",
+		"pino-http": "9.0.0",
+		"pino-pretty": "10.3.1",
+		"pngjs": "7.0.0",
+		"postgres": "3.4.3",
+		"superjson": "2.2.1",
+		"zod": "3.22.4"
+	},
+	"devDependencies": {
+		"@tsconfig/bun": "1.0.2",
+		"@tsconfig/strictest": "2.0.2",
+		"@types/bun": "1.0.4",
+		"@types/cors": "2.8.17",
+		"@types/pngjs": "6.0.4",
+		"typescript": "5.3.3"
+	}
 }
