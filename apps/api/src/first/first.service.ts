@@ -1,3 +1,5 @@
+import { Stopwatch } from '@jonahsnider/util';
+import { ms } from 'convert';
 import ky from 'ky';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
@@ -29,6 +31,7 @@ export class FirstService {
 
 		let pages = 2;
 
+		const stopwatch = Stopwatch.start();
 		this.logger.info('Fetching all team numbers');
 
 		for (let page = 1; page < pages; page++) {
@@ -44,7 +47,7 @@ export class FirstService {
 				.debug(`Fetched ${result.length}/${body.teamCountTotal} teams`);
 		}
 
-		this.logger.info(`Fetched ${result.length} teams`);
+		this.logger.info(`Fetched ${result.length} teams in ${ms(stopwatch.end())}`);
 
 		return result;
 	}
