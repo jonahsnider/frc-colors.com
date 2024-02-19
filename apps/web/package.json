@@ -21,7 +21,7 @@
 		"autoprefixer": "10.4.17",
 		"clsx": "2.1.0",
 		"color-luminance": "2.1.0",
-		"convert": "4.14.1",
+		"convert": "5.0.0",
 		"d3-color": "3.1.0",
 		"date-fns": "3.2.0",
 		"devalue": "4.3.2",

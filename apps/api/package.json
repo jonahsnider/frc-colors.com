@@ -14,7 +14,7 @@
 		"@sentry/bun": "7.99.0",
 		"@trpc/server": "next",
 		"color-luminance": "2.1.0",
-		"convert": "4.14.1",
+		"convert": "5.0.0",
 		"devalue": "4.3.2",
 		"drizzle-orm": "0.29.3",
 		"envalid": "8.0.0",
