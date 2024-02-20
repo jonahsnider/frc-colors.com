@@ -45,9 +45,9 @@ function CardActions({
 
 	return (
 		<div className='pt-1'>
-			<div className='bg-neutral-700 rounded flex flex-col gap-y-1 justify-center items-center py-1'>
+			<div className='bg-neutral-700 rounded flex flex-col gap-y-1 justify-center items-center py-1 text-lg'>
 				{submission.updatedAt && (
-					<p title={`Updated ${formatRelative(new Date(submission.updatedAt), new Date())}`} className='text-lg'>
+					<p title={`Updated ${formatRelative(new Date(submission.updatedAt), new Date())}`}>
 						{result} {formatDistanceToNow(new Date(submission.updatedAt))} ago
 					</p>
 				)}
