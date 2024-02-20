@@ -11,6 +11,7 @@ export class ConfigService {
 	public readonly databaseUrl: string;
 	public readonly sentryDsn: string;
 	public readonly websiteUrl: string;
+	public readonly redisUrl: string;
 
 	constructor() {
 		const env = cleanEnv(process.env, {
@@ -32,6 +33,8 @@ export class ConfigService {
 			SENTRY_DSN: url({ desc: 'Sentry DSN' }),
 			// biome-ignore lint/style/useNamingConvention: This is an environment variable
 			WEBSITE_URL: url({ desc: 'URL of the website' }),
+			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+			REDIS_URL: url({ desc: 'Redis URL' }),
 		});
 
 		this.tbaApiKey = env.TBA_API_KEY;
@@ -45,6 +48,7 @@ export class ConfigService {
 		this.databaseUrl = env.DATABASE_URL;
 		this.sentryDsn = env.SENTRY_DSN;
 		this.websiteUrl = env.WEBSITE_URL;
+		this.redisUrl = env.REDIS_URL;
 	}
 }
 

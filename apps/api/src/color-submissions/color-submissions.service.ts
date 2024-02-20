@@ -2,7 +2,7 @@ import { Comparable, Sort } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { ms } from 'convert';
 import { and, eq, gt, ne, or } from 'drizzle-orm';
-import { storedColors } from '../colors/stored/stored-colors.service';
+import { colorsService } from '../colors/colors.service';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
@@ -117,7 +117,7 @@ export class ColorSubmissionsService {
 		}
 
 		if (updatedRow.status === Schema.VerificationRequestStatus.Finished) {
-			await storedColors.setTeamColors(updatedRow.team, {
+			await colorsService.stored.setTeamColors(updatedRow.team, {
 				primary: updatedRow.primaryHex,
 				secondary: updatedRow.secondaryHex,
 				verified: true,

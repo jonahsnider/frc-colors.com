@@ -1,24 +1,13 @@
-import { chunk } from '@jonahsnider/util';
 import convert from 'convert';
-import { and, eq } from 'drizzle-orm';
-import pLimit from 'p-limit';
-import { generatedColors } from '../colors/generated/generated-colors.service';
-import { db } from '../db/db';
-import { Schema } from '../db/index';
-import { firstService } from '../first/first.service';
 import { baseLogger } from '../logger/logger';
-import { tbaService } from '../tba/tba.service';
-import { TeamNumber } from '../teams/dtos/team-number.dto';
+import { fetchTeamsPagesQueue } from '../queues/queues';
 
 export class CacheManager {
-	private static readonly COLOR_GEN_BATCH_SIZE = 100;
 	private static readonly CACHE_SWEEP_INTERVAL = convert(1, 'day');
-	private static readonly AVATAR_TTL = convert(1, 'day');
 
 	// biome-ignore lint/correctness/noUndeclaredVariables: Global type from Bun
 	private timer: Timer | undefined;
 	private readonly logger = baseLogger.child({ module: 'cache manager' });
-	private allTeamNumbers: TeamNumber[] | undefined;
 
 	init() {
 		if (this.timer) {
@@ -29,109 +18,13 @@ export class CacheManager {
 	}
 
 	async refresh(): Promise<void> {
-		this.logger.info('Cache refresh started');
-		this.logger.child({ module: 'avatar sweep' }).info('Refreshing stale cached avatars');
+		this.logger.info('Scheduling cache refresh');
 
-		const avatarExpiredTeams: TeamNumber[] = [];
+		await fetchTeamsPagesQueue.drain();
 
-		this.allTeamNumbers ??= await firstService.getAllTeamNumbers();
+		await fetchTeamsPagesQueue.add('fetch-teams-pages', undefined);
 
-		const outdatedTeams = new Set(this.allTeamNumbers);
-		const avatars = await db.select().from(Schema.avatars);
-
-		for (const avatar of avatars) {
-			if (avatar.createdAt.getTime() + CacheManager.AVATAR_TTL.to('ms') > Date.now()) {
-				outdatedTeams.delete(avatar.team);
-			}
-		}
-
-		avatarExpiredTeams.push(...outdatedTeams);
-
-		this.logger.child({ module: 'avatar sweep' }).debug(`Found ${outdatedTeams.size} expired or missing avatars`);
-
-		this.logger.child({ module: 'avatar sweep' }).info(`Found ${avatarExpiredTeams.length} expired avatars`);
-
-		const avatarCacheLimit = pLimit(10);
-
-		const avatarCacheOperations = avatarExpiredTeams.map((team) =>
-			avatarCacheLimit(async () => {
-				const avatar = await tbaService.getTeamAvatarForThisYear(team);
-
-				await db.transaction(async (tx) => {
-					await tx.insert(Schema.teams).values({ number: team }).onConflictDoNothing();
-					await tx
-						.insert(Schema.avatars)
-						.values({ team: team, createdAt: new Date(), png: avatar })
-						.onConflictDoUpdate({
-							target: Schema.avatars.team,
-							set: { createdAt: new Date(), png: avatar },
-						});
-				});
-			}),
-		);
-
-		this.logger.child({ module: 'avatar cache' }).info('Loading avatars from TBA and storing them in cache');
-		const avatarCacheLogInterval = setInterval(() => {
-			this.logger
-				.child({ module: 'avatar cache' })
-				.debug(
-					`Saved ${avatarCacheOperations.length - avatarCacheLimit.pendingCount}/${
-						avatarCacheOperations.length
-					} avatars to cache`,
-				);
-		}, 1000);
-		try {
-			await Promise.all(avatarCacheOperations);
-		} finally {
-			clearInterval(avatarCacheLogInterval);
-		}
-
-		this.logger.child({ module: 'avatar cache' }).info('Finished refreshing stale cached avatars');
-
-		this.logger.child({ module: 'extract colors' }).info('Extracting colors from newly cached avatars');
-		const teamsWithNewAvatars = chunk(avatarExpiredTeams, CacheManager.COLOR_GEN_BATCH_SIZE);
-
-		for (const [index, batch] of teamsWithNewAvatars.entries()) {
-			const teamColors = await generatedColors.getTeamColors(batch);
-
-			await db.transaction(async (tx) => {
-				for (const [team, color] of teamColors) {
-					if (color) {
-						// Store colors in DB unless verified colors already exist
-						await tx
-							.insert(Schema.teamColors)
-							.values({
-								team: team,
-								primaryHex: color.primary,
-								secondaryHex: color.secondary,
-								verified: false,
-							})
-							.onConflictDoUpdate({
-								target: Schema.teamColors.team,
-								set: {
-									primaryHex: color.primary,
-									secondaryHex: color.secondary,
-									verified: false,
-								},
-								where: eq(Schema.teamColors.verified, false),
-							});
-					} else {
-						// Clear colors from DB, unless they're verified
-						await tx
-							.delete(Schema.teamColors)
-							.where(and(eq(Schema.teamColors.team, team), eq(Schema.teamColors.verified, false)));
-					}
-				}
-			});
-
-			this.logger
-				.child({ module: 'extract colors' })
-				.child({ module: `batch ${index + 1}/${teamsWithNewAvatars.length}` })
-				.debug(`Extracted colors from ${batch.length} avatars`);
-		}
-		this.logger.child({ module: 'extract colors' }).info('Finished extracting colors from newly cached avatars');
-
-		this.logger.info('Cache refresh finished');
+		this.logger.info('Cache refresh scheduled');
 	}
 }
 
