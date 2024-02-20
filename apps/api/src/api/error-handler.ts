@@ -2,10 +2,10 @@ import { Http } from '@jonahsnider/util';
 
 import { captureException } from '@sentry/bun';
 import { ErrorHandler } from 'hono';
+import { HTTPException } from 'hono/http-exception';
 import { BaseValidationException } from 'next-api-utils';
 import { baseLogger } from '../logger/logger';
 import { BaseHttpException } from './exceptions/base.exception';
-import { HTTPException } from 'hono/http-exception';
 
 export const errorHandler: ErrorHandler = (error, context) => {
 	if (error instanceof BaseHttpException) {

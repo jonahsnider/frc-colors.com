@@ -1,9 +1,9 @@
+import { ms } from 'convert';
 import { BaseWorker } from '../queues/base.worker';
 import { fetchTeamsPagesQueue, fetchTeamsQueue } from '../queues/queues';
 import { firstService } from './first.service';
 import { DataType, NameType, ReturnType } from './interfaces/fetch-teams-pages-queue.interface';
 import * as FetchTeamsQueue from './interfaces/fetch-teams-queue.interface';
-import { ms } from 'convert';
 
 export class FetchTeamsPagesWorker extends BaseWorker<DataType, ReturnType, NameType> {
 	protected override async process(): Promise<ReturnType> {
