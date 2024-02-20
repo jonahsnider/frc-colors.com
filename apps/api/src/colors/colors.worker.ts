@@ -7,6 +7,14 @@ export class ColorsWorker extends BaseWorker<DataType, ReturnType, NameType> {
 	protected override async process(job: JobType): Promise<ReturnType> {
 		const { team } = job.data;
 
+		const isVerified = await colorsService.stored.isVerified(team);
+
+		if (isVerified) {
+			// Exit, we don't need to extract colors for verified teams since it'll overwrite the verified colors
+
+			return undefined;
+		}
+
 		const colors = await colorsService.generated.getTeamColors(team);
 
 		if (colors) {

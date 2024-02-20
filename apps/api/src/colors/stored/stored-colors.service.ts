@@ -87,4 +87,15 @@ export class StoredColors implements ColorFetcher {
 	async deleteTeamColors(team: TeamNumber): Promise<void> {
 		await db.delete(Schema.teamColors).where(eq(Schema.teamColors.team, team)).execute();
 	}
+
+	async isVerified(team: TeamNumber): Promise<boolean | undefined> {
+		const row = await db.query.teamColors.findFirst({
+			columns: {
+				verified: true,
+			},
+			where: eq(Schema.teamColors.team, team),
+		});
+
+		return row?.verified;
+	}
 }
