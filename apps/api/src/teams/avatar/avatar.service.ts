@@ -1,9 +1,19 @@
+import { difference } from '@jonahsnider/util';
+import convert from 'convert';
 import { eq, inArray } from 'drizzle-orm';
 import { db } from '../../db/db';
 import { Schema } from '../../db/index';
+import { tbaService } from '../../tba/tba.service';
 import { TeamNumber } from '../dtos/team-number.dto';
+import { RefreshAvatarWorker } from './refresh-avatar.worker';
+import { SweepAvatarsWorker } from './sweep-avatars.worker';
 
 export class AvatarService {
+	private static readonly AVATAR_TTL = convert(1, 'day');
+
+	private readonly refreshAvatarWorker = new RefreshAvatarWorker();
+	private readonly sweepAvatarsWorker = new SweepAvatarsWorker();
+
 	async getAvatar(teamNumber: TeamNumber): Promise<Buffer | undefined> {
 		const cached = await db.query.avatars.findFirst({
 			where: eq(Schema.avatars.team, teamNumber),
@@ -25,6 +35,45 @@ export class AvatarService {
 				: [];
 
 		return new Map(cached.map((avatar) => [avatar.team, avatar.png ?? undefined]));
+	}
+
+	async refreshAvatar(team: TeamNumber): Promise<void> {
+		const avatar = await tbaService.getTeamAvatarForThisYear(team);
+
+		await this.storeAvatar(team, avatar);
+	}
+
+	async shouldRefresh(teams: TeamNumber[]): Promise<TeamNumber[]> {
+		const cached = await db.query.avatars.findMany({
+			where: inArray(Schema.avatars.team, teams),
+			columns: {
+				team: true,
+				createdAt: true,
+			},
+		});
+		const expiredTeams = cached
+			.filter((row) => row.createdAt < new Date(Date.now() - AvatarService.AVATAR_TTL.to('ms')))
+			.map((row) => row.team);
+
+		const missing = difference(
+			teams,
+			cached.map((row) => row.team),
+		);
+
+		return [...expiredTeams, ...missing];
+	}
+
+	private async storeAvatar(team: number, avatar: Buffer | undefined) {
+		await db.transaction(async (tx) => {
+			await tx.insert(Schema.teams).values({ number: team }).onConflictDoNothing();
+			await tx
+				.insert(Schema.avatars)
+				.values({ team: team, createdAt: new Date(), png: avatar ?? null })
+				.onConflictDoUpdate({
+					target: Schema.avatars.team,
+					set: { createdAt: new Date(), png: avatar ?? null },
+				});
+		});
 	}
 }
 

@@ -1,4 +1,4 @@
-import { inArray } from 'drizzle-orm';
+import { eq, inArray } from 'drizzle-orm';
 
 import { db } from '../../db/db';
 import { Schema } from '../../db/index';
@@ -83,6 +83,8 @@ export class StoredColors implements ColorFetcher {
 				});
 		});
 	}
-}
 
-export const storedColors = new StoredColors();
+	async deleteTeamColors(team: TeamNumber): Promise<void> {
+		await db.delete(Schema.teamColors).where(eq(Schema.teamColors.team, team)).execute();
+	}
+}

@@ -1,6 +1,6 @@
 import { z } from 'zod';
+import { colorsService } from '../colors/colors.service';
 import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
-import { storedColors } from '../colors/stored/stored-colors.service';
 import { Schema } from '../db/index';
 import { tbaService } from '../tba/tba.service';
 import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
@@ -22,14 +22,14 @@ export const teamsRouter = router({
 		get: publicProcedure
 			.input(TeamNumber)
 			.output(z.object({ colors: TeamColors.optional() }))
-			.query(async ({ input }) => ({ colors: await storedColors.getTeamColors(input) })),
+			.query(async ({ input }) => ({ colors: await colorsService.stored.getTeamColors(input) })),
 		getMany: publicProcedure
 			.input(TeamNumber.array())
 			.output(ManyTeamColors)
-			.query(({ input }) => storedColors.getTeamColors(input)),
+			.query(({ input }) => colorsService.stored.getTeamColors(input)),
 
 		set: adminProcedure.input(SetColorsInput).mutation(async ({ input }) => {
-			await storedColors.setTeamColors(input.team, { ...input.colors, verified: true });
+			await colorsService.stored.setTeamColors(input.team, { ...input.colors, verified: true });
 			await verificationRequestsService.updatePendingVerificationStatusesByTeam(
 				input.team,
 				Schema.VerificationRequestStatus.Finished,

@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/bun';
 import { apiService } from './api/api.service';
 import { cacheManager } from './cache-manager/cache-manager.service';
 import { configService } from './config/config.service';
+import { firstService } from './first/first.service';
 
 Sentry.init({
 	dsn: configService.sentryDsn,
@@ -9,13 +10,10 @@ Sentry.init({
 	environment: configService.nodeEnv,
 });
 
+firstService.init();
+
 apiService.initServer();
 
-cacheManager.init();
-
-// Initial refresh on boot, but only if not in development (hot reload reruns this too often)
-if (configService.nodeEnv !== 'development') {
-	await cacheManager.refresh();
-}
+await cacheManager.init();
 
 export { type AppRouter } from './trpc/app.router';

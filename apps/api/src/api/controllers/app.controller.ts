@@ -9,6 +9,7 @@ import { errorHandler } from '../error-handler';
 import { eventController } from './event.controller';
 import { healthController } from './health.controller';
 import { internalTeamController } from './internal-team.controller';
+import { queuesController } from './queues.controller';
 import { teamController } from './team.controller';
 import { trpcController } from './trpc.controller';
 
@@ -39,4 +40,5 @@ export const appController = new Hono()
 	.route('/v1/event', eventController)
 	.route('/trpc', trpcController)
 	.route('/internal/team', internalTeamController)
-	.route('/v1/team', teamController);
+	.route('/v1/team', teamController)
+	.route('/internal/queues', queuesController);

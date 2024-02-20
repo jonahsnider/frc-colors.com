@@ -1,13 +1,12 @@
-import { Stopwatch } from '@jonahsnider/util';
-import { ms } from 'convert';
 import ky from 'ky';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
+import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
+import { FetchTeamsWorker } from './fetch-teams.worker';
 import { FrcTeamListings } from './interfaces/frc-team-listings.interface';
 
 export class FirstService {
-	private static readonly MOCK_TEAMS: TeamNumber[] | undefined = undefined;
 	private static readonly BASIC_AUTH_TOKEN = Buffer.from(
 		`${configService.frcEventsApi.username}:${configService.frcEventsApi.password}`,
 		'utf8',
@@ -22,34 +21,27 @@ export class FirstService {
 
 	private readonly logger = baseLogger.child({ module: 'first' });
 
-	async getAllTeamNumbers(): Promise<TeamNumber[]> {
-		if (FirstService.MOCK_TEAMS && configService.nodeEnv === 'development') {
-			return FirstService.MOCK_TEAMS;
-		}
+	private readonly fetchTeamsPagesWorker = new FetchTeamsPagesWorker();
+	private readonly fetchTeamsWorker = new FetchTeamsWorker();
 
-		const result: TeamNumber[] = [];
+	async getPageCount(): Promise<number> {
+		const response = await this.http.get(`${new Date().getFullYear()}/teams?page=1`);
 
-		let pages = 2;
+		const body = await response.json<FrcTeamListings>();
 
-		const stopwatch = Stopwatch.start();
-		this.logger.info('Fetching all team numbers');
+		return body.pageTotal;
+	}
 
-		for (let page = 1; page < pages; page++) {
-			const response = await this.http.get(`${new Date().getFullYear()}/teams?page=${page}`);
+	async getTeamNumbersForPage(page: number): Promise<TeamNumber[]> {
+		const response = await this.http.get(`${new Date().getFullYear()}/teams?page=${page}`);
 
-			const body = await response.json<FrcTeamListings>();
+		const body = await response.json<FrcTeamListings>();
 
-			pages = body.pageTotal;
+		return body.teams.map((team) => team.teamNumber);
+	}
 
-			result.push(...body.teams.map((team) => team.teamNumber));
-			this.logger
-				.child({ module: `page ${page}/${pages}` })
-				.debug(`Fetched ${result.length}/${body.teamCountTotal} teams`);
-		}
-
-		this.logger.info(`Fetched ${result.length} teams in ${ms(stopwatch.end())}`);
-
-		return result;
+	init(): void {
+		// This doesn't actually do anything, it's just necessary to ensure this file is loaded & the workers get started
 	}
 }
 

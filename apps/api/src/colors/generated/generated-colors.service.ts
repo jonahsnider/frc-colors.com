@@ -110,5 +110,3 @@ export class GeneratedColors implements ColorFetcher {
 		return colors;
 	}
 }
-
-export const generatedColors = new GeneratedColors();
