@@ -39,6 +39,10 @@ export class FirstService {
 
 		return body.teams.map((team) => team.teamNumber);
 	}
+
+	init(): void {
+		// This doesn't actually do anything, it's just necessary to ensure this file is loaded & the workers get started
+	}
 }
 
 export const firstService = new FirstService();
