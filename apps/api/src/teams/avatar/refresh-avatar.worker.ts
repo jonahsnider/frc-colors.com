@@ -1,5 +1,5 @@
-import { BaseWorker } from '../../queues/base.worker';
 import { ms } from 'convert';
+import { BaseWorker } from '../../queues/base.worker';
 import { extractColorsQueue, refreshAvatarQueue } from '../../queues/queues';
 import { avatarService } from './avatar.service';
 import { DataType, JobType, NameType, ReturnType } from './interfaces/refresh-avatar-queue.interface';
@@ -19,8 +19,8 @@ export class RefreshAvatarWorker extends BaseWorker<DataType, ReturnType, NameTy
 			// Low concurrency since this hits TBA
 			concurrency: 10,
 			limiter: {
-				duration: ms('15s'),
-				max: 15,
+				duration: ms('1s'),
+				max: 10,
 			},
 		});
 	}

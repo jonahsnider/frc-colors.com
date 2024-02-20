@@ -1,3 +1,4 @@
+import { ms } from 'convert';
 import { BaseWorker } from '../queues/base.worker';
 import { fetchTeamsQueue, sweepAvatarsQueue } from '../queues/queues';
 import { firstService } from './first.service';
@@ -17,6 +18,10 @@ export class FetchTeamsWorker extends BaseWorker<DataType, ReturnType, NameType>
 		super(fetchTeamsQueue, {
 			// Low concurrency since this hits FIRST
 			concurrency: 5,
+			limiter: {
+				duration: ms('1s'),
+				max: 5,
+			},
 		});
 	}
 }

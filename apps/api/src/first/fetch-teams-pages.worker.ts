@@ -28,7 +28,7 @@ export class FetchTeamsPagesWorker extends BaseWorker<DataType, ReturnType, Name
 			// Although, this shouldn't ever really be scheduled more than once at a time
 			concurrency: 5,
 			limiter: {
-				duration: ms('5s'),
+				duration: ms('1s'),
 				max: 5,
 			},
 		});
