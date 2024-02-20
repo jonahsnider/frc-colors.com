@@ -29,6 +29,11 @@ export const fetchTeamsPagesQueue: fetchTeamsPages.QueueType = new Queue(QueueNa
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 100 },
 		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		attempts: 5,
+		backoff: {
+			type: 'exponential',
+			delay: convert(15, 'seconds').to('ms'),
+		},
 	},
 });
 export const fetchTeamsQueue: fetchTeams.QueueType = new Queue(QueueNames.FetchTeams, {
@@ -36,6 +41,11 @@ export const fetchTeamsQueue: fetchTeams.QueueType = new Queue(QueueNames.FetchT
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 100 },
 		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		attempts: 5,
+		backoff: {
+			type: 'exponential',
+			delay: convert(15, 'seconds').to('ms'),
+		},
 	},
 });
 export const sweepAvatarsQueue: sweepAvatars.QueueType = new Queue(QueueNames.SweepAvatars, {
@@ -43,6 +53,11 @@ export const sweepAvatarsQueue: sweepAvatars.QueueType = new Queue(QueueNames.Sw
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 100 },
 		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		attempts: 3,
+		backoff: {
+			type: 'exponential',
+			delay: convert(5, 'seconds').to('ms'),
+		},
 	},
 });
 export const refreshAvatarQueue: refreshAvatar.QueueType = new Queue(QueueNames.RefreshAvatar, {
@@ -50,6 +65,11 @@ export const refreshAvatarQueue: refreshAvatar.QueueType = new Queue(QueueNames.
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 5000 },
 		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		attempts: 5,
+		backoff: {
+			type: 'exponential',
+			delay: convert(20, 'seconds').to('ms'),
+		},
 	},
 });
 export const extractColorsQueue: extractColors.QueueType = new Queue(QueueNames.ExtractAndStoreColors, {
@@ -57,6 +77,11 @@ export const extractColorsQueue: extractColors.QueueType = new Queue(QueueNames.
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 5000 },
 		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		attempts: 3,
+		backoff: {
+			type: 'exponential',
+			delay: convert(5, 'seconds').to('ms'),
+		},
 	},
 });
 
