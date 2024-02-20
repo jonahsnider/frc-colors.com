@@ -3,28 +3,17 @@ import { baseLogger } from '../logger/logger';
 import { fetchTeamsPagesQueue } from '../queues/queues';
 
 export class CacheManager {
-	private static readonly CACHE_SWEEP_INTERVAL = convert(1, 'day');
+	private static readonly CACHE_REFRESH_INTERVAL = convert(1, 'hour');
 
-	// biome-ignore lint/correctness/noUndeclaredVariables: Global type from Bun
-	private timer: Timer | undefined;
 	private readonly logger = baseLogger.child({ module: 'cache manager' });
 
-	init() {
-		if (this.timer) {
-			throw new Error('CacheManager already initialized');
-		}
-
-		this.timer = setInterval(this.refresh.bind(this), CacheManager.CACHE_SWEEP_INTERVAL.to('ms'));
-	}
-
-	async refresh(): Promise<void> {
-		this.logger.info('Scheduling cache refresh');
-
-		await fetchTeamsPagesQueue.drain();
-
-		await fetchTeamsPagesQueue.add('fetch-teams-pages', undefined);
-
-		this.logger.info('Cache refresh scheduled');
+	async init(): Promise<void> {
+		await fetchTeamsPagesQueue.add('fetch-teams-pages', undefined, {
+			repeat: {
+				every: CacheManager.CACHE_REFRESH_INTERVAL.to('ms'),
+			},
+		});
+		this.logger.info(`Cache refresh scheduled to repeat every ${CacheManager.CACHE_REFRESH_INTERVAL.to('best')}`);
 	}
 }
 

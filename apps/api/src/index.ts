@@ -14,8 +14,6 @@ firstService.init();
 
 apiService.initServer();
 
-cacheManager.init();
-
-await cacheManager.refresh();
+await cacheManager.init();
 
 export { type AppRouter } from './trpc/app.router';
