@@ -1,11 +1,12 @@
 import { trpcServer } from '@hono/trpc-server';
 import { Hono } from 'hono';
+import { timing } from 'hono/timing';
 import { appRouter } from '../../trpc/app.router';
 import { createContext } from '../../trpc/context';
 
 export const trpcController = new Hono();
 
-trpcController.use(
+trpcController.use(timing()).use(
 	'/*',
 	trpcServer({
 		router: appRouter,
