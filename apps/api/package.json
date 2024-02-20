@@ -15,6 +15,7 @@
 		"@jonahsnider/util": "10.3.0",
 		"@sentry/bun": "7.99.0",
 		"@trpc/server": "next",
+		"bullmq": "5.2.1",
 		"color-luminance": "2.1.0",
 		"convert": "4.14.1",
 		"devalue": "4.3.2",
