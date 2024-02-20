@@ -2,7 +2,9 @@ import { createBullBoard } from '@bull-board/api';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { HonoAdapter } from '@bull-board/hono';
 import { Hono } from 'hono';
+import { basicAuth } from 'hono/basic-auth';
 import { serveStatic } from 'hono/bun';
+import { configService } from '../../config/config.service';
 import { ALL_QUEUES } from '../../queues/queues';
 
 const serverAdapter = new HonoAdapter(serveStatic);
@@ -14,4 +16,11 @@ createBullBoard({
 
 serverAdapter.setBasePath('/internal/queues');
 
-export const queuesController = new Hono().route('/', serverAdapter.registerPlugin());
+export const queuesController = new Hono()
+	.use(
+		basicAuth({
+			username: configService.adminUsername,
+			password: configService.adminApiToken,
+		}),
+	)
+	.route('/', serverAdapter.registerPlugin());

@@ -5,6 +5,7 @@ import { ErrorHandler } from 'hono';
 import { BaseValidationException } from 'next-api-utils';
 import { baseLogger } from '../logger/logger';
 import { BaseHttpException } from './exceptions/base.exception';
+import { HTTPException } from 'hono/http-exception';
 
 export const errorHandler: ErrorHandler = (error, context) => {
 	if (error instanceof BaseHttpException) {
@@ -20,6 +21,10 @@ export const errorHandler: ErrorHandler = (error, context) => {
 			code: error.code,
 			message: error.message,
 		});
+	}
+
+	if (error instanceof HTTPException) {
+		return error.getResponse();
 	}
 
 	const genericException = new BaseHttpException(
