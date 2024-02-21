@@ -64,6 +64,32 @@ export class StoredColors implements ColorFetcher {
 		};
 	}
 
+	async getAllTeamColors(): Promise<ManyTeamColors> {
+		const teamColors = await trackDuration(
+			'db',
+			'all colors',
+			db.query.teamColors.findMany({
+				columns: {
+					team: true,
+					primaryHex: true,
+					secondaryHex: true,
+					verified: true,
+				},
+			}),
+		);
+
+		return new Map(
+			teamColors.map((colors) => [
+				colors.team,
+				{
+					primary: HexColorCode.parse(colors.primaryHex.toLowerCase()),
+					secondary: HexColorCode.parse(colors.secondaryHex.toLowerCase()),
+					verified: colors.verified,
+				},
+			]),
+		);
+	}
+
 	async setTeamColors(team: TeamNumber, colors: TeamColors): Promise<void> {
 		const teamColor = {
 			primaryHex: colors.primary,
