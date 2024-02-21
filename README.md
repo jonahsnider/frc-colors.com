@@ -24,9 +24,9 @@ Get the colors for a team by number.
 {
 	"teamNumber": 581,
 	"colors": {
-		"primaryHex": "#e86d38",
-		"secondaryHex": "#7c7c7c",
-		"verified": false
+		"primaryHex": "#591616",
+		"secondaryHex": "#e86d38",
+		"verified": true
 	}
 }
 ```
@@ -42,25 +42,25 @@ Get the colors for several teams by number.
 ```json
 {
 	"teams": {
-		"254": {
-			"teamNumber": 254,
-			"colors": {
-				"primaryHex": "#0070ff",
-				"secondaryHex": "#232323",
-				"verified": true
-			}
-		},
 		"581": {
 			"teamNumber": 581,
 			"colors": {
-				"primaryHex": "#e86d38",
-				"secondaryHex": "#7c7c7c",
-				"verified": false
+				"primaryHex": "#591616",
+				"secondaryHex": "#e86d38",
+				"verified": true
 			}
 		},
-		"1678": {
-			"teamNumber": 1678,
+		"751": {
+			"teamNumber": 751,
 			"colors": null
+		},
+		"9408": {
+			"teamNumber": 9408,
+			"colors": {
+				"primaryHex": "#1d2e3b",
+				"secondaryHex": "#ffffff",
+				"verified": false
+			}
 		}
 	}
 }
@@ -74,32 +74,17 @@ Get the colors for all teams at an event.
 
 `GET /v1/event/2023cc`
 
-```json
-{
-	"teams": {
-		"254": {
-			"teamNumber": 254,
-			"colors": {
-				"primaryHex": "#0070ff",
-				"secondaryHex": "#232323",
-				"verified": true
-			}
-		},
-		"581": {
-			"teamNumber": 581,
-			"colors": {
-				"primaryHex": "#e86d38",
-				"secondaryHex": "#7c7c7c",
-				"verified": false
-			}
-		},
-		"1678": {
-			"teamNumber": 1678,
-			"colors": null
-		}
-	}
-}
-```
+Same response format as `GET /v1/team`.
+
+### `GET /v1/team?all`
+
+Get the colors for all teams.
+
+#### Example
+
+`GET /v1/team?all`
+
+Same response format as `GET /v1/team`.
 
 ## Development
 
