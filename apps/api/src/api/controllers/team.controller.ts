@@ -32,7 +32,7 @@ export const teamController = new Hono()
 	.get('/', async (context) => {
 		const params = validateQuery(
 			{ url: context.req.url },
-			z.object({ team: TeamNumber.or(TeamNumber.array()) }).or(
+			z.object({ team: TeamNumber.or(TeamNumber.array().max(500)) }).or(
 				z.object({
 					all: QueryBooleanSchema.refine((arg) => arg, 'You may not set this to false'),
 				}),
