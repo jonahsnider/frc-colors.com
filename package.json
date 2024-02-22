@@ -25,6 +25,6 @@
 		"prettier": "3.2.5",
 		"prettier-plugin-packagejson": "2.4.11",
 		"turbo": "1.12.4",
-		"vercel": "33.5.1"
+		"vercel": "33.5.2"
 	}
 }
