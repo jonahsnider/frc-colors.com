@@ -37,6 +37,7 @@ export const errorHandler: ErrorHandler = (error, context) => {
 	baseLogger.error(error);
 
 	if (error instanceof Error && error.message.toLowerCase().includes('connect_timeout')) {
+		// TODO: This shouldn't be happening as of 2024-02-24, since we switched PostgreSQL libraries
 		// See https://github.com/porsager/postgres/issues/749
 		baseLogger.fatal('DB connection timeout occurred, exiting with code 1');
 
