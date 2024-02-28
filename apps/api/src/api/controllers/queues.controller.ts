@@ -18,6 +18,7 @@ createBullBoard({
 
 export const queuesController = new Hono()
 	.use(
+		'*',
 		basicAuth({
 			username: configService.adminUsername,
 			password: configService.adminApiToken,

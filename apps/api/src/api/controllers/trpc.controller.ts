@@ -7,6 +7,7 @@ import { createContext } from '../../trpc/context';
 
 export const trpcController = new Hono()
 	.use(
+		'*',
 		cors({
 			origin: configService.websiteUrl,
 		}),

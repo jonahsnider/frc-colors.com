@@ -8,12 +8,14 @@ import { avatarService } from '../../teams/avatar/avatar.service';
 import { TeamNumber } from '../../teams/dtos/team-number.dto';
 import { BaseHttpException } from '../exceptions/base.exception';
 
-export const internalTeamController = new Hono().get(
-	'/:team/avatar.png',
-	cors({
-		origin: configService.websiteUrl,
-	}),
-	async (context) => {
+export const internalTeamController = new Hono()
+	.use(
+		'*',
+		cors({
+			origin: configService.websiteUrl,
+		}),
+	)
+	.get('/:team/avatar.png', async (context) => {
 		const params = validateParams(
 			{ params: { team: context.req.param('team') } },
 			z.object({
@@ -32,5 +34,4 @@ export const internalTeamController = new Hono().get(
 		}
 
 		return context.body(avatar.buffer as ArrayBuffer, { headers: { 'Content-Type': 'image/png' } });
-	},
-);
+	});
