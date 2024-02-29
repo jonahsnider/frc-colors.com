@@ -2,13 +2,15 @@ import { Http } from '@jonahsnider/util';
 import { Hono } from 'hono';
 import { QueryBooleanSchema, validateParams, validateQuery } from 'next-api-utils';
 import { z } from 'zod';
+import { analyticsService } from '../../analytics/analytics.service';
 import { colorsService } from '../../colors/colors.service';
 import { ManyTeamColors } from '../../colors/dtos/colors.dto';
 import { TeamNumber } from '../../teams/dtos/team-number.dto';
 import { ApiService } from '../api.service';
 import { BaseHttpException } from '../exceptions/base.exception';
+import { Env } from '../interfaces/env.interface';
 
-export const teamController = new Hono()
+export const teamController = new Hono<Env>()
 	.get('/:team', async (context) => {
 		const params = validateParams(
 			{ params: { team: context.req.param('team') } },
@@ -16,6 +18,14 @@ export const teamController = new Hono()
 				team: TeamNumber,
 			}),
 		);
+
+		analyticsService.client.capture({
+			distinctId: ApiService.getIp(context),
+			event: 'api_get_team_colors',
+			properties: {
+				team: params.team,
+			},
+		});
 
 		const colors = await colorsService.stored.getTeamColors(params.team);
 
@@ -42,9 +52,22 @@ export const teamController = new Hono()
 		let colors: ManyTeamColors;
 
 		if ('all' in params) {
+			analyticsService.client.capture({
+				distinctId: ApiService.getIp(context),
+				event: 'api_get_all_team_colors',
+			});
+
 			colors = await colorsService.stored.getAllTeamColors();
 		} else {
 			const teams = Array.isArray(params.team) ? params.team : [params.team];
+
+			analyticsService.client.capture({
+				distinctId: ApiService.getIp(context),
+				event: 'api_get_many_team_colors',
+				properties: {
+					teams,
+				},
+			});
 
 			colors = await colorsService.stored.getTeamColors(teams);
 		}

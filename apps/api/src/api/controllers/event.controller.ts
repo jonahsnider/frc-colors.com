@@ -3,16 +3,26 @@ import { Http } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { Hono } from 'hono';
 import { z } from 'zod';
+import { analyticsService } from '../../analytics/analytics.service';
 import { ManyTeamColors } from '../../colors/dtos/colors.dto';
 import { eventsService } from '../../events/events.service';
 import { ApiService } from '../api.service';
 import { BaseHttpException } from '../exceptions/base.exception';
+import { Env } from '../interfaces/env.interface';
 
-export const eventController = new Hono().get(
+export const eventController = new Hono<Env>().get(
 	'/:event',
 	zValidator('param', z.object({ event: z.string().max(64) })),
 	async (context) => {
 		const params = context.req.valid('param');
+
+		analyticsService.client.capture({
+			distinctId: ApiService.getIp(context),
+			event: 'api_get_event_colors',
+			properties: {
+				event: params.event,
+			},
+		});
 
 		let colors: ManyTeamColors;
 

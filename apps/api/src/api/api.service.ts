@@ -1,12 +1,23 @@
+import assert from 'assert/strict';
+import { Context } from 'hono';
 import { inspectRoutes } from 'hono/dev';
 import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { appController } from './controllers/app.controller';
+import { Env } from './interfaces/env.interface';
 import { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
 export class ApiService {
+	static getIp(context: Context<Env>): string {
+		const ip = context.env.server.requestIP(context.req.raw)?.address;
+
+		assert(ip, new TypeError('IP address was not available on request'));
+
+		return ip;
+	}
+
 	static teamColorsToDto(colors: TeamColors): TeamColorsHttp {
 		return {
 			primaryHex: colors.primary,
@@ -44,7 +55,9 @@ export class ApiService {
 
 		// biome-ignore lint/correctness/noUndeclaredVariables: This is a global
 		const server = Bun.serve({
-			fetch: appController.fetch,
+			fetch: (request, server) => {
+				return appController.fetch(request, { server });
+			},
 			port: configService.port,
 			development: configService.nodeEnv === 'development',
 		});
