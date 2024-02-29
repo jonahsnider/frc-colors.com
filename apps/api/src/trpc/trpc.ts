@@ -27,6 +27,7 @@ export const adminProcedure = t.procedure.use((options) => {
 
 	return options.next({
 		ctx: {
+			...options.ctx,
 			isAdmin: options.ctx.isAdmin,
 		},
 	});

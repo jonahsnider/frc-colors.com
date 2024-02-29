@@ -11,8 +11,23 @@ import { Env } from './interfaces/env.interface';
 import { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
 export class ApiService {
-	static getIp(context: Context<Env>): string {
-		const ip = context.env.server.requestIP(context.req.raw)?.address;
+	static getIp(context: Context<Env>): string;
+	static getIp(server: Server, request: Request): string;
+	static getIp(serverOrContext: Server | Context<Env>, request?: Request): string {
+		let ip: string | undefined;
+
+		if ('env' in serverOrContext) {
+			const context = serverOrContext;
+
+			const proxyIp = serverOrContext.req.header('X-Envoy-External-Address');
+			ip = proxyIp ?? context.env.server.requestIP(context.req.raw)?.address;
+		} else {
+			const server = serverOrContext;
+			assert(request, new TypeError('Request was not available'));
+			const proxyIp = request.headers.get('X-Envoy-External-Address');
+
+			ip = proxyIp ?? server.requestIP(request)?.address;
+		}
 
 		assert(ip, new TypeError('IP address was not available on request'));
 

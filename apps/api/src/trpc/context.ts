@@ -1,13 +1,11 @@
 import { TRPCError } from '@trpc/server';
 import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-import assert from 'assert/strict';
 import { Server } from 'bun';
+import { ApiService } from '../api/api.service';
 import { authService } from '../auth/auth.service';
 
 export function createContext(getServer: () => Server, options: FetchCreateContextFnOptions): Context {
-	const requestIp = getServer().requestIP(options.req)?.address;
-
-	assert(requestIp, new TypeError('IP address was not available on request'));
+	const requestIp = ApiService.getIp(getServer(), options.req);
 
 	if (authService.requestHasToken(options)) {
 		if (!authService.requestHasValidToken(options)) {
