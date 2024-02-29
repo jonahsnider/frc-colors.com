@@ -19,6 +19,11 @@ export function createAppController(getServer: () => Server) {
 			// Wrap every route in an async_hooks store use for server timing
 			.use(
 				'*',
+				// Actually define the env
+				(context, next) => {
+					context.env.server = getServer();
+					return next();
+				},
 				trackFn,
 				honoLogger((...messages) => logger.info(...messages)),
 			)
