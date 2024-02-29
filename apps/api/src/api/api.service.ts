@@ -1,11 +1,12 @@
 import assert from 'assert/strict';
+import { Server } from 'bun';
 import { Context } from 'hono';
 import { inspectRoutes } from 'hono/dev';
 import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
-import { appController } from './controllers/app.controller';
+import { createAppController } from './controllers/app.controller';
 import { Env } from './interfaces/env.interface';
 import { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
@@ -53,11 +54,17 @@ export class ApiService {
 
 		this.initialized = true;
 
+		let server: Server | undefined = undefined;
+
+		// This is like, super unsafe, but also should never cause an issue
+		// The reason for this silliness is that there is a circular dependency between Bun.serve requiring us to set a fetch function, and the fetch function requiring the server to be created
+		const getServer = (): Server => server as Server;
+
+		const appController = createAppController(getServer);
+
 		// biome-ignore lint/correctness/noUndeclaredVariables: This is a global
-		const server = Bun.serve({
-			fetch: (request, server) => {
-				return appController.fetch(request, { server });
-			},
+		server = Bun.serve({
+			fetch: appController.fetch,
 			port: configService.port,
 			development: configService.nodeEnv === 'development',
 		});

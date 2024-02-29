@@ -1,8 +1,10 @@
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import PlausibleProvider from 'next-plausible';
+import dynamic from 'next/dynamic';
 import { Lato } from 'next/font/google';
+import { AnalyticsProvider } from './analytics/analytics-provider';
 import { Footer } from './components/footer';
 import { Navbar } from './components/navbar/navbar';
 import { TrpcProvider } from './components/trpc/trpc-provider';
@@ -21,6 +23,10 @@ export const metadata: Metadata = {
 	},
 };
 
+const PageView = dynamic(async () => import('./analytics/page-view'), {
+	ssr: false,
+});
+
 // biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function RootLayout({
 	children,
@@ -33,14 +39,17 @@ export default function RootLayout({
 				<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
 			</head>
 
-			<body className={clsx(lato.className, 'bg-neutral-900 text-white flex flex-col min-h-screen')}>
-				<Navbar />
-				<main className='container mx-auto grow px-2'>
-					<TrpcProvider>{children}</TrpcProvider>
-				</main>
-				<Footer />
-				<Analytics />
-			</body>
+			<TrpcProvider>
+				<AnalyticsProvider>
+					<body className={clsx(lato.className, 'bg-neutral-900 text-white flex flex-col min-h-screen')}>
+						<PageView />
+						<Navbar />
+						<main className='container mx-auto grow px-2'>{children}</main>
+						<Footer />
+						<VercelAnalytics />
+					</body>
+				</AnalyticsProvider>
+			</TrpcProvider>
 		</html>
 	);
 }

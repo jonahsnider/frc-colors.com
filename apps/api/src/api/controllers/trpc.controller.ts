@@ -1,29 +1,33 @@
 import { trpcServer } from '@hono/trpc-server';
+import { Server } from 'bun';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { configService } from '../../config/config.service';
 import { appRouter } from '../../trpc/app.router';
 import { createContext } from '../../trpc/context';
+import { Env } from '../interfaces/env.interface';
 
-export const trpcController = new Hono()
-	.use(
-		'*',
-		cors({
-			origin: configService.websiteUrl,
-		}),
-	)
-	.use(
-		'/*',
-		trpcServer({
-			router: appRouter,
-			createContext,
-			onError: (options) => {
-				if (options.error.code === 'INTERNAL_SERVER_ERROR') {
-					// Actual server error, should throw
-					throw options.error;
-				}
+export function createTrpcController(getServer: () => Server) {
+	return new Hono<Env>()
+		.use(
+			'*',
+			cors({
+				origin: configService.websiteUrl,
+			}),
+		)
+		.use(
+			'/*',
+			trpcServer({
+				router: appRouter,
+				createContext: (options) => createContext(getServer, options),
+				onError: (options) => {
+					if (options.error.code === 'INTERNAL_SERVER_ERROR') {
+						// Actual server error, should throw
+						throw options.error;
+					}
 
-				// Use default TRPC error response for client errors
-			},
-		}),
-	);
+					// Use default TRPC error response for client errors
+				},
+			}),
+		);
+}
