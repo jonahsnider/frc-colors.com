@@ -13,7 +13,7 @@ const nextConfig = withPlausibleProxy()({
 		NEXT_PUBLIC_API_URL: getBaseApiUrl(),
 	},
 	// biome-ignore lint/suspicious/useAwait: This has to be async for the Next.js API
-		async rewrites() {
+	async rewrites() {
 		return [
 			{
 				// Short name to avoid triggering adblockers
