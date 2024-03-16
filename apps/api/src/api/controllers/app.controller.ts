@@ -1,6 +1,7 @@
 import type { Server } from 'bun';
 import { Hono } from 'hono';
 import { logger as honoLogger } from 'hono/logger';
+import { timing } from 'hono/timing';
 import { baseLogger } from '../../logger/logger';
 import { trackFn } from '../../timing/timing';
 import { errorHandler } from '../error-handler';
@@ -26,6 +27,13 @@ export function createAppController(getServer: () => Server) {
 				},
 				trackFn,
 				honoLogger((...messages) => logger.info(...messages)),
+				timing({
+					enabled(context) {
+						// Required until https://github.com/honojs/hono/pull/2359 is merged and I can just programmatically define the cross origin policy
+						// This is also hacky and I believe is causing `Timer "total" does not exist!` warnings to be printed :/
+						return !context.req.path.startsWith('/v1');
+					},
+				}),
 			)
 			.route('v1', v1Controller)
 			.route('health', healthController)
