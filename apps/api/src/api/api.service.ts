@@ -1,14 +1,14 @@
-import assert from 'assert/strict';
-import { Server } from 'bun';
-import { Context } from 'hono';
+import assert from 'node:assert/strict';
+import type { Server } from 'bun';
+import type { Context } from 'hono';
 import { inspectRoutes } from 'hono/dev';
-import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
+import type { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
-import { TeamNumber } from '../teams/dtos/team-number.dto';
+import type { TeamNumber } from '../teams/dtos/team-number.dto';
 import { createAppController } from './controllers/app.controller';
-import { Env } from './interfaces/env.interface';
-import { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
+import type { Env } from './interfaces/env.interface';
+import type { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
 export class ApiService {
 	static getIp(context: Context<Env>): string;

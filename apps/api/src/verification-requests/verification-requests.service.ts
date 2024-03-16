@@ -1,11 +1,11 @@
-import { Comparable, Sort } from '@jonahsnider/util';
-import assert from 'assert/strict';
+import assert from 'node:assert/strict';
+import { type Comparable, Sort } from '@jonahsnider/util';
 import { ms } from 'convert';
 import { and, eq, gt, ne, or } from 'drizzle-orm';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
-import { TeamNumber } from '../teams/dtos/team-number.dto';
-import { VerificationRequest } from './dtos/verification-request.dto';
+import type { TeamNumber } from '../teams/dtos/team-number.dto';
+import type { VerificationRequest } from './dtos/verification-request.dto';
 
 export class VerificationRequestsService {
 	private static dbVerificationRequestToDto(row: typeof Schema.verificationRequests.$inferSelect): VerificationRequest {

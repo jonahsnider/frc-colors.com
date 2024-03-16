@@ -1,7 +1,7 @@
 import { Http } from '@jonahsnider/util';
 
 import { captureException } from '@sentry/bun';
-import { ErrorHandler } from 'hono';
+import type { ErrorHandler } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { BaseValidationException } from 'next-api-utils';
 import { baseLogger } from '../logger/logger';

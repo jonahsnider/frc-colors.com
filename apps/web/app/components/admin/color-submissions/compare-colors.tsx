@@ -1,5 +1,5 @@
-import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
-import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
+import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
 import { ColorSwatch } from '../../team-card/color-swatch';
 

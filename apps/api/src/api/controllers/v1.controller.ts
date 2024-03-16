@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { timing } from 'hono/timing';
-import { Env } from '../interfaces/env.interface';
+import type { Env } from '../interfaces/env.interface';
 import { eventController } from './event.controller';
 import { teamController } from './team.controller';
 

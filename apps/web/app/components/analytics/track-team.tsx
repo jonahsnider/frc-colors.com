@@ -1,7 +1,7 @@
 'use client';
 
 import { usePlausible } from '@/app/hooks/plausible';
-import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
+import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 

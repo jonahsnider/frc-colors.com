@@ -1,4 +1,4 @@
-import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { TeamImageAvatar } from './team-image-avatar';
 import { TeamImageBlank } from './team-image-blank';
 import { TeamImageGradient } from './team-image-gradient';

@@ -1,5 +1,5 @@
-import { TbaMediaKind } from '../enums/tba-media-kind';
-import { TbaMediaAvatar, TbaMediaBase } from './tba-media.interface';
+import type { TbaMediaKind } from '../enums/tba-media-kind';
+import type { TbaMediaAvatar, TbaMediaBase } from './tba-media.interface';
 
 type KnownTbaMediaKind = TbaMediaAvatar;
 

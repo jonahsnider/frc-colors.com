@@ -1,4 +1,4 @@
-import { Job, Queue, Worker } from 'bullmq';
+import type { Job, Queue, Worker } from 'bullmq';
 
 export type DataType = undefined;
 

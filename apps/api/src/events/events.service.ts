@@ -1,5 +1,5 @@
 import { colorsService } from '../colors/colors.service';
-import { ManyTeamColors } from '../colors/dtos/colors.dto';
+import type { ManyTeamColors } from '../colors/dtos/colors.dto';
 import { tbaService } from '../tba/tba.service';
 
 export class EventsService {

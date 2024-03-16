@@ -1,3 +1,3 @@
-import { TbaTeam } from './tba-team.interface';
+import type { TbaTeam } from './tba-team.interface';
 
 export type TbaEventTeams = TbaTeam[];

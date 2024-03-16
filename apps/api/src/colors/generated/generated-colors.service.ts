@@ -2,16 +2,16 @@ import { Sort } from '@jonahsnider/util';
 import { extractColors } from 'extract-colors';
 import { PNG } from 'pngjs/browser';
 import { avatarService } from '../../teams/avatar/avatar.service';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
-import { ManyTeamColors, TeamColors } from '../dtos/colors.dto';
-import { ColorFetcher } from '../interfaces/color-fetcher.interface';
+import type { TeamNumber } from '../../teams/dtos/team-number.dto';
+import type { ManyTeamColors, TeamColors } from '../dtos/colors.dto';
+import type { ColorFetcher } from '../interfaces/color-fetcher.interface';
 
 type ColorValidator = (red: number, green: number, blue: number, alpha?: number) => boolean;
 
 export class GeneratedColors implements ColorFetcher {
-	async getTeamColors(team: TeamNumber): Promise<TeamColors | undefined>;
-	async getTeamColors(teams: TeamNumber[]): Promise<ManyTeamColors>;
-	async getTeamColors(teams: TeamNumber | TeamNumber[]): Promise<TeamColors | ManyTeamColors | undefined> {
+	getTeamColors(team: TeamNumber): Promise<TeamColors | undefined>;
+	getTeamColors(teams: TeamNumber[]): Promise<ManyTeamColors>;
+	getTeamColors(teams: TeamNumber | TeamNumber[]): Promise<TeamColors | ManyTeamColors | undefined> {
 		if (Array.isArray(teams)) {
 			return this.getManyTeamColors(teams);
 		}
@@ -69,6 +69,7 @@ export class GeneratedColors implements ColorFetcher {
 		});
 	}
 
+	// biome-ignore lint/suspicious/useAwait: Required to make this compile
 	private async extractColors(pixels: Uint8Array, strict: boolean): Promise<ReturnType<typeof extractColors>> {
 		return extractColors(
 			{ data: Array.from(pixels), width: 40, height: 40 },

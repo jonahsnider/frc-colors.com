@@ -1,5 +1,5 @@
-import { Job, Queue, Worker } from 'bullmq';
-import { TeamNumber } from '../../dtos/team-number.dto';
+import type { Job, Queue, Worker } from 'bullmq';
+import type { TeamNumber } from '../../dtos/team-number.dto';
 
 export type DataType = {
 	teams: TeamNumber[];

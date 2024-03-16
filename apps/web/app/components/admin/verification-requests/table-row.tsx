@@ -1,5 +1,5 @@
 import { Schema } from '@frc-colors/api/src/db/index';
-import { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
+import type { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
 import Link from 'next/link';

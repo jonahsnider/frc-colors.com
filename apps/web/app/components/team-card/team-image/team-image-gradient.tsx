@@ -1,4 +1,4 @@
-import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import clsx from 'clsx';
 import * as d3 from 'd3-color';
 

@@ -2,13 +2,13 @@
 
 import { ColorInput } from '@/app/components/color-input';
 import { H2 } from '@/app/components/headings/h2';
-import { State, SubmitButton } from '@/app/components/submit-button';
+import { type State, SubmitButton } from '@/app/components/submit-button';
 import { TeamCard } from '@/app/components/team-card/team-card';
 import { TeamInput } from '@/app/components/team-input';
 import { trpc } from '@/app/trpc';
-import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { SetColorsInput } from '@frc-colors/api/src/teams/dtos/set-colors-input.dto';
-import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
+import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { useEffect, useState } from 'react';
 import type { PartialDeep } from 'type-fest';

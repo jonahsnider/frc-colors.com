@@ -36,7 +36,7 @@ export const teamsRouter = router({
 		getMany: publicProcedure
 			.input(TeamNumber.array())
 			.output(ManyTeamColors)
-			.query(async ({ input, ctx }) => {
+			.query(({ input, ctx }) => {
 				analyticsService.client.capture({
 					distinctId: ctx.requestIp,
 					event: 'get_many_team_colors',

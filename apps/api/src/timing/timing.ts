@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { Context } from 'hono';
+import type { Context } from 'hono';
 import * as hono from 'hono/timing';
 
 const contextStorage = new AsyncLocalStorage<Context>();

@@ -1,4 +1,4 @@
-import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { configService } from '../config/config.service';
 
 export class AuthService {

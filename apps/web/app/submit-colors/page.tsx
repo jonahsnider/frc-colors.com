@@ -1,12 +1,12 @@
 'use client';
 
 import { CreateColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
-import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
-import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
+import type { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { useState } from 'react';
 import { ColorInput } from '../components/color-input';
 import { H1 } from '../components/headings/h1';
-import { State, SubmitButton } from '../components/submit-button';
+import { type State, SubmitButton } from '../components/submit-button';
 import { TeamInput } from '../components/team-input';
 import { trpc } from '../trpc';
 

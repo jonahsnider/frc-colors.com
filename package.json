@@ -19,8 +19,8 @@
 		"pg": "8.11.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.5.3",
-		"@types/pg": "8.11.1",
+		"@biomejs/biome": "1.6.1",
+		"@types/pg": "8.11.2",
 		"drizzle-kit": "0.20.14",
 		"envalid": "8.0.0",
 		"pino": "8.19.0",
@@ -29,5 +29,9 @@
 		"prettier-plugin-packagejson": "2.4.12",
 		"turbo": "1.12.5",
 		"vercel": "33.6.1"
-	}
+	},
+	"packageManager": "yarn@4.1.1",
+	"trustedDependencies": [
+		"@biomejs/biome"
+	]
 }

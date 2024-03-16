@@ -4,11 +4,11 @@ import { QueryBooleanSchema, validateParams, validateQuery } from 'next-api-util
 import { z } from 'zod';
 import { analyticsService } from '../../analytics/analytics.service';
 import { colorsService } from '../../colors/colors.service';
-import { ManyTeamColors } from '../../colors/dtos/colors.dto';
+import type { ManyTeamColors } from '../../colors/dtos/colors.dto';
 import { TeamNumber } from '../../teams/dtos/team-number.dto';
 import { ApiService } from '../api.service';
 import { BaseHttpException } from '../exceptions/base.exception';
-import { Env } from '../interfaces/env.interface';
+import type { Env } from '../interfaces/env.interface';
 
 export const teamController = new Hono<Env>()
 	.get('/:team', async (context) => {

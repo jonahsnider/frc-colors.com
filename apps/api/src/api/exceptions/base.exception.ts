@@ -1,5 +1,5 @@
 import { Http } from '@jonahsnider/util';
-import { Exception } from '../interfaces/exception.interface';
+import type { Exception } from '../interfaces/exception.interface';
 
 export class BaseHttpException extends Error {
 	readonly error: string;

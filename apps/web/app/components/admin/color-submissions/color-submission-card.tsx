@@ -3,8 +3,8 @@
 import { formatDistanceToNow, formatRelative } from 'date-fns';
 
 import { trpc } from '@/app/trpc';
-import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
-import { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
+import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { Schema } from '@frc-colors/api/src/db/index';
 import { useState } from 'react';
 import { TableRowActions as ColorSubmissionCardActions } from './color-submission-card-actions';

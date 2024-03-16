@@ -1,6 +1,6 @@
 import { TRPCError } from '@trpc/server';
-import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-import { Server } from 'bun';
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import type { Server } from 'bun';
 import { ApiService } from '../api/api.service';
 import { authService } from '../auth/auth.service';
 

@@ -1,4 +1,4 @@
-import { MigrationConfig } from 'drizzle-orm/migrator';
+import type { MigrationConfig } from 'drizzle-orm/migrator';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { cleanEnv, str } from 'envalid';

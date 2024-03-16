@@ -4,7 +4,7 @@ import { eq, inArray } from 'drizzle-orm';
 import { db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { tbaService } from '../../tba/tba.service';
-import { TeamNumber } from '../dtos/team-number.dto';
+import type { TeamNumber } from '../dtos/team-number.dto';
 import { RefreshAvatarWorker } from './refresh-avatar.worker';
 import { SweepAvatarsWorker } from './sweep-avatars.worker';
 

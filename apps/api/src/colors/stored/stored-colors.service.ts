@@ -2,10 +2,10 @@ import { eq, inArray } from 'drizzle-orm';
 
 import { db } from '../../db/db';
 import { Schema } from '../../db/index';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
+import type { TeamNumber } from '../../teams/dtos/team-number.dto';
 import { trackDuration } from '../../timing/timing';
-import { HexColorCode, ManyTeamColors, TeamColors } from '../dtos/colors.dto';
-import { ColorFetcher } from '../interfaces/color-fetcher.interface';
+import { HexColorCode, type ManyTeamColors, type TeamColors } from '../dtos/colors.dto';
+import type { ColorFetcher } from '../interfaces/color-fetcher.interface';
 
 export class StoredColors implements ColorFetcher {
 	async getTeamColors(team: TeamNumber): Promise<TeamColors | undefined>;

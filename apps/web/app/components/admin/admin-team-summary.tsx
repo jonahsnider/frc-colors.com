@@ -4,7 +4,7 @@ import { H2 } from '../headings/h2';
 import { VerificationRequestsTable } from './verification-requests/table';
 
 import { trpc } from '@/app/trpc';
-import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
+import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { H3 } from '../headings/h3';
 import { ColorSubmissionsTable } from './color-submissions/table';
 

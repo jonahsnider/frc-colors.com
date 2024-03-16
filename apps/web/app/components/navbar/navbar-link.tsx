@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NavbarItem } from './types';
+import type { NavbarItem } from './types';
 
 export function NavbarLink({ item }: { item: NavbarItem }) {
 	return (

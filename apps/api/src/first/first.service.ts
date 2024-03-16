@@ -1,10 +1,10 @@
 import ky from 'ky';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
-import { TeamNumber } from '../teams/dtos/team-number.dto';
+import type { TeamNumber } from '../teams/dtos/team-number.dto';
 import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
 import { FetchTeamsWorker } from './fetch-teams.worker';
-import { FrcTeamListings } from './interfaces/frc-team-listings.interface';
+import type { FrcTeamListings } from './interfaces/frc-team-listings.interface';
 
 export class FirstService {
 	private static readonly BASIC_AUTH_TOKEN = Buffer.from(

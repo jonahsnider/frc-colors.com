@@ -1,13 +1,13 @@
-import { Comparable, Sort } from '@jonahsnider/util';
+import { type Comparable, Sort } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { ms } from 'convert';
 import { and, eq, gt, ne, or } from 'drizzle-orm';
 import { colorsService } from '../colors/colors.service';
 import { db } from '../db/db';
 import { Schema } from '../db/index';
-import { TeamNumber } from '../teams/dtos/team-number.dto';
+import type { TeamNumber } from '../teams/dtos/team-number.dto';
 import { verificationRequestsService } from '../verification-requests/verification-requests.service';
-import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
+import type { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
 
 export class ColorSubmissionsService {
 	static dbColorSubmissionToDto(row: typeof Schema.colorSubmissions.$inferSelect): ColorSubmission {

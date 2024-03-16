@@ -1,5 +1,5 @@
 import { trpc } from '@/app/trpc';
-import { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
+import type { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
 import { ColorSubmissionCard } from './color-submission-card';
 
 type Props = {

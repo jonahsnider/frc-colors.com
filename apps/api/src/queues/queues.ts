@@ -1,11 +1,11 @@
-import { Queue, QueueOptions } from 'bullmq';
+import { Queue, type QueueOptions } from 'bullmq';
 import convert from 'convert';
-import * as extractColors from '../colors/interfaces/queue.interface';
-import * as fetchTeamsPages from '../first/interfaces/fetch-teams-pages-queue.interface';
-import * as fetchTeams from '../first/interfaces/fetch-teams-queue.interface';
+import type * as extractColors from '../colors/interfaces/queue.interface';
+import type * as fetchTeamsPages from '../first/interfaces/fetch-teams-pages-queue.interface';
+import type * as fetchTeams from '../first/interfaces/fetch-teams-queue.interface';
 import { queueRedisConnection } from '../redis/redis';
-import * as refreshAvatar from '../teams/avatar/interfaces/refresh-avatar-queue.interface';
-import * as sweepAvatars from '../teams/avatar/interfaces/sweep-avatars-queue.interface';
+import type * as refreshAvatar from '../teams/avatar/interfaces/refresh-avatar-queue.interface';
+import type * as sweepAvatars from '../teams/avatar/interfaces/sweep-avatars-queue.interface';
 
 export enum QueueNames {
 	/** Query FIRST to determine how many pages of teams exist, and then schedule fetch operations for those teams. */

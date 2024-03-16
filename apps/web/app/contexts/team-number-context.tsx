@@ -1,5 +1,5 @@
 import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
-import { PropsWithChildren, createContext, useMemo, useState } from 'react';
+import { type PropsWithChildren, createContext, useMemo, useState } from 'react';
 
 type ContextValue = {
 	teamNumberRaw: string;
@@ -9,6 +9,7 @@ type ContextValue = {
 
 export const TeamNumberContext = createContext<ContextValue>({
 	teamNumberRaw: '',
+	// biome-ignore lint/suspicious/noEmptyBlockStatements: This is intentionally empty
 	setTeamNumber: () => {},
 });
 

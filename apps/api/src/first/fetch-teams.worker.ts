@@ -2,7 +2,7 @@ import { ms } from 'convert';
 import { BaseWorker } from '../queues/base.worker';
 import { fetchTeamsQueue, sweepAvatarsQueue } from '../queues/queues';
 import { firstService } from './first.service';
-import { DataType, JobType, NameType, ReturnType } from './interfaces/fetch-teams-queue.interface';
+import type { DataType, JobType, NameType, ReturnType } from './interfaces/fetch-teams-queue.interface';
 
 export class FetchTeamsWorker extends BaseWorker<DataType, ReturnType, NameType> {
 	protected override async process(job: JobType): Promise<ReturnType> {

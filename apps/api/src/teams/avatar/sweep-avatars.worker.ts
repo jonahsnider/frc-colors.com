@@ -1,7 +1,7 @@
 import { BaseWorker } from '../../queues/base.worker';
 import { refreshAvatarQueue, sweepAvatarsQueue } from '../../queues/queues';
 import { avatarService } from './avatar.service';
-import { DataType, JobType, NameType, ReturnType } from './interfaces/sweep-avatars-queue.interface';
+import type { DataType, JobType, NameType, ReturnType } from './interfaces/sweep-avatars-queue.interface';
 
 export class SweepAvatarsWorker extends BaseWorker<DataType, ReturnType, NameType> {
 	protected override async process(job: JobType): Promise<ReturnType> {

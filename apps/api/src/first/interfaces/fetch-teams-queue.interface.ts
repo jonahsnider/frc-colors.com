@@ -1,4 +1,4 @@
-import { Job, Queue } from 'bullmq';
+import type { Job, Queue } from 'bullmq';
 
 export type DataType = {
 	page: number;

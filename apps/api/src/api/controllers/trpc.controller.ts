@@ -1,11 +1,11 @@
 import { trpcServer } from '@hono/trpc-server';
-import { Server } from 'bun';
+import type { Server } from 'bun';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { configService } from '../../config/config.service';
 import { appRouter } from '../../trpc/app.router';
 import { createContext } from '../../trpc/context';
-import { Env } from '../interfaces/env.interface';
+import type { Env } from '../interfaces/env.interface';
 
 export function createTrpcController(getServer: () => Server) {
 	return new Hono<Env>()

@@ -12,7 +12,7 @@ export const trpc = createTRPCNext<AppRouter>({
 			httpBatchLink({
 				transformer,
 				url: new URL('/trpc', getBaseApiUrl()),
-				headers: async () => {
+				headers: () => {
 					const apiKey = globalThis.window?.localStorage.getItem('apiKey');
 
 					if (!apiKey) {

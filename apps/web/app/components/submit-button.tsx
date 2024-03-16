@@ -1,6 +1,6 @@
 import { ArrowPathIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 export type State = 'ready' | 'invalid' | 'loading' | 'success' | 'error';
 

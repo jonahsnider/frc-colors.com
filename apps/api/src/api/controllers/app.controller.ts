@@ -1,10 +1,10 @@
-import { Server } from 'bun';
+import type { Server } from 'bun';
 import { Hono } from 'hono';
 import { logger as honoLogger } from 'hono/logger';
 import { baseLogger } from '../../logger/logger';
 import { trackFn } from '../../timing/timing';
 import { errorHandler } from '../error-handler';
-import { Env } from '../interfaces/env.interface';
+import type { Env } from '../interfaces/env.interface';
 import { healthController } from './health.controller';
 import { internalController } from './internal.controller';
 import { createTrpcController } from './trpc.controller';

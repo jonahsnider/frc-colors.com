@@ -1,7 +1,7 @@
 import { BaseWorker } from '../queues/base.worker';
 import { extractColorsQueue } from '../queues/queues';
 import { colorsService } from './colors.service';
-import { DataType, JobType, NameType, ReturnType } from './interfaces/queue.interface';
+import type { DataType, JobType, NameType, ReturnType } from './interfaces/queue.interface';
 
 export class ColorsWorker extends BaseWorker<DataType, ReturnType, NameType> {
 	protected override async process(job: JobType): Promise<ReturnType> {

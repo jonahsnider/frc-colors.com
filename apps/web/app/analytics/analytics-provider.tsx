@@ -2,7 +2,7 @@
 
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { IdentifyUser } from './identify-user';
 
 const postHogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;

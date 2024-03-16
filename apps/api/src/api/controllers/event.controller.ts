@@ -4,11 +4,11 @@ import { TRPCError } from '@trpc/server';
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { analyticsService } from '../../analytics/analytics.service';
-import { ManyTeamColors } from '../../colors/dtos/colors.dto';
+import type { ManyTeamColors } from '../../colors/dtos/colors.dto';
 import { eventsService } from '../../events/events.service';
 import { ApiService } from '../api.service';
 import { BaseHttpException } from '../exceptions/base.exception';
-import { Env } from '../interfaces/env.interface';
+import type { Env } from '../interfaces/env.interface';
 
 export const eventController = new Hono<Env>().get(
 	'/:event',

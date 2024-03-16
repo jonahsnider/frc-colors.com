@@ -1,4 +1,4 @@
-import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
+import type { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import clsx from 'clsx';
 import luminance from 'color-luminance';
 

@@ -1,15 +1,15 @@
 import { Buffer } from 'node:buffer';
 
 import { TRPCError } from '@trpc/server';
-import ky, { HTTPError, KyResponse } from 'ky';
+import ky, { HTTPError, type KyResponse } from 'ky';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { trackDuration } from '../timing/timing';
-import { TbaEventTeams } from './interfaces/tba-event-teams.interface';
-import { TbaMediaAvatar } from './interfaces/tba-media.interface';
-import { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
-import { TbaTeam } from './interfaces/tba-team.interface';
+import type { TbaEventTeams } from './interfaces/tba-event-teams.interface';
+import type { TbaMediaAvatar } from './interfaces/tba-media.interface';
+import type { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
+import type { TbaTeam } from './interfaces/tba-team.interface';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {

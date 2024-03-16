@@ -1,5 +1,5 @@
 import { captureException } from '@sentry/bun';
-import { Job, Queue, Worker, WorkerOptions } from 'bullmq';
+import { type Job, type Queue, Worker, type WorkerOptions } from 'bullmq';
 import { baseLogger } from '../logger/logger';
 import { workerRedisConnection } from '../redis/redis';
 

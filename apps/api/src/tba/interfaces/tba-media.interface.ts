@@ -1,4 +1,4 @@
-import { TbaMediaKind } from '../enums/tba-media-kind';
+import type { TbaMediaKind } from '../enums/tba-media-kind';
 
 export type TbaMediaBase<Type extends TbaMediaKind, Details extends Record<string, unknown>> = {
 	type: Type;
