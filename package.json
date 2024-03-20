@@ -20,7 +20,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.6.1",
-		"@types/pg": "8.11.2",
+		"@types/pg": "8.11.4",
 		"drizzle-kit": "0.20.14",
 		"envalid": "8.0.0",
 		"pino": "8.19.0",
