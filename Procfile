@@ -1,3 +1,3 @@
-web: bun --pwd ./apps/api start
+web: bun --cwd ./apps/api start
 
 release: bun run migrate

@@ -18,6 +18,6 @@
 		"numReplicas": 1,
 		"restartPolicyMaxRetries": 3,
 		"restartPolicyType": "ALWAYS",
-		"startCommand": "bun --pwd ./apps/api start"
+		"startCommand": "bun --cwd ./apps/api start"
 	}
 }
