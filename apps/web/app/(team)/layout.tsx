@@ -1,6 +1,7 @@
 'use client';
 
 import { Heading, Section } from '@radix-ui/themes';
+import { Suspense } from 'react';
 import { TeamNumberProvider } from '../contexts/team-number-context';
 
 // biome-ignore lint/style/noDefaultExport: This must be a default export
@@ -15,7 +16,9 @@ export default function TeamLayout({
 				FRC Colors
 			</Heading>
 
-			<TeamNumberProvider>{children}</TeamNumberProvider>
+			<Suspense>
+				<TeamNumberProvider>{children}</TeamNumberProvider>
+			</Suspense>
 		</Section>
 	);
 }

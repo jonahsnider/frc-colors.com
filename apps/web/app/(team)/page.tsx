@@ -1,6 +1,7 @@
 'use client';
 
-import { Suspense, useContext } from 'react';
+import { useContext } from 'react';
+import { useDebounce } from 'use-debounce';
 import { AdminTeamSummary } from '../components/admin/admin-team-summary';
 import { TrackTeam } from '../components/analytics/track-team';
 import { SearchTeams } from '../components/search-teams';
@@ -14,22 +15,22 @@ export default function HomePage() {
 	const { teamNumber } = useContext(TeamNumberContext);
 	const [apiKey] = useApiKey();
 
+	const [debouncedTeam] = useDebounce(teamNumber, 100, { maxWait: 1000 });
+
 	// biome-ignore lint/style/noNonNullAssertion: This won't run if teamNumber isn't defined
-	const teamNameQuery = trpc.teams.getName.useQuery(teamNumber!, { enabled: Boolean(teamNumber) });
+	const teamNameQuery = trpc.teams.getName.useQuery(debouncedTeam!, { enabled: Boolean(teamNumber) });
 
 	const teamExists = teamNameQuery.isSuccess ? Boolean(teamNameQuery.data?.name) : true;
 
 	return (
 		<>
-			<Suspense>
-				<SearchTeams invalidTeam={!teamExists} />
-			</Suspense>
+			<SearchTeams invalidTeam={!teamExists} />
 
-			<TrackTeam teamNumber={teamNumber} />
+			<TrackTeam teamNumber={debouncedTeam} />
 
-			{teamNumber && <TeamCard teamNumber={teamNumber} />}
+			{debouncedTeam && <TeamCard teamNumber={debouncedTeam} />}
 
-			{apiKey && <AdminTeamSummary teamNumber={teamNumber} />}
+			{apiKey && <AdminTeamSummary teamNumber={debouncedTeam} />}
 		</>
 	);
 }

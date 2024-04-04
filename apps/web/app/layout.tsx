@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { ThemeProvider } from 'next-themes';
 import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { Toaster } from 'sonner';
 import { AnalyticsProvider } from './analytics/analytics-provider';
 import { Footer } from './components/footer';
@@ -57,7 +58,9 @@ export default function RootLayout({
 					<body className='min-h-screen'>
 						<ThemeProvider attribute='class' enableSystem={true} disableTransitionOnChange={true}>
 							<Theme accentColor='jade' grayColor='sage' className='flex flex-col' scaling='110%'>
-								<PageView />
+								<Suspense>
+									<PageView />
+								</Suspense>
 
 								<Navbar />
 								<Section asChild={true} flexGrow='1' height='100%'>

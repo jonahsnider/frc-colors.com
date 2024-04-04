@@ -24,26 +24,30 @@ export const teamsRouter = router({
 			.input(TeamNumber)
 			.output(z.object({ colors: TeamColors.optional() }))
 			.query(async ({ input, ctx }) => {
-				analyticsService.client.capture({
-					distinctId: ctx.requestIp,
-					event: 'get_team_colors',
-					properties: {
-						team: input,
-					},
-				});
+				if (ctx.requestIp) {
+					analyticsService.client.capture({
+						distinctId: ctx.requestIp,
+						event: 'get_team_colors',
+						properties: {
+							team: input,
+						},
+					});
+				}
 				return { colors: await colorsService.stored.getTeamColors(input) };
 			}),
 		getMany: publicProcedure
 			.input(TeamNumber.array())
 			.output(ManyTeamColors)
 			.query(({ input, ctx }) => {
-				analyticsService.client.capture({
-					distinctId: ctx.requestIp,
-					event: 'get_many_team_colors',
-					properties: {
-						teams: input,
-					},
-				});
+				if (ctx.requestIp) {
+					analyticsService.client.capture({
+						distinctId: ctx.requestIp,
+						event: 'get_many_team_colors',
+						properties: {
+							teams: input,
+						},
+					});
+				}
 				return colorsService.stored.getTeamColors(input);
 			}),
 

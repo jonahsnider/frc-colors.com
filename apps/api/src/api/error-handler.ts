@@ -3,13 +3,14 @@ import { Http } from '@jonahsnider/util';
 import { captureException } from '@sentry/bun';
 import type { ErrorHandler } from 'hono';
 import { HTTPException } from 'hono/http-exception';
+import type { StatusCode } from 'hono/utils/http-status';
 import { BaseValidationException } from 'next-api-utils';
 import { baseLogger } from '../logger/logger';
 import { BaseHttpException } from './exceptions/base.exception';
 
 export const errorHandler: ErrorHandler = (error, context) => {
 	if (error instanceof BaseHttpException) {
-		context.status(error.statusCode);
+		context.status(error.statusCode as StatusCode);
 		return context.json(error.toResponse());
 	}
 
@@ -44,6 +45,6 @@ export const errorHandler: ErrorHandler = (error, context) => {
 		process.exit(1);
 	}
 
-	context.status(genericException.statusCode);
+	context.status(genericException.statusCode as StatusCode);
 	return context.json(genericException.toResponse());
 };
