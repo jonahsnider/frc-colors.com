@@ -1,33 +1,48 @@
-import Link from 'next/link';
+import { Link, Separator, Strong, Text } from '@radix-ui/themes';
+import clsx from 'clsx';
+import NextLink from 'next/link';
+import { Children, Fragment, type PropsWithChildren } from 'react';
+
+function FooterRow({ children, vertical }: PropsWithChildren<{ vertical: boolean }>) {
+	const childrenArray = Children.toArray(children);
+
+	return (
+		<div
+			className={clsx('flex justify-center items-center gap-x-rx-2 text-center', {
+				'flex-col xs:flex-row': vertical,
+			})}
+		>
+			{childrenArray.map((child, index) => (
+				// biome-ignore lint/suspicious/noArrayIndexKey: This won't get rerendered so it's probably fine to just use index
+				<Fragment key={index}>
+					{child}
+					{index < childrenArray.length - 1 && <Separator orientation={{ initial: 'horizontal', xs: 'vertical' }} />}
+				</Fragment>
+			))}
+		</div>
+	);
+}
 
 export function Footer() {
 	return (
-		<footer className='text-center py-5 lg:pt-10 text-neutral-200 w-full shrink-0 lg:text-lg xl:text-xl'>
-			<p>
-				<Link className='underline' href='/submit-colors'>
-					Submit colors for a team
+		<footer className='flex flex-col justify-center items-center shrink-0 py-rx-2 max-xs:gap-rx-2'>
+			<FooterRow vertical={false}>
+				<Strong>Other projects</Strong>
+				<Link href='https://frc.sh/?utm_source=frc_colors'>frc.sh</Link>
+				<Link href='https://scores.frc.sh/?utm_source=frc_colors'>scores.frc.sh</Link>
+			</FooterRow>
+
+			<FooterRow vertical={true}>
+				<Link asChild={true}>
+					<NextLink href='/submit-colors'>Submit colors for a team</NextLink>
 				</Link>
-			</p>
 
-			<p>
-				<a className='underline' href='https://status.frc-colors.com'>
-					Status page
-				</a>
-			</p>
+				<Link href='https://status.frc-colors.com'>Status page</Link>
 
-			<p>
-				FRC Colors is licensed under{' '}
-				<a className='underline' href='https://www.apache.org/licenses/LICENSE-2.0'>
-					Apache 2.0
-				</a>
-			</p>
-
-			<p>
-				Created by{' '}
-				<a className='underline' href='https://jonahsnider.com'>
-					Jonah Snider
-				</a>
-			</p>
+				<Text>
+					Created by <Link href='https://jonahsnider.com'>Jonah Snider</Link>
+				</Text>
+			</FooterRow>
 		</footer>
 	);
 }

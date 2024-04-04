@@ -1,3 +1,4 @@
+import { Card } from '@radix-ui/themes';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
@@ -14,40 +15,34 @@ type Props = {
 
 export function BaseTeamCard({ title, avatar, verifiedBadge, colors, actions }: Props) {
 	return (
-		<div className='rounded my-4 p-4 flex max-md:flex-col justify-between md:gap-x-4 bg-neutral-800 shadow shadow-neutral-950'>
+		<Card className='my-rx-3 flex max-md:flex-col justify-between md:gap-x-4'>
 			{/* Image container */}
 			<div className='max-h-48 max-md:w-full flex justify-center items-center'>{avatar}</div>
 
 			<div
-				className={clsx('flex flex-col', {
+				className={clsx('flex flex-col justify-between', {
 					'max-md:justify-center': !colors,
-					'justify-between gap-y-4': colors,
+					'gap-y-4': colors,
 				})}
 			>
 				{/* Team number & name */}
-				<div className='flex gap-x-1 items-center'>
+				<div className='flex gap-x-rx-2 items-center'>
 					{title}
 					{verifiedBadge}
 				</div>
 
-				<div
-					className={clsx('flex gap-x-4', {
-						'md:justify-between': colors,
-						'justify-end h-full': !colors,
-					})}
-				>
+				<div className='w-full flex flex-col md:flex-row justify-between md:items-end gap-x-rx-2 gap-y-rx-4'>
 					{/* Colors */}
-					{colors && (
-						<div className='flex flex-row gap-x-4 justify-center w-full md:flex-col md:gap-y-4 md:w-auto'>
-							{colors.primary}
-							{colors.secondary}
-						</div>
-					)}
+
+					<div className='flex md:flex-col gap-rx-2'>
+						{colors?.primary}
+						{colors?.secondary}
+					</div>
 
 					{/* Actions */}
-					{actions && <div className='flex flex-col justify-end'>{actions}</div>}
+					{actions && <div className='flex flex-col items-end'>{actions}</div>}
 				</div>
 			</div>
-		</div>
+		</Card>
 	);
 }

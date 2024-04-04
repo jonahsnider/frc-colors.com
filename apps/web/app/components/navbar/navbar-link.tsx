@@ -1,14 +1,12 @@
-import Link from 'next/link';
+import { Link } from '@radix-ui/themes';
+import NextLink from 'next/link';
 import type { NavbarItem } from './types';
 
 export function NavbarLink({ item }: { item: NavbarItem }) {
 	return (
-		<li className='flex items-center justify-center'>
-			<Link
-				href={item.href}
-				className='text-lg px-1.5 py-0.5 lg:px-3 lg:py-1.5 lg:text-xl self-center rounded transition-colors hover:bg-neutral-700 active:bg-neutral-600'
-			>
-				{item.content}
+		<li className='flex justify-center items-center'>
+			<Link asChild={true} size='4'>
+				<NextLink href={item.href}>{item.content}</NextLink>
 			</Link>
 		</li>
 	);

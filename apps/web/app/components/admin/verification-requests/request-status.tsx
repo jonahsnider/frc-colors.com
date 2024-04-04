@@ -1,22 +1,21 @@
 import { Schema } from '@frc-colors/api/src/db/index';
 import type { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
-import { CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
-import { formatDistanceToNow } from 'date-fns';
+import { CheckIcon, ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 type Props = {
 	request: VerificationRequest;
 };
 
 export function RequestStatus({ request }: Props) {
-	const updatedAt = request.updatedAt ? `Updated ${formatDistanceToNow(new Date(request.updatedAt))} ago` : undefined;
+	switch (request.status) {
+		case Schema.VerificationRequestStatus.Pending:
+			return <ExclamationTriangleIcon width='22' height='22' className='text-amber-10' />;
 
-	if (request.status === Schema.VerificationRequestStatus.Finished) {
-		return <CheckIcon className='h-6 text-gray-400' title={updatedAt} />;
+		case Schema.VerificationRequestStatus.Finished:
+			return <CheckIcon width='22' height='22' className='text-gray-9' />;
+
+		case Schema.VerificationRequestStatus.Rejected: {
+			return <CheckIcon width='22' height='22' className='text-red-9' />;
+		}
 	}
-
-	if (request.status === Schema.VerificationRequestStatus.Pending) {
-		return <ExclamationCircleIcon className='h-6 text-yellow-400' />;
-	}
-
-	return <CheckIcon className='h-6 text-red-400' title={updatedAt} />;
 }

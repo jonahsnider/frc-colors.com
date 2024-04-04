@@ -29,5 +29,5 @@ export function createContext(getServer: () => Server, options: FetchCreateConte
 
 export type Context = {
 	isAdmin: boolean;
-	requestIp: string;
+	requestIp: string | undefined;
 };

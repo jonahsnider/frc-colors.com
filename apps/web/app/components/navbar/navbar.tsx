@@ -1,3 +1,4 @@
+import { Container } from '@radix-ui/themes';
 import { AdminNavbarLink } from './admin-navbar-links';
 import { NavbarLink } from './navbar-link';
 import { NavbarLogo } from './navbar-logo';
@@ -15,17 +16,19 @@ const DEFAULT_NAVBAR_ITEMS = [
 
 export function Navbar() {
 	return (
-		<nav className='bg-neutral-800 shadow-lg px-4 py-2 flex justify-center'>
-			<div className='flex justify-between w-full max-w-4xl'>
-				<NavbarLogo />
+		<nav className='bg-sage-2 shadow-2'>
+			<Container size='3'>
+				<div className='flex w-full justify-between p-rx-3'>
+					<NavbarLogo />
 
-				<ul className='flex flex-row gap-x-2'>
-					{DEFAULT_NAVBAR_ITEMS.map((item) => (
-						<NavbarLink key={item.content} item={item} />
-					))}
-					<AdminNavbarLink />
-				</ul>
-			</div>
+					<ul className='flex flex-row gap-rx-3'>
+						{DEFAULT_NAVBAR_ITEMS.map((item) => (
+							<NavbarLink key={item.content} item={item} />
+						))}
+						<AdminNavbarLink />
+					</ul>
+				</div>
+			</Container>
 		</nav>
 	);
 }

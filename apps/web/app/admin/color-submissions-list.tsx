@@ -1,8 +1,8 @@
 import { count } from '@jonahsnider/util';
 
 import { Schema } from '@frc-colors/api/src/db/index';
+import { Card, Heading } from '@radix-ui/themes';
 import { ColorSubmissionsTable } from '../components/admin/color-submissions/table';
-import { H2 } from '../components/headings/h2';
 import { trpc } from '../trpc';
 
 export function ColorSubmissionsList() {
@@ -20,8 +20,10 @@ export function ColorSubmissionsList() {
 	};
 
 	return (
-		<div className='flex flex-col items-center gap-y-4'>
-			<H2>Color submissions</H2>
+		<Card className='flex flex-col items-center gap-y-4'>
+			<Heading as='h2' size='6'>
+				Color submissions
+			</Heading>
 
 			{data && (
 				<>
@@ -38,6 +40,6 @@ export function ColorSubmissionsList() {
 			{isLoading && <div>Loading...</div>}
 
 			{error && !isLoading && <div>Error: {error.message}</div>}
-		</div>
+		</Card>
 	);
 }

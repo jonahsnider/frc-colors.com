@@ -25,7 +25,7 @@ export function TeamImageGradient({ colors, className }: Props) {
 
 	return (
 		<div
-			className={clsx('rounded transition-colors w-48 h-48', className)}
+			className={clsx('rounded-2 transition-colors w-48 h-48', className)}
 			style={{
 				backgroundImage: `linear-gradient(to bottom right, ${primaryHclString}, ${secondaryHclString})`,
 			}}

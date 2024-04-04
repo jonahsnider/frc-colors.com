@@ -1,11 +1,10 @@
 'use client';
 
-import { H2 } from '../headings/h2';
 import { VerificationRequestsTable } from './verification-requests/table';
 
 import { trpc } from '@/app/trpc';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
-import { H3 } from '../headings/h3';
+import { Card, Heading } from '@radix-ui/themes';
 import { ColorSubmissionsTable } from './color-submissions/table';
 
 type Props = {
@@ -19,9 +18,11 @@ export function AdminTeamSummary({ teamNumber }: Props) {
 
 	return (
 		<div className='flex flex-col gap-4 pt-8 w-full md:w-auto'>
-			<H2>Admin data</H2>
+			<Heading as='h2' size='6'>
+				Admin data
+			</Heading>
 
-			<div className='flex flex-col md:flex-row gap-4 md:gap-16'>
+			<div className='flex flex-col md:flex-row md:justify-between gap-rx-6'>
 				<VerificationRequests teamNumber={teamNumber} />
 
 				<ColorSubmissions teamNumber={teamNumber} />
@@ -34,12 +35,14 @@ function VerificationRequests({ teamNumber }: { teamNumber: TeamNumber }) {
 	const verificationRequests = trpc.verificationRequests.getAllForTeam.useQuery(teamNumber);
 
 	return (
-		<div className='flex flex-col gap-2'>
-			<H3>Verification requests</H3>
+		<Card className='flex flex-col gap-2'>
+			<Heading as='h3' size='5'>
+				Verification requests
+			</Heading>
 			{verificationRequests.data && <VerificationRequestsTable requests={verificationRequests.data} />}
 			{verificationRequests.error && <p>An error occurred while fetching verification requests</p>}
 			{verificationRequests.isLoading && <p>Fetching verification requests...</p>}
-		</div>
+		</Card>
 	);
 }
 
@@ -47,11 +50,13 @@ function ColorSubmissions({ teamNumber }: { teamNumber: TeamNumber }) {
 	const colorSubmissions = trpc.colorSubmissions.getAllForTeam.useQuery(teamNumber);
 
 	return (
-		<div className='flex flex-col gap-2'>
-			<H3>Color submissions</H3>
+		<Card className='flex flex-col gap-2'>
+			<Heading as='h3' size='5'>
+				Color submissions
+			</Heading>
 			{colorSubmissions.data && <ColorSubmissionsTable colorSubmissions={colorSubmissions.data} />}
 			{colorSubmissions.error && <p>An error occurred while fetching color submissions</p>}
 			{colorSubmissions.isLoading && <p>Fetching color submissions...</p>}
-		</div>
+		</Card>
 	);
 }

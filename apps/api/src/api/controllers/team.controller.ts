@@ -19,13 +19,16 @@ export const teamController = new Hono<Env>()
 			}),
 		);
 
-		analyticsService.client.capture({
-			distinctId: ApiService.getIp(context),
-			event: 'api_get_team_colors',
-			properties: {
-				team: params.team,
-			},
-		});
+		const ip = ApiService.getIp(context);
+		if (ip) {
+			analyticsService.client.capture({
+				distinctId: ip,
+				event: 'api_get_team_colors',
+				properties: {
+					team: params.team,
+				},
+			});
+		}
 
 		const colors = await colorsService.stored.getTeamColors(params.team);
 
@@ -51,23 +54,29 @@ export const teamController = new Hono<Env>()
 
 		let colors: ManyTeamColors;
 
+		const ip = ApiService.getIp(context);
+
 		if ('all' in params) {
-			analyticsService.client.capture({
-				distinctId: ApiService.getIp(context),
-				event: 'api_get_all_team_colors',
-			});
+			if (ip) {
+				analyticsService.client.capture({
+					distinctId: ip,
+					event: 'api_get_all_team_colors',
+				});
+			}
 
 			colors = await colorsService.stored.getAllTeamColors();
 		} else {
 			const teams = Array.isArray(params.team) ? params.team : [params.team];
 
-			analyticsService.client.capture({
-				distinctId: ApiService.getIp(context),
-				event: 'api_get_many_team_colors',
-				properties: {
-					teams,
-				},
-			});
+			if (ip) {
+				analyticsService.client.capture({
+					distinctId: ip,
+					event: 'api_get_many_team_colors',
+					properties: {
+						teams,
+					},
+				});
+			}
 
 			colors = await colorsService.stored.getTeamColors(teams);
 		}

@@ -1,6 +1,6 @@
 'use client';
 
-import { H1 } from '../components/headings/h1';
+import { Heading, Section } from '@radix-ui/themes';
 import { TeamNumberProvider } from '../contexts/team-number-context';
 
 // biome-ignore lint/style/noDefaultExport: This must be a default export
@@ -10,10 +10,12 @@ export default function TeamLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<section id='search' className='w-full flex flex-col items-center text-center p-4'>
-			<H1>FRC Colors</H1>
+		<Section id='search' py='4' className='flex flex-col gap-rx-6 items-center grow'>
+			<Heading size='8' as='h1'>
+				FRC Colors
+			</Heading>
 
 			<TeamNumberProvider>{children}</TeamNumberProvider>
-		</section>
+		</Section>
 	);
 }

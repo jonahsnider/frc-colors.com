@@ -1,43 +1,20 @@
 'use client';
 
 import { ColorInput } from '@/app/components/color-input';
-import { H2 } from '@/app/components/headings/h2';
-import { type State, SubmitButton } from '@/app/components/submit-button';
 import { TeamCard } from '@/app/components/team-card/team-card';
 import { TeamInput } from '@/app/components/team-input';
+import { Toast } from '@/app/components/toast';
 import { trpc } from '@/app/trpc';
 import type { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { SetColorsInput } from '@frc-colors/api/src/teams/dtos/set-colors-input.dto';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
-import { XMarkIcon } from '@heroicons/react/20/solid';
-import { useEffect, useState } from 'react';
+import { CheckIcon } from '@radix-ui/react-icons';
+import { Button, Card, Heading } from '@radix-ui/themes';
+import { useState } from 'react';
+import { toast } from 'sonner';
 import type { PartialDeep } from 'type-fest';
 
-function determineState({
-	isError,
-	isLoading,
-	isReady,
-	succeededAt,
-}: { isLoading: boolean; isError: boolean; succeededAt: number | undefined; isReady: boolean }): State {
-	if (isLoading) {
-		return 'loading';
-	}
-	if (isError) {
-		return 'error';
-	}
-	if (succeededAt && Date.now() - succeededAt < 3000) {
-		return 'success';
-	}
-	if (isReady) {
-		return 'ready';
-	}
-
-	return 'invalid';
-}
-
 export function SetColors() {
-	const [succeededAt, setSucceededAt] = useState<number | undefined>();
-
 	const [rawTeam, setRawTeam] = useState<string>('');
 	const [rawPrimaryColor, setRawPrimaryColor] = useState<string>('');
 	const [rawSecondaryColor, setRawSecondaryColor] = useState<string>('');
@@ -56,23 +33,18 @@ export function SetColors() {
 
 	const utils = trpc.useUtils();
 	const mutation = trpc.teams.colors.set.useMutation({
-		onMutate: () => {
-			setSucceededAt(undefined);
-		},
 		onSuccess: () => {
-			setSucceededAt(Date.now());
 			utils.teams.colors.get.invalidate(team);
 			utils.teams.colors.getMany.invalidate([team]);
 			utils.verificationRequests.getAll.invalidate();
 			utils.verificationRequests.getAllForTeam.invalidate(team);
-		},
-	});
 
-	const state = determineState({
-		isLoading: mutation.isPending,
-		isError: mutation.isError,
-		succeededAt,
-		isReady,
+			toast.custom(() => (
+				<Toast icon={<CheckIcon width='22' height='22' />} color='green'>
+					Successfully set colors for team {team}
+				</Toast>
+			));
+		},
 	});
 
 	const reset = () => {
@@ -84,18 +56,6 @@ export function SetColors() {
 		setPrimaryColor(undefined);
 		setSecondaryColor(undefined);
 	};
-
-	useEffect(() => {
-		if (succeededAt) {
-			const timeout = setTimeout(() => {
-				setSucceededAt(undefined);
-			}, 3000);
-
-			return () => {
-				clearTimeout(timeout);
-			};
-		}
-	}, [succeededAt]);
 
 	const onSubmit = () => {
 		if (!(isReady && primaryColor && secondaryColor && team)) {
@@ -112,46 +72,52 @@ export function SetColors() {
 	};
 
 	return (
-		<div className='flex flex-col gap-4 items-center w-full md:w-auto'>
-			<H2>Set colors</H2>
+		<Card className='flex flex-col gap-rx-3'>
+			<Heading as='h2' size='5'>
+				Set colors
+			</Heading>
 
-			<div className='flex flex-col bg-neutral-800 rounded p-2 lg:p-4 gap-2 md:gap-4 w-full'>
-				<TeamInput teamNumber={rawTeam} onChange={setRawTeam} onValidChange={setTeam} className='bg-neutral-700' />
+			<div className='flex flex-col gap-rx-2'>
+				<TeamInput teamNumber={rawTeam} onChange={setRawTeam} onValidChange={setTeam} />
 
-				<div className='flex gap-2 flex-col md:flex-row'>
+				<div className='flex w-full gap-rx-2'>
 					<ColorInput
 						kind='primary'
 						rawColor={rawPrimaryColor}
 						onChange={setRawPrimaryColor}
 						onValidChange={setPrimaryColor}
-						className='bg-neutral-700'
 					/>
 					<ColorInput
 						kind='secondary'
 						rawColor={rawSecondaryColor}
 						onChange={setRawSecondaryColor}
 						onValidChange={setSecondaryColor}
-						className='bg-neutral-700'
 					/>
-				</div>
-
-				<div className='flex gap-2 justify-between'>
-					<SubmitButton onClick={onSubmit} state={state}>
-						Set colors
-					</SubmitButton>
-
-					<button
-						type='reset'
-						onClick={reset}
-						disabled={mutation.isPending || !(rawTeam || rawPrimaryColor || rawSecondaryColor)}
-						className='transition-colors py-2 px-4 w-1/4 rounded bg-neutral-700 hover:bg-neutral-600 flex items-center justify-center disabled:bg-neutral-600 disabled:text-neutral-400 active:bg-neutral-500'
-					>
-						<XMarkIcon className='h-8' />
-					</button>
 				</div>
 			</div>
 
+			<div className='flex gap-rx-4 justify-between pt-rx-3'>
+				<Button
+					onClick={reset}
+					variant='outline'
+					disabled={mutation.isPending || !(rawTeam || rawPrimaryColor || rawSecondaryColor)}
+					color='red'
+				>
+					Reset
+				</Button>
+
+				<Button
+					onClick={onSubmit}
+					variant='surface'
+					loading={mutation.isPending}
+					disabled={!isReady}
+					color={isReady ? undefined : 'red'}
+				>
+					Set colors
+				</Button>
+			</div>
+
 			{team && <TeamCard teamNumber={team} />}
-		</div>
+		</Card>
 	);
 }

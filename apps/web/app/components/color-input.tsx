@@ -2,14 +2,14 @@
 
 import { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { capitalize } from '@jonahsnider/util';
-import clsx from 'clsx';
+import { TextField, Theme } from '@radix-ui/themes';
+import { isDark } from './util/color-util';
 
 type Props = {
 	kind: 'primary' | 'secondary';
 	rawColor: string;
 	onValidChange: (color: HexColorCode | undefined) => void;
 	onChange: (color: string) => void;
-	className?: string;
 };
 
 type ParsedColor = {
@@ -38,23 +38,23 @@ function parseRawColor(rawColor: string): ParsedColor {
 	};
 }
 
-export function ColorInput({ kind, onValidChange, onChange, rawColor, className }: Props) {
+export function ColorInput({ kind, onValidChange, onChange, rawColor }: Props) {
 	const color = parseRawColor(rawColor);
 	const valid = color.hex === '' || HexColorCode.safeParse(color.hex).success;
 
+	const colorIsDarkRaw = isDark(color.hex);
+	let appearance: 'dark' | 'light' | 'inherit' = 'inherit';
+
+	if (valid && color.hex) {
+		appearance = colorIsDarkRaw ? 'dark' : 'light';
+	}
+
 	return (
-		<div className={clsx('rounded relative w-full md:w-auto md:max-w-min', className)}>
-			<input
-				className={clsx(
-					'w-full md:w-auto transition-colors text-lg xl:text-xl p-2 md:p-4 bg-transparent outline-none rounded border-4',
-					{
-						'border-red-400': !valid,
-						'border-transparent': valid,
-					},
-				)}
-				placeholder={`${capitalize(kind)} color hex`}
+		<Theme appearance={appearance} hasBackground={false} className='w-full'>
+			<TextField.Root
 				type='text'
-				name={kind}
+				placeholder={`${capitalize(kind)} color hex`}
+				className='transition-colors w-full'
 				onChange={(event) => {
 					onChange(event.target.value);
 
@@ -67,14 +67,15 @@ export function ColorInput({ kind, onValidChange, onChange, rawColor, className 
 					}
 				}}
 				value={color.display}
+				color={valid ? undefined : 'red'}
+				style={
+					valid && color.hex
+						? {
+								backgroundColor: color.hex,
+						  }
+						: undefined
+				}
 			/>
-
-			<div
-				style={valid ? { backgroundColor: color.hex } : undefined}
-				className={clsx('h-10 w-10 right-2 top-3 rounded absolute transition-colors', {
-					'bg-transparent': !valid,
-				})}
-			/>
-		</div>
+		</Theme>
 	);
 }

@@ -17,7 +17,7 @@ export default function HomePage() {
 	// biome-ignore lint/style/noNonNullAssertion: This won't run if teamNumber isn't defined
 	const teamNameQuery = trpc.teams.getName.useQuery(teamNumber!, { enabled: Boolean(teamNumber) });
 
-	const teamExists = Boolean(teamNameQuery.data?.name) || teamNameQuery.isLoading;
+	const teamExists = teamNameQuery.isSuccess ? Boolean(teamNameQuery.data?.name) : true;
 
 	return (
 		<>

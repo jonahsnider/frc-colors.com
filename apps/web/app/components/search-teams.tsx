@@ -1,11 +1,11 @@
 'use client';
 
-import clsx from 'clsx';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
+import { TextField } from '@radix-ui/themes';
 import { TeamNumberContext } from '../contexts/team-number-context';
 
 type Props = {
@@ -38,26 +38,17 @@ export function SearchTeams({ invalidTeam }: Props) {
 	}, [teamNumberRaw, router]);
 
 	return (
-		<div className='flex flex-col gap-y-4'>
-			<input
-				className={clsx(
-					'transition-all min-h-14 rounded p-4 lg:p-5 outline-none bg-neutral-800 shadow shadow-neutral-950 border-4 text-lg lg:text-xl',
-					{
-						'border-red-400': !valid,
-						'border-transparent': valid,
-					},
-				)}
-				// biome-ignore lint/a11y/noAutofocus: Autofocus is essential to have here
-				autoFocus={true}
-				placeholder='Enter a team number'
-				type='text'
-				name='team'
-				onChange={(event) => {
-					setTeamNumberRaw(event.target.value);
-					setTeamNumber(event.target.value);
-				}}
-				value={teamNumberRaw}
-			/>
-		</div>
+		<TextField.Root
+			size='3'
+			autoFocus={true}
+			type='text'
+			placeholder='Enter a team number'
+			onChange={(event) => {
+				setTeamNumberRaw(event.target.value);
+				setTeamNumber(event.target.value);
+			}}
+			value={teamNumberRaw}
+			color={valid ? undefined : 'red'}
+		/>
 	);
 }
