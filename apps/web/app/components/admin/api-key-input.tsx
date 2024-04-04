@@ -1,6 +1,7 @@
 'use client';
 
 import { useApiKey } from '@/app/hooks/use-api-key';
+import { TextField } from '@radix-ui/themes';
 import { useEffect } from 'react';
 
 type Props = {
@@ -20,16 +21,14 @@ export function ApiKeyInput({ onChange }: Props) {
 	}, [apiKey, onChange]);
 
 	return (
-		<div>
-			<input
-				type='password'
-				value={apiKey ?? ''}
-				placeholder='API Key'
-				className='transition-all h-14 rounded p-4 outline-none bg-neutral-800 shadow shadow-neutral-900'
-				onChange={(event) => {
-					setApiKey(event.target.value);
-				}}
-			/>
-		</div>
+		<TextField.Root
+			size='3'
+			type='password'
+			value={apiKey ?? ''}
+			placeholder='API Key'
+			onChange={(event) => {
+				setApiKey(event.target.value);
+			}}
+		/>
 	);
 }

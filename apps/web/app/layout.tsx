@@ -1,17 +1,17 @@
+import { Container, Section, Theme } from '@radix-ui/themes';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
-import clsx from 'clsx';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import PlausibleProvider from 'next-plausible';
+import { ThemeProvider } from 'next-themes';
 import dynamic from 'next/dynamic';
-import { Lato } from 'next/font/google';
+import { Suspense } from 'react';
+import { Toaster } from 'sonner';
 import { AnalyticsProvider } from './analytics/analytics-provider';
 import { Footer } from './components/footer';
 import { Navbar } from './components/navbar/navbar';
 import { TrpcProvider } from './components/trpc/trpc-provider';
 import './globals.css';
 import { description, metadataBase, siteName } from './shared-metadata';
-
-const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	metadataBase: metadataBase,
@@ -21,6 +21,20 @@ export const metadata: Metadata = {
 		siteName,
 		description,
 	},
+};
+
+export const viewport: Viewport = {
+	themeColor: [
+		{
+			media: '(prefers-color-scheme: dark)',
+			color: '#101211',
+		},
+		{
+			media: '(prefers-color-scheme: light)',
+			color: '#ffffff',
+		},
+	],
+	colorScheme: 'dark light',
 };
 
 const PageView = dynamic(async () => import('./analytics/page-view'), {
@@ -41,12 +55,25 @@ export default function RootLayout({
 
 			<TrpcProvider>
 				<AnalyticsProvider>
-					<body className={clsx(lato.className, 'bg-neutral-900 text-white flex flex-col min-h-screen')}>
-						<PageView />
-						<Navbar />
-						<main className='container mx-auto grow px-2'>{children}</main>
-						<Footer />
-						<VercelAnalytics />
+					<body className='min-h-screen'>
+						<ThemeProvider attribute='class' enableSystem={true} disableTransitionOnChange={true}>
+							<Theme accentColor='jade' grayColor='sage' className='flex flex-col' scaling='110%'>
+								<Suspense>
+									<PageView />
+								</Suspense>
+
+								<Navbar />
+								<Section asChild={true} flexGrow='1' height='100%'>
+									<Container asChild={true} p='2'>
+										<main>{children}</main>
+									</Container>
+								</Section>
+								<Footer />
+
+								<VercelAnalytics />
+								<Toaster />
+							</Theme>
+						</ThemeProvider>
 					</body>
 				</AnalyticsProvider>
 			</TrpcProvider>

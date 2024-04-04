@@ -16,13 +16,16 @@ export const eventController = new Hono<Env>().get(
 	async (context) => {
 		const params = context.req.valid('param');
 
-		analyticsService.client.capture({
-			distinctId: ApiService.getIp(context),
-			event: 'api_get_event_colors',
-			properties: {
-				event: params.event,
-			},
-		});
+		const ip = ApiService.getIp(context);
+		if (ip) {
+			analyticsService.client.capture({
+				distinctId: ip,
+				event: 'api_get_event_colors',
+				properties: {
+					event: params.event,
+				},
+			});
+		}
 
 		let colors: ManyTeamColors;
 

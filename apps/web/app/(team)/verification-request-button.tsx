@@ -1,87 +1,49 @@
-import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
-import { ArrowPathIcon, CheckIcon, ExclamationCircleIcon } from '@heroicons/react/20/solid';
-import { useEffect, useState } from 'react';
-import { TeamCardButton } from '../components/team-card/team-card-button';
+import { CheckIcon, ExclamationTriangleIcon, PlusIcon } from '@radix-ui/react-icons';
+import { IconButton, Text, Tooltip } from '@radix-ui/themes';
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
+import { toast } from 'sonner';
+import { Toast } from '../components/toast';
 import { trpc } from '../trpc';
 
 type Props = {
 	teamNumber: TeamNumber;
 };
 
-type State = {
-	loading: boolean;
-	error: boolean;
-	finishedAt: number | undefined;
-	colors: TeamColors | undefined;
-};
-
-function getStatus(state: State): 'loading' | 'error' | 'success' | 'idle' {
-	if (state.error) {
-		return 'error';
-	}
-	if (state.loading) {
-		return 'loading';
-	}
-	if (state.finishedAt) {
-		return 'success';
-	}
-	return 'idle';
-}
-
-function ButtonContents({ state }: { state: State }): React.ReactNode {
-	let inner: React.ReactNode;
-	let alt: string | undefined;
-
-	if (state.error) {
-		inner = <ExclamationCircleIcon className='h-6' />;
-	} else if (state.loading) {
-		inner = <ArrowPathIcon className='h-6 animate-spin' />;
-	} else if (state.finishedAt) {
-		inner = <CheckIcon className='h-6' />;
-	} else if (state.colors) {
-		if (state.colors.verified) {
-			inner = <ExclamationCircleIcon className='h-6' />;
-			alt = 'Report incorrect colors';
-		} else {
-			inner = 'Request verification';
-		}
-	} else {
-		inner = 'Request colors';
-	}
-
-	return (
-		<div className='px-2 py-1' title={alt}>
-			{inner}
-		</div>
-	);
-}
-
 export function VerificationRequestButton({ teamNumber }: Props) {
 	const utils = trpc.useUtils();
-	const [finishedAt, setFinishedAt] = useState<number | undefined>(undefined);
+
+	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
+
 	const mutation = trpc.verificationRequests.createForTeam.useMutation({
-		onMutate: () => {
-			setFinishedAt(undefined);
-		},
-		onSettled: () => {
-			setFinishedAt(Date.now());
-		},
 		onSuccess: () => {
 			utils.verificationRequests.getAll.invalidate();
 			utils.verificationRequests.getAllForTeam.invalidate(teamNumber);
+
+			toast.custom(() => {
+				let action: string;
+
+				if (colorsQuery.data?.colors) {
+					if (colorsQuery.data.colors.verified) {
+						action = 'reverification';
+					} else {
+						action = 'verification';
+					}
+				} else {
+					action = 'colors';
+				}
+
+				return (
+					<Toast icon={<CheckIcon width='22' height='22' />} color='green'>
+						Successfully requested {action} for team {teamNumber}
+					</Toast>
+				);
+			});
 		},
 	});
-	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: This is to reset the state when the team changes or when the colors are updated by SWR
-	useEffect(() => {
-		setFinishedAt(undefined);
-	}, [teamNumber]);
 
 	const onClick = async () => {
-		setFinishedAt(undefined);
-
 		try {
 			await mutation.mutateAsync(teamNumber);
 		} catch (error) {
@@ -89,18 +51,41 @@ export function VerificationRequestButton({ teamNumber }: Props) {
 		}
 	};
 
-	const state: State = {
-		loading: mutation.isPending,
-		error: mutation.isError,
-		finishedAt,
-		colors: colorsQuery.data?.colors,
-	};
+	let tooltip: string;
+	let icon: ReactNode;
 
-	const status = getStatus(state);
+	if (mutation.isSuccess) {
+		icon = <CheckIcon width='22' height='22' />;
+		tooltip = 'Successfully requested verification';
+	} else if (mutation.isError) {
+		icon = <ExclamationTriangleIcon width='22' height='22' />;
+		tooltip = 'An error occurred - click to try again';
+	} else if (colorsQuery.data?.colors) {
+		icon = <PlusIcon width='22' height='22' />;
+		tooltip = 'Request verification';
+	} else {
+		icon = <PlusIcon width='22' height='22' />;
+		tooltip = 'Request colors';
+	}
+
+	const alreadyVerified = colorsQuery.data?.colors?.verified;
 
 	return (
-		<TeamCardButton onClick={onClick} status={status}>
-			<ButtonContents state={state} />
-		</TeamCardButton>
+		<Tooltip content={<Text size='2'>{tooltip}</Text>} hidden={alreadyVerified}>
+			<IconButton
+				size='3'
+				color={mutation.isError ? 'red' : undefined}
+				type='button'
+				onClick={onClick}
+				variant='surface'
+				className={clsx('transition-opacity', {
+					'opacity-0 cursor-default': alreadyVerified,
+				})}
+				disabled={mutation.isSuccess || mutation.isPending || alreadyVerified}
+				loading={mutation.isPending}
+			>
+				{icon}
+			</IconButton>
+		</Tooltip>
 	);
 }

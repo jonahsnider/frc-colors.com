@@ -1,34 +1,23 @@
 import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
-import clsx from 'clsx';
-import * as d3 from 'd3-color';
+import { sage, sageDark } from '@radix-ui/colors';
+import { useTheme } from 'next-themes';
+import { TeamImageGradientBase } from './team-image-gradient-base';
 
 type Props = {
-	colors: Pick<TeamColors, 'primary' | 'secondary'>;
+	colors: Pick<TeamColors, 'primary' | 'secondary'> | 'none';
 	className?: string;
 };
 
-function hclToString(hcl: d3.HCLColor): string {
-	const h = hcl.h || 0;
-	const c = hcl.c || 0;
-	const l = hcl.l || 0;
-
-	return `lch(${l},${c},${h})`;
-}
-
 export function TeamImageGradient({ colors, className }: Props) {
-	// Use HCL/LCH for gradients that don't look ugly in the middle https://www.joshwcomeau.com/css/make-beautiful-gradients/
-	const primaryHcl = d3.hcl(colors.primary);
-	const secondaryHcl = d3.hcl(colors.secondary);
+	const { resolvedTheme } = useTheme();
 
-	const primaryHclString = hclToString(primaryHcl);
-	const secondaryHclString = hclToString(secondaryHcl);
+	const fallbackColorScheme = resolvedTheme === 'dark' ? sageDark : sage;
+	const fallbackColors = {
+		primary: fallbackColorScheme.sage6,
+		secondary: fallbackColorScheme.sage3,
+	};
 
-	return (
-		<div
-			className={clsx('rounded transition-colors w-48 h-48', className)}
-			style={{
-				backgroundImage: `linear-gradient(to bottom right, ${primaryHclString}, ${secondaryHclString})`,
-			}}
-		/>
-	);
+	const usedColors = colors === 'none' ? fallbackColors : colors;
+
+	return <TeamImageGradientBase colors={usedColors} className={className} />;
 }

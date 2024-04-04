@@ -11,9 +11,9 @@ import type { Env } from './interfaces/env.interface';
 import type { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
 export class ApiService {
-	static getIp(context: Context<Env>): string;
-	static getIp(server: Server, request: Request): string;
-	static getIp(serverOrContext: Server | Context<Env>, request?: Request): string {
+	static getIp(context: Context<Env>): string | undefined;
+	static getIp(server: Server, request: Request): string | undefined;
+	static getIp(serverOrContext: Server | Context<Env>, request?: Request): string | undefined {
 		let ip: string | undefined;
 
 		if ('env' in serverOrContext) {
@@ -26,10 +26,8 @@ export class ApiService {
 			assert(request, new TypeError('Request was not available'));
 			const proxyIp = request.headers.get('X-Envoy-External-Address');
 
-			ip = proxyIp ?? server.requestIP(request)?.address;
+			ip = proxyIp || server.requestIP(request)?.address;
 		}
-
-		assert(ip, new TypeError('IP address was not available on request'));
 
 		return ip;
 	}

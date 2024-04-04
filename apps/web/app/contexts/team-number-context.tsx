@@ -1,5 +1,6 @@
 import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
-import { type PropsWithChildren, createContext, useMemo, useState } from 'react';
+import { parseAsInteger, useQueryState } from 'nuqs';
+import { type PropsWithChildren, createContext, useEffect, useMemo, useState } from 'react';
 
 type ContextValue = {
 	teamNumberRaw: string;
@@ -14,29 +15,34 @@ export const TeamNumberContext = createContext<ContextValue>({
 });
 
 export function TeamNumberProvider({ children }: PropsWithChildren) {
-	const [teamNumberRaw, setTeamNumberRaw] = useState('');
+	const [teamNumberRaw, setTeamNumberRaw] = useQueryState('team', parseAsInteger);
 	const [teamNumber, setTeamNumberValid] = useState<TeamNumber>();
 
 	const setTeamNumber = useMemo(
-		() => (teamNumberRaw: string) => {
-			setTeamNumberRaw(teamNumberRaw);
+		() => (newValue: string) => {
+			setTeamNumberRaw(newValue === '' ? null : Number(newValue));
 
-			if (teamNumberRaw === '') {
+			if (newValue === '') {
 				setTeamNumberValid(undefined);
 			} else {
-				const parsed = TeamNumber.safeParse(teamNumberRaw);
+				const parsed = TeamNumber.safeParse(newValue);
 
 				if (parsed.success) {
 					setTeamNumberValid(parsed.data);
 				}
 			}
 		},
-		[],
+		[setTeamNumberRaw],
 	);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: This should only run once on mount, to read the team number from query params
+	useEffect(() => {
+		setTeamNumber(teamNumberRaw?.toString() ?? '');
+	}, []);
 
 	const contextValue: ContextValue = useMemo(
 		() => ({
-			teamNumberRaw,
+			teamNumberRaw: teamNumberRaw?.toString() ?? '',
 			teamNumber,
 			setTeamNumber,
 		}),

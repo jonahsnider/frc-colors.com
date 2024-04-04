@@ -1,4 +1,5 @@
 import type { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
+import { Callout, ScrollArea, Table } from '@radix-ui/themes';
 import { TableRow } from './table-row';
 
 type Props = {
@@ -6,12 +7,31 @@ type Props = {
 };
 
 export function VerificationRequestsTable({ requests }: Props) {
+	if (requests.length === 0) {
+		return (
+			<Callout.Root color='gray' size='1' className='w-full text-nowrap'>
+				<Callout.Text>No verification requests</Callout.Text>
+			</Callout.Root>
+		);
+	}
+
 	return (
-		<div className='flex flex-col gap-y-1 w-full md:w-auto'>
-			{requests.map((verificationRequest) => (
-				<TableRow key={verificationRequest.id} request={verificationRequest} />
-			))}
-			{requests.length === 0 && <p className='text-lg lg:text-xl'>No verification requests</p>}
-		</div>
+		<ScrollArea scrollbars='vertical' className='rounded-3 max-h-[48rem]'>
+			<Table.Root size='3' variant='ghost'>
+				<Table.Header>
+					<Table.Row>
+						<Table.ColumnHeaderCell>Team</Table.ColumnHeaderCell>
+						<Table.ColumnHeaderCell>Created at</Table.ColumnHeaderCell>
+						<Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
+					</Table.Row>
+				</Table.Header>
+
+				<Table.Body>
+					{requests.map((verificationRequest) => (
+						<TableRow key={verificationRequest.id} request={verificationRequest} />
+					))}
+				</Table.Body>
+			</Table.Root>
+		</ScrollArea>
 	);
 }
