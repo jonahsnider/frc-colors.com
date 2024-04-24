@@ -37,7 +37,7 @@ Get the colors for several teams by number.
 
 #### Example
 
-`GET /v1/team?team=581&team=254&team=1678`
+`GET /v1/team?team=581&team=751&team=9408`
 
 ```json
 {
