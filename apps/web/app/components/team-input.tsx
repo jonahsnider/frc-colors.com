@@ -7,9 +7,10 @@ type Props = {
 	teamNumber: string;
 	onChange: (teamNumberRaw: string) => void;
 	onValidChange: (teamNumber: TeamNumber | undefined) => void;
+	className?: string;
 };
 
-export function TeamInput({ onChange, onValidChange, teamNumber }: Props) {
+export function TeamInput({ onChange, onValidChange, teamNumber, className }: Props) {
 	const valid = teamNumber === '' || TeamNumber.safeParse(teamNumber).success;
 
 	return (
@@ -29,6 +30,7 @@ export function TeamInput({ onChange, onValidChange, teamNumber }: Props) {
 				}
 			}}
 			value={teamNumber}
+			className={className}
 		/>
 	);
 }

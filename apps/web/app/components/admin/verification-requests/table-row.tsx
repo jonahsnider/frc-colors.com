@@ -1,7 +1,7 @@
 import type { VerificationRequest } from '@frc-colors/api/src/verification-requests/dtos/verification-request.dto';
 import { Link, Table, Text, Tooltip } from '@radix-ui/themes';
 import { formatDistanceToNow } from 'date-fns';
-import NextLink from 'next/link';
+import { Link as NextLink } from 'next-view-transitions';
 import { RequestStatus } from './request-status';
 
 type Props = {

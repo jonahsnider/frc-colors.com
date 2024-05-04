@@ -1,7 +1,7 @@
 'use client';
 
 import { LockClosedIcon } from '@radix-ui/react-icons';
-import { Callout, Card, Heading } from '@radix-ui/themes';
+import { Callout, Card, Heading, Section } from '@radix-ui/themes';
 import { useState } from 'react';
 import { ApiKeyInput } from '../components/admin/api-key-input';
 import { ColorSubmissionsList } from './color-submissions-list';
@@ -13,11 +13,11 @@ export default function Admin() {
 	const [apiKey, setApiKey] = useState<string | undefined>();
 
 	return (
-		<div className='flex flex-col items-center gap-y-8'>
-			<Heading as='h1' size='7'>
+		<Section className='flex flex-col items-center gap-8 py-4'>
+			<Heading as='h1' size='8' className='[view-transition-name:page-title]'>
 				Admin
 			</Heading>
-			<Card className='flex flex-col gap-rx-3'>
+			<Card className='flex flex-col gap-rx-3 [view-transition-name:small-input]'>
 				<Heading as='h2' size='5'>
 					API key
 				</Heading>
@@ -42,6 +42,6 @@ export default function Admin() {
 					<Callout.Text size='5'>No API key defined</Callout.Text>
 				</Callout.Root>
 			)}
-		</div>
+		</Section>
 	);
 }

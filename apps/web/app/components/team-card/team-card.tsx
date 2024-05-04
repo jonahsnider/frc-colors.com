@@ -12,9 +12,10 @@ import { TeamImage } from './team-image/team-image';
 
 type Props = {
 	teamNumber: number;
+	className?: string;
 };
 
-export function TeamCard({ teamNumber }: Props) {
+export function TeamCard({ teamNumber, className }: Props) {
 	const teamNameQuery = trpc.teams.getName.useQuery(teamNumber);
 	const colorsQuery = trpc.teams.colors.get.useQuery(teamNumber);
 
@@ -28,7 +29,7 @@ export function TeamCard({ teamNumber }: Props) {
 	}
 
 	return (
-		<Theme accentColor={accentColor} grayColor='auto'>
+		<Theme accentColor={accentColor} grayColor='auto' className={className}>
 			<BaseTeamCard
 				title={
 					<Heading size='6' as='h2'>

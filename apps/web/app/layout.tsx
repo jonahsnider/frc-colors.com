@@ -3,6 +3,7 @@ import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import type { Metadata, Viewport } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { ThemeProvider } from 'next-themes';
+import { ViewTransitions } from 'next-view-transitions';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { Toaster } from 'sonner';
@@ -48,35 +49,37 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang='en'>
-			<head>
-				<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
-			</head>
+		<ViewTransitions>
+			<html lang='en'>
+				<head>
+					<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
+				</head>
 
-			<TrpcProvider>
-				<AnalyticsProvider>
-					<body className='min-h-screen'>
-						<ThemeProvider attribute='class' enableSystem={true} disableTransitionOnChange={true}>
-							<Theme accentColor='jade' grayColor='sage' className='flex flex-col' scaling='110%'>
-								<Suspense>
-									<PageView />
-								</Suspense>
+				<TrpcProvider>
+					<AnalyticsProvider>
+						<body className='min-h-screen'>
+							<ThemeProvider attribute='class' enableSystem={true} disableTransitionOnChange={true}>
+								<Theme accentColor='jade' grayColor='sage' className='flex flex-col' scaling='110%'>
+									<Suspense>
+										<PageView />
+									</Suspense>
 
-								<Navbar />
-								<Section asChild={true} flexGrow='1' height='100%'>
-									<Container asChild={true} p='2'>
-										<main>{children}</main>
-									</Container>
-								</Section>
-								<Footer />
+									<Navbar />
+									<Section asChild={true} flexGrow='1' height='100%'>
+										<Container asChild={true} p='2'>
+											<main>{children}</main>
+										</Container>
+									</Section>
+									<Footer />
 
-								<VercelAnalytics />
-								<Toaster />
-							</Theme>
-						</ThemeProvider>
-					</body>
-				</AnalyticsProvider>
-			</TrpcProvider>
-		</html>
+									<VercelAnalytics />
+									<Toaster />
+								</Theme>
+							</ThemeProvider>
+						</body>
+					</AnalyticsProvider>
+				</TrpcProvider>
+			</html>
+		</ViewTransitions>
 	);
 }

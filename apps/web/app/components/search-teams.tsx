@@ -24,6 +24,7 @@ export function SearchTeams({ invalidTeam }: Props) {
 			}}
 			value={teamNumber ?? undefined}
 			color={valid ? undefined : 'red'}
+			className='[view-transition-name:small-input]'
 		/>
 	);
 }

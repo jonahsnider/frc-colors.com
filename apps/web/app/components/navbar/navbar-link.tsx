@@ -1,5 +1,5 @@
 import { Link } from '@radix-ui/themes';
-import NextLink from 'next/link';
+import { Link as NextLink } from 'next-view-transitions';
 import type { NavbarItem } from './types';
 
 export function NavbarLink({ item }: { item: NavbarItem }) {

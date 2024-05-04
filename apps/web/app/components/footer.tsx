@@ -1,6 +1,6 @@
 import { Link, Separator, Strong, Text } from '@radix-ui/themes';
 import clsx from 'clsx';
-import NextLink from 'next/link';
+import { Link as NextLink } from 'next-view-transitions';
 import { Children, Fragment, type PropsWithChildren } from 'react';
 
 function FooterRow({ children, vertical }: PropsWithChildren<{ vertical: boolean }>) {

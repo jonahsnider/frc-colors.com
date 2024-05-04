@@ -12,7 +12,7 @@ export default function TeamLayout({
 }) {
 	return (
 		<Section id='search' py='4' className='flex flex-col gap-rx-6 items-center grow'>
-			<Heading size='8' as='h1'>
+			<Heading size='8' as='h1' className='[view-transition-name:page-title]'>
 				FRC Colors
 			</Heading>
 

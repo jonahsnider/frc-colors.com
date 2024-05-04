@@ -52,7 +52,7 @@ export default function SubmitColors() {
 
 	return (
 		<div className='flex justify-center items-center p-rx-4 w-full'>
-			<Card className='flex flex-col gap-rx-4'>
+			<Card className='flex flex-col gap-rx-4 [view-transition-name:main-card]'>
 				<Heading as='h1' size='5'>
 					Submit colors for a team
 				</Heading>

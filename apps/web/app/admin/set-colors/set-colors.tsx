@@ -72,7 +72,7 @@ export function SetColors() {
 	};
 
 	return (
-		<Card className='flex flex-col gap-rx-3'>
+		<Card className='flex flex-col gap-rx-3 [view-transition-name:main-card]'>
 			<Heading as='h2' size='5'>
 				Set colors
 			</Heading>

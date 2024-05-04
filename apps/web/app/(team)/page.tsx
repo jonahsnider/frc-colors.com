@@ -28,7 +28,7 @@ export default function HomePage() {
 
 			<TrackTeam teamNumber={debouncedTeam} />
 
-			{debouncedTeam && <TeamCard teamNumber={debouncedTeam} />}
+			{debouncedTeam && <TeamCard teamNumber={debouncedTeam} className='[view-transition-name:main-card]' />}
 
 			{apiKey && <AdminTeamSummary teamNumber={debouncedTeam} />}
 		</>
