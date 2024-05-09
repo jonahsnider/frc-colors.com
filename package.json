@@ -28,7 +28,7 @@
 		"prettier": "3.2.5",
 		"prettier-plugin-packagejson": "2.5.0",
 		"turbo": "1.13.3",
-		"vercel": "34.1.9"
+		"vercel": "34.1.10"
 	},
 	"trustedDependencies": [
 		"@biomejs/biome"
