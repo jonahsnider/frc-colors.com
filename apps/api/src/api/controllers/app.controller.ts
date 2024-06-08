@@ -1,6 +1,7 @@
 import type { Server } from 'bun';
 import { Hono } from 'hono';
 import { logger as honoLogger } from 'hono/logger';
+import { timeout } from 'hono/timeout';
 import { timing } from 'hono/timing';
 import { baseLogger } from '../../logger/logger';
 import { trackFn } from '../../timing/timing';
@@ -27,6 +28,7 @@ export function createAppController(getServer: () => Server) {
 				},
 				trackFn,
 				honoLogger((...messages) => logger.info(...messages)),
+				timeout(60_000),
 				timing({
 					crossOrigin(context) {
 						if (context.req.path.startsWith('/v1') || context.req.path.startsWith('/health')) {
