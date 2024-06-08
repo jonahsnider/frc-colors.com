@@ -28,10 +28,13 @@ export function createAppController(getServer: () => Server) {
 				trackFn,
 				honoLogger((...messages) => logger.info(...messages)),
 				timing({
-					enabled(context) {
-						// Required until https://github.com/honojs/hono/pull/2359 is merged and I can just programmatically define the cross origin policy
-						// This is also hacky and I believe is causing `Timer "total" does not exist!` warnings to be printed :/
-						return !context.req.path.startsWith('/v1');
+					crossOrigin(context) {
+						if (context.req.path.startsWith('/v1') || context.req.path.startsWith('/health')) {
+							// API route, allow cross origin
+							return true;
+						}
+
+						return 'https://frc-colors.com';
 					},
 				}),
 			)
