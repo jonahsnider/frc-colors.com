@@ -4,7 +4,7 @@ import { CreateColorSubmission } from '@frc-colors/api/src/color-submissions/dto
 import type { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { Button, Card, Heading, Text, Tooltip } from '@radix-ui/themes';
+import { Button, Card, Heading, Link, Text, Tooltip } from '@radix-ui/themes';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { ColorInput } from '../components/color-input';
@@ -53,9 +53,24 @@ export default function SubmitColors() {
 	return (
 		<div className='flex justify-center items-center p-rx-4 w-full'>
 			<Card className='flex flex-col gap-rx-4 [view-transition-name:main-card]'>
-				<Heading as='h1' size='5'>
-					Submit colors for a team
-				</Heading>
+				<div>
+					<Heading as='h1' size='5' className='pb-rx-1'>
+						Submit colors for a team
+					</Heading>
+
+					<Text size='2' as='div'>
+						<p className='pb-rx-1'>
+							Hi! I'm <Link href='https://www.chiefdelphi.com/u/jonahsnider/summary'>Jonah</Link>, the creator of FRC
+							Colors. Before you submit colors for a team, please be aware of the following:
+						</p>
+
+						<ul className='list-disc list-inside pl-rx-2'>
+							<li>I'm the only person who works on developing the site</li>
+							<li>I'm the only person who reviews color submissions</li>
+							<li>I'm the only person who pays for the monthly server costs ($150 per year)</li>
+						</ul>
+					</Text>
+				</div>
 
 				<div className='flex flex-col gap-rx-1'>
 					<Text size='2' weight='medium'>
