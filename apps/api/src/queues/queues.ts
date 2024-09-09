@@ -28,11 +28,11 @@ export const fetchTeamsPagesQueue: fetchTeamsPages.QueueType = new Queue(QueueNa
 	...BASE_QUEUE_OPTIONS,
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 100 },
-		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		removeOnFail: { age: convert(1, 'hour').to('seconds'), count: 100 },
 		attempts: 5,
 		backoff: {
 			type: 'exponential',
-			delay: convert(15, 'seconds').to('ms'),
+			delay: convert(10, 'minutes').to('ms'),
 		},
 	},
 });
@@ -40,11 +40,11 @@ export const fetchTeamsQueue: fetchTeams.QueueType = new Queue(QueueNames.FetchT
 	...BASE_QUEUE_OPTIONS,
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 100 },
-		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		removeOnFail: { age: convert(1, 'hour').to('seconds'), count: 100 },
 		attempts: 5,
 		backoff: {
 			type: 'exponential',
-			delay: convert(15, 'seconds').to('ms'),
+			delay: convert(10, 'minutes').to('ms'),
 		},
 	},
 });
@@ -52,35 +52,35 @@ export const sweepAvatarsQueue: sweepAvatars.QueueType = new Queue(QueueNames.Sw
 	...BASE_QUEUE_OPTIONS,
 	defaultJobOptions: {
 		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 100 },
-		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		removeOnFail: { age: convert(1, 'hour').to('seconds'), count: 100 },
 		attempts: 3,
 		backoff: {
 			type: 'exponential',
-			delay: convert(5, 'seconds').to('ms'),
+			delay: convert(10, 'minutes').to('ms'),
 		},
 	},
 });
 export const refreshAvatarQueue: refreshAvatar.QueueType = new Queue(QueueNames.RefreshAvatar, {
 	...BASE_QUEUE_OPTIONS,
 	defaultJobOptions: {
-		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 5000 },
-		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 500 },
+		removeOnFail: { age: convert(1, 'hour').to('seconds'), count: 100 },
 		attempts: 5,
 		backoff: {
 			type: 'exponential',
-			delay: convert(20, 'seconds').to('ms'),
+			delay: convert(10, 'minutes').to('ms'),
 		},
 	},
 });
 export const extractColorsQueue: extractColors.QueueType = new Queue(QueueNames.ExtractAndStoreColors, {
 	...BASE_QUEUE_OPTIONS,
 	defaultJobOptions: {
-		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 5000 },
-		removeOnFail: { age: convert(1, 'hour').to('seconds') },
+		removeOnComplete: { age: convert(5, 'minutes').to('seconds'), count: 500 },
+		removeOnFail: { age: convert(1, 'hour').to('seconds'), count: 500 },
 		attempts: 3,
 		backoff: {
 			type: 'exponential',
-			delay: convert(5, 'seconds').to('ms'),
+			delay: convert(10, 'minutes').to('ms'),
 		},
 	},
 });
