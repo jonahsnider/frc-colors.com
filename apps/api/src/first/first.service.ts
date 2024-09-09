@@ -24,6 +24,11 @@ export class FirstService {
 	private readonly fetchTeamsPagesWorker = new FetchTeamsPagesWorker();
 	private readonly fetchTeamsWorker = new FetchTeamsWorker();
 
+	constructor() {
+		this.fetchTeamsPagesWorker.noop();
+		this.fetchTeamsWorker.noop();
+	}
+
 	async getPageCount(): Promise<number> {
 		const response = await this.http.get(`${new Date().getFullYear()}/teams?page=1`);
 

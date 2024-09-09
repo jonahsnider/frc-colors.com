@@ -23,4 +23,8 @@ export abstract class BaseWorker<DataType, ReturnType, NameType extends string> 
 	}
 
 	protected abstract process(job: Job<DataType, ReturnType, NameType>): Promise<ReturnType>;
+
+	noop(): void {
+		// So that the linter doesn't say this class field is unused
+	}
 }

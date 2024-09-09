@@ -14,6 +14,11 @@ export class AvatarService {
 	private readonly refreshAvatarWorker = new RefreshAvatarWorker();
 	private readonly sweepAvatarsWorker = new SweepAvatarsWorker();
 
+	constructor() {
+		this.refreshAvatarWorker.noop();
+		this.sweepAvatarsWorker.noop();
+	}
+
 	async getAvatar(teamNumber: TeamNumber): Promise<Buffer | undefined> {
 		const cached = await db.query.avatars.findFirst({
 			where: eq(Schema.avatars.team, teamNumber),
