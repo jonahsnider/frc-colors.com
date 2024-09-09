@@ -23,16 +23,17 @@ export class AvatarService {
 	}
 
 	async getAvatars(teamNumbers: TeamNumber[]): Promise<Map<TeamNumber, Buffer | undefined>> {
-		const cached =
-			teamNumbers.length > 0
-				? await db.query.avatars.findMany({
-						where: inArray(Schema.avatars.team, teamNumbers),
-						columns: {
-							png: true,
-							team: true,
-						},
-				  })
-				: [];
+		if (teamNumbers.length === 0) {
+			return new Map();
+		}
+
+		const cached = await db.query.avatars.findMany({
+			where: inArray(Schema.avatars.team, teamNumbers),
+			columns: {
+				png: true,
+				team: true,
+			},
+		});
 
 		return new Map(cached.map((avatar) => [avatar.team, avatar.png ?? undefined]));
 	}
@@ -44,6 +45,10 @@ export class AvatarService {
 	}
 
 	async shouldRefresh(teams: TeamNumber[]): Promise<TeamNumber[]> {
+		if (teams.length === 0) {
+			return [];
+		}
+
 		const cached = await db.query.avatars.findMany({
 			where: inArray(Schema.avatars.team, teams),
 			columns: {
