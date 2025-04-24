@@ -16,7 +16,7 @@
     "apps/api": {
       "name": "@frc-colors/api",
       "dependencies": {
-        "@bull-board/api": "5.15.1",
+        "@bull-board/api": "5.23.0",
         "@bull-board/hono": "5.15.1",
         "@hono/trpc-server": "0.3.4",
         "@hono/zod-validator": "0.2.0",
@@ -129,7 +129,7 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@1.6.1", "", { "os": "win32", "cpu": "x64" }, "sha512-5TUZbzBwnDLFxLVGEPsorNi6eC2Gt+z4Oei9Qvq0M/4c4/mjZ96ABgwao/tMxf4ZBr/qyy2YdvF+gX9Rc+xC0A=="],
 
-    "@bull-board/api": ["@bull-board/api@5.15.1", "", { "dependencies": { "redis-info": "^3.0.8" }, "peerDependencies": { "@bull-board/ui": "5.15.1" } }, "sha512-yJqv2uhMTC5BE2SwK/zG7kTloZyOFOujzPtP09OF9S8GvTalCwSTk7EsLQOUMHTUhyiVZ8JpUyJz8oytZ77+xQ=="],
+    "@bull-board/api": ["@bull-board/api@5.23.0", "", { "dependencies": { "redis-info": "^3.0.8" }, "peerDependencies": { "@bull-board/ui": "5.23.0" } }, "sha512-ZZGsWJ+XBG49GAlNgAL9tTEV6Ms7gMkQnZDbzwUhjGChCKWy62RWuPoZSefNXau9QH9+QzlzHRUeFvt4xr5wiw=="],
 
     "@bull-board/hono": ["@bull-board/hono@5.15.1", "", { "dependencies": { "@bull-board/api": "5.15.1", "@bull-board/ui": "5.15.1", "ejs": "^3.1.7", "hono": "^3.12.0" } }, "sha512-nZjZn4q7PU73NmoJqzp4C3DZQDT/+cJoOnY8THfWJXhWXUs23rAJGiTmR91tSp8Yi4IjvFZbPSVB14bvJFogwQ=="],
 
@@ -1337,7 +1337,11 @@
 
     "zod-validation-error": ["zod-validation-error@3.2.0", "", { "peerDependencies": { "zod": "^3.18.0" } }, "sha512-cYlPR6zuyrgmu2wRTdumEAJGuwI7eHVHGT+VyneAQxmRAKtGRL1/7pjz4wfLhz4J05f5qoSZc3rGacswgyTjjw=="],
 
+    "@bull-board/hono/@bull-board/api": ["@bull-board/api@5.15.1", "", { "dependencies": { "redis-info": "^3.0.8" }, "peerDependencies": { "@bull-board/ui": "5.15.1" } }, "sha512-yJqv2uhMTC5BE2SwK/zG7kTloZyOFOujzPtP09OF9S8GvTalCwSTk7EsLQOUMHTUhyiVZ8JpUyJz8oytZ77+xQ=="],
+
     "@bull-board/hono/hono": ["hono@3.12.12", "", {}, "sha512-5IAMJOXfpA5nT+K0MNjClchzz0IhBHs2Szl7WFAhrFOsbtQsYmNynFyJRg/a3IPsmCfxcrf8txUGiNShXpK5Rg=="],
+
+    "@bull-board/ui/@bull-board/api": ["@bull-board/api@5.15.1", "", { "dependencies": { "redis-info": "^3.0.8" }, "peerDependencies": { "@bull-board/ui": "5.15.1" } }, "sha512-yJqv2uhMTC5BE2SwK/zG7kTloZyOFOujzPtP09OF9S8GvTalCwSTk7EsLQOUMHTUhyiVZ8JpUyJz8oytZ77+xQ=="],
 
     "@cspotcode/source-map-support/@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.9", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.0.3", "@jridgewell/sourcemap-codec": "^1.4.10" } }, "sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ=="],
 
