@@ -45,12 +45,12 @@
         "zod": "3.22.4",
       },
       "devDependencies": {
-        "@tsconfig/bun": "1.0.4",
-        "@tsconfig/strictest": "2.0.3",
+        "@tsconfig/bun": "1.0.7",
+        "@tsconfig/strictest": "2.0.5",
         "@types/bun": "1.0.8",
         "@types/pg": "8.11.2",
         "@types/pngjs": "6.0.4",
-        "typescript": "5.4.2",
+        "typescript": "5.8.3",
       },
     },
     "apps/web": {
@@ -91,7 +91,7 @@
         "sonner": "1.4.41",
         "superjson": "2.2.1",
         "tailwindcss": "3.4.1",
-        "typescript": "5.4.2",
+        "typescript": "5.8.3",
         "use-debounce": "10.0.0",
         "zod": "3.22.4",
       },
@@ -423,7 +423,7 @@
 
     "@ts-morph/common": ["@ts-morph/common@0.11.1", "", { "dependencies": { "fast-glob": "^3.2.7", "minimatch": "^3.0.4", "mkdirp": "^1.0.4", "path-browserify": "^1.0.1" } }, "sha512-7hWZS0NRpEsNV8vWJzg7FEz6V8MaLNeJOmwmghqUXTpzk16V1LLZhdo+4QvE/+zv4cVci0OviuJFnqhEfoV3+g=="],
 
-    "@tsconfig/bun": ["@tsconfig/bun@1.0.4", "", {}, "sha512-gQFTiarj/uv4Z5XfHgHUmDkiZAp989d1f9tlw2WoEwJhnXBo32XbJRvu0/sFzHesoiz/1g5DyLBbDqz/jsHlMQ=="],
+    "@tsconfig/bun": ["@tsconfig/bun@1.0.7", "", {}, "sha512-udGrGJBNQdXGVulehc1aWT73wkR9wdaGBtB6yL70RJsqwW/yJhIg6ZbRlPOfIUiFNrnBuYLBi9CSmMKfDC7dvA=="],
 
     "@tsconfig/node10": ["@tsconfig/node10@1.0.11", "", {}, "sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw=="],
 
@@ -433,7 +433,7 @@
 
     "@tsconfig/node16": ["@tsconfig/node16@1.0.4", "", {}, "sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA=="],
 
-    "@tsconfig/strictest": ["@tsconfig/strictest@2.0.3", "", {}, "sha512-MroLvRhMbqtXI5WBSwoomro6OQS4xnCoudUrMb20JO0vLKUs0bAaCEcvM/immEBSJjFAK1l6jW1oAO8q3Ancrg=="],
+    "@tsconfig/strictest": ["@tsconfig/strictest@2.0.5", "", {}, "sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg=="],
 
     "@types/bun": ["@types/bun@1.0.8", "", { "dependencies": { "bun-types": "1.0.29" } }, "sha512-E6UWZuN4ymAxzUBWVIGDHJ3Zey7I8cMzDZ+cB1BqhZsmd1uPb9iAQzpWMruY1mKzsuD3R+dZPoBkZz8QL1KhSA=="],
 
@@ -1267,7 +1267,7 @@
 
     "type-fest": ["type-fest@4.12.0", "", {}, "sha512-5Y2/pp2wtJk8o08G0CMkuFPCO354FGwk/vbidxrdhRGZfd0tFnb4Qb8anp9XxXriwBgVPjdWbKpGl4J9lJY2jQ=="],
 
-    "typescript": ["typescript@5.4.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ=="],
+    "typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
 
     "uid-promise": ["uid-promise@1.0.0", "", {}, "sha512-R8375j0qwXyIu/7R0tjdF06/sElHqbmdmWC9M2qQHpEVbvE4I5+38KJI7LUUmQMp7NVq4tKHiBMkT0NFM453Ig=="],
 
