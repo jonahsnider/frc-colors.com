@@ -39,7 +39,7 @@
         "hono": "4.4.4",
         "ioredis": "5.3.2",
         "ky": "1.2.2",
-        "next-api-utils": "1.1.0",
+        "next-api-utils": "2.0.0",
         "p-limit": "4.0.0",
         "pg": "8.11.3",
         "pino": "8.21.0",
@@ -947,7 +947,7 @@
 
     "next": ["next@14.1.3", "", { "dependencies": { "@next/env": "14.1.3", "@swc/helpers": "0.5.2", "busboy": "1.6.0", "caniuse-lite": "^1.0.30001579", "graceful-fs": "^4.2.11", "postcss": "8.4.31", "styled-jsx": "5.1.1" }, "optionalDependencies": { "@next/swc-darwin-arm64": "14.1.3", "@next/swc-darwin-x64": "14.1.3", "@next/swc-linux-arm64-gnu": "14.1.3", "@next/swc-linux-arm64-musl": "14.1.3", "@next/swc-linux-x64-gnu": "14.1.3", "@next/swc-linux-x64-musl": "14.1.3", "@next/swc-win32-arm64-msvc": "14.1.3", "@next/swc-win32-ia32-msvc": "14.1.3", "@next/swc-win32-x64-msvc": "14.1.3" }, "peerDependencies": { "@opentelemetry/api": "^1.1.0", "react": "^18.2.0", "react-dom": "^18.2.0", "sass": "^1.3.0" }, "optionalPeers": ["@opentelemetry/api", "sass"], "bin": { "next": "dist/bin/next" } }, "sha512-oexgMV2MapI0UIWiXKkixF8J8ORxpy64OuJ/J9oVUmIthXOUCcuVEZX+dtpgq7wIfIqtBwQsKEDXejcjTsan9g=="],
 
-    "next-api-utils": ["next-api-utils@1.1.0", "", { "dependencies": { "@jonahsnider/util": "^10.1.0", "yn": "^5.0.0", "zod": "^3.22.2", "zod-validation-error": "^3.0.0" }, "peerDependencies": { "next": "^14 || ^13" } }, "sha512-kiwfTwtuw43cDZAPNrZwkJtC5Tu3LNWhY5wq1G10zNCWd6LPbo7FeKeJDRZlG1NmKPXBVn6SLetHsHV59jUKPw=="],
+    "next-api-utils": ["next-api-utils@2.0.0", "", { "dependencies": { "@jonahsnider/util": "^11.0.0", "yn": "^5.0.0", "zod": "^3.22.2", "zod-validation-error": "^3.0.0" }, "peerDependencies": { "next": "^15" } }, "sha512-uzXiOeDrsyz2703BMSOgdgkZaJidxCbj0SQNGwPPgUBQJ9/UDwv5++Ed+7znBBwjdLAOUp9jTXjh8gY0In4Y2g=="],
 
     "next-plausible": ["next-plausible@3.12.0", "", { "peerDependencies": { "next": "^11.1.0 || ^12.0.0 || ^13.0.0 || ^14.0.0", "react": "^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0" } }, "sha512-SSkEqKQ6PgR8fx3sYfIAT69k2xuCUXO5ngkSS19CjxY97lAoZxsfZpYednxB4zo0mHYv87JzhPynrdBPlCBVHg=="],
 
@@ -1428,6 +1428,8 @@
     "micro/arg": ["arg@4.1.0", "", {}, "sha512-ZWc51jO3qegGkVh8Hwpv636EkbesNV5ZNQPCtRa+0qytRYPEs9IYT9qITY9buezqUH5uqyzlWLcufrzU2rffdg=="],
 
     "next/postcss": ["postcss@8.4.31", "", { "dependencies": { "nanoid": "^3.3.6", "picocolors": "^1.0.0", "source-map-js": "^1.0.2" } }, "sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ=="],
+
+    "next-api-utils/@jonahsnider/util": ["@jonahsnider/util@11.0.0", "", {}, "sha512-PlH3+YwibBfsqSi1n6JekZMNOkQtr1hlgjDPu8qE/UY/56C3AAUfbUV3ExGFSa3mbwg0UB7g+3WvybM99leDmQ=="],
 
     "path-match/path-to-regexp": ["path-to-regexp@1.8.0", "", { "dependencies": { "isarray": "0.0.1" } }, "sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA=="],
 
