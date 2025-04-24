@@ -26,7 +26,7 @@
         "@bull-board/hono": "5.15.1",
         "@hono/trpc-server": "0.3.4",
         "@hono/zod-validator": "0.2.0",
-        "@jonahsnider/util": "10.3.0",
+        "@jonahsnider/util": "11.0.0",
         "@sentry/bun": "7.107.0",
         "@trpc/server": "11.1.1",
         "bullmq": "5.4.2",
@@ -64,7 +64,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@heroicons/react": "2.1.3",
-        "@jonahsnider/util": "10.3.0",
+        "@jonahsnider/util": "11.0.0",
         "@radix-ui/react-icons": "1.3.0",
         "@radix-ui/themes": "3.0.1",
         "@trpc/client": "11.1.1",
@@ -229,7 +229,7 @@
 
     "@isaacs/cliui": ["@isaacs/cliui@8.0.2", "", { "dependencies": { "string-width": "^5.1.2", "string-width-cjs": "npm:string-width@^4.2.0", "strip-ansi": "^7.0.1", "strip-ansi-cjs": "npm:strip-ansi@^6.0.1", "wrap-ansi": "^8.1.0", "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0" } }, "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA=="],
 
-    "@jonahsnider/util": ["@jonahsnider/util@10.3.0", "", {}, "sha512-lGdwg9MVjBqkO13b5e6jJGZNk5qibocDOeSs2Fkft/AmtluBTNhX6cP0OPbUhpmQvJwPceZFgdQUUtYSPdG2KA=="],
+    "@jonahsnider/util": ["@jonahsnider/util@11.0.0", "", {}, "sha512-PlH3+YwibBfsqSi1n6JekZMNOkQtr1hlgjDPu8qE/UY/56C3AAUfbUV3ExGFSa3mbwg0UB7g+3WvybM99leDmQ=="],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.5", "", { "dependencies": { "@jridgewell/set-array": "^1.2.1", "@jridgewell/sourcemap-codec": "^1.4.10", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg=="],
 
@@ -1420,6 +1420,8 @@
     "micro/arg": ["arg@4.1.0", "", {}, "sha512-ZWc51jO3qegGkVh8Hwpv636EkbesNV5ZNQPCtRa+0qytRYPEs9IYT9qITY9buezqUH5uqyzlWLcufrzU2rffdg=="],
 
     "next/postcss": ["postcss@8.4.31", "", { "dependencies": { "nanoid": "^3.3.6", "picocolors": "^1.0.0", "source-map-js": "^1.0.2" } }, "sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ=="],
+
+    "next-api-utils/@jonahsnider/util": ["@jonahsnider/util@10.3.0", "", {}, "sha512-lGdwg9MVjBqkO13b5e6jJGZNk5qibocDOeSs2Fkft/AmtluBTNhX6cP0OPbUhpmQvJwPceZFgdQUUtYSPdG2KA=="],
 
     "path-match/path-to-regexp": ["path-to-regexp@1.8.0", "", { "dependencies": { "isarray": "0.0.1" } }, "sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA=="],
 
