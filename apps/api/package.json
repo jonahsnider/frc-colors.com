@@ -10,11 +10,11 @@
 	"dependencies": {
 		"@bull-board/api": "5.15.1",
 		"@bull-board/hono": "5.15.1",
-		"@hono/trpc-server": "0.1.1",
+		"@hono/trpc-server": "0.3.4",
 		"@hono/zod-validator": "0.2.0",
 		"@jonahsnider/util": "10.3.0",
 		"@sentry/bun": "7.107.0",
-		"@trpc/server": "next",
+		"@trpc/server": "11.1.1",
 		"bullmq": "5.4.2",
 		"color-luminance": "2.1.0",
 		"convert": "5.0.0",
