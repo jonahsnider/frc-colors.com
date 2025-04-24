@@ -49,7 +49,7 @@
         "@tsconfig/strictest": "2.0.3",
         "@types/bun": "1.0.8",
         "@types/pg": "8.11.2",
-        "@types/pngjs": "6.0.4",
+        "@types/pngjs": "6.0.5",
         "typescript": "5.4.2",
       },
     },
@@ -447,7 +447,7 @@
 
     "@types/pg": ["@types/pg@8.11.2", "", { "dependencies": { "@types/node": "*", "pg-protocol": "*", "pg-types": "^4.0.1" } }, "sha512-G2Mjygf2jFMU/9hCaTYxJrwdObdcnuQde1gndooZSOHsNSaCehAuwc7EIuSA34Do8Jx2yZ19KtvW8P0j4EuUXw=="],
 
-    "@types/pngjs": ["@types/pngjs@6.0.4", "", { "dependencies": { "@types/node": "*" } }, "sha512-atAK9xLKOnxiuArxcHovmnOUUGBZOQ3f0vCf43FnoKs6XnqiambT1kkJWmdo71IR+BoXSh+CueeFR0GfH3dTlQ=="],
+    "@types/pngjs": ["@types/pngjs@6.0.5", "", { "dependencies": { "@types/node": "*" } }, "sha512-0k5eKfrA83JOZPppLtS2C7OUtyNAl2wKNxfyYl9Q5g9lPkgBl/9hNyAu6HuEH2J4XmIv2znEpkDd0SaZVxW6iQ=="],
 
     "@types/prop-types": ["@types/prop-types@15.7.11", "", {}, "sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng=="],
 
