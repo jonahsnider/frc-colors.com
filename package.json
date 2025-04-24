@@ -30,6 +30,7 @@
 		"turbo": "1.13.4",
 		"vercel": "35.2.4"
 	},
+	"packageManager": "bun@1.2.9",
 	"trustedDependencies": [
 		"@biomejs/biome"
 	]
