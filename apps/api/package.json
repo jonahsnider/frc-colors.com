@@ -13,7 +13,7 @@
 		"@hono/trpc-server": "0.3.4",
 		"@hono/zod-validator": "0.2.0",
 		"@jonahsnider/util": "10.3.0",
-		"@sentry/bun": "7.107.0",
+		"@sentry/bun": "9.14.0",
 		"@trpc/server": "11.1.1",
 		"bullmq": "5.4.2",
 		"color-luminance": "2.1.0",
