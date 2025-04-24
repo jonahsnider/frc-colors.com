@@ -81,7 +81,7 @@
         "next-plausible": "3.12.0",
         "next-themes": "0.3.0",
         "next-view-transitions": "0.1.1",
-        "nuqs": "1.17.1",
+        "nuqs": "1.20.0",
         "postcss": "8.4.35",
         "postcss-import": "16.1.0",
         "posthog-js": "1.116.0",
@@ -967,7 +967,7 @@
 
     "npmlog": ["npmlog@5.0.1", "", { "dependencies": { "are-we-there-yet": "^2.0.0", "console-control-strings": "^1.1.0", "gauge": "^3.0.0", "set-blocking": "^2.0.0" } }, "sha512-AqZtDUWOMKs1G/8lwylVjrdYgqA4d9nu8hc+0gzRxlDb1I10+FHBGMXs6aiQHFdCUUlqH99MUMuLfzWDNDtfxw=="],
 
-    "nuqs": ["nuqs@1.17.1", "", { "dependencies": { "mitt": "^3.0.1" }, "peerDependencies": { "next": ">=13.4 <14.0.2 || ^14.0.3" } }, "sha512-zJPisj8L+SzKzt57c5s3fJW0ikksPr+PyeLyNwvx0i5ggTr5XR5uFhCoX/T+Mkmb6X5UxHB/0nnuZyFiQsh0cA=="],
+    "nuqs": ["nuqs@1.20.0", "", { "dependencies": { "mitt": "^3.0.1" }, "peerDependencies": { "next": ">=13.4 <14.0.2 || ^14.0.3" } }, "sha512-nGVfv7eWMNxAzOJ9n8ARTo6ObqeEr1ETYZ+dIMCg/VfGUoZoPrqyTOndIvQIgUzK3pIC41mTXg10JJxh9ziEhw=="],
 
     "object-assign": ["object-assign@4.1.1", "", {}, "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg=="],
 
