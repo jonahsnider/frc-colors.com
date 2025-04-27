@@ -259,4 +259,5 @@ service-account-key.json
 **/*.cjs
 **/*.json
 **/*.jsonc
+**/*.css
 !**/package.json
