@@ -49,7 +49,7 @@ export default function RootLayout({
 }) {
 	return (
 		<ViewTransitions>
-			<html lang='en'>
+			<html lang='en' suppressHydrationWarning={true}>
 				<head>
 					<PlausibleProvider enabled={true} selfHosted={true} domain='frc-colors.com' />
 				</head>
