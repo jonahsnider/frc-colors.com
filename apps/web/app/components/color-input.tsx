@@ -72,7 +72,7 @@ export function ColorInput({ kind, onValidChange, onChange, rawColor }: Props) {
 					valid && color.hex
 						? {
 								backgroundColor: color.hex,
-						  }
+							}
 						: undefined
 				}
 			/>

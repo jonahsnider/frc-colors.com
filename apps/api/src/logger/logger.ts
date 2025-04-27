@@ -7,6 +7,6 @@ export const baseLogger = pino({
 		configService.nodeEnv === 'development'
 			? {
 					target: 'pino-pretty',
-			  }
+				}
 			: undefined,
 });

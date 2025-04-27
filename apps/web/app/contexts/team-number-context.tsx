@@ -10,7 +10,6 @@ type ContextValue = {
 
 export const TeamNumberContext = createContext<ContextValue>({
 	teamNumberRaw: '',
-	// biome-ignore lint/suspicious/noEmptyBlockStatements: This is intentionally empty
 	setTeamNumber: () => {},
 });
 

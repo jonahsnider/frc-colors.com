@@ -66,7 +66,6 @@ function parseHex(hex: string) {
 }
 
 function rgbToColorDiffRgb({ r, g, b }: Record<'r' | 'g' | 'b', number>): RGBColor {
-	// biome-ignore lint/style/useNamingConvention: Can't be renamed
 	return { R: r, G: g, B: b };
 }
 

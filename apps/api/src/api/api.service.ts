@@ -75,7 +75,6 @@ export class ApiService {
 
 		const appController = createAppController(getServer);
 
-		// biome-ignore lint/correctness/noUndeclaredVariables: This is a global
 		server = Bun.serve({
 			fetch: appController.fetch,
 			port: configService.port,

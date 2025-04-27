@@ -10,7 +10,6 @@ import { TeamNumberContext } from '../contexts/team-number-context';
 import { useApiKey } from '../hooks/use-api-key';
 import { trpc } from '../trpc';
 
-// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function HomePage() {
 	const { teamNumber } = useContext(TeamNumberContext);
 	const [apiKey] = useApiKey();

@@ -91,7 +91,7 @@ export class VerificationRequestsService {
 						ne(Schema.verificationRequests.status, Schema.VerificationRequestStatus.Pending),
 						gt(Schema.verificationRequests.updatedAt, new Date(Date.now() - ms('7d'))),
 					),
-			  );
+				);
 
 		const verificationRequests = await db.select().from(Schema.verificationRequests).where(condition);
 

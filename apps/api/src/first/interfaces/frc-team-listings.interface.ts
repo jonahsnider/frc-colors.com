@@ -1,7 +1,6 @@
 type FrcTeamListing = {
 	schoolName: string;
 	website: string;
-	// biome-ignore lint/style/useNamingConvention: This is an API response
 	homeCMP: string;
 	teamNumber: number;
 	nameFull: string;

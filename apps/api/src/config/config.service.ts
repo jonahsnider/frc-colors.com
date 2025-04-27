@@ -17,29 +17,28 @@ export class ConfigService {
 
 	constructor() {
 		const env = cleanEnv(process.env, {
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
 			TBA_API_KEY: str({ desc: 'TBA API key' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			ADMIN_USERNAME: str({ desc: 'Username for accessing admin API' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			ADMIN_PASSWORD: str({ desc: 'Password for accessing admin API' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			FRC_EVENTS_USERNAME: str({ desc: 'Username for FRC Events API' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			FRC_EVENTS_API_KEY: str({ desc: 'Password for FRC Events API' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			NODE_ENV: str({ default: 'production', choices: ['production', 'development', 'staging'] }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			PORT: port({ default: 3000 }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			DATABASE_URL: url({ desc: 'PostgreSQL URL' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			SENTRY_DSN: url({ desc: 'Sentry DSN' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			WEBSITE_URL: url({ desc: 'URL of the website' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			REDIS_URL: url({ desc: 'Redis URL' }),
-			// biome-ignore lint/style/useNamingConvention: This is an environment variable
+
 			POSTHOG_API_KEY: str({ desc: 'PostHog API key' }),
 		});
 

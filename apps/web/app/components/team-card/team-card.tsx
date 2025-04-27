@@ -41,12 +41,18 @@ export function TeamCard({ teamNumber, className }: Props) {
 					// Evil array trick is needed to make <Skeleton>'s logic with React children do what we want (don't render the children when it's loading)
 					primary: (
 						<Skeleton loading={colorsQuery.isPending} className='max-md:w-full'>
-							{[<ColorSwatch hex={colorsQuery.data?.colors?.primary} loading={colorsQuery.isPending} />]}
+							{[<ColorSwatch key='primary' hex={colorsQuery.data?.colors?.primary} loading={colorsQuery.isPending} />]}
 						</Skeleton>
 					),
 					secondary: (
 						<Skeleton loading={colorsQuery.isPending} className='max-md:w-full'>
-							{[<ColorSwatch hex={colorsQuery.data?.colors?.secondary} loading={colorsQuery.isPending} />]}
+							{[
+								<ColorSwatch
+									key='secondary'
+									hex={colorsQuery.data?.colors?.secondary}
+									loading={colorsQuery.isPending}
+								/>,
+							]}
 						</Skeleton>
 					),
 				}}
@@ -64,7 +70,9 @@ export function TeamCard({ teamNumber, className }: Props) {
 					)
 				}
 				actions={
-					<Skeleton loading={colorsQuery.isPending}>{[<VerificationRequestButton teamNumber={teamNumber} />]}</Skeleton>
+					<Skeleton loading={colorsQuery.isPending}>
+						{[<VerificationRequestButton key='button' teamNumber={teamNumber} />]}
+					</Skeleton>
 				}
 			/>
 		</Theme>

@@ -16,4 +16,4 @@ apiService.initServer();
 
 await cacheManager.init();
 
-export { type AppRouter } from './trpc/app.router';
+export type { AppRouter } from './trpc/app.router';

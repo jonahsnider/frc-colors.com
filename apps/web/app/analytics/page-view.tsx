@@ -4,7 +4,6 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import { useEffect } from 'react';
 
-// biome-ignore lint/style/noDefaultExport: Has to be a default export for dynamic import
 export default function PageView() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
@@ -18,7 +17,6 @@ export default function PageView() {
 				url += `?${searchParams.toString()}`;
 			}
 			posthog.capture('$pageview', {
-				// biome-ignore lint/style/useNamingConvention: This can't be renamed
 				$current_url: url,
 			});
 		}

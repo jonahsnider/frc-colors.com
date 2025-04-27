@@ -42,7 +42,6 @@ const PageView = dynamic(async () => import('./analytics/page-view'), {
 	ssr: false,
 });
 
-// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function RootLayout({
 	children,
 }: {

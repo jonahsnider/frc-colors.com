@@ -7,7 +7,7 @@ type Props = {
 
 export function LoadingSkeleton({ className, bar = true, ...rest }: Props) {
 	return (
-		<div role='status' className='animate-pulse'>
+		<output className='animate-pulse'>
 			<div
 				{...rest}
 				className={clsx([className], {
@@ -15,6 +15,6 @@ export function LoadingSkeleton({ className, bar = true, ...rest }: Props) {
 				})}
 			/>
 			<span className='sr-only'>Loading...</span>
-		</div>
+		</output>
 	);
 }

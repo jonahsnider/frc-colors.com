@@ -8,7 +8,6 @@ import { ColorSubmissionsList } from './color-submissions-list';
 import { SetColors } from './set-colors/set-colors';
 import { VerificationRequestsList } from './verification-requests-list';
 
-// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function Admin() {
 	const [apiKey, setApiKey] = useState<string | undefined>();
 

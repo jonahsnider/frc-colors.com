@@ -54,7 +54,7 @@ export class ColorSubmissionsService {
 						ne(Schema.colorSubmissions.status, Schema.VerificationRequestStatus.Pending),
 						gt(Schema.colorSubmissions.updatedAt, new Date(Date.now() - ms('7d'))),
 					),
-			  );
+				);
 
 		const colorSubmissions = await db.select().from(Schema.colorSubmissions).where(condition);
 

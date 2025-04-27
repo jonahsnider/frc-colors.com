@@ -69,7 +69,6 @@ export class GeneratedColors implements ColorFetcher {
 		});
 	}
 
-	// biome-ignore lint/suspicious/useAwait: Required to make this compile
 	private async extractColors(pixels: Uint8Array, strict: boolean): Promise<ReturnType<typeof extractColors>> {
 		return extractColors(
 			{ data: Array.from(pixels), width: 40, height: 40 },

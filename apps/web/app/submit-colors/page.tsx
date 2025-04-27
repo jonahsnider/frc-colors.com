@@ -12,7 +12,6 @@ import { TeamInput } from '../components/team-input';
 import { Toast } from '../components/toast';
 import { trpc } from '../trpc';
 
-// biome-ignore lint/style/noDefaultExport: This must be a default export
 export default function SubmitColors() {
 	const [rawTeam, setRawTeam] = useState<string>('');
 	const [rawPrimaryColor, setRawPrimaryColor] = useState<string>('');

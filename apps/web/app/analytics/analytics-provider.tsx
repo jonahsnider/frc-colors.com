@@ -14,9 +14,8 @@ export function AnalyticsProvider({ children }: PropsWithChildren) {
 
 	if (typeof window !== 'undefined') {
 		posthog.init(postHogKey, {
-			// biome-ignore lint/style/useNamingConvention: This can't be renamed
 			api_host: '/a/ph',
-			// biome-ignore lint/style/useNamingConvention: This can't be renamed
+
 			capture_pageview: false, // Disable automatic pageview capture, as we capture manually
 		});
 	}
