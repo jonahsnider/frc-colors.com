@@ -22,7 +22,7 @@ export function SearchTeams({ invalidTeam }: Props) {
 			onChange={(event) => {
 				setTeamNumber(event.currentTarget.value);
 			}}
-			value={teamNumber ?? undefined}
+			value={teamNumber ?? ''}
 			color={valid ? undefined : 'red'}
 			className='[view-transition-name:small-input]'
 		/>

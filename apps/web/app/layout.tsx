@@ -4,10 +4,10 @@ import type { Metadata, Viewport } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { ThemeProvider } from 'next-themes';
 import { ViewTransitions } from 'next-view-transitions';
-import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import { Toaster } from 'sonner';
 import { AnalyticsProvider } from './analytics/analytics-provider';
+import { PageView } from './analytics/page-view-dynamic';
 import { Footer } from './components/footer';
 import { Navbar } from './components/navbar/navbar';
 import { TrpcProvider } from './components/trpc/trpc-provider';
@@ -37,10 +37,6 @@ export const viewport: Viewport = {
 	],
 	colorScheme: 'dark light',
 };
-
-const PageView = dynamic(async () => import('./analytics/page-view'), {
-	ssr: false,
-});
 
 export default function RootLayout({
 	children,
