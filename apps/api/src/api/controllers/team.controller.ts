@@ -12,8 +12,8 @@ import type { Env } from '../interfaces/env.interface';
 
 export const teamController = new Hono<Env>()
 	.get('/:team', async (context) => {
-		const params = validateParams(
-			{ params: { team: context.req.param('team') } },
+		const params = await validateParams(
+			{ params: Promise.resolve({ team: context.req.param('team') }) },
 			z.object({
 				team: TeamNumber,
 			}),

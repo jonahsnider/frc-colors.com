@@ -16,8 +16,8 @@ export const internalTeamController = new Hono()
 		}),
 	)
 	.get('/:team/avatar.png', async (context) => {
-		const params = validateParams(
-			{ params: { team: context.req.param('team') } },
+		const params = await validateParams(
+			{ params: Promise.resolve({ team: context.req.param('team') }) },
 			z.object({
 				team: TeamNumber,
 			}),

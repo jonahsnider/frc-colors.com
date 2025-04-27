@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { ThemeProvider } from 'next-themes';
 import { ViewTransitions } from 'next-view-transitions';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { Suspense } from 'react';
 import { Toaster } from 'sonner';
 import { AnalyticsProvider } from './analytics/analytics-provider';
@@ -53,24 +54,26 @@ export default function RootLayout({
 				<TrpcProvider>
 					<AnalyticsProvider>
 						<body className='min-h-screen'>
-							<ThemeProvider attribute='class' enableSystem={true} disableTransitionOnChange={true}>
-								<Theme accentColor='jade' grayColor='sage' className='flex flex-col' scaling='110%'>
-									<Suspense>
-										<PageView />
-									</Suspense>
+							<NuqsAdapter>
+								<ThemeProvider attribute='class' enableSystem={true} disableTransitionOnChange={true}>
+									<Theme accentColor='jade' grayColor='sage' className='flex flex-col' scaling='110%'>
+										<Suspense>
+											<PageView />
+										</Suspense>
 
-									<Navbar />
-									<Section asChild={true} flexGrow='1' height='100%'>
-										<Container asChild={true} p='2'>
-											<main>{children}</main>
-										</Container>
-									</Section>
-									<Footer />
+										<Navbar />
+										<Section asChild={true} flexGrow='1' height='100%'>
+											<Container asChild={true} p='2'>
+												<main>{children}</main>
+											</Container>
+										</Section>
+										<Footer />
 
-									<VercelAnalytics />
-									<Toaster />
-								</Theme>
-							</ThemeProvider>
+										<VercelAnalytics />
+										<Toaster />
+									</Theme>
+								</ThemeProvider>
+							</NuqsAdapter>
 						</body>
 					</AnalyticsProvider>
 				</TrpcProvider>
