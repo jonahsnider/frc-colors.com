@@ -24,7 +24,6 @@ export const queuesController = new Hono()
 			password: configService.adminApiToken,
 		}),
 	)
-	// @ts-expect-error Some type mismatch from Hono versions I think
 	.route('', serverAdapter.setBasePath(BASE_PATH).registerPlugin())
 	// This is a SPA, redirect any routes that aren't matched by the server to the home page
 	.get('/*', (context) => context.redirect(BASE_PATH));

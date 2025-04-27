@@ -15,9 +15,7 @@ export function createTrpcController(getServer: () => Server) {
 			origin: configService.websiteUrl,
 		}),
 		trpcServer({
-			// @ts-expect-error @hono/trpc-server has not been updated for tRPC 11
 			router: appRouter,
-			// @ts-expect-error @hono/trpc-server has not been updated for tRPC 11
 			createContext: (options) => createContext(getServer, options),
 			onError: (options) => {
 				if (options.error instanceof TRPCError) {
