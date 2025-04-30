@@ -40,7 +40,7 @@
         "pino-http": "10.4.0",
         "pino-pretty": "13.0.0",
         "pngjs": "7.0.0",
-        "posthog-node": "4.14.0",
+        "posthog-node": "4.15.0",
         "superjson": "2.2.2",
         "zod": "3.24.3",
       },
@@ -1161,7 +1161,7 @@
 
     "posthog-js": ["posthog-js@1.237.1", "", { "dependencies": { "core-js": "^3.38.1", "fflate": "^0.4.8", "preact": "^10.19.3", "web-vitals": "^4.2.4" }, "peerDependencies": { "@rrweb/types": "2.0.0-alpha.17", "rrweb-snapshot": "2.0.0-alpha.17" }, "optionalPeers": ["@rrweb/types", "rrweb-snapshot"] }, "sha512-HS1pYIioP0aEE41RSQU+DeYNes/Ws2wyCiD/jiCqhEZVdwWvVF60OLD8GwueecIVoqq6/ZDMXJp/E6Rd69nO2A=="],
 
-    "posthog-node": ["posthog-node@4.14.0", "", { "dependencies": { "axios": "^1.8.2" } }, "sha512-PitSiuxGiVFl0ItuhIfi3Sq1tcaMU4vlbPu1wv0qufTJGDjWthOOr4vYfFIs1xkbJFOQcfGczMXkr44kX5TDDg=="],
+    "posthog-node": ["posthog-node@4.15.0", "", { "dependencies": { "axios": "^1.8.2" } }, "sha512-wn9mtxjsp789vtr+5D4M8fIuiol/83u5LV87TJAya0Efr4ScMZGQC+OjTlc2/YFqt3RZTjCQXhDWy15KPMsonA=="],
 
     "preact": ["preact@10.19.6", "", {}, "sha512-gympg+T2Z1fG1unB8NH29yHJwnEaCH37Z32diPDku316OTnRPeMbiRV9kTrfZpocXjdfnWuFUl/Mj4BHaf6gnw=="],
 
