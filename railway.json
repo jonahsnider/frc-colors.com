@@ -1,5 +1,9 @@
 {
 	"$schema": "https://railway.app/railway.schema.json",
+	"build": {
+		"buildCommand": "exit 0",
+		"builder": "RAILPACK"
+	},
 	"deploy": {
 		"healthcheckPath": "/health",
 		"healthcheckTimeout": 10,
