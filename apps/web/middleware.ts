@@ -1,12 +1,18 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import getBaseApiUrl from './shared';
+
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+if (!NEXT_PUBLIC_API_URL) {
+	throw new TypeError('NEXT_PUBLIC_API_URL is not defined');
+}
 
 export function middleware(request: NextRequest) {
 	if (request.nextUrl.pathname.startsWith('/api')) {
 		const targetUrl = request.nextUrl;
 
 		targetUrl.pathname = targetUrl.pathname.slice('/api'.length);
-		targetUrl.host = new URL(getBaseApiUrl()).host;
+		// biome-ignore lint/style/noNonNullAssertion: This is safe
+		targetUrl.host = new URL(NEXT_PUBLIC_API_URL!).host;
 
 		return NextResponse.redirect(targetUrl, {
 			headers: {
