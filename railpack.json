@@ -6,6 +6,6 @@
 		}
 	},
 	"deploy": {
-		"startCommand": "bun --cwd ./apps/api start"
+		"startCommand": "bun run --filter='@frc-colors/api' start"
 	}
 }

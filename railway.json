@@ -10,6 +10,6 @@
 		"numReplicas": 1,
 		"restartPolicyMaxRetries": 3,
 		"restartPolicyType": "ALWAYS",
-		"startCommand": "bun --cwd ./apps/api start"
+		"startCommand": "bun run --filter='@frc-colors/api' start"
 	}
 }
