@@ -9,6 +9,7 @@
 		"healthcheckTimeout": 10,
 		"numReplicas": 1,
 		"restartPolicyMaxRetries": 3,
-		"restartPolicyType": "ALWAYS"
+		"restartPolicyType": "ALWAYS",
+		"startCommand": "bun run migrate && bun run --filter='@frc-colors/api' start"
 	}
 }
