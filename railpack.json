@@ -1,5 +1,10 @@
 {
 	"$schema": "https://schema.railpack.com",
+	"steps": {
+		"build": {
+			"commands": ["exit 0"]
+		}
+	},
 	"deploy": {
 		"startCommand": "bun run migrate && bun run --filter='@frc-colors/api' start"
 	}
