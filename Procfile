@@ -1,3 +1,3 @@
-web: bun --cwd ./apps/api start
+web: bun run --filter='@frc-colors/api' start
 
 release: bun run migrate
