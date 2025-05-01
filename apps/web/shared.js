@@ -10,7 +10,7 @@ function getBaseApiUrl() {
 		return process.env.API_URL;
 	}
 
-	return 'http://localhost:3001';
+	throw new TypeError('NEXT_PUBLIC_API_URL or API_URL is not defined');
 }
 
 module.exports = getBaseApiUrl;
