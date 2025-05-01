@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { captureException } from '@sentry/bun';
 import type { Server } from 'bun';
 import type { Context } from 'hono';
 import { inspectRoutes } from 'hono/dev';
@@ -11,25 +12,48 @@ import type { Env } from './interfaces/env.interface';
 import type { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
 
 export class ApiService {
+	private static readonly RAILWAY_REAL_IP_HEADER = 'X-Real-IP';
+
 	static getIp(context: Context<Env>): string | undefined;
 	static getIp(server: Server, request: Request): string | undefined;
 	static getIp(serverOrContext: Server | Context<Env>, request?: Request): string | undefined {
-		let ip: string | undefined;
-
 		if ('env' in serverOrContext) {
 			const context = serverOrContext;
 
-			const proxyIp = serverOrContext.req.header('X-Envoy-External-Address');
-			ip = proxyIp ?? context.env.server.requestIP(context.req.raw)?.address;
-		} else {
-			const server = serverOrContext;
-			assert(request, new TypeError('Request was not available'));
-			const proxyIp = request.headers.get('X-Envoy-External-Address');
+			const proxyIp = serverOrContext.req.header(ApiService.RAILWAY_REAL_IP_HEADER);
 
-			ip = proxyIp || server.requestIP(request)?.address;
+			if (proxyIp) {
+				return proxyIp;
+			}
+
+			try {
+				const socketAddress = context.env.server.requestIP(context.req.raw);
+
+				return socketAddress?.address;
+			} catch (error) {
+				captureException(error);
+
+				return undefined;
+			}
 		}
 
-		return ip;
+		const server = serverOrContext;
+		assert(request, new TypeError('Request was not available'));
+		const proxyIp = request.headers.get(ApiService.RAILWAY_REAL_IP_HEADER);
+
+		if (proxyIp) {
+			return proxyIp;
+		}
+
+		try {
+			const socketAddress = server.requestIP(request);
+
+			return socketAddress?.address;
+		} catch (error) {
+			captureException(error);
+
+			return undefined;
+		}
 	}
 
 	static teamColorsToDto(colors: TeamColors): TeamColorsHttp {
