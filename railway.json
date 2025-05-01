@@ -1,7 +1,6 @@
 {
 	"$schema": "https://railway.app/railway.schema.json",
 	"build": {
-		"buildCommand": "exit 0",
 		"builder": "RAILPACK"
 	},
 	"deploy": {
@@ -9,7 +8,6 @@
 		"healthcheckTimeout": 10,
 		"numReplicas": 1,
 		"restartPolicyMaxRetries": 3,
-		"restartPolicyType": "ALWAYS",
-		"startCommand": "bun run --filter='@frc-colors/api' start"
+		"restartPolicyType": "ALWAYS"
 	}
 }
