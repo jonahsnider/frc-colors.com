@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schema.railpack.com",
+	"steps": {
+		"build": {
+			"commands": []
+		}
+	},
+	"deploy": {
+		"startCommand": "bun --cwd ./apps/api start"
+	}
+}

@@ -1,17 +1,5 @@
 {
 	"$schema": "https://railway.app/railway.schema.json",
-	"build": {
-		"buildCommand": "exit 0",
-		"builder": "NIXPACKS",
-		"nixpacksPlan": {
-			"phases": {
-				"install": {
-					"aptPkgs": ["unzip"],
-					"cmds": ["bun upgrade", "bun install --frozen-lockfile"]
-				}
-			}
-		}
-	},
 	"deploy": {
 		"healthcheckPath": "/health",
 		"healthcheckTimeout": 10,
