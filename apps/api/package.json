@@ -8,8 +8,8 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"@bull-board/api": "6.9.2",
-		"@bull-board/hono": "6.9.2",
+		"@bull-board/api": "6.9.5",
+		"@bull-board/hono": "6.9.5",
 		"@hono/trpc-server": "0.3.4",
 		"@hono/zod-validator": "0.5.0",
 		"@jonahsnider/util": "11.0.0",
@@ -22,7 +22,7 @@
 		"drizzle-orm": "0.43.1",
 		"envalid": "8.0.0",
 		"extract-colors": "4.2.0",
-		"hono": "4.7.7",
+		"hono": "4.7.8",
 		"ioredis": "5.6.1",
 		"ky": "1.8.1",
 		"next-api-utils": "2.0.0",
