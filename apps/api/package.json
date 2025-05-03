@@ -8,8 +8,8 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"@bull-board/api": "6.9.2",
-		"@bull-board/hono": "6.9.2",
+		"@bull-board/api": "6.9.5",
+		"@bull-board/hono": "6.9.5",
 		"@hono/trpc-server": "0.3.4",
 		"@hono/zod-validator": "0.5.0",
 		"@jonahsnider/util": "11.0.0",
