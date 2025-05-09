@@ -25,7 +25,7 @@
         "@trpc/server": "11.1.2",
         "bullmq": "5.52.2",
         "color-luminance": "2.1.0",
-        "convert": "5.11.0",
+        "convert": "5.12.0",
         "devalue": "5.1.1",
         "drizzle-orm": "0.43.1",
         "envalid": "8.0.0",
@@ -73,7 +73,7 @@
         "clsx": "2.1.1",
         "color-diff": "1.4.0",
         "color-luminance": "2.1.0",
-        "convert": "5.11.0",
+        "convert": "5.12.0",
         "d3-color": "3.1.0",
         "date-fns": "4.1.0",
         "devalue": "5.1.1",
@@ -734,7 +734,7 @@
 
     "content-type": ["content-type@1.0.4", "", {}, "sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA=="],
 
-    "convert": ["convert@5.11.0", "", { "dependencies": { "wireit": "0.14.12" } }, "sha512-TjczQ4Q9N2rr6zvbd0I2l6PtV/irjg1seUXUBedAEVcT/VVbS7AsOZgP/17/1vy/t6TPRqIkbZ5n7F1yBPpcrg=="],
+    "convert": ["convert@5.12.0", "", { "dependencies": { "wireit": "0.14.12" } }, "sha512-gwi1eN0dZsVI//Z+VHPgosbV0u3vxCgPT5p9H3pK5RyGrHrKaQSUNKxoGTYFbkJWv+qYaGY4w394gDNNaXer/g=="],
 
     "convert-hrtime": ["convert-hrtime@3.0.0", "", {}, "sha512-7V+KqSvMiHp8yWDuwfww06XleMWVVB9b9tURBx+G7UTADuo5hYPuowKloz4OzOqbPezxgo+fdQ1522WzPG4OeA=="],
 
