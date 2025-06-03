@@ -23,7 +23,7 @@
         "@jonahsnider/util": "11.0.0",
         "@sentry/bun": "9.24.0",
         "@trpc/server": "11.2.0",
-        "bullmq": "5.53.1",
+        "bullmq": "5.53.2",
         "color-luminance": "2.1.0",
         "convert": "5.12.0",
         "devalue": "5.1.1",
@@ -678,7 +678,7 @@
 
     "buffer-from": ["buffer-from@1.1.2", "", {}, "sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ=="],
 
-    "bullmq": ["bullmq@5.53.1", "", { "dependencies": { "cron-parser": "^4.9.0", "ioredis": "^5.4.1", "msgpackr": "^1.11.2", "node-abort-controller": "^3.1.1", "semver": "^7.5.4", "tslib": "^2.0.0", "uuid": "^9.0.0" } }, "sha512-lf6MTFjxJaKLhfJVhW1wINxlMrjd6ZwRVKWXyYf5u3oFI2sSgzUHhbecjDslXGZbD0fLedzBDqkMdB5U11zLJg=="],
+    "bullmq": ["bullmq@5.53.2", "", { "dependencies": { "cron-parser": "^4.9.0", "ioredis": "^5.4.1", "msgpackr": "^1.11.2", "node-abort-controller": "^3.1.1", "semver": "^7.5.4", "tslib": "^2.0.0", "uuid": "^9.0.0" } }, "sha512-xHgxrP/yNJHD7VCw1h+eRBh+2TCPBCM39uC9gCyksYc6ufcJP+HTZ/A2lzB2x7qMFWrvsX7tM40AT2BmdkYL/Q=="],
 
     "bun-types": ["bun-types@1.2.15", "", { "dependencies": { "@types/node": "*" } }, "sha512-NarRIaS+iOaQU1JPfyKhZm4AsUOrwUOqRNHY0XxI8GI8jYxiLXLcdjYMG9UKS+fwWasc1uw1htV9AX24dD+p4w=="],
 
