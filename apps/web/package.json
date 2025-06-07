@@ -46,7 +46,7 @@
 		"tailwindcss": "3.4.17",
 		"typescript": "5.8.3",
 		"use-debounce": "10.0.4",
-		"zod": "3.25.51"
+		"zod": "3.25.56"
 	},
 	"devDependencies": {
 		"@types/color-diff": "1.2.5",
