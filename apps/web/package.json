@@ -17,7 +17,7 @@
 		"@trpc/next": "11.3.1",
 		"@trpc/react-query": "11.3.1",
 		"@types/node": "22.15.30",
-		"@types/react": "19.1.6",
+		"@types/react": "19.1.7",
 		"@types/react-dom": "19.1.6",
 		"@uidotdev/usehooks": "2.4.1",
 		"@vercel/analytics": "1.5.0",
