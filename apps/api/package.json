@@ -39,7 +39,7 @@
 	"devDependencies": {
 		"@tsconfig/bun": "1.0.8",
 		"@tsconfig/strictest": "2.0.5",
-		"@types/bun": "1.2.15",
+		"@types/bun": "1.2.16",
 		"@types/pg": "8.15.4",
 		"@types/pngjs": "6.0.5",
 		"typescript": "5.8.3"
