@@ -99,7 +99,7 @@
       "devDependencies": {
         "@types/color-diff": "1.2.5",
         "@types/d3-color": "3.1.3",
-        "dotenv": "16.5.0",
+        "dotenv": "16.6.0",
         "type-fest": "4.41.0",
       },
     },
@@ -776,7 +776,7 @@
 
     "dlv": ["dlv@1.1.3", "", {}, "sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA=="],
 
-    "dotenv": ["dotenv@16.5.0", "", {}, "sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg=="],
+    "dotenv": ["dotenv@16.6.0", "", {}, "sha512-Omf1L8paOy2VJhILjyhrhqwLIdstqm1BvcDPKg4NGAlkwEu9ODyrFbvk8UymUOMCT+HXo31jg1lArIrVAAhuGA=="],
 
     "drizzle-kit": ["drizzle-kit@0.31.3", "", { "dependencies": { "@drizzle-team/brocli": "^0.10.2", "@esbuild-kit/esm-loader": "^2.5.5", "esbuild": "^0.25.4", "esbuild-register": "^3.5.0" }, "bin": { "drizzle-kit": "bin.cjs" } }, "sha512-M8/o1oNvTzb0nhMch2W5i+Dz2YUp7ZjAeVx4L85hLjnFMxkB+LkKHTGg2MPAGc6ENFSVyozrxMa3DPqVrJt94w=="],
 
