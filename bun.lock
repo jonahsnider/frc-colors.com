@@ -42,7 +42,7 @@
         "pngjs": "7.0.0",
         "posthog-node": "5.1.1",
         "superjson": "2.2.2",
-        "zod": "3.25.71",
+        "zod": "3.25.74",
       },
       "devDependencies": {
         "@tsconfig/bun": "1.0.8",
@@ -94,7 +94,7 @@
         "tailwindcss": "3.4.17",
         "typescript": "5.8.3",
         "use-debounce": "10.0.5",
-        "zod": "3.25.71",
+        "zod": "3.25.74",
       },
       "devDependencies": {
         "@types/color-diff": "1.2.5",
@@ -1408,7 +1408,7 @@
 
     "yocto-queue": ["yocto-queue@1.2.1", "", {}, "sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg=="],
 
-    "zod": ["zod@3.25.71", "", {}, "sha512-BsBc/NPk7h8WsUWYWYL+BajcJPY8YhjelaWu2NMLuzgraKAz4Lb4/6K11g9jpuDetjMiqhZ6YaexFLOC0Ogi3Q=="],
+    "zod": ["zod@3.25.74", "", {}, "sha512-J8poo92VuhKjNknViHRAIuuN6li/EwFbAC8OedzI8uxpEPGiXHGQu9wemIAioIpqgfB4SySaJhdk0mH5Y4ICBg=="],
 
     "zod-validation-error": ["zod-validation-error@3.4.0", "", { "peerDependencies": { "zod": "^3.18.0" } }, "sha512-ZOPR9SVY6Pb2qqO5XHt+MkkTRxGXb4EVtnjc9JpXUOtUB1T9Ru7mZOT361AN3MsetVe7R0a1KZshJDZdgp9miQ=="],
 
