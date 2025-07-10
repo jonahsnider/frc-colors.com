@@ -19,10 +19,10 @@ export const verificationRequestsRouter = router({
 		.output(VerificationRequest)
 		.mutation(({ input }) => verificationRequestsService.requestVerification(input)),
 	updateStatus: adminProcedure
-		.input(z.object({ id: z.string().uuid(), status: z.nativeEnum(Schema.VerificationRequestStatus) }))
+		.input(z.object({ id: z.uuid(), status: z.enum(Schema.VerificationRequestStatus) }))
 		.mutation(({ input }) => verificationRequestsService.updateVerificationStatus(input.id, input.status)),
 	updateStatusForTeam: adminProcedure
-		.input(z.object({ team: TeamNumber, status: z.nativeEnum(Schema.VerificationRequestStatus) }))
+		.input(z.object({ team: TeamNumber, status: z.enum(Schema.VerificationRequestStatus) }))
 		.mutation(({ input }) =>
 			verificationRequestsService.updatePendingVerificationStatusesByTeam(input.team, input.status),
 		),

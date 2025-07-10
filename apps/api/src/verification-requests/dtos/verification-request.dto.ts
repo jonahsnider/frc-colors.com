@@ -4,9 +4,9 @@ import { TeamNumber } from '../../teams/dtos/team-number.dto';
 
 export const VerificationRequest = z.object({
 	team: TeamNumber,
-	id: z.string().uuid(),
+	id: z.uuid(),
 	createdAt: z.date(),
 	updatedAt: z.date().optional(),
-	status: z.nativeEnum(Schema.VerificationRequestStatus),
+	status: z.enum(Schema.VerificationRequestStatus),
 });
-export type VerificationRequest = z.infer<typeof VerificationRequest>;
+export type VerificationRequest = z.output<typeof VerificationRequest>;
