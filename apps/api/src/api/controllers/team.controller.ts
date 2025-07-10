@@ -47,7 +47,7 @@ export const teamController = new Hono<Env>()
 			{ url: context.req.url },
 			z.object({ team: TeamNumber.or(TeamNumber.array().max(500)) }).or(
 				z.object({
-					all: QueryBooleanSchema.refine((arg: boolean) => arg, 'You may not set this to false'),
+					all: QueryBooleanSchema.refine((arg) => arg, 'You may not set this to false'),
 				}),
 			),
 		);
