@@ -1,9 +1,9 @@
 'use client';
 
-import { usePlausible } from '@/app/hooks/plausible';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
+import { usePlausible } from '@/app/hooks/plausible';
 
 export function TrackTeam({ teamNumber }: { teamNumber?: TeamNumber }) {
 	const plausible = usePlausible();
@@ -18,5 +18,5 @@ export function TrackTeam({ teamNumber }: { teamNumber?: TeamNumber }) {
 		}
 	}, [debouncedTeamNumber, previousTeamNumber, plausible]);
 
-	return <></>;
+	return undefined;
 }

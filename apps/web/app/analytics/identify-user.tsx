@@ -12,5 +12,5 @@ export function IdentifyUser() {
 		}
 	}, [userIp, postHog]);
 
-	return <></>;
+	return undefined;
 }

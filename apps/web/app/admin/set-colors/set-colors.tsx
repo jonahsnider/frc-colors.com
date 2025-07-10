@@ -1,10 +1,5 @@
 'use client';
 
-import { ColorInput } from '@/app/components/color-input';
-import { TeamCard } from '@/app/components/team-card/team-card';
-import { TeamInput } from '@/app/components/team-input';
-import { Toast } from '@/app/components/toast';
-import { trpc } from '@/app/trpc';
 import type { HexColorCode } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { SetColorsInput } from '@frc-colors/api/src/teams/dtos/set-colors-input.dto';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
@@ -13,6 +8,11 @@ import { Button, Card, Heading } from '@radix-ui/themes';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import type { PartialDeep } from 'type-fest';
+import { ColorInput } from '@/app/components/color-input';
+import { TeamCard } from '@/app/components/team-card/team-card';
+import { TeamInput } from '@/app/components/team-input';
+import { Toast } from '@/app/components/toast';
+import { trpc } from '@/app/trpc';
 
 export function SetColors() {
 	const [rawTeam, setRawTeam] = useState<string>('');

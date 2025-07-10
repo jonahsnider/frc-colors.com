@@ -1,6 +1,5 @@
-import { count } from '@jonahsnider/util';
-
 import { Schema } from '@frc-colors/api/src/db/index';
+import { count } from '@jonahsnider/util';
 import { Card, Heading } from '@radix-ui/themes';
 import { ColorSubmissionsTable } from '../components/admin/color-submissions/table';
 import { trpc } from '../trpc';

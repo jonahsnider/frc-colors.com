@@ -1,6 +1,6 @@
-import { trpc } from '@/app/trpc';
 import type { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
 import { Callout, ScrollArea } from '@radix-ui/themes';
+import { trpc } from '@/app/trpc';
 import { ColorSubmissionCard } from './color-submission-card';
 
 type Props = {

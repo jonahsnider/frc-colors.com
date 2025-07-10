@@ -1,5 +1,5 @@
 import * as RadixColors from '@radix-ui/colors';
-import { type RGBColor, closest } from 'color-diff';
+import { closest, type RGBColor } from 'color-diff';
 import getLuminance from 'color-luminance';
 import { useTheme } from 'next-themes';
 

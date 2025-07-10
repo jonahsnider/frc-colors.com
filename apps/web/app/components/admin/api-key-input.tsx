@@ -1,8 +1,8 @@
 'use client';
 
-import { useApiKey } from '@/app/hooks/use-api-key';
 import { TextField } from '@radix-ui/themes';
 import { useEffect } from 'react';
+import { useApiKey } from '@/app/hooks/use-api-key';
 
 type Props = {
 	onChange: (apiKey: string | undefined) => void;

@@ -2,8 +2,8 @@ import ky from 'ky';
 import { configService } from '../config/config.service';
 import { baseLogger } from '../logger/logger';
 import type { TeamNumber } from '../teams/dtos/team-number.dto';
-import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
 import { FetchTeamsWorker } from './fetch-teams.worker';
+import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
 import type { FrcTeamListings } from './interfaces/frc-team-listings.interface';
 
 export class FirstService {

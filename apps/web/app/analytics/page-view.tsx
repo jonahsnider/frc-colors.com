@@ -22,5 +22,5 @@ export default function PageView() {
 		}
 	}, [pathname, searchParams, posthog]);
 
-	return <></>;
+	return undefined;
 }

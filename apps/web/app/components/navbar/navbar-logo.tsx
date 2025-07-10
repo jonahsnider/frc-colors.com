@@ -1,6 +1,6 @@
 import { Text } from '@radix-ui/themes';
-import { Link } from 'next-view-transitions';
 import Image from 'next/image';
+import { Link } from 'next-view-transitions';
 import frcColors from './frc-colors.svg';
 
 export function NavbarLogo() {

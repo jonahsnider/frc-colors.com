@@ -1,4 +1,4 @@
-import { url, cleanEnv, port, str } from 'envalid';
+import { cleanEnv, port, str, url } from 'envalid';
 
 type NodeEnv = 'production' | 'development' | 'staging';
 

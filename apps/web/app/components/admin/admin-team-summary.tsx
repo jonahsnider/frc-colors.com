@@ -1,11 +1,10 @@
 'use client';
 
-import { VerificationRequestsTable } from './verification-requests/table';
-
-import { trpc } from '@/app/trpc';
 import type { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { Card, Heading } from '@radix-ui/themes';
+import { trpc } from '@/app/trpc';
 import { ColorSubmissionsTable } from './color-submissions/table';
+import { VerificationRequestsTable } from './verification-requests/table';
 
 type Props = {
 	teamNumber: TeamNumber | undefined;
@@ -13,7 +12,7 @@ type Props = {
 
 export function AdminTeamSummary({ teamNumber }: Props) {
 	if (!teamNumber) {
-		return <></>;
+		return undefined;
 	}
 
 	return (

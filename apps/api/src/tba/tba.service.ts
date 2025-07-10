@@ -8,8 +8,8 @@ import { TeamNumber } from '../teams/dtos/team-number.dto';
 import { trackDuration } from '../timing/timing';
 import type { TbaEventTeams } from './interfaces/tba-event-teams.interface';
 import type { TbaMediaAvatar } from './interfaces/tba-media.interface';
-import type { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 import type { TbaTeam } from './interfaces/tba-team.interface';
+import type { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 
 /** API client for fetching team data from TBA. */
 export class TbaService {

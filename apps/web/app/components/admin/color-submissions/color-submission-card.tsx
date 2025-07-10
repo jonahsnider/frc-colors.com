@@ -1,6 +1,5 @@
 'use client';
 
-import { trpc } from '@/app/trpc';
 import type { ColorSubmission } from '@frc-colors/api/src/color-submissions/dtos/color-submission.dto';
 import type { TeamColors } from '@frc-colors/api/src/colors/dtos/colors.dto';
 import { Schema } from '@frc-colors/api/src/db/index';
@@ -10,13 +9,17 @@ import clsx from 'clsx';
 import { formatDistanceToNow, formatRelative } from 'date-fns';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { trpc } from '@/app/trpc';
 import { Toast } from '../../toast';
 import { CompareColors } from './compare-colors';
 
 function CardActions({
 	submission,
 	setSubmission,
-}: { submission: ColorSubmission; setSubmission: (submission: ColorSubmission) => void }) {
+}: {
+	submission: ColorSubmission;
+	setSubmission: (submission: ColorSubmission) => void;
+}) {
 	const mutation = trpc.colorSubmissions.updateStatus.useMutation({
 		onSuccess: (submission) => {
 			setSubmission(submission);

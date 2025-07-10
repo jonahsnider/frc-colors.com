@@ -8,7 +8,7 @@ export function ColorSwatch({ hex, loading }: { hex?: HexColorCode; loading?: bo
 	const appearance = isDark(usedHex) ? 'dark' : 'light';
 
 	if (!(loading || hex)) {
-		return <></>;
+		return undefined;
 	}
 
 	return (

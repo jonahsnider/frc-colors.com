@@ -1,9 +1,8 @@
-import { VerificationRequestButton } from '@/app/(team)/verification-request-button';
-import { trpc } from '@/app/trpc';
-
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
 import { Heading, Skeleton, Text, Theme, Tooltip } from '@radix-ui/themes';
 import clsx from 'clsx';
+import { VerificationRequestButton } from '@/app/(team)/verification-request-button';
+import { trpc } from '@/app/trpc';
 import { getNearestAccentName } from '../util/color-util';
 import { getTeamAvatarUrl } from '../util/team-avatar-url';
 import { BaseTeamCard } from './base-team-card';

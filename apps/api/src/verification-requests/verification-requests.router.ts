@@ -1,8 +1,7 @@
 import { z } from 'zod';
-import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
-
 import { Schema } from '../db/index';
 import { TeamNumber } from '../teams/dtos/team-number.dto';
+import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
 import { VerificationRequest } from './dtos/verification-request.dto';
 import { verificationRequestsService } from './verification-requests.service';
 

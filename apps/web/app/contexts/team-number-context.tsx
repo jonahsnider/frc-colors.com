@@ -1,6 +1,6 @@
 import { TeamNumber } from '@frc-colors/api/src/teams/dtos/team-number.dto';
 import { parseAsInteger, useQueryState } from 'nuqs';
-import { type PropsWithChildren, createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, type PropsWithChildren, useEffect, useMemo, useState } from 'react';
 
 type ContextValue = {
 	teamNumberRaw: string;

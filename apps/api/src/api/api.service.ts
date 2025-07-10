@@ -91,11 +91,13 @@ export class ApiService {
 
 		this.initialized = true;
 
-		let server: Server | undefined = undefined;
+		// biome-ignore lint/style/useConst: This needs to be declared before it is defined
+		let server: Server | undefined;
 
 		// This is like, super unsafe, but also should never cause an issue
 		// The reason for this silliness is that there is a circular dependency between Bun.serve requiring us to set a fetch function, and the fetch function requiring the server to be created
-		const getServer = (): Server => server as Server;
+		// biome-ignore lint/style/noNonNullAssertion: This will be defined when called
+		const getServer = (): Server => server!;
 
 		const appController = createAppController(getServer);
 
