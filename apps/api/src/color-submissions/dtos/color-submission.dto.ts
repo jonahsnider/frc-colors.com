@@ -6,17 +6,17 @@ import { TeamNumber } from '../../teams/dtos/team-number.dto';
 export const ColorSubmission = z.object({
 	createdAt: z.date(),
 	updatedAt: z.date().optional(),
-	id: z.string().uuid(),
-	status: z.nativeEnum(Schema.VerificationRequestStatus),
+	id: z.uuid(),
+	status: z.enum(Schema.VerificationRequestStatus),
 	teamNumber: TeamNumber,
 	primaryHex: HexColorCode,
 	secondaryHex: HexColorCode,
 });
-export type ColorSubmission = z.infer<typeof ColorSubmission>;
+export type ColorSubmission = z.output<typeof ColorSubmission>;
 
 export const CreateColorSubmission = ColorSubmission.pick({
 	primaryHex: true,
 	secondaryHex: true,
 	teamNumber: true,
 });
-export type CreateColorSubmission = z.infer<typeof CreateColorSubmission>;
+export type CreateColorSubmission = z.output<typeof CreateColorSubmission>;
