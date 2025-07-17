@@ -24,7 +24,7 @@
 		"extract-colors": "4.2.0",
 		"hono": "4.8.5",
 		"ioredis": "5.6.1",
-		"ky": "1.8.1",
+		"ky": "1.8.2",
 		"next-api-utils": "3.0.1",
 		"p-limit": "6.2.0",
 		"pg": "8.16.3",
