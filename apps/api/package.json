@@ -21,7 +21,7 @@
 		"devalue": "5.1.1",
 		"drizzle-orm": "0.44.4",
 		"envalid": "8.1.0",
-		"extract-colors": "4.2.0",
+		"extract-colors": "4.2.1",
 		"hono": "4.8.9",
 		"ioredis": "5.6.1",
 		"ky": "1.8.2",
