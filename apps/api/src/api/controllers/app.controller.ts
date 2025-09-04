@@ -27,7 +27,7 @@ export function createAppController(getServer: () => Server) {
 					return next();
 				},
 				trackFn,
-				honoLogger((...messages) => logger.info(...messages)),
+				honoLogger((...params) => logger.info(params.join(' '))),
 				timeout(60_000),
 				timing({
 					crossOrigin(context) {
