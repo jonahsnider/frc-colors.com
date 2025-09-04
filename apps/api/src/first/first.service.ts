@@ -1,6 +1,5 @@
 import ky from 'ky';
 import { configService } from '../config/config.service';
-import { baseLogger } from '../logger/logger';
 import type { TeamNumber } from '../teams/dtos/team-number.dto';
 import { FetchTeamsWorker } from './fetch-teams.worker';
 import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
@@ -18,8 +17,6 @@ export class FirstService {
 		},
 		prefixUrl: 'https://frc-api.firstinspires.org/v3.0',
 	});
-
-	private readonly logger = baseLogger.child({ module: 'first' });
 
 	private readonly fetchTeamsPagesWorker = new FetchTeamsPagesWorker();
 	private readonly fetchTeamsWorker = new FetchTeamsWorker();
