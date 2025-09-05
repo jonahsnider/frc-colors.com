@@ -26,7 +26,7 @@
         "bullmq": "5.58.0",
         "color-luminance": "2.1.0",
         "convert": "5.12.0",
-        "devalue": "5.1.1",
+        "devalue": "5.3.2",
         "drizzle-orm": "0.44.4",
         "envalid": "8.1.0",
         "extract-colors": "4.2.1",
@@ -76,7 +76,7 @@
         "convert": "5.12.0",
         "d3-color": "3.1.0",
         "date-fns": "4.1.0",
-        "devalue": "5.1.1",
+        "devalue": "5.3.2",
         "next": "15.4.7",
         "next-api-utils": "3.0.1",
         "next-plausible": "3.12.4",
@@ -778,7 +778,7 @@
 
     "detect-node-es": ["detect-node-es@1.1.0", "", {}, "sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ=="],
 
-    "devalue": ["devalue@5.1.1", "", {}, "sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw=="],
+    "devalue": ["devalue@5.3.2", "", {}, "sha512-UDsjUbpQn9kvm68slnrs+mfxwFkIflOhkanmyabZ8zOYk8SMEIbJ3TK+88g70hSIeytu4y18f0z/hYHMTrXIWw=="],
 
     "didyoumean": ["didyoumean@1.2.2", "", {}, "sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw=="],
 
