@@ -42,6 +42,6 @@
 		"@types/bun": "1.2.23",
 		"@types/pg": "8.15.5",
 		"@types/pngjs": "6.0.5",
-		"typescript": "5.9.2"
+		"typescript": "5.9.3"
 	}
 }

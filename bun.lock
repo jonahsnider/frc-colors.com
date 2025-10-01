@@ -50,7 +50,7 @@
         "@types/bun": "1.2.23",
         "@types/pg": "8.15.5",
         "@types/pngjs": "6.0.5",
-        "typescript": "5.9.2",
+        "typescript": "5.9.3",
       },
     },
     "apps/web": {
@@ -92,7 +92,7 @@
         "sonner": "2.0.7",
         "superjson": "2.2.2",
         "tailwindcss": "3.4.17",
-        "typescript": "5.9.2",
+        "typescript": "5.9.3",
         "use-debounce": "10.0.6",
         "zod": "4.1.11",
       },
@@ -1352,7 +1352,7 @@
 
     "type-fest": ["type-fest@4.41.0", "", {}, "sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA=="],
 
-    "typescript": ["typescript@5.9.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A=="],
+    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
     "uid-promise": ["uid-promise@1.0.0", "", {}, "sha512-R8375j0qwXyIu/7R0tjdF06/sElHqbmdmWC9M2qQHpEVbvE4I5+38KJI7LUUmQMp7NVq4tKHiBMkT0NFM453Ig=="],
 
