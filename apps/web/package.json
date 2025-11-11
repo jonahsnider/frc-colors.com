@@ -21,7 +21,7 @@
 		"@types/react-dom": "19.2.2",
 		"@uidotdev/usehooks": "2.4.1",
 		"@vercel/analytics": "1.5.0",
-		"autoprefixer": "10.4.21",
+		"autoprefixer": "10.4.22",
 		"clsx": "2.1.1",
 		"color-diff": "1.4.0",
 		"color-luminance": "2.1.0",
