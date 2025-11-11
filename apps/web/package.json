@@ -16,7 +16,7 @@
 		"@trpc/client": "11.7.1",
 		"@trpc/next": "11.7.1",
 		"@trpc/react-query": "11.7.1",
-		"@types/node": "24.7.1",
+		"@types/node": "24.10.0",
 		"@types/react": "19.2.2",
 		"@types/react-dom": "19.2.2",
 		"@uidotdev/usehooks": "2.4.1",
