@@ -17,7 +17,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.4",
-		"drizzle-kit": "0.31.6",
+		"drizzle-kit": "0.31.7",
 		"envalid": "8.1.1",
 		"prettier": "3.6.2",
 		"prettier-plugin-packagejson": "2.5.19",
