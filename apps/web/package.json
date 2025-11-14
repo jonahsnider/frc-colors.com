@@ -28,7 +28,7 @@
 		"convert": "5.13.1",
 		"d3-color": "3.1.0",
 		"date-fns": "4.1.0",
-		"devalue": "5.4.2",
+		"devalue": "5.5.0",
 		"next": "16.0.3",
 		"next-api-utils": "3.0.1",
 		"next-plausible": "3.12.5",
