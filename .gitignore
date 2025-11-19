@@ -247,3 +247,6 @@ service-account-key.json
 # Vercel
 .vercel
 .env*.local
+
+# Next.js
+next-env.d.ts
