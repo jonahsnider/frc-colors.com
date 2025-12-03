@@ -86,7 +86,7 @@
         "nuqs": "2.8.2",
         "postcss": "8.5.6",
         "postcss-import": "16.1.1",
-        "posthog-js": "1.299.0",
+        "posthog-js": "1.300.0",
         "radix-themes-tw": "0.2.3",
         "react": "19.2.0",
         "react-dom": "19.2.0",
@@ -1295,7 +1295,7 @@
 
     "postgres-range": ["postgres-range@1.1.4", "", {}, "sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w=="],
 
-    "posthog-js": ["posthog-js@1.299.0", "", { "dependencies": { "@posthog/core": "1.6.0", "core-js": "^3.38.1", "fflate": "^0.4.8", "preact": "^10.19.3", "web-vitals": "^4.2.4" } }, "sha512-euHXKcEqQpRJNWitudVl4/doTJsftgaBDRLNGczt/v3S9N6ppLMzEOmeoqvNhNDIlpxGVlTvSawfw9HeW1r5nA=="],
+    "posthog-js": ["posthog-js@1.300.0", "", { "dependencies": { "@posthog/core": "1.7.0", "core-js": "^3.38.1", "fflate": "^0.4.8", "preact": "^10.19.3", "web-vitals": "^4.2.4" } }, "sha512-FpeD4pkpg9i/3F5xpeX+CZeq3R3BaLyFDkzb4sOjpUIW1AAVuOEqPTxnWIess6C3pOw1u3mowq0WSeh1PmrqfA=="],
 
     "posthog-node": ["posthog-node@5.15.0", "", { "dependencies": { "@posthog/core": "1.6.0" } }, "sha512-Q70DGmUoy/Lavrq+qn2shIj/EQSeyaz6huIZQlLE6y8Xa6xtZw+Jg1lyr2nC1sEEFPCU1X7zkNvP6mjbYwqjYA=="],
 
@@ -1686,6 +1686,8 @@
     "pino-pretty/pino-abstract-transport": ["pino-abstract-transport@3.0.0", "", { "dependencies": { "split2": "^4.0.0" } }, "sha512-wlfUczU+n7Hy/Ha5j9a/gZNy7We5+cXp8YL+X+PG8S0KXxw7n/JXA3c46Y0zQznIJ83URJiwy7Lh56WLokNuxg=="],
 
     "postcss-load-config/lilconfig": ["lilconfig@3.1.1", "", {}, "sha512-O18pf7nyvHTckunPWCV1XUNXU1piu01y2b7ATJ0ppkUkk8ocqVWBrYjJBCwHDjD/ZWcfyrA0P4gKhzWGi5EINQ=="],
+
+    "posthog-js/@posthog/core": ["@posthog/core@1.7.0", "", { "dependencies": { "cross-spawn": "^7.0.6" } }, "sha512-d6ZV4grpzeH/6/LP8quMVpSjY1puRkrqfwcPvGRKUAX7tb7YHyp/zMiTDuJmOFbpUxAMBXH5nDwcPiyCY2WGzA=="],
 
     "raw-body/http-errors": ["http-errors@1.7.3", "", { "dependencies": { "depd": "~1.1.2", "inherits": "2.0.4", "setprototypeof": "1.1.1", "statuses": ">= 1.5.0 < 2", "toidentifier": "1.0.0" } }, "sha512-ZTTX0MWrsQ2ZAhA1cejAwDLycFsd7I7nVtnkT3Ol0aqodaKW+0CTZDQ1uBv5whptCnc8e8HeRRJxRs0kmm/Qfw=="],
 
