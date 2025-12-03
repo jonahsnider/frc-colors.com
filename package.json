@@ -19,7 +19,7 @@
 		"@biomejs/biome": "2.1.4",
 		"drizzle-kit": "0.31.7",
 		"envalid": "8.1.1",
-		"prettier": "3.7.3",
+		"prettier": "3.7.4",
 		"prettier-plugin-packagejson": "2.5.20",
 		"turbo": "2.6.1",
 		"vercel": "48.12.1"
