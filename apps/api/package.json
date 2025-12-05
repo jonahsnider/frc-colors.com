@@ -19,7 +19,7 @@
 		"color-luminance": "2.1.0",
 		"convert": "5.13.1",
 		"devalue": "5.5.0",
-		"drizzle-orm": "0.44.7",
+		"drizzle-orm": "0.45.0",
 		"envalid": "8.1.1",
 		"extract-colors": "4.2.1",
 		"hono": "4.10.7",
