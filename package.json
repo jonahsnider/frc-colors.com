@@ -21,7 +21,7 @@
 		"envalid": "8.1.1",
 		"prettier": "3.7.4",
 		"prettier-plugin-packagejson": "2.5.20",
-		"turbo": "2.6.2",
+		"turbo": "2.6.3",
 		"vercel": "48.12.1"
 	},
 	"packageManager": "bun@1.2.10",
