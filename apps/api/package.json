@@ -40,7 +40,7 @@
 		"@tsconfig/bun": "1.0.10",
 		"@tsconfig/strictest": "2.0.8",
 		"@types/bun": "1.2.23",
-		"@types/pg": "8.15.6",
+		"@types/pg": "8.16.0",
 		"@types/pngjs": "6.0.5",
 		"typescript": "5.9.3"
 	}
