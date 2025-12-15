@@ -1,5 +1,7 @@
 @import "tailwindcss/base";
 @import "@radix-ui/themes/styles.css";
 
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind v3 syntax */
 @tailwind components;
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind v3 syntax */
 @tailwind utilities;
