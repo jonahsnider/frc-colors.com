@@ -15,8 +15,8 @@ export class ApiService {
 	private static readonly RAILWAY_REAL_IP_HEADER = 'X-Real-IP';
 
 	static getIp(context: Context<Env>): string | undefined;
-	static getIp(server: Server, request: Request): string | undefined;
-	static getIp(serverOrContext: Server | Context<Env>, request?: Request): string | undefined {
+	static getIp(server: Server<undefined>, request: Request): string | undefined;
+	static getIp(serverOrContext: Server<undefined> | Context<Env>, request?: Request): string | undefined {
 		if ('env' in serverOrContext) {
 			const context = serverOrContext;
 
@@ -91,12 +91,13 @@ export class ApiService {
 
 		this.initialized = true;
 
-		let server: Server | undefined;
+		// biome-ignore lint/style/useConst: This needs to be declared before it is defined
+		let server: Server<undefined> | undefined;
 
 		// This is like, super unsafe, but also should never cause an issue
 		// The reason for this silliness is that there is a circular dependency between Bun.serve requiring us to set a fetch function, and the fetch function requiring the server to be created
 		// biome-ignore lint/style/noNonNullAssertion: This will be defined when called
-		const getServer = (): Server => server!;
+		const getServer = (): Server<undefined> => server!;
 
 		const appController = createAppController(getServer);
 

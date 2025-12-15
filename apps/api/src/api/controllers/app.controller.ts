@@ -14,7 +14,7 @@ import { v1Controller } from './v1.controller';
 
 const logger = baseLogger.child({ module: 'server' });
 
-export function createAppController(getServer: () => Server) {
+export function createAppController(getServer: () => Server<undefined>) {
 	return (
 		new Hono<Env>()
 			.onError(errorHandler)

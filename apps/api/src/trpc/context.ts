@@ -4,7 +4,7 @@ import type { Server } from 'bun';
 import { ApiService } from '../api/api.service';
 import { authService } from '../auth/auth.service';
 
-export function createContext(getServer: () => Server, options: FetchCreateContextFnOptions): Context {
+export function createContext(getServer: () => Server<undefined>, options: FetchCreateContextFnOptions): Context {
 	const requestIp = ApiService.getIp(getServer(), options.req);
 
 	if (authService.requestHasToken(options)) {
