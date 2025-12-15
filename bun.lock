@@ -43,7 +43,7 @@
         "pngjs": "7.0.0",
         "posthog-node": "5.17.2",
         "superjson": "2.2.6",
-        "zod": "4.1.13",
+        "zod": "4.2.0",
       },
       "devDependencies": {
         "@tsconfig/bun": "1.0.10",
@@ -95,7 +95,7 @@
         "tailwindcss": "3.4.19",
         "typescript": "5.9.3",
         "use-debounce": "10.0.6",
-        "zod": "4.1.13",
+        "zod": "4.2.0",
       },
       "devDependencies": {
         "@types/color-diff": "1.2.5",
@@ -1565,7 +1565,7 @@
 
     "yocto-queue": ["yocto-queue@1.2.1", "", {}, "sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg=="],
 
-    "zod": ["zod@4.1.13", "", {}, "sha512-AvvthqfqrAhNH9dnfmrfKzX5upOdjUVJYFqNSlkmGf64gRaTzlPwz99IHYnVs28qYAybvAlBV+H7pn0saFY4Ig=="],
+    "zod": ["zod@4.2.0", "", {}, "sha512-Bd5fw9wlIhtqCCxotZgdTOMwGm1a0u75wARVEY9HMs1X17trvA/lMi4+MGK5EUfYkXVTbX8UDiDKW4OgzHVUZw=="],
 
     "@cspotcode/source-map-support/@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.9", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.0.3", "@jridgewell/sourcemap-codec": "^1.4.10" } }, "sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ=="],
 
