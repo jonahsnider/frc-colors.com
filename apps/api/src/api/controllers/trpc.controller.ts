@@ -8,7 +8,7 @@ import { appRouter } from '../../trpc/app.router';
 import { createContext } from '../../trpc/context';
 import type { Env } from '../interfaces/env.interface';
 
-export function createTrpcController(getServer: () => Server) {
+export function createTrpcController(getServer: () => Server<undefined>) {
 	return new Hono<Env>().use(
 		'/*',
 		cors({
