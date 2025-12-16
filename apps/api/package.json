@@ -34,7 +34,7 @@
 		"pngjs": "7.0.0",
 		"posthog-node": "5.17.2",
 		"superjson": "2.2.6",
-		"zod": "4.2.0"
+		"zod": "4.2.1"
 	},
 	"devDependencies": {
 		"@tsconfig/bun": "1.0.10",
