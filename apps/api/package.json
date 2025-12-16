@@ -17,7 +17,7 @@
 		"@trpc/server": "11.8.0",
 		"bullmq": "5.66.0",
 		"color-luminance": "2.1.0",
-		"convert": "5.13.1",
+		"convert": "5.14.1",
 		"devalue": "5.6.1",
 		"drizzle-orm": "0.45.1",
 		"envalid": "8.1.1",
