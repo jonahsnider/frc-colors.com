@@ -17,8 +17,8 @@
     "apps/api": {
       "name": "@frc-colors/api",
       "dependencies": {
-        "@bull-board/api": "6.15.0",
-        "@bull-board/hono": "6.15.0",
+        "@bull-board/api": "6.16.1",
+        "@bull-board/hono": "6.16.1",
         "@hono/trpc-server": "0.4.1",
         "@hono/zod-validator": "0.7.6",
         "@jonahsnider/util": "13.0.0",
@@ -133,11 +133,11 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.3.10", "", { "os": "win32", "cpu": "x64" }, "sha512-pHEFgq7dUEsKnqG9mx9bXihxGI49X+ar+UBrEIj3Wqj3UCZp1rNgV+OoyjFgcXsjCWpuEAF4VJdkZr3TrWdCbQ=="],
 
-    "@bull-board/api": ["@bull-board/api@6.15.0", "", { "dependencies": { "redis-info": "^3.1.0" }, "peerDependencies": { "@bull-board/ui": "6.15.0" } }, "sha512-z8qLZ4uv83hZNu+0YnHzhVoWv1grULuYh80FdC2xXLg8M1EwsOZD9cJ5CNpgBFqHb+NVByTmf5FltIvXdOU8tQ=="],
+    "@bull-board/api": ["@bull-board/api@6.16.1", "", { "dependencies": { "redis-info": "^3.1.0" }, "peerDependencies": { "@bull-board/ui": "6.16.1" } }, "sha512-yL8sl/1nVk3IEDuHuMXuOUdC250UA0LCekbekvmr3js2ldg+HPCw0deuQvdp4CNDUnxlbxBk2/73AumBxGwp/g=="],
 
-    "@bull-board/hono": ["@bull-board/hono@6.15.0", "", { "dependencies": { "@bull-board/api": "6.15.0", "@bull-board/ui": "6.15.0", "ejs": "^3.1.10" }, "peerDependencies": { "hono": "^4" } }, "sha512-Up2WE0+p/FSN+uTXLkB1KX/Msv5dgZ6SjmvW9yTLw63OyXsCVdtCXBXWm57kkm70vntNxUxCl7Y1x6kcH7Gb4A=="],
+    "@bull-board/hono": ["@bull-board/hono@6.16.1", "", { "dependencies": { "@bull-board/api": "6.16.1", "@bull-board/ui": "6.16.1", "ejs": "^3.1.10" }, "peerDependencies": { "hono": "^4" } }, "sha512-P926jMwFd9OxCsMi7ECjB9SZY6Pg+clfBPUNNEyhkDNuQ90MaeCiQr5W/9Gv6cHQ/K/zdWrIWlG6PcMIURZPfw=="],
 
-    "@bull-board/ui": ["@bull-board/ui@6.15.0", "", { "dependencies": { "@bull-board/api": "6.15.0" } }, "sha512-bb/j6VMq2cfPoE/ZiUO7AcYTL0IjtxvKxkYV0zu+i1pc+JEv3ct4BItCII57knJR/YjZKGmdfr079KJFvzXC5A=="],
+    "@bull-board/ui": ["@bull-board/ui@6.16.1", "", { "dependencies": { "@bull-board/api": "6.16.1" } }, "sha512-h7IPiAcNGNmBOv/7nKqAOvkZz3AlhMxHB9AQWB7MzlGRRP02eT1aRkX1h2AKydgAZn5JQJqDG4DcMpYV+rEE1g=="],
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 
