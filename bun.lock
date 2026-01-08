@@ -86,7 +86,7 @@
         "nuqs": "2.8.6",
         "postcss": "8.5.6",
         "postcss-import": "16.1.1",
-        "posthog-js": "1.315.1",
+        "posthog-js": "1.316.0",
         "radix-themes-tw": "0.2.3",
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -425,7 +425,7 @@
 
     "@posthog/core": ["@posthog/core@1.9.0", "", { "dependencies": { "cross-spawn": "^7.0.6" } }, "sha512-j7KSWxJTUtNyKynLt/p0hfip/3I46dWU2dk+pt7dKRoz2l5CYueHuHK4EO7Wlgno5yo1HO4sc4s30MXMTICHJw=="],
 
-    "@posthog/types": ["@posthog/types@1.315.1", "", {}, "sha512-m2NggfJRYby3AkAES6yHMLURvTeK+rxN+5nmkuaCbOXQPdtWacSFIG5ZwN8d3crSx+WpiFauCDdr1sc3ZFkTHg=="],
+    "@posthog/types": ["@posthog/types@1.316.0", "", {}, "sha512-2CS2wecsv9Eafa8euXePr6ba1/eV9k7BLAREKd2SqCsTd6bYRFILvVDlkrvPCSpdZ6qOq/b6IA//HMC1Z0fN8w=="],
 
     "@prisma/instrumentation": ["@prisma/instrumentation@6.19.0", "", { "dependencies": { "@opentelemetry/instrumentation": ">=0.52.0 <1" }, "peerDependencies": { "@opentelemetry/api": "^1.8" } }, "sha512-QcuYy25pkXM8BJ37wVFBO7Zh34nyRV1GOb2n3lPkkbRYfl4hWl3PTcImP41P0KrzVXfa/45p6eVCos27x3exIg=="],
 
@@ -1329,7 +1329,7 @@
 
     "postgres-range": ["postgres-range@1.1.4", "", {}, "sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w=="],
 
-    "posthog-js": ["posthog-js@1.315.1", "", { "dependencies": { "@posthog/core": "1.9.0", "@posthog/types": "1.315.1", "core-js": "^3.38.1", "fflate": "^0.4.8", "preact": "^10.19.3", "web-vitals": "^4.2.4" } }, "sha512-ambT1azidu4hKhSmB95KdLY6yHfj9vvz1XNn68syh8DtkQ0uSdjpRY6tjMp96EQtPqCrDKr+8QpcusT1KQEZSA=="],
+    "posthog-js": ["posthog-js@1.316.0", "", { "dependencies": { "@posthog/core": "1.9.1", "@posthog/types": "1.316.0", "core-js": "^3.38.1", "fflate": "^0.4.8", "preact": "^10.19.3", "web-vitals": "^4.2.4" } }, "sha512-Y8JKqv61HQKHB4savYnbp1+zUhfkSLSE4famJONaPuBq9lX+F8j9uNENvIWioe2roJa7FU3g5Ji/CjwwRh+/kA=="],
 
     "posthog-node": ["posthog-node@5.19.0", "", { "dependencies": { "@posthog/core": "1.9.0" } }, "sha512-5Nx+/b1JbAy6TaCENuO+mLFfZIXyYavae+D6FABd52gzkGryRkRTsKi+WLlILI5shSCAMWs5gxzGAZ3nOC0gFA=="],
 
@@ -1718,6 +1718,8 @@
     "pino-pretty/pino-abstract-transport": ["pino-abstract-transport@3.0.0", "", { "dependencies": { "split2": "^4.0.0" } }, "sha512-wlfUczU+n7Hy/Ha5j9a/gZNy7We5+cXp8YL+X+PG8S0KXxw7n/JXA3c46Y0zQznIJ83URJiwy7Lh56WLokNuxg=="],
 
     "postcss-load-config/lilconfig": ["lilconfig@3.1.1", "", {}, "sha512-O18pf7nyvHTckunPWCV1XUNXU1piu01y2b7ATJ0ppkUkk8ocqVWBrYjJBCwHDjD/ZWcfyrA0P4gKhzWGi5EINQ=="],
+
+    "posthog-js/@posthog/core": ["@posthog/core@1.9.1", "", { "dependencies": { "cross-spawn": "^7.0.6" } }, "sha512-kRb1ch2dhQjsAapZmu6V66551IF2LnCbc1rnrQqnR7ArooVyJN9KOPXre16AJ3ObJz2eTfuP7x25BMyS2Y5Exw=="],
 
     "raw-body/http-errors": ["http-errors@1.7.3", "", { "dependencies": { "depd": "~1.1.2", "inherits": "2.0.4", "setprototypeof": "1.1.1", "statuses": ">= 1.5.0 < 2", "toidentifier": "1.0.0" } }, "sha512-ZTTX0MWrsQ2ZAhA1cejAwDLycFsd7I7nVtnkT3Ol0aqodaKW+0CTZDQ1uBv5whptCnc8e8HeRRJxRs0kmm/Qfw=="],
 
