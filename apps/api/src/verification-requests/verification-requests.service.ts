@@ -7,7 +7,7 @@ import { Schema } from '../db/index';
 import type { TeamNumber } from '../teams/dtos/team-number.dto';
 import type { VerificationRequest } from './dtos/verification-request.dto';
 
-export class VerificationRequestsService {
+class VerificationRequestsService {
 	private static dbVerificationRequestToDto(row: typeof Schema.verificationRequests.$inferSelect): VerificationRequest {
 		return {
 			id: row.uuid,

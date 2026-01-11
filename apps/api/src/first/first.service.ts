@@ -5,7 +5,7 @@ import { FetchTeamsWorker } from './fetch-teams.worker';
 import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
 import type { FrcTeamListings } from './interfaces/frc-team-listings.interface';
 
-export class FirstService {
+class FirstService {
 	private static readonly BASIC_AUTH_TOKEN = Buffer.from(
 		`${configService.frcEventsApi.username}:${configService.frcEventsApi.password}`,
 		'utf8',

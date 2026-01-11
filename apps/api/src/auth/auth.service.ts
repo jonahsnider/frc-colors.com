@@ -1,7 +1,7 @@
 import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { configService } from '../config/config.service';
 
-export class AuthService {
+class AuthService {
 	requestHasToken({ req }: FetchCreateContextFnOptions): boolean {
 		const header = req.headers.get('authorization');
 

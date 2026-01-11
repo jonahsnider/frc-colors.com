@@ -34,5 +34,7 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lock') }}-
+      - name: Run Knip
+        run: bun run knip
       - name: Build and test
         run: bun run test

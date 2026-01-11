@@ -2,7 +2,6 @@ import type { AppRouter } from '@frc-colors/api';
 import { transformer } from '@frc-colors/api/src/trpc/transformer';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
-import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -32,6 +31,3 @@ export const trpc = createTRPCNext<AppRouter>({
 		],
 	}),
 });
-
-export type RouterInput = inferRouterInputs<AppRouter>;
-export type RouterOutput = inferRouterOutputs<AppRouter>;

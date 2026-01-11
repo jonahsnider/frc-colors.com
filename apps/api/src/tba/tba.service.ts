@@ -12,7 +12,7 @@ import type { TbaTeam } from './interfaces/tba-team.interface';
 import type { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface';
 
 /** API client for fetching team data from TBA. */
-export class TbaService {
+class TbaService {
 	private readonly fetcher = ky.extend({
 		prefixUrl: 'https://www.thebluealliance.com/api/v3',
 		headers: {

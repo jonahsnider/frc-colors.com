@@ -2,7 +2,7 @@ import { cleanEnv, port, str, url } from 'envalid';
 
 type NodeEnv = 'production' | 'development' | 'staging';
 
-export class ConfigService {
+class ConfigService {
 	public readonly tbaApiKey: string;
 	public readonly adminUsername: string;
 	public readonly adminApiToken: string;

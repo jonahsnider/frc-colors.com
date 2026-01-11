@@ -22,6 +22,8 @@ jobs:
         run: bun run lint:fix
       - name: Format with Prettier
         run: bun run format:write
+      - name: Fix Knip issues
+        run: bun run knip --fix
       - name: Run autofix.ci
         uses: autofix-ci/action@v1
         with:

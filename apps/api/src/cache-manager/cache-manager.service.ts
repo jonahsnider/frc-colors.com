@@ -2,7 +2,7 @@ import convert from 'convert';
 import { baseLogger } from '../logger/logger';
 import { fetchTeamsPagesQueue } from '../queues/queues';
 
-export class CacheManager {
+class CacheManager {
 	private static readonly CACHE_REFRESH_INTERVAL = convert(1, 'hour');
 
 	private readonly logger = baseLogger.child({ module: 'cache manager' });

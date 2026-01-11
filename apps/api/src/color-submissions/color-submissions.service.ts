@@ -9,7 +9,7 @@ import type { TeamNumber } from '../teams/dtos/team-number.dto';
 import { verificationRequestsService } from '../verification-requests/verification-requests.service';
 import type { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
 
-export class ColorSubmissionsService {
+class ColorSubmissionsService {
 	static dbColorSubmissionToDto(row: typeof Schema.colorSubmissions.$inferSelect): ColorSubmission {
 		return {
 			id: row.uuid,

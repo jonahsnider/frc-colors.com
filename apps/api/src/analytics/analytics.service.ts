@@ -1,7 +1,7 @@
 import { PostHog } from 'posthog-node';
 import { configService } from '../config/config.service';
 
-export class AnalyticsService {
+class AnalyticsService {
 	public readonly client = new PostHog(configService.posthogApiKey, {
 		host: 'https://app.posthog.com',
 	});

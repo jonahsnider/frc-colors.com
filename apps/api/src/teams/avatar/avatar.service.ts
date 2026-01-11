@@ -8,7 +8,7 @@ import type { TeamNumber } from '../dtos/team-number.dto';
 import { RefreshAvatarWorker } from './refresh-avatar.worker';
 import { SweepAvatarsWorker } from './sweep-avatars.worker';
 
-export class AvatarService {
+class AvatarService {
 	private static readonly AVATAR_TTL = convert(1, 'day');
 
 	private readonly refreshAvatarWorker = new RefreshAvatarWorker();

@@ -4,7 +4,7 @@ import * as hono from 'hono/timing';
 
 const contextStorage = new AsyncLocalStorage<Context>();
 
-export function startTime(key: string, description?: string): void {
+function startTime(key: string, description?: string): void {
 	const context = contextStorage.getStore();
 
 	if (context) {
@@ -12,7 +12,7 @@ export function startTime(key: string, description?: string): void {
 	}
 }
 
-export function endTime(key: string): void {
+function endTime(key: string): void {
 	const context = contextStorage.getStore();
 
 	if (context) {

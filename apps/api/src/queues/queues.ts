@@ -7,7 +7,7 @@ import { queueRedisConnection } from '../redis/redis';
 import type * as refreshAvatar from '../teams/avatar/interfaces/refresh-avatar-queue.interface';
 import type * as sweepAvatars from '../teams/avatar/interfaces/sweep-avatars-queue.interface';
 
-export enum QueueNames {
+enum QueueNames {
 	/** Query FIRST to determine how many pages of teams exist, and then schedule fetch operations for those teams. */
 	FetchTeamsPages = 'FetchTeamsPages',
 	/** Given a page number for the FIRST API, fetch the team numbers from that page, and schedule avatar refreshes for them. */
