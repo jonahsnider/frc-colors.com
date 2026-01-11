@@ -91,7 +91,6 @@ export class ApiService {
 
 		this.initialized = true;
 
-		// biome-ignore lint/style/useConst: This needs to be declared before it is defined
 		let server: Server<undefined> | undefined;
 
 		// This is like, super unsafe, but also should never cause an issue
