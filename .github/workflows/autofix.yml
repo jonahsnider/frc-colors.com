@@ -23,7 +23,7 @@ jobs:
       - name: Format with Prettier
         run: bun run format:write
       - name: Fix Knip issues
-        run: bun run knip --fix
+        run: bun run --env-file=.env knip --fix
       - name: Run autofix.ci
         uses: autofix-ci/action@v1
         with:

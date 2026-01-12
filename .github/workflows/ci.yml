@@ -35,6 +35,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lock') }}-
       - name: Run Knip
-        run: bun run knip
+        run: bun run --env-file=.env knip
       - name: Build and test
         run: bun run test
