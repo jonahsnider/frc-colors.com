@@ -21,7 +21,7 @@
 		"envalid": "8.1.1",
 		"knip": "^5.80.2",
 		"prettier": "3.7.4",
-		"prettier-plugin-packagejson": "2.5.20",
+		"prettier-plugin-packagejson": "2.5.21",
 		"turbo": "2.7.4",
 		"vercel": "50.3.0"
 	},
