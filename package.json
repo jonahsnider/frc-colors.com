@@ -20,7 +20,7 @@
 		"drizzle-kit": "0.31.8",
 		"envalid": "8.1.1",
 		"knip": "^5.80.2",
-		"prettier": "3.8.0",
+		"prettier": "3.8.1",
 		"prettier-plugin-packagejson": "3.0.0",
 		"turbo": "2.7.5",
 		"vercel": "50.4.8"
