@@ -14,7 +14,7 @@
 		"@hono/zod-validator": "0.7.6",
 		"@jonahsnider/util": "13.0.0",
 		"@sentry/bun": "10.37.0",
-		"@trpc/server": "11.8.1",
+		"@trpc/server": "11.9.0",
 		"bullmq": "5.66.6",
 		"convert": "6.0.0",
 		"devalue": "5.6.2",
