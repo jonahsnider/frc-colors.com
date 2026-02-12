@@ -18,8 +18,8 @@
     "apps/api": {
       "name": "@frc-colors/api",
       "dependencies": {
-        "@bull-board/api": "6.17.0",
-        "@bull-board/hono": "6.17.0",
+        "@bull-board/api": "6.18.0",
+        "@bull-board/hono": "6.18.0",
         "@hono/trpc-server": "0.4.2",
         "@hono/zod-validator": "0.7.6",
         "@jonahsnider/util": "13.0.0",
@@ -127,11 +127,11 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.3.11", "", { "os": "win32", "cpu": "x64" }, "sha512-43VrG813EW+b5+YbDbz31uUsheX+qFKCpXeY9kfdAx+ww3naKxeVkTD9zLIWxUPfJquANMHrmW3wbe/037G0Qg=="],
 
-    "@bull-board/api": ["@bull-board/api@6.17.0", "", { "dependencies": { "redis-info": "^3.1.0" }, "peerDependencies": { "@bull-board/ui": "6.17.0" } }, "sha512-nnYzOu74KRimG+WmZ8j4r3+i3FpwbXrSekrMyNsne9I7bj5XqpkacFg7HA8+IwG9ysPqrWdy/KEl2XG1vCR4Fw=="],
+    "@bull-board/api": ["@bull-board/api@6.18.0", "", { "dependencies": { "redis-info": "^3.1.0" }, "peerDependencies": { "@bull-board/ui": "6.18.0" } }, "sha512-JgyTP+4sR9qwX9x+bEZwwdpnt+Zz+cUsJ7ahJP8NTalucVhdgN/5meHpi884xXtOVxWiu/ovlk+JZsuN0ADoyw=="],
 
-    "@bull-board/hono": ["@bull-board/hono@6.17.0", "", { "dependencies": { "@bull-board/api": "6.17.0", "@bull-board/ui": "6.17.0", "ejs": "^3.1.10" }, "peerDependencies": { "hono": "^4" } }, "sha512-gNhzfQGqu+L0woFS0RCqWXO/hMA/nlIbOoJOQuNDyOFH5ykCLRU/ubk1GRRIaHsEHfLc8ne7iOLNe4z9Q3Esng=="],
+    "@bull-board/hono": ["@bull-board/hono@6.18.0", "", { "dependencies": { "@bull-board/api": "6.18.0", "@bull-board/ui": "6.18.0", "ejs": "^3.1.10" }, "peerDependencies": { "hono": "^4" } }, "sha512-UO3dMgRduZDTCU5umVgMxlPteZYBcN4KzfPr8Vwa5vLNNDpxj3Q0CWijv6pZScat8C7n5dYoM2ugZ4sLp+yePA=="],
 
-    "@bull-board/ui": ["@bull-board/ui@6.17.0", "", { "dependencies": { "@bull-board/api": "6.17.0" } }, "sha512-jhfzgQiIapWWTUWxbsEoiLXqG0+j52AVg4fdsHOt2jrn0oAPi9oP2zUI4SFYvvpYEWjsYxxzkBmJAl3Qup9aEA=="],
+    "@bull-board/ui": ["@bull-board/ui@6.18.0", "", { "dependencies": { "@bull-board/api": "6.18.0" } }, "sha512-OO2bPB1Eqzwn6LZZ+kk1Vlnktc07lQ2zc4/zS4opf91XbzA7riqJzpa95eq8b+qTqE97FU/dZE/49vg7JmXqqQ=="],
 
     "@bytecodealliance/preview2-shim": ["@bytecodealliance/preview2-shim@0.17.6", "", {}, "sha512-n3cM88gTen5980UOBAD6xDcNNL3ocTK8keab21bpx1ONdA+ARj7uD1qoFxOWCyKlkpSi195FH+GeAut7Oc6zZw=="],
 
