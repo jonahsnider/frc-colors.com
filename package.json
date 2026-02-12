@@ -22,7 +22,7 @@
 		"knip": "^5.80.2",
 		"prettier": "3.8.1",
 		"prettier-plugin-packagejson": "3.0.0",
-		"turbo": "2.8.6",
+		"turbo": "2.8.7",
 		"vercel": "50.15.1"
 	},
 	"packageManager": "bun@1.2.10",
