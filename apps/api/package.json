@@ -14,7 +14,7 @@
 		"@sentry/bun": "10.38.0",
 		"@trpc/server": "11.10.0",
 		"convert": "6.0.0",
-		"croner": "9.0.0",
+		"croner": "9.1.0",
 		"devalue": "5.6.2",
 		"drizzle-orm": "0.45.1",
 		"envalid": "8.1.1",
