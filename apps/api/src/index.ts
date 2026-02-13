@@ -2,7 +2,6 @@ import * as Sentry from '@sentry/bun';
 import { apiService } from './api/api.service';
 import { cacheManager } from './cache-manager/cache-manager.service';
 import { configService } from './config/config.service';
-import { firstService } from './first/first.service';
 
 Sentry.init({
 	dsn: configService.sentryDsn,
@@ -10,10 +9,8 @@ Sentry.init({
 	environment: configService.nodeEnv,
 });
 
-firstService.init();
-
 apiService.initServer();
 
-await cacheManager.init();
+cacheManager.init();
 
 export type { AppRouter } from './trpc/app.router';

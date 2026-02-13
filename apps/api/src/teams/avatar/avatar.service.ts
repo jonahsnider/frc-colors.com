@@ -5,19 +5,9 @@ import { db } from '../../db/db';
 import { Schema } from '../../db/index';
 import { tbaService } from '../../tba/tba.service';
 import type { TeamNumber } from '../dtos/team-number.dto';
-import { RefreshAvatarWorker } from './refresh-avatar.worker';
-import { SweepAvatarsWorker } from './sweep-avatars.worker';
 
 class AvatarService {
 	private static readonly AVATAR_TTL = convert(1, 'day');
-
-	private readonly refreshAvatarWorker = new RefreshAvatarWorker();
-	private readonly sweepAvatarsWorker = new SweepAvatarsWorker();
-
-	constructor() {
-		this.refreshAvatarWorker.noop();
-		this.sweepAvatarsWorker.noop();
-	}
 
 	async getAvatar(teamNumber: TeamNumber): Promise<Buffer | undefined> {
 		const cached = await db.query.avatars.findFirst({

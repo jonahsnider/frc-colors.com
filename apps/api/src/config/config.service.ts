@@ -12,7 +12,6 @@ class ConfigService {
 	public readonly databaseUrl: string;
 	public readonly sentryDsn: string;
 	public readonly websiteUrl: string;
-	public readonly redisUrl: string;
 	public readonly posthogApiKey: string;
 
 	constructor() {
@@ -37,8 +36,6 @@ class ConfigService {
 
 			WEBSITE_URL: url({ desc: 'URL of the website' }),
 
-			REDIS_URL: url({ desc: 'Redis URL' }),
-
 			POSTHOG_API_KEY: str({ desc: 'PostHog API key' }),
 		});
 
@@ -54,7 +51,6 @@ class ConfigService {
 		this.databaseUrl = env.DATABASE_URL;
 		this.sentryDsn = env.SENTRY_DSN;
 		this.websiteUrl = env.WEBSITE_URL;
-		this.redisUrl = env.REDIS_URL;
 		this.posthogApiKey = env.POSTHOG_API_KEY;
 	}
 }

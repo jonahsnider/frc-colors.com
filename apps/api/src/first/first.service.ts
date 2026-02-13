@@ -1,8 +1,6 @@
 import ky from 'ky';
 import { configService } from '../config/config.service';
 import type { TeamNumber } from '../teams/dtos/team-number.dto';
-import { FetchTeamsWorker } from './fetch-teams.worker';
-import { FetchTeamsPagesWorker } from './fetch-teams-pages.worker';
 import type { FrcTeamListings } from './interfaces/frc-team-listings.interface';
 
 class FirstService {
@@ -18,32 +16,24 @@ class FirstService {
 		prefixUrl: 'https://frc-api.firstinspires.org/v3.0',
 	});
 
-	private readonly fetchTeamsPagesWorker = new FetchTeamsPagesWorker();
-	private readonly fetchTeamsWorker = new FetchTeamsWorker();
+	async *getTeamNumbers(): AsyncGenerator<TeamNumber> {
+		let page = 1;
+		let pageTotal: number;
 
-	constructor() {
-		this.fetchTeamsPagesWorker.noop();
-		this.fetchTeamsWorker.noop();
-	}
+		do {
+			const response = await this.http.get(`${new Date().getFullYear()}/teams`, {
+				searchParams: {
+					page,
+				},
+			});
+			const body = await response.json<FrcTeamListings>();
 
-	async getPageCount(): Promise<number> {
-		const response = await this.http.get(`${new Date().getFullYear()}/teams?page=1`);
+			pageTotal = body.pageTotal;
 
-		const body = await response.json<FrcTeamListings>();
+			yield* body.teams.map((team) => team.teamNumber);
 
-		return body.pageTotal;
-	}
-
-	async getTeamNumbersForPage(page: number): Promise<TeamNumber[]> {
-		const response = await this.http.get(`${new Date().getFullYear()}/teams?page=${page}`);
-
-		const body = await response.json<FrcTeamListings>();
-
-		return body.teams.map((team) => team.teamNumber);
-	}
-
-	init(): void {
-		// This doesn't actually do anything, it's just necessary to ensure this file is loaded & the workers get started
+			page = body.pageCurrent + 1;
+		} while (page <= pageTotal);
 	}
 }
 
