@@ -1,31 +1,24 @@
-import type { Server } from 'bun';
 import { Hono } from 'hono';
 import { logger as honoLogger } from 'hono/logger';
 import { timeout } from 'hono/timeout';
 import { timing } from 'hono/timing';
-import { baseLogger } from '../../logger/logger';
-import { trackFn } from '../../timing/timing';
-import { errorHandler } from '../error-handler';
-import type { Env } from '../interfaces/env.interface';
-import { healthController } from './health.controller';
-import { internalController } from './internal.controller';
-import { createTrpcController } from './trpc.controller';
-import { v1Controller } from './v1.controller';
+import { baseLogger } from '../../logger/logger.ts';
+import { trackFn } from '../../timing/timing.ts';
+import { errorHandler } from '../error-handler.ts';
+import { healthController } from './health.controller.ts';
+import { internalController } from './internal.controller.ts';
+import { createTrpcController } from './trpc.controller.ts';
+import { v1Controller } from './v1.controller.ts';
 
 const logger = baseLogger.child({ module: 'server' });
 
-export function createAppController(getServer: () => Server<undefined>) {
+export function createAppController() {
 	return (
-		new Hono<Env>()
+		new Hono()
 			.onError(errorHandler)
 			// Wrap every route in an async_hooks store use for server timing
 			.use(
 				'*',
-				// Actually define the env
-				(context, next) => {
-					context.env.server = getServer();
-					return next();
-				},
 				trackFn,
 				honoLogger((...params) => logger.info(params.join(' '))),
 				timeout(60_000),
@@ -42,7 +35,7 @@ export function createAppController(getServer: () => Server<undefined>) {
 			)
 			.route('v1', v1Controller)
 			.route('health', healthController)
-			.route('trpc', createTrpcController(getServer))
+			.route('trpc', createTrpcController())
 			.route('internal', internalController)
 	);
 }

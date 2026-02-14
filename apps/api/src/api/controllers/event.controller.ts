@@ -3,14 +3,13 @@ import { Http } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { Hono } from 'hono';
 import { z } from 'zod';
-import { analyticsService } from '../../analytics/analytics.service';
-import type { ManyTeamColors } from '../../colors/dtos/colors.dto';
-import { eventsService } from '../../events/events.service';
-import { ApiService } from '../api.service';
-import { BaseHttpException } from '../exceptions/base.exception';
-import type { Env } from '../interfaces/env.interface';
+import { analyticsService } from '../../analytics/analytics.service.ts';
+import type { ManyTeamColors } from '../../colors/dtos/colors.dto.ts';
+import { eventsService } from '../../events/events.service.ts';
+import { ApiService } from '../api.service.ts';
+import { BaseHttpException } from '../exceptions/base.exception.ts';
 
-export const eventController = new Hono<Env>().get(
+export const eventController = new Hono().get(
 	'/:event',
 	zValidator('param', z.object({ event: z.string().max(64) })),
 	async (context) => {

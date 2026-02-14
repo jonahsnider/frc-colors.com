@@ -2,15 +2,14 @@ import { Http } from '@jonahsnider/util';
 import { Hono } from 'hono';
 import { QueryBooleanSchema, validateParams, validateQuery } from 'next-api-utils';
 import { z } from 'zod';
-import { analyticsService } from '../../analytics/analytics.service';
-import { colorsService } from '../../colors/colors.service';
-import type { ManyTeamColors } from '../../colors/dtos/colors.dto';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
-import { ApiService } from '../api.service';
-import { BaseHttpException } from '../exceptions/base.exception';
-import type { Env } from '../interfaces/env.interface';
+import { analyticsService } from '../../analytics/analytics.service.ts';
+import { colorsService } from '../../colors/colors.service.ts';
+import type { ManyTeamColors } from '../../colors/dtos/colors.dto.ts';
+import { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
+import { ApiService } from '../api.service.ts';
+import { BaseHttpException } from '../exceptions/base.exception.ts';
 
-export const teamController = new Hono<Env>()
+export const teamController = new Hono()
 	.get('/:team', async (context) => {
 		const params = await validateParams(
 			{ params: Promise.resolve({ team: context.req.param('team') }) },

@@ -1,5 +1,5 @@
 import { PostHog } from 'posthog-node';
-import { configService } from '../config/config.service';
+import { configService } from '../config/config.service.ts';
 
 class AnalyticsService {
 	public readonly client = new PostHog(configService.posthogApiKey, {

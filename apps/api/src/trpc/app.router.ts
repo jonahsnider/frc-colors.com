@@ -1,8 +1,8 @@
-import { analyticsRouter } from '../analytics/analytics.router';
-import { colorSubmissionsRouter } from '../color-submissions/color-submissions.router';
-import { teamsRouter } from '../teams/teams.router';
-import { verificationRequestsRouter } from '../verification-requests/verification-requests.router';
-import { router } from './trpc';
+import { analyticsRouter } from '../analytics/analytics.router.ts';
+import { colorSubmissionsRouter } from '../color-submissions/color-submissions.router.ts';
+import { teamsRouter } from '../teams/teams.router.ts';
+import { verificationRequestsRouter } from '../verification-requests/verification-requests.router.ts';
+import { router } from './trpc.ts';
 
 export const appRouter = router({
 	teams: teamsRouter,

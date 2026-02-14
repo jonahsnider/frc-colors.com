@@ -1,5 +1,5 @@
 import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-import { configService } from '../config/config.service';
+import { configService } from '../config/config.service.ts';
 
 class AuthService {
 	requestHasToken({ req }: FetchCreateContextFnOptions): boolean {

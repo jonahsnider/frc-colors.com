@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { Schema } from '../../db/index';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
+import { Schema } from '../../db/index.ts';
+import { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
 
 export const VerificationRequest = z.object({
 	team: TeamNumber,

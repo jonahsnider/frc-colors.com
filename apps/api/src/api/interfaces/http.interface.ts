@@ -1,4 +1,4 @@
-import type { TeamNumber } from '../../teams/dtos/team-number.dto';
+import type { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
 
 export type TeamColorsHttp = {
 	primaryHex: string;

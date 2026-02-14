@@ -1,10 +1,10 @@
 import { difference } from '@jonahsnider/util';
-import convert from 'convert';
+import { convert } from 'convert';
 import { eq, inArray } from 'drizzle-orm';
-import { db } from '../../db/db';
-import { Schema } from '../../db/index';
-import { tbaService } from '../../tba/tba.service';
-import type { TeamNumber } from '../dtos/team-number.dto';
+import { db } from '../../db/db.ts';
+import { Schema } from '../../db/index.ts';
+import { tbaService } from '../../tba/tba.service.ts';
+import type { TeamNumber } from '../dtos/team-number.dto.ts';
 
 class AvatarService {
 	private static readonly AVATAR_TTL = convert(1, 'day');

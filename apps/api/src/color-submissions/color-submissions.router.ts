@@ -1,7 +1,7 @@
-import { TeamNumber } from '../teams/dtos/team-number.dto';
-import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
-import { colorSubmissionsService } from './color-submissions.service';
-import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
+import { TeamNumber } from '../teams/dtos/team-number.dto.ts';
+import { adminProcedure, publicProcedure, router } from '../trpc/trpc.ts';
+import { colorSubmissionsService } from './color-submissions.service.ts';
+import { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto.ts';
 
 export const colorSubmissionsRouter = router({
 	getAll: adminProcedure

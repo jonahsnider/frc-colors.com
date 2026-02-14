@@ -1,11 +1,11 @@
 import { eq, inArray } from 'drizzle-orm';
 
-import { db } from '../../db/db';
-import { Schema } from '../../db/index';
-import type { TeamNumber } from '../../teams/dtos/team-number.dto';
-import { trackDuration } from '../../timing/timing';
-import { HexColorCode, type ManyTeamColors, type TeamColors } from '../dtos/colors.dto';
-import type { ColorFetcher } from '../interfaces/color-fetcher.interface';
+import { db } from '../../db/db.ts';
+import { Schema } from '../../db/index.ts';
+import type { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
+import { trackDuration } from '../../timing/timing.ts';
+import { HexColorCode, type ManyTeamColors, type TeamColors } from '../dtos/colors.dto.ts';
+import type { ColorFetcher } from '../interfaces/color-fetcher.interface.ts';
 
 export class StoredColors implements ColorFetcher {
 	async getTeamColors(team: TeamNumber): Promise<TeamColors | undefined>;

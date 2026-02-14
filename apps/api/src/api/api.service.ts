@@ -1,54 +1,27 @@
-import assert from 'node:assert/strict';
-import { captureException } from '@sentry/bun';
-import type { Server } from 'bun';
+import { serve } from '@hono/node-server';
+import { getConnInfo } from '@hono/node-server/conninfo';
+import { captureException } from '@sentry/node';
 import type { Context } from 'hono';
 import { inspectRoutes } from 'hono/dev';
-import type { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
-import { configService } from '../config/config.service';
-import { baseLogger } from '../logger/logger';
-import type { TeamNumber } from '../teams/dtos/team-number.dto';
-import { createAppController } from './controllers/app.controller';
-import type { Env } from './interfaces/env.interface';
-import type { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface';
+import type { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto.ts';
+import { configService } from '../config/config.service.ts';
+import { baseLogger } from '../logger/logger.ts';
+import type { TeamNumber } from '../teams/dtos/team-number.dto.ts';
+import { createAppController } from './controllers/app.controller.ts';
+import type { ManyTeamColorsHttp, ManyTeamColorsHttpEntry, TeamColorsHttp } from './interfaces/http.interface.ts';
 
 export class ApiService {
 	private static readonly RAILWAY_REAL_IP_HEADER = 'X-Real-IP';
 
-	static getIp(context: Context<Env>): string | undefined;
-	static getIp(server: Server<undefined>, request: Request): string | undefined;
-	static getIp(serverOrContext: Server<undefined> | Context<Env>, request?: Request): string | undefined {
-		if ('env' in serverOrContext) {
-			const context = serverOrContext;
-
-			const proxyIp = serverOrContext.req.header(ApiService.RAILWAY_REAL_IP_HEADER);
-
-			if (proxyIp) {
-				return proxyIp;
-			}
-
-			try {
-				const socketAddress = context.env.server.requestIP(context.req.raw);
-
-				return socketAddress?.address;
-			} catch (error) {
-				captureException(error);
-
-				return undefined;
-			}
-		}
-
-		const server = serverOrContext;
-		assert(request, new TypeError('Request was not available'));
-		const proxyIp = request.headers.get(ApiService.RAILWAY_REAL_IP_HEADER);
+	static getIp(context: Context): string | undefined {
+		const proxyIp = context.req.header(ApiService.RAILWAY_REAL_IP_HEADER);
 
 		if (proxyIp) {
 			return proxyIp;
 		}
 
 		try {
-			const socketAddress = server.requestIP(request);
-
-			return socketAddress?.address;
+			return getConnInfo(context).remote.address;
 		} catch (error) {
 			captureException(error);
 
@@ -91,22 +64,17 @@ export class ApiService {
 
 		this.initialized = true;
 
-		let server: Server<undefined> | undefined;
+		const appController = createAppController();
 
-		// This is like, super unsafe, but also should never cause an issue
-		// The reason for this silliness is that there is a circular dependency between Bun.serve requiring us to set a fetch function, and the fetch function requiring the server to be created
-		// biome-ignore lint/style/noNonNullAssertion: This will be defined when called
-		const getServer = (): Server<undefined> => server!;
-
-		const appController = createAppController(getServer);
-
-		server = Bun.serve({
-			fetch: appController.fetch,
-			port: configService.port,
-			development: configService.nodeEnv === 'development',
-		});
-
-		this.logger.info(`Listening at ${server.url.toString()}`);
+		serve(
+			{
+				fetch: appController.fetch,
+				port: configService.port,
+			},
+			(info) => {
+				this.logger.info(`Listening at http://localhost:${info.port}`);
+			},
+		);
 
 		if (configService.nodeEnv === 'development') {
 			this.logger.debug('Routes:');

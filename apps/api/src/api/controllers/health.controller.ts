@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { colorsService } from '../../colors/colors.service';
+import { colorsService } from '../../colors/colors.service.ts';
 
 export const healthController = new Hono().get('/', async (context) => {
 	// Check that querying DB works

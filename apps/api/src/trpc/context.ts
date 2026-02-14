@@ -1,11 +1,11 @@
 import { TRPCError } from '@trpc/server';
 import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-import type { Server } from 'bun';
-import { ApiService } from '../api/api.service';
-import { authService } from '../auth/auth.service';
+import type { Context as HonoContext } from 'hono';
+import { ApiService } from '../api/api.service.ts';
+import { authService } from '../auth/auth.service.ts';
 
-export function createContext(getServer: () => Server<undefined>, options: FetchCreateContextFnOptions): Context {
-	const requestIp = ApiService.getIp(getServer(), options.req);
+export function createContext(c: HonoContext, options: FetchCreateContextFnOptions): Context {
+	const requestIp = ApiService.getIp(c);
 
 	if (authService.requestHasToken(options)) {
 		if (!authService.requestHasValidToken(options)) {

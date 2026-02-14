@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc/trpc';
+import { publicProcedure, router } from '../trpc/trpc.ts';
 
 export const analyticsRouter = router({
 	// Short name to avoid adblockers triggering

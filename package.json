@@ -1,6 +1,7 @@
 {
 	"name": "frc-colors",
 	"private": true,
+	"type": "module",
 	"workspaces": [
 		"apps/*"
 	],

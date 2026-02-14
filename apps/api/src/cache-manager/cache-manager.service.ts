@@ -1,6 +1,6 @@
 import { Cron } from 'croner';
-import { baseLogger } from '../logger/logger';
-import { refreshAllTeamColors } from '../pipeline/refresh-pipeline';
+import { baseLogger } from '../logger/logger.ts';
+import { refreshAllTeamColors } from '../pipeline/refresh-pipeline.ts';
 
 class CacheManager {
 	private readonly logger = baseLogger.child({ module: 'cache manager' });

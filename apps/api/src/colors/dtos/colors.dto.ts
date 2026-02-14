@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
+import { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
 
 export const HexColorCode = z.string().regex(/^#[\da-f]{6}$/);
 export type HexColorCode = z.output<typeof HexColorCode>;

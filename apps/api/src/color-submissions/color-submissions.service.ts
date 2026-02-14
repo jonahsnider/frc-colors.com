@@ -2,12 +2,12 @@ import { type Comparable, Sort } from '@jonahsnider/util';
 import { TRPCError } from '@trpc/server';
 import { ms } from 'convert';
 import { and, eq, gt, ne, or } from 'drizzle-orm';
-import { colorsService } from '../colors/colors.service';
-import { db } from '../db/db';
-import { Schema } from '../db/index';
-import type { TeamNumber } from '../teams/dtos/team-number.dto';
-import { verificationRequestsService } from '../verification-requests/verification-requests.service';
-import type { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto';
+import { colorsService } from '../colors/colors.service.ts';
+import { db } from '../db/db.ts';
+import { Schema } from '../db/index.ts';
+import type { TeamNumber } from '../teams/dtos/team-number.dto.ts';
+import { verificationRequestsService } from '../verification-requests/verification-requests.service.ts';
+import type { ColorSubmission, CreateColorSubmission } from './dtos/color-submission.dto.ts';
 
 class ColorSubmissionsService {
 	static dbColorSubmissionToDto(row: typeof Schema.colorSubmissions.$inferSelect): ColorSubmission {

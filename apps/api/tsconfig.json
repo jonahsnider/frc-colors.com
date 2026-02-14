@@ -1,10 +1,12 @@
 {
 	"compilerOptions": {
-		"emitDecoratorMetadata": true,
+		// This is disabled since we're using --experimental-transform-types
+		"erasableSyntaxOnly": false,
 		"exactOptionalPropertyTypes": false,
-		"experimentalDecorators": true,
-		"noUnusedLocals": false
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": false
 	},
-	"extends": ["@tsconfig/strictest", "@tsconfig/bun"],
+	"extends": ["@tsconfig/strictest", "@tsconfig/node24", "@tsconfig/node-ts"],
 	"include": ["src", "types"]
 }

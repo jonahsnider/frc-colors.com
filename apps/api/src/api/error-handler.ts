@@ -1,12 +1,12 @@
 import { Http } from '@jonahsnider/util';
 
-import { captureException } from '@sentry/bun';
+import { captureException } from '@sentry/node';
 import type { ErrorHandler } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import type { StatusCode } from 'hono/utils/http-status';
 import { BaseValidationException } from 'next-api-utils';
-import { baseLogger } from '../logger/logger';
-import { BaseHttpException } from './exceptions/base.exception';
+import { baseLogger } from '../logger/logger.ts';
+import { BaseHttpException } from './exceptions/base.exception.ts';
 
 export const errorHandler: ErrorHandler = (error, context) => {
 	if (error instanceof BaseHttpException) {

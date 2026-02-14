@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { Schema } from '../db/index';
-import { TeamNumber } from '../teams/dtos/team-number.dto';
-import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
-import { VerificationRequest } from './dtos/verification-request.dto';
-import { verificationRequestsService } from './verification-requests.service';
+import { Schema } from '../db/index.ts';
+import { TeamNumber } from '../teams/dtos/team-number.dto.ts';
+import { adminProcedure, publicProcedure, router } from '../trpc/trpc.ts';
+import { VerificationRequest } from './dtos/verification-request.dto.ts';
+import { verificationRequestsService } from './verification-requests.service.ts';
 
 export const verificationRequestsRouter = router({
 	getAll: adminProcedure

@@ -1,10 +1,10 @@
-import { captureException } from '@sentry/bun';
+import { captureException } from '@sentry/node';
 import pLimit from 'p-limit';
-import { colorsService } from '../colors/colors.service';
-import { firstService } from '../first/first.service';
-import { baseLogger } from '../logger/logger';
-import { avatarService } from '../teams/avatar/avatar.service';
-import type { TeamNumber } from '../teams/dtos/team-number.dto';
+import { colorsService } from '../colors/colors.service.ts';
+import { firstService } from '../first/first.service.ts';
+import { baseLogger } from '../logger/logger.ts';
+import { avatarService } from '../teams/avatar/avatar.service.ts';
+import type { TeamNumber } from '../teams/dtos/team-number.dto.ts';
 
 const logger = baseLogger.child({ module: 'refresh-pipeline' });
 

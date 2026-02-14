@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Client } from 'pg';
-import { configService } from '../config/config.service';
-import { Schema } from './index';
+import { configService } from '../config/config.service.ts';
+import { Schema } from './index.ts';
 
 const options = { schema: Schema };
 

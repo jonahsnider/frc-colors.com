@@ -1,17 +1,19 @@
 {
 	"name": "@frc-colors/api",
 	"private": true,
+	"type": "module",
 	"main": "./src/index.ts",
 	"scripts": {
-		"dev": "PORT=3001 bun run --env-file ../../.env --watch src/index.ts",
-		"start": "bun run src/index.ts",
+		"dev": "PORT=3001 node --env-file=../../.env --watch --experimental-transform-types src/index.ts",
+		"start": "node --experimental-transform-types src/index.ts",
 		"type-check": "tsc"
 	},
 	"dependencies": {
+		"@hono/node-server": "1.14.1",
 		"@hono/trpc-server": "0.4.2",
 		"@hono/zod-validator": "0.7.6",
 		"@jonahsnider/util": "13.0.0",
-		"@sentry/bun": "10.38.0",
+		"@sentry/node": "10.38.0",
 		"@trpc/server": "11.10.0",
 		"convert": "6.0.0",
 		"croner": "9.1.0",
@@ -32,9 +34,10 @@
 		"zod": "4.3.6"
 	},
 	"devDependencies": {
-		"@tsconfig/bun": "1.0.10",
+		"@tsconfig/node-ts": "23.6.3",
+		"@tsconfig/node24": "24.0.4",
 		"@tsconfig/strictest": "2.0.8",
-		"@types/bun": "1.3.9",
+		"@types/node": "24.0.4",
 		"@types/pg": "8.16.0",
 		"@types/pngjs": "6.0.5",
 		"typescript": "5.9.3"

@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/bun';
-import { apiService } from './api/api.service';
-import { cacheManager } from './cache-manager/cache-manager.service';
-import { configService } from './config/config.service';
+import * as Sentry from '@sentry/node';
+import { apiService } from './api/api.service.ts';
+import { cacheManager } from './cache-manager/cache-manager.service.ts';
+import { configService } from './config/config.service.ts';
 
 Sentry.init({
 	dsn: configService.sentryDsn,
@@ -13,4 +13,4 @@ apiService.initServer();
 
 cacheManager.init();
 
-export type { AppRouter } from './trpc/app.router';
+export type { AppRouter } from './trpc/app.router.ts';

@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { HexColorCode } from '../../colors/dtos/colors.dto';
-import { Schema } from '../../db/index';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
+import { HexColorCode } from '../../colors/dtos/colors.dto.ts';
+import { Schema } from '../../db/index.ts';
+import { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
 
 export const ColorSubmission = z.object({
 	createdAt: z.date(),

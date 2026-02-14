@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from '@trpc/server';
-import type { Context } from './context';
-import { transformer } from './transformer';
+import type { Context } from './context.ts';
+import { transformer } from './transformer.ts';
 
 /**
  * Initialization of tRPC backend

@@ -1,10 +1,10 @@
 import { Sort } from '@jonahsnider/util';
 import { extractColors } from 'extract-colors';
-import { PNG } from 'pngjs/browser';
-import { avatarService } from '../../teams/avatar/avatar.service';
-import type { TeamNumber } from '../../teams/dtos/team-number.dto';
-import type { ManyTeamColors, TeamColors } from '../dtos/colors.dto';
-import type { ColorFetcher } from '../interfaces/color-fetcher.interface';
+import { PNG } from 'pngjs/browser.js';
+import { avatarService } from '../../teams/avatar/avatar.service.ts';
+import type { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
+import type { ManyTeamColors, TeamColors } from '../dtos/colors.dto.ts';
+import type { ColorFetcher } from '../interfaces/color-fetcher.interface.ts';
 
 type ColorValidator = (red: number, green: number, blue: number, alpha?: number) => boolean;
 

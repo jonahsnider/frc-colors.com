@@ -1,7 +1,7 @@
 import ky from 'ky';
-import { configService } from '../config/config.service';
-import type { TeamNumber } from '../teams/dtos/team-number.dto';
-import type { FrcTeamListings } from './interfaces/frc-team-listings.interface';
+import { configService } from '../config/config.service.ts';
+import type { TeamNumber } from '../teams/dtos/team-number.dto.ts';
+import type { FrcTeamListings } from './interfaces/frc-team-listings.interface.ts';
 
 class FirstService {
 	private static readonly BASIC_AUTH_TOKEN = Buffer.from(

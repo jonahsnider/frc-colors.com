@@ -1,13 +1,13 @@
 import { z } from 'zod';
-import { analyticsService } from '../analytics/analytics.service';
-import { colorsService } from '../colors/colors.service';
-import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto';
-import { Schema } from '../db/index';
-import { tbaService } from '../tba/tba.service';
-import { adminProcedure, publicProcedure, router } from '../trpc/trpc';
-import { verificationRequestsService } from '../verification-requests/verification-requests.service';
-import { SetColorsInput } from './dtos/set-colors-input.dto';
-import { TeamNumber } from './dtos/team-number.dto';
+import { analyticsService } from '../analytics/analytics.service.ts';
+import { colorsService } from '../colors/colors.service.ts';
+import { ManyTeamColors, TeamColors } from '../colors/dtos/colors.dto.ts';
+import { Schema } from '../db/index.ts';
+import { tbaService } from '../tba/tba.service.ts';
+import { adminProcedure, publicProcedure, router } from '../trpc/trpc.ts';
+import { verificationRequestsService } from '../verification-requests/verification-requests.service.ts';
+import { SetColorsInput } from './dtos/set-colors-input.dto.ts';
+import { TeamNumber } from './dtos/team-number.dto.ts';
 
 export const teamsRouter = router({
 	getName: publicProcedure

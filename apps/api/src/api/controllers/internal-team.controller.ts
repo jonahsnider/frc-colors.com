@@ -3,10 +3,10 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { validateParams } from 'next-api-utils';
 import { z } from 'zod';
-import { configService } from '../../config/config.service';
-import { avatarService } from '../../teams/avatar/avatar.service';
-import { TeamNumber } from '../../teams/dtos/team-number.dto';
-import { BaseHttpException } from '../exceptions/base.exception';
+import { configService } from '../../config/config.service.ts';
+import { avatarService } from '../../teams/avatar/avatar.service.ts';
+import { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
+import { BaseHttpException } from '../exceptions/base.exception.ts';
 
 export const internalTeamController = new Hono()
 	.use(
