@@ -17,13 +17,13 @@
 		"type-check": "turbo run type-check"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.11",
+		"@biomejs/biome": "2.3.15",
 		"drizzle-kit": "0.31.9",
 		"envalid": "8.1.1",
-		"knip": "^5.80.2",
+		"knip": "^5.83.1",
 		"prettier": "3.8.1",
 		"prettier-plugin-packagejson": "3.0.0",
-		"turbo": "2.8.7",
+		"turbo": "2.8.8",
 		"vercel": "50.17.1"
 	},
 	"packageManager": "bun@1.2.10",
