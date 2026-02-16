@@ -13,7 +13,7 @@
 		"@hono/trpc-server": "0.4.2",
 		"@hono/zod-validator": "0.7.6",
 		"@jonahsnider/util": "13.0.0",
-		"@sentry/node": "10.38.0",
+		"@sentry/node": "10.39.0",
 		"@trpc/server": "11.10.0",
 		"convert": "6.0.0",
 		"croner": "10.0.1",
