@@ -33,5 +33,5 @@ export const internalTeamController = new Hono()
 			);
 		}
 
-		return context.body(avatar.buffer as ArrayBuffer, { headers: { 'Content-Type': 'image/png' } });
+		return context.body(avatar as Uint8Array<ArrayBuffer>, { headers: { 'Content-Type': 'image/png' } });
 	});
