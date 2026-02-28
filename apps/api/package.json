@@ -38,7 +38,7 @@
 		"@tsconfig/node24": "24.0.4",
 		"@tsconfig/strictest": "2.0.8",
 		"@types/node": "24.11.0",
-		"@types/pg": "8.16.0",
+		"@types/pg": "8.18.0",
 		"@types/pngjs": "6.0.5",
 		"typescript": "5.9.3"
 	}
