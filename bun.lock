@@ -95,7 +95,7 @@
         "@types/color-diff": "1.2.5",
         "@types/d3-color": "3.1.3",
         "dotenv": "17.3.1",
-        "type-fest": "5.4.4",
+        "type-fest": "5.5.0",
       },
     },
   },
@@ -1527,7 +1527,7 @@
 
     "turbo": ["turbo@2.8.19", "", { "optionalDependencies": { "@turbo/darwin-64": "2.8.19", "@turbo/darwin-arm64": "2.8.19", "@turbo/linux-64": "2.8.19", "@turbo/linux-arm64": "2.8.19", "@turbo/windows-64": "2.8.19", "@turbo/windows-arm64": "2.8.19" }, "bin": { "turbo": "bin/turbo" } }, "sha512-9NTKvQZ/02XnJCSU4mF5gvAPK+nuLbvCtft/NE8dJeOwaup0bJ14rYx7TxmSXp8JJuAN8nAjqfXWFsWwoQSFHg=="],
 
-    "type-fest": ["type-fest@5.4.4", "", { "dependencies": { "tagged-tag": "^1.0.0" } }, "sha512-JnTrzGu+zPV3aXIUhnyWJj4z/wigMsdYajGLIYakqyOW1nPllzXEJee0QQbHj+CTIQtXGlAjuK0UY+2xTyjVAw=="],
+    "type-fest": ["type-fest@5.5.0", "", { "dependencies": { "tagged-tag": "^1.0.0" } }, "sha512-PlBfpQwiUvGViBNX84Yxwjsdhd1TUlXr6zjX7eoirtCPIr08NAmxwa+fcYBTeRQxHo9YC9wwF3m9i700sHma8g=="],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
