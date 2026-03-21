@@ -73,7 +73,7 @@ function rgbToHex({ r, g, b }: Record<'r' | 'g' | 'b', number>): string {
 	return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
-export function getNearestAccentName(hex?: string): RadixAccentName | undefined {
+export function useNearestAccentName(hex?: string): RadixAccentName | undefined {
 	const theme = useTheme().resolvedTheme;
 
 	if (!hex) {

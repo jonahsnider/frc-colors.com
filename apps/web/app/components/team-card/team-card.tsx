@@ -3,7 +3,7 @@ import { Heading, Skeleton, Text, Theme, Tooltip } from '@radix-ui/themes';
 import clsx from 'clsx';
 import { VerificationRequestButton } from '@/app/(team)/verification-request-button';
 import { trpc } from '@/app/trpc';
-import { getNearestAccentName } from '../util/color-util';
+import { useNearestAccentName } from '../util/color-util';
 import { getTeamAvatarUrl } from '../util/team-avatar-url';
 import { BaseTeamCard } from './base-team-card';
 import { ColorSwatch } from './color-swatch/color-swatch';
@@ -21,7 +21,7 @@ export function TeamCard({ teamNumber, className }: Props) {
 	const teamName = teamNameQuery.data?.name;
 	const title = teamName ? `Team ${teamNumber} - ${teamName}` : `Team ${teamNumber}`;
 
-	const accentColor = getNearestAccentName(colorsQuery.data?.colors?.primary);
+	const accentColor = useNearestAccentName(colorsQuery.data?.colors?.primary);
 
 	if (teamNameQuery.error || colorsQuery.error) {
 		return <p>An error occurred while fetching team {teamNumber}'s information</p>;
