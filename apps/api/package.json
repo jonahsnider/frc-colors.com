@@ -21,7 +21,7 @@
 		"drizzle-orm": "0.45.2",
 		"envalid": "8.1.1",
 		"extract-colors": "4.2.1",
-		"hono": "4.12.11",
+		"hono": "4.12.12",
 		"ky": "1.14.3",
 		"next-api-utils": "3.0.1",
 		"p-limit": "7.3.0",
