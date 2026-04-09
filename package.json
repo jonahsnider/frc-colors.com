@@ -24,7 +24,7 @@
 		"prettier": "3.8.1",
 		"prettier-plugin-packagejson": "3.0.2",
 		"turbo": "2.9.5",
-		"vercel": "50.40.0"
+		"vercel": "50.42.0"
 	},
 	"packageManager": "bun@1.2.10",
 	"trustedDependencies": [
