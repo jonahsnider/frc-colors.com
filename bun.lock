@@ -49,7 +49,7 @@
         "@types/node": "24.12.2",
         "@types/pg": "8.20.0",
         "@types/pngjs": "6.0.5",
-        "typescript": "6.0.2",
+        "typescript": "6.0.3",
       },
     },
     "apps/web": {
@@ -88,7 +88,7 @@
         "react-dom": "19.2.5",
         "sonner": "2.0.7",
         "tailwindcss": "3.4.19",
-        "typescript": "6.0.2",
+        "typescript": "6.0.3",
         "use-debounce": "10.1.1",
       },
       "devDependencies": {
@@ -1589,7 +1589,7 @@
 
     "type-fest": ["type-fest@5.5.0", "", { "dependencies": { "tagged-tag": "^1.0.0" } }, "sha512-PlBfpQwiUvGViBNX84Yxwjsdhd1TUlXr6zjX7eoirtCPIr08NAmxwa+fcYBTeRQxHo9YC9wwF3m9i700sHma8g=="],
 
-    "typescript": ["typescript@6.0.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ=="],
+    "typescript": ["typescript@6.0.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw=="],
 
     "uid-promise": ["uid-promise@1.0.0", "", {}, "sha512-R8375j0qwXyIu/7R0tjdF06/sElHqbmdmWC9M2qQHpEVbvE4I5+38KJI7LUUmQMp7NVq4tKHiBMkT0NFM453Ig=="],
 
