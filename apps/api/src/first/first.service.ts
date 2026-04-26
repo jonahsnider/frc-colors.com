@@ -13,7 +13,7 @@ class FirstService {
 		headers: {
 			authorization: `Basic ${FirstService.BASIC_AUTH_TOKEN}`,
 		},
-		prefixUrl: 'https://frc-api.firstinspires.org/v3.0',
+		prefix: 'https://frc-api.firstinspires.org/v3.0',
 	});
 
 	async *getTeamNumbers(): AsyncGenerator<TeamNumber> {
