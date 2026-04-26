@@ -14,7 +14,7 @@ import type { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.i
 /** API client for fetching team data from TBA. */
 class TbaService {
 	private readonly fetcher = ky.extend({
-		prefixUrl: 'https://www.thebluealliance.com/api/v3',
+		prefix: 'https://www.thebluealliance.com/api/v3',
 		headers: {
 			'X-TBA-Auth-Key': configService.tbaApiKey,
 		},
