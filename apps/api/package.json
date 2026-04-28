@@ -14,7 +14,7 @@
 		"@hono/zod-validator": "0.7.6",
 		"@jonahsnider/util": "13.0.0",
 		"@sentry/node": "10.50.0",
-		"@trpc/server": "11.16.0",
+		"@trpc/server": "11.17.0",
 		"convert": "7.0.0",
 		"croner": "10.0.1",
 		"devalue": "5.7.1",
