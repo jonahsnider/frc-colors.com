@@ -7,6 +7,7 @@ dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 /** @type {import('next').NextConfig} */
 const nextConfig = withPlausibleProxy()({
 	productionBrowserSourceMaps: true,
+	allowedDevOrigins: ['frc-colors.com.localhost'],
 	async rewrites() {
 		return [
 			{

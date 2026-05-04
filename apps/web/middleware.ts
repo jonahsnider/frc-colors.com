@@ -9,10 +9,13 @@ if (!NEXT_PUBLIC_API_URL) {
 export function middleware(request: NextRequest) {
 	if (request.nextUrl.pathname.startsWith('/api')) {
 		const targetUrl = request.nextUrl;
+		// biome-ignore lint/style/noNonNullAssertion: This is safe
+		const apiUrl = new URL(NEXT_PUBLIC_API_URL!);
 
 		targetUrl.pathname = targetUrl.pathname.slice('/api'.length);
-		// biome-ignore lint/style/noNonNullAssertion: This is safe
-		targetUrl.host = new URL(NEXT_PUBLIC_API_URL!).host;
+		targetUrl.protocol = apiUrl.protocol;
+		targetUrl.host = apiUrl.host;
+		targetUrl.port = apiUrl.port;
 
 		return NextResponse.redirect(targetUrl, {
 			headers: {

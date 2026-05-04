@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"build": "NODE_ENV=production next build",
-		"dev": "PORT=3000 next dev",
+		"dev": "portless frc-colors.com next dev",
 		"start": "next start",
 		"type-check": "tsc"
 	},

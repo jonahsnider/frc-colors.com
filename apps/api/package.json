@@ -4,7 +4,7 @@
 	"type": "module",
 	"main": "./src/index.ts",
 	"scripts": {
-		"dev": "PORT=3001 node --env-file=../../.env --watch --experimental-transform-types src/index.ts",
+		"dev": "portless api.frc-colors.com node --env-file=../../.env --watch --experimental-transform-types src/index.ts",
 		"start": "node --experimental-transform-types src/index.ts",
 		"type-check": "tsc"
 	},
