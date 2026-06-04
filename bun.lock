@@ -81,7 +81,7 @@
         "nuqs": "2.8.9",
         "postcss": "8.5.15",
         "postcss-import": "16.1.1",
-        "posthog-js": "1.378.1",
+        "posthog-js": "1.379.0",
         "radix-themes-tw": "0.2.3",
         "react": "19.2.7",
         "react-dom": "19.2.7",
@@ -471,7 +471,7 @@
 
     "@posthog/core": ["@posthog/core@1.30.3", "", { "dependencies": { "@posthog/types": "1.379.0" } }, "sha512-mGIN4Du1a8fKxV5WfnEtogq3VOQLa4PfWMUg5uMIMDD+fp5bhTA4QG4oYAea4vBTZ1ZOanQbjXcX4b5k2X93Qw=="],
 
-    "@posthog/types": ["@posthog/types@1.378.1", "", {}, "sha512-bKOXVWySe5oKFjV6X9VW9jngIm14d4BvnT7l/Eb7e6DrT5uD+XclvbRdhC5f1/l5KwoIU+qswBobHRPlix2D1w=="],
+    "@posthog/types": ["@posthog/types@1.379.0", "", {}, "sha512-QJLzyV22iZKy5eEXKn9IB1swSVo2JigIawebBha+BmsePsY3XA0HAcq2B+D8Km5BHnbE+SGm5aHxFG3DlVE1yg=="],
 
     "@protobufjs/aspromise": ["@protobufjs/aspromise@1.1.2", "", {}, "sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ=="],
 
@@ -1325,7 +1325,7 @@
 
     "postgres-interval": ["postgres-interval@1.2.0", "", { "dependencies": { "xtend": "^4.0.0" } }, "sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ=="],
 
-    "posthog-js": ["posthog-js@1.378.1", "", { "dependencies": { "@opentelemetry/api": "^1.9.0", "@opentelemetry/api-logs": "^0.208.0", "@opentelemetry/exporter-logs-otlp-http": "^0.208.0", "@opentelemetry/resources": "^2.2.0", "@opentelemetry/sdk-logs": "^0.208.0", "@posthog/core": "1.30.2", "@posthog/types": "1.378.1", "core-js": "^3.38.1", "dompurify": "^3.3.2", "fflate": "^0.4.8", "preact": "^10.28.2", "query-selector-shadow-dom": "^1.0.1", "web-vitals": "^5.1.0" } }, "sha512-pr9hu7J9eKCWlDxGfn5jbqcaTvaS+quRVxMKo7XRiKHPtFpXoIStOctkRTMumz8LucgD4l5NVbtsaZDi6OrrLQ=="],
+    "posthog-js": ["posthog-js@1.379.0", "", { "dependencies": { "@opentelemetry/api": "^1.9.0", "@opentelemetry/api-logs": "^0.208.0", "@opentelemetry/exporter-logs-otlp-http": "^0.208.0", "@opentelemetry/resources": "^2.2.0", "@opentelemetry/sdk-logs": "^0.208.0", "@posthog/core": "1.30.3", "@posthog/types": "1.379.0", "core-js": "^3.38.1", "dompurify": "^3.3.2", "fflate": "^0.4.8", "preact": "^10.28.2", "query-selector-shadow-dom": "^1.0.1", "web-vitals": "^5.1.0" } }, "sha512-cSESmnPvIaY/pyhV5a6pF00q8tqmXlJBQWX9T7dbBh9TXhVM5oQVi7g77vWGD9G8wq4iNF5ZOxqeAK9dpOSOYg=="],
 
     "posthog-node": ["posthog-node@5.35.12", "", { "dependencies": { "@posthog/core": "1.30.3" }, "peerDependencies": { "rxjs": "^7.0.0" }, "optionalPeers": ["rxjs"] }, "sha512-WLbeUdSDpERDENBgaDahMo9sqwjo8Gc1f1dnM01HciwdP8OnGlbcVs8zrqjz6Z9GvBnTnRTa0Q2bBQeXrBIeHg=="],
 
@@ -1629,8 +1629,6 @@
 
     "@opentelemetry/sdk-metrics/@opentelemetry/resources": ["@opentelemetry/resources@2.2.0", "", { "dependencies": { "@opentelemetry/core": "2.2.0", "@opentelemetry/semantic-conventions": "^1.29.0" }, "peerDependencies": { "@opentelemetry/api": ">=1.3.0 <1.10.0" } }, "sha512-1pNQf/JazQTMA0BiO5NINUzH0cbLbbl7mntLa4aJNmCCXSj0q03T5ZXXL0zw4G55TjdL9Tz32cznGClf+8zr5A=="],
 
-    "@posthog/core/@posthog/types": ["@posthog/types@1.379.0", "", {}, "sha512-QJLzyV22iZKy5eEXKn9IB1swSVo2JigIawebBha+BmsePsY3XA0HAcq2B+D8Km5BHnbE+SGm5aHxFG3DlVE1yg=="],
-
     "@ts-morph/common/minimatch": ["minimatch@3.1.2", "", { "dependencies": { "brace-expansion": "^1.1.7" } }, "sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw=="],
 
     "@types/pg/@types/node": ["@types/node@24.12.0", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ=="],
@@ -1744,8 +1742,6 @@
     "postcss-load-config/lilconfig": ["lilconfig@3.1.1", "", {}, "sha512-O18pf7nyvHTckunPWCV1XUNXU1piu01y2b7ATJ0ppkUkk8ocqVWBrYjJBCwHDjD/ZWcfyrA0P4gKhzWGi5EINQ=="],
 
     "postcss-load-config/yaml": ["yaml@2.4.1", "", { "bin": { "yaml": "bin.mjs" } }, "sha512-pIXzoImaqmfOrL7teGUBt/T7ZDnyeGBWyXQBvOVhLkWLN37GXv8NMLK406UY6dS51JfcQHsmcW5cJ441bHg6Lg=="],
-
-    "posthog-js/@posthog/core": ["@posthog/core@1.30.2", "", { "dependencies": { "@posthog/types": "1.378.1" } }, "sha512-d7RTpfi+/q5+SZ+4f1WhanfEtNBz9onMmUxn3BO0GDT8N5ZT4DEP3LqFisqeP+xkJTaFPWCOVA/nGyKmUX9y9g=="],
 
     "protobufjs/@types/node": ["@types/node@24.10.4", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-vnDVpYPMzs4wunl27jHrfmwojOGKya0xyM3sH+UE5iv5uPS6vX7UIoh6m+vQc5LGBq52HBKPIn/zcSZVzeDEZg=="],
 
