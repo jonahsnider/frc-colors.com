@@ -20,7 +20,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.4.16",
 		"drizzle-kit": "0.31.10",
-		"envalid": "8.1.1",
+		"envalid": "8.2.0",
 		"knip": "^6.0.0",
 		"portless": "0.14.0",
 		"prettier": "3.8.4",
