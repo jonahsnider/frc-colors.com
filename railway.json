@@ -2,7 +2,7 @@
 	"$schema": "https://railway.com/railway.schema.json",
 	"deploy": {
 		"healthcheckPath": "/health",
-		"healthcheckTimeout": 10,
+		"healthcheckTimeout": 30,
 		"numReplicas": 1,
 		"preDeployCommand": "bun run migrate",
 		"restartPolicyMaxRetries": 3,
