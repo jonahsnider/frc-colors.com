@@ -32,6 +32,8 @@ class ConfigService {
 
 			DATABASE_URL: url({ desc: 'PostgreSQL URL' }),
 
+			RUNTIME_DATABASE_URL: url({ default: undefined, desc: 'Runtime PostgreSQL URL' }),
+
 			SENTRY_DSN: url({ desc: 'Sentry DSN' }),
 
 			WEBSITE_URL: url({ desc: 'URL of the website' }),
@@ -48,7 +50,7 @@ class ConfigService {
 			password: env.FRC_EVENTS_API_KEY,
 		};
 		this.port = env.PORT;
-		this.databaseUrl = env.DATABASE_URL;
+		this.databaseUrl = env.RUNTIME_DATABASE_URL ?? env.DATABASE_URL;
 		this.sentryDsn = env.SENTRY_DSN;
 		this.websiteUrl = env.WEBSITE_URL;
 		this.posthogApiKey = env.POSTHOG_API_KEY;
