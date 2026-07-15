@@ -22,7 +22,7 @@
 		"drizzle-kit": "0.31.10",
 		"envalid": "8.2.0",
 		"knip": "^6.0.0",
-		"portless": "0.15.1",
+		"portless": "0.15.2",
 		"prettier": "3.9.5",
 		"prettier-plugin-packagejson": "3.0.2",
 		"turbo": "2.10.5",
