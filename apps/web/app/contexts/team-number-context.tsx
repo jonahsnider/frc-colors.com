@@ -34,7 +34,6 @@ export function TeamNumberProvider({ children }: PropsWithChildren) {
 		[setTeamNumberRaw],
 	);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: This should only run once on mount, to read the team number from query params
 	useEffect(() => {
 		setTeamNumber(teamNumberRaw?.toString() ?? '');
 	}, []);

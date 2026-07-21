@@ -13,7 +13,6 @@ function FooterRow({ children, vertical }: PropsWithChildren<{ vertical: boolean
 			})}
 		>
 			{childrenArray.map((child, index) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey: This won't get rerendered so it's probably fine to just use index
 				<Fragment key={index}>
 					{child}
 					{index < childrenArray.length - 1 && <Separator orientation={{ initial: 'horizontal', xs: 'vertical' }} />}

@@ -11,7 +11,6 @@ type Props = {
 export function ApiKeyInput({ onChange }: Props) {
 	const [apiKey, setApiKey] = useApiKey();
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: This should only run once on render
 	useEffect(() => {
 		onChange(apiKey);
 	}, []);
