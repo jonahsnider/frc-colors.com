@@ -34,7 +34,6 @@ export function TeamImageAvatar({ colors, avatarUrl }: Props) {
 	const imageStates: ImageStates = useMap();
 	const imageStateForUrl = imageStates.get(avatarUrl) ?? 'loading';
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: This is intentional
 	useEffect(() => {
 		if (!imageStates.has(avatarUrl)) {
 			imageStates.set(avatarUrl, 'loading');
