@@ -23,12 +23,16 @@ jobs:
       - name: Pull environment variables
         run: bun vercel env pull --environment development .env --token ${{ secrets.VERCEL_TOKEN }}
       - name: Migrate Biome schema
+        continue-on-error: true
         run: bun biome migrate --write
       - name: Fix linting errors
+        continue-on-error: true
         run: bun run lint:fix
       - name: Format with Prettier
+        continue-on-error: true
         run: bun run format:write
       - name: Fix Knip issues
+        continue-on-error: true
         run: bun run --env-file=.env knip --fix
       - name: Run autofix.ci
         uses: autofix-ci/action@v1
