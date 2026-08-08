@@ -75,7 +75,7 @@
         "culori": "4.0.2",
         "date-fns": "4.4.0",
         "next": "16.3.1-canary.5",
-        "next-plausible": "3.12.5",
+        "next-plausible": "4.0.0",
         "next-themes": "0.4.6",
         "next-view-transitions": "0.3.5",
         "nuqs": "2.9.5",
@@ -1221,7 +1221,7 @@
 
     "next-api-utils": ["next-api-utils@3.0.1", "", { "dependencies": { "@jonahsnider/util": "^11.0.0", "yn": "^5.0.0" }, "peerDependencies": { "next": "^15", "zod": "^4.0.0" } }, "sha512-MEQHzS4feekD0YVkBmsLaTYKlB9Mr8iRqbdiMFQTgMRKW1Zx7G2jjx25PY6r+jhcZCrr+fp0F8eUflQx9dOYYA=="],
 
-    "next-plausible": ["next-plausible@3.12.5", "", { "peerDependencies": { "next": "^11.1.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 ", "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-l1YMuTI9akb2u7z4hyTuxXpudy8KfSteRNXCYpWpnhAoBjaWQlv6sITai1TwcR7wWvVW8DFbLubvMQAsirAjcA=="],
+    "next-plausible": ["next-plausible@4.0.0", "", { "peerDependencies": { "next": "^11.1.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 ", "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-tC48VscREZ4fEvas9T4oj5qJwnpPlms0Wih1Unbgi/ozG08yN1w0IAPGp+/cHB8n6qzEAL5J0MlAS0FOr132jA=="],
 
     "next-themes": ["next-themes@0.4.6", "", { "peerDependencies": { "react": "^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc", "react-dom": "^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc" } }, "sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA=="],
 
@@ -1729,8 +1729,6 @@
 
     "next-api-utils/next": ["next@16.3.1-canary.2", "", { "dependencies": { "@next/env": "16.3.1-canary.2", "@swc/helpers": "0.5.15", "baseline-browser-mapping": "^2.9.19", "caniuse-lite": "^1.0.30001579", "postcss": "8.5.23", "styled-jsx": "5.1.6" }, "optionalDependencies": { "@next/swc-darwin-arm64": "16.3.1-canary.2", "@next/swc-darwin-x64": "16.3.1-canary.2", "@next/swc-linux-arm64-gnu": "16.3.1-canary.2", "@next/swc-linux-arm64-musl": "16.3.1-canary.2", "@next/swc-linux-x64-gnu": "16.3.1-canary.2", "@next/swc-linux-x64-musl": "16.3.1-canary.2", "@next/swc-win32-arm64-msvc": "16.3.1-canary.2", "@next/swc-win32-x64-msvc": "16.3.1-canary.2", "sharp": "^0.35.3" }, "peerDependencies": { "@opentelemetry/api": "^1.1.0", "@playwright/test": "^1.51.1", "babel-plugin-react-compiler": "*", "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "sass": "^1.3.0" }, "optionalPeers": ["@opentelemetry/api", "@playwright/test", "babel-plugin-react-compiler", "sass"], "bin": { "next": "dist/bin/next" } }, "sha512-ENZ8vsOe1iAoSzoIEbI9OPicO7a0EWohsj69jx4gtTlk0RMse4IBZ/N+4SgYqSEEGi/U+Atn0gD/njChJV6qKA=="],
 
-    "next-plausible/next": ["next@16.3.1-canary.2", "", { "dependencies": { "@next/env": "16.3.1-canary.2", "@swc/helpers": "0.5.15", "baseline-browser-mapping": "^2.9.19", "caniuse-lite": "^1.0.30001579", "postcss": "8.5.23", "styled-jsx": "5.1.6" }, "optionalDependencies": { "@next/swc-darwin-arm64": "16.3.1-canary.2", "@next/swc-darwin-x64": "16.3.1-canary.2", "@next/swc-linux-arm64-gnu": "16.3.1-canary.2", "@next/swc-linux-arm64-musl": "16.3.1-canary.2", "@next/swc-linux-x64-gnu": "16.3.1-canary.2", "@next/swc-linux-x64-musl": "16.3.1-canary.2", "@next/swc-win32-arm64-msvc": "16.3.1-canary.2", "@next/swc-win32-x64-msvc": "16.3.1-canary.2", "sharp": "^0.35.3" }, "peerDependencies": { "@opentelemetry/api": "^1.1.0", "@playwright/test": "^1.51.1", "babel-plugin-react-compiler": "*", "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "sass": "^1.3.0" }, "optionalPeers": ["@opentelemetry/api", "@playwright/test", "babel-plugin-react-compiler", "sass"], "bin": { "next": "dist/bin/next" } }, "sha512-ENZ8vsOe1iAoSzoIEbI9OPicO7a0EWohsj69jx4gtTlk0RMse4IBZ/N+4SgYqSEEGi/U+Atn0gD/njChJV6qKA=="],
-
     "next-view-transitions/next": ["next@16.3.1-canary.2", "", { "dependencies": { "@next/env": "16.3.1-canary.2", "@swc/helpers": "0.5.15", "baseline-browser-mapping": "^2.9.19", "caniuse-lite": "^1.0.30001579", "postcss": "8.5.23", "styled-jsx": "5.1.6" }, "optionalDependencies": { "@next/swc-darwin-arm64": "16.3.1-canary.2", "@next/swc-darwin-x64": "16.3.1-canary.2", "@next/swc-linux-arm64-gnu": "16.3.1-canary.2", "@next/swc-linux-arm64-musl": "16.3.1-canary.2", "@next/swc-linux-x64-gnu": "16.3.1-canary.2", "@next/swc-linux-x64-musl": "16.3.1-canary.2", "@next/swc-win32-arm64-msvc": "16.3.1-canary.2", "@next/swc-win32-x64-msvc": "16.3.1-canary.2", "sharp": "^0.35.3" }, "peerDependencies": { "@opentelemetry/api": "^1.1.0", "@playwright/test": "^1.51.1", "babel-plugin-react-compiler": "*", "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "sass": "^1.3.0" }, "optionalPeers": ["@opentelemetry/api", "@playwright/test", "babel-plugin-react-compiler", "sass"], "bin": { "next": "dist/bin/next" } }, "sha512-ENZ8vsOe1iAoSzoIEbI9OPicO7a0EWohsj69jx4gtTlk0RMse4IBZ/N+4SgYqSEEGi/U+Atn0gD/njChJV6qKA=="],
 
     "nuqs/next": ["next@16.3.1-canary.3", "", { "dependencies": { "@next/env": "16.3.1-canary.3", "@swc/helpers": "0.5.15", "baseline-browser-mapping": "^2.9.19", "caniuse-lite": "^1.0.30001579", "postcss": "8.5.23", "styled-jsx": "5.1.6" }, "optionalDependencies": { "@next/swc-darwin-arm64": "16.3.1-canary.3", "@next/swc-darwin-x64": "16.3.1-canary.3", "@next/swc-linux-arm64-gnu": "16.3.1-canary.3", "@next/swc-linux-arm64-musl": "16.3.1-canary.3", "@next/swc-linux-x64-gnu": "16.3.1-canary.3", "@next/swc-linux-x64-musl": "16.3.1-canary.3", "@next/swc-win32-arm64-msvc": "16.3.1-canary.3", "@next/swc-win32-x64-msvc": "16.3.1-canary.3", "sharp": "^0.35.3" }, "peerDependencies": { "@opentelemetry/api": "^1.1.0", "@playwright/test": "^1.51.1", "babel-plugin-react-compiler": "*", "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0", "sass": "^1.3.0" }, "optionalPeers": ["@opentelemetry/api", "@playwright/test", "babel-plugin-react-compiler", "sass"], "bin": { "next": "dist/bin/next" } }, "sha512-RhmxJevzKRqg3nQAoYLy/Xw5ECXxKfZDwHM8r69uugP7ERi0kXGWCHdvFia0LT/TXgkQLnAJc8fTf+bCG1bMBQ=="],
@@ -2019,28 +2017,6 @@
 
     "next-api-utils/next/postcss": ["postcss@8.5.23", "", { "dependencies": { "nanoid": "^3.3.16", "picocolors": "^1.1.1", "source-map-js": "^1.2.1" } }, "sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg=="],
 
-    "next-plausible/next/@next/env": ["@next/env@16.3.1-canary.2", "", {}, "sha512-DFz1E5rKqAh/rw6VPSKHeHN1CLHirKc62mmJXDlcdaRyyokdLmZtcOwTjRj7w+kiU82gwvzsF8dqIJEex4TLPA=="],
-
-    "next-plausible/next/@next/swc-darwin-arm64": ["@next/swc-darwin-arm64@16.3.1-canary.2", "", { "os": "darwin", "cpu": "arm64" }, "sha512-qjkG34oxbemJ4vVar1Q4iHjNEHEL7SmnLH9BoJYft72caqmy4wP8Qml556FiE/YBzYnVwgms4dxsKJkgr7vGyQ=="],
-
-    "next-plausible/next/@next/swc-darwin-x64": ["@next/swc-darwin-x64@16.3.1-canary.2", "", { "os": "darwin", "cpu": "x64" }, "sha512-Ssf3wwpa7WPPngjpmA/W+XqJX1yVSl6yXwoXPAzvz5T4as9ibSRBznnrhCr+ZX4fSUtosme4fK3Lzs7pqL8EWw=="],
-
-    "next-plausible/next/@next/swc-linux-arm64-gnu": ["@next/swc-linux-arm64-gnu@16.3.1-canary.2", "", { "os": "linux", "cpu": "arm64" }, "sha512-OwxJbn6GQx0lOmRXw5cD2HvTCp74/pdFJP3lhhwCv9nWK0FdfV8rQZFkV8abEPziM8ygrdW3EbY2rFsIHZUjwA=="],
-
-    "next-plausible/next/@next/swc-linux-arm64-musl": ["@next/swc-linux-arm64-musl@16.3.1-canary.2", "", { "os": "linux", "cpu": "arm64" }, "sha512-klizqiEligsJOuYEaZLkaXk+tfQypCuyQgxLTqQxnPRpdclVpZn1oNWHcRXkeRALXqbsZjkhXJy/45ipqXl/PA=="],
-
-    "next-plausible/next/@next/swc-linux-x64-gnu": ["@next/swc-linux-x64-gnu@16.3.1-canary.2", "", { "os": "linux", "cpu": "x64" }, "sha512-32PY1ucX5t7LK8wopPqh6mcTHWBpI7DJmrwWh+/oOBtQAol/4po0G0+lqnRsnYsUfNuS9328dzvoZ1D4k7wxkg=="],
-
-    "next-plausible/next/@next/swc-linux-x64-musl": ["@next/swc-linux-x64-musl@16.3.1-canary.2", "", { "os": "linux", "cpu": "x64" }, "sha512-aD03GZli9upqQoEfvPwrz1Q+KWlUm7J1Wx8jXX/amg1oJiAVHUJoZngOmrZM7KpzjPGvT//6NaLCW4yNKtqxnQ=="],
-
-    "next-plausible/next/@next/swc-win32-arm64-msvc": ["@next/swc-win32-arm64-msvc@16.3.1-canary.2", "", { "os": "win32", "cpu": "arm64" }, "sha512-LmB14PgGhwg9bdzqB97ihwLthSWU0CAwVLrxysozQnXUCxvpyWo/9+bRYfT3oB2uhBAmo8EQPGhLdRmtSyoixQ=="],
-
-    "next-plausible/next/@next/swc-win32-x64-msvc": ["@next/swc-win32-x64-msvc@16.3.1-canary.2", "", { "os": "win32", "cpu": "x64" }, "sha512-9DytsWoYSi3NmWUY4qi91m6PbqzgfbU6bjZR1ySiUKsMI4ir+7lybA/E1M1sCib+pzbtuUA1QFkq5Er4ASjvZQ=="],
-
-    "next-plausible/next/@swc/helpers": ["@swc/helpers@0.5.15", "", { "dependencies": { "tslib": "^2.8.0" } }, "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g=="],
-
-    "next-plausible/next/postcss": ["postcss@8.5.23", "", { "dependencies": { "nanoid": "^3.3.16", "picocolors": "^1.1.1", "source-map-js": "^1.2.1" } }, "sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg=="],
-
     "next-view-transitions/next/@next/env": ["@next/env@16.3.1-canary.2", "", {}, "sha512-DFz1E5rKqAh/rw6VPSKHeHN1CLHirKc62mmJXDlcdaRyyokdLmZtcOwTjRj7w+kiU82gwvzsF8dqIJEex4TLPA=="],
 
     "next-view-transitions/next/@next/swc-darwin-arm64": ["@next/swc-darwin-arm64@16.3.1-canary.2", "", { "os": "darwin", "cpu": "arm64" }, "sha512-qjkG34oxbemJ4vVar1Q4iHjNEHEL7SmnLH9BoJYft72caqmy4wP8Qml556FiE/YBzYnVwgms4dxsKJkgr7vGyQ=="],
@@ -2218,8 +2194,6 @@
     "@vercel/nft/glob/path-scurry/lru-cache": ["lru-cache@11.2.6", "", {}, "sha512-ESL2CrkS/2wTPfuend7Zhkzo2u0daGJ/A2VucJOgQ/C48S/zB8MMeMHSGKYpXhIjbPxfuezITkaBH1wqv00DDQ=="],
 
     "next-api-utils/next/postcss/nanoid": ["nanoid@3.3.16", "", { "bin": { "nanoid": "bin/nanoid.cjs" } }, "sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q=="],
-
-    "next-plausible/next/postcss/nanoid": ["nanoid@3.3.16", "", { "bin": { "nanoid": "bin/nanoid.cjs" } }, "sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q=="],
 
     "next-view-transitions/next/postcss/nanoid": ["nanoid@3.3.16", "", { "bin": { "nanoid": "bin/nanoid.cjs" } }, "sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q=="],
 
