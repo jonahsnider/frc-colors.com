@@ -5,7 +5,7 @@ const path = require('node:path');
 dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withPlausibleProxy()({
+const nextConfig = withPlausibleProxy({ src: 'https://plausible.io/js/pa-cl6RdTRHDwcw6snO6VH_-.js' })({
 	productionBrowserSourceMaps: true,
 	allowedDevOrigins: ['frc-colors.com.localhost'],
 	async rewrites() {
