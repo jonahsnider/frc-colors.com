@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<ViewTransitions>
 			<html lang='en' suppressHydrationWarning={true}>
 				<head>
-					<PlausibleProvider src='https://plausible.io/js/pa-cl6RdTRHDwcw6snO6VH_-.js' />
+					<PlausibleProvider />
 				</head>
 
 				<TrpcProvider>
