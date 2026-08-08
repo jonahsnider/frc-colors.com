@@ -6,7 +6,7 @@ if (!NEXT_PUBLIC_API_URL) {
 	throw new TypeError('NEXT_PUBLIC_API_URL is not defined');
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
 	if (request.nextUrl.pathname.startsWith('/api')) {
 		const targetUrl = request.nextUrl;
 		// biome-ignore lint/style/noNonNullAssertion: This is safe
