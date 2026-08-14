@@ -81,7 +81,7 @@
         "nuqs": "2.9.5",
         "postcss": "8.5.26",
         "postcss-import": "16.2.0",
-        "posthog-js": "1.416.0",
+        "posthog-js": "1.416.1",
         "radix-themes-tw": "0.2.3",
         "react": "19.2.8",
         "react-dom": "19.2.8",
@@ -1341,7 +1341,7 @@
 
     "postgres-interval": ["postgres-interval@1.2.0", "", { "dependencies": { "xtend": "^4.0.0" } }, "sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ=="],
 
-    "posthog-js": ["posthog-js@1.416.0", "", { "dependencies": { "@posthog/browser-common": "^0.5.0", "@posthog/core": "^1.47.0", "@posthog/types": "^1.403.0", "core-js": "^3.49.0", "dompurify": "^3.4.13", "fflate": "^0.4.8", "preact": "^10.29.3", "query-selector-shadow-dom": "^1.0.1", "web-vitals": "^5.3.0", "web-vitals-soft-navs": "npm:web-vitals@6.0.0" } }, "sha512-9Rd0tq2WTA1U07VucWuCMwlzr+YvODglyN4mOf61TVrxPeMA7KVBiOEAThqaIvAv2kHbZvwTjbd8Ww2oTs221w=="],
+    "posthog-js": ["posthog-js@1.416.1", "", { "dependencies": { "@posthog/browser-common": "^0.5.0", "@posthog/core": "^1.48.0", "@posthog/types": "^1.403.1", "core-js": "^3.49.0", "dompurify": "^3.4.13", "fflate": "^0.4.8", "preact": "^10.29.3", "query-selector-shadow-dom": "^1.0.1", "web-vitals": "^5.3.0", "web-vitals-soft-navs": "npm:web-vitals@6.0.0" } }, "sha512-/4tFG0As9A/Wyi5dJ0F+/z1vkpndWl9uQtT+6TCD6snIkTZ/MMRiOjJHzY6b38cCQuy5zatr+kTKAuQB/BL1eA=="],
 
     "posthog-node": ["posthog-node@5.48.2", "", { "dependencies": { "@posthog/core": "^1.47.1" }, "peerDependencies": { "rxjs": "^7.0.0" }, "optionalPeers": ["rxjs"] }, "sha512-3Ni5upqpbUXL1QM2oU4sL9Y3OycDGgrKI9aJOGHbcF9xkPwR18cq481Tkvn6/CCPbl04p3tjdwQNkGHVveQcag=="],
 
