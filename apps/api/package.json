@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@tsconfig/node-ts": "23.6.4",
-		"@tsconfig/node24": "24.0.4",
+		"@tsconfig/node24": "24.0.5",
 		"@tsconfig/strictest": "2.0.8",
 		"@types/node": "26.2.0",
 		"@types/pg": "8.21.0",
