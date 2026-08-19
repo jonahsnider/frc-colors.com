@@ -33,7 +33,7 @@
 		"nuqs": "2.9.6",
 		"postcss": "8.5.26",
 		"postcss-import": "17.0.0",
-		"posthog-js": "1.417.4",
+		"posthog-js": "1.418.0",
 		"radix-themes-tw": "0.2.3",
 		"react": "19.2.8",
 		"react-dom": "19.2.8",
