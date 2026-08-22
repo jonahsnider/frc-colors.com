@@ -39,7 +39,7 @@
         "pino": "10.3.1",
         "pino-pretty": "13.1.3",
         "pngjs": "7.0.0",
-        "posthog-node": "5.49.3",
+        "posthog-node": "5.49.4",
         "superjson": "2.2.6",
         "zod": "4.4.3",
       },
@@ -1325,7 +1325,7 @@
 
     "posthog-js": ["posthog-js@1.418.9", "", { "dependencies": { "@posthog/browser-common": "^0.5.0", "@posthog/core": "^1.48.7", "@posthog/types": "^1.405.1", "core-js": "^3.49.0", "dompurify": "^3.4.13", "fflate": "^0.4.8", "preact": "^10.29.3", "query-selector-shadow-dom": "^1.0.1", "web-vitals": "^5.3.0", "web-vitals-soft-navs": "npm:web-vitals@6.0.0" } }, "sha512-bt4xIBnWQtj2UI8zkFgpJ3klwy1QWnlMXcKaKvq+wTK4BTOKPqckC//kr+NRC4Xnbi+sQ5hDpSDShJ+BhtVU6g=="],
 
-    "posthog-node": ["posthog-node@5.49.3", "", { "dependencies": { "@posthog/core": "^1.48.7" }, "peerDependencies": { "rxjs": "^7.0.0" }, "optionalPeers": ["rxjs"] }, "sha512-AhCdQZh2gj8v1gsbbeLO/UFT2Pw40DaGR5JHniersOnPnvZ/O9Sf3HgoJo9XczILGVvO66WmfPbXopaT05OE5A=="],
+    "posthog-node": ["posthog-node@5.49.4", "", { "dependencies": { "@posthog/core": "^1.48.7" }, "peerDependencies": { "rxjs": "^7.0.0" }, "optionalPeers": ["rxjs"] }, "sha512-zoIEQ5kdJTh2eXn3y4c6EMoOGKiuAP7XCWD4bLzPyQboB1g3wRqvCNgA4h7i4nirGDPRDKUiscwU9sNBfvf35Q=="],
 
     "preact": ["preact@10.29.7", "", { "peerDependencies": { "preact-render-to-string": ">=5" }, "optionalPeers": ["preact-render-to-string"] }, "sha512-DCHYrK/B10yUD3ZjLfhZ3WIE/9Vf9VFUODcRE2dRomTYDpJk6z6L9wecSfhfE6M9ZTHUdyQkoC46arIDhEV84Q=="],
 
