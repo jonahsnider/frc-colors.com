@@ -16,24 +16,26 @@ jobs:
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v7
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
+      - name: Setup pnpm
+        uses: pnpm/setup@v2
+        with:
+          cache: true
       - name: Pull environment variables
-        run: bun vercel env pull --environment development .env --token ${{ secrets.VERCEL_TOKEN }}
+        run: pnpm exec vercel env pull --environment development .env --token ${{ secrets.VERCEL_TOKEN }}
       - name: Migrate Biome schema
         continue-on-error: true
-        run: bun biome migrate --write
+        run: pnpm exec biome migrate --write
       - name: Fix linting errors
         continue-on-error: true
-        run: bun run lint:fix
+        run: pnpm run lint:fix
       - name: Format with Prettier
         continue-on-error: true
-        run: bun run format:write
+        run: pnpm run format:write
       - name: Fix Knip issues
         continue-on-error: true
-        run: bun run --env-file=.env knip --fix
+        run: pnpm exec knip --fix
+        env:
+          DATABASE_URL: unused
       - name: Run autofix.ci
         uses: autofix-ci/action@v1
         with:

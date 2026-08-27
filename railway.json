@@ -4,7 +4,7 @@
 		"healthcheckPath": "/health",
 		"healthcheckTimeout": 30,
 		"numReplicas": 1,
-		"preDeployCommand": "bun run migrate",
+		"preDeployCommand": "pnpm run migrate",
 		"restartPolicyMaxRetries": 3,
 		"restartPolicyType": "ALWAYS"
 	}

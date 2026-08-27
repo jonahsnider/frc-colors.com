@@ -46,6 +46,5 @@
 		"@types/culori": "4.0.1",
 		"dotenv": "17.4.2",
 		"type-fest": "5.8.0"
-	},
-	"packageManager": "bun@1.0.3"
+	}
 }

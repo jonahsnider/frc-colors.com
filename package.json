@@ -9,12 +9,12 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"format": "prettier --check .",
-		"format:write": "bun run format --write",
+		"format:write": "pnpm run format --write",
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write --unsafe",
 		"migrate": "drizzle-kit migrate",
 		"migrate:create": "drizzle-kit generate:pg",
-		"test": "bun run lint && turbo run build type-check",
+		"test": "pnpm run lint && turbo run build type-check",
 		"type-check": "turbo run type-check"
 	},
 	"devDependencies": {
@@ -28,8 +28,12 @@
 		"turbo": "2.10.12",
 		"vercel": "59.5.0"
 	},
-	"packageManager": "bun@1.2.10",
-	"trustedDependencies": [
-		"@biomejs/biome"
-	]
+	"packageManager": "pnpm@12.0.0",
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": "24.x",
+			"onFail": "error"
+		}
+	}
 }

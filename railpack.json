@@ -6,6 +6,6 @@
 		}
 	},
 	"deploy": {
-		"startCommand": "bun run --filter='@frc-colors/api' start"
+		"startCommand": "pnpm --filter @frc-colors/api start"
 	}
 }
