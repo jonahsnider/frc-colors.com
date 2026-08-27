@@ -2,6 +2,5 @@
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"buildCommand": "pnpm run build",
 	"cleanUrls": true,
-	"installCommand": "pnpm install --frozen-lockfile",
-	"outputDirectory": "apps/web/.next"
+	"installCommand": "pnpm install --frozen-lockfile"
 }
