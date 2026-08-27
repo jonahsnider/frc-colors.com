@@ -1,6 +1,8 @@
 packages:
   - apps/*
 
+enableGlobalVirtualStore: false
+
 allowBuilds:
   core-js: true
   esbuild: true
