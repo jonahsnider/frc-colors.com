@@ -14,12 +14,6 @@ const config: KnipConfig = {
 				'pino-pretty',
 			],
 		},
-		'apps/web': {
-			ignoreDependencies: [
-				// Internal monorepo dependency
-				'@frc-colors/api',
-			],
-		},
 	},
 };
 

@@ -9,6 +9,7 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
+		"@frc-colors/api": "workspace:*",
 		"@heroicons/react": "2.2.0",
 		"@jonahsnider/util": "13.0.0",
 		"@radix-ui/colors": "^3.0.0",
