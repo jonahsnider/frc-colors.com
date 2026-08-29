@@ -22,7 +22,7 @@
 		"envalid": "8.2.0",
 		"extract-colors": "4.2.1",
 		"hono": "4.13.5",
-		"ky": "2.0.2",
+		"ky": "2.1.0",
 		"next-api-utils": "3.0.1",
 		"p-limit": "7.3.1",
 		"pg": "8.23.0",
