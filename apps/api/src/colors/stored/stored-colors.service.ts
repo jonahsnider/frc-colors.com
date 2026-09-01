@@ -1,4 +1,4 @@
-import { eq, inArray } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 
 import { db } from '../../db/db.ts';
 import { Schema } from '../../db/index.ts';
@@ -21,7 +21,7 @@ export class StoredColors implements ColorFetcher {
 			'db',
 			'colors',
 			db.query.teamColors.findMany({
-				where: inArray(Schema.teamColors.team, teams),
+				where: { team: { in: teams } },
 				columns: {
 					team: true,
 					primaryHex: true,
@@ -119,7 +119,7 @@ export class StoredColors implements ColorFetcher {
 			columns: {
 				verified: true,
 			},
-			where: eq(Schema.teamColors.team, team),
+			where: { team },
 		});
 
 		return row?.verified;

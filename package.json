@@ -13,13 +13,13 @@
 		"lint": "biome check .",
 		"lint:fix": "biome check . --write --unsafe",
 		"migrate": "drizzle-kit migrate",
-		"migrate:create": "drizzle-kit generate:pg",
+		"migrate:create": "drizzle-kit generate",
 		"test": "pnpm run lint && turbo run build type-check",
 		"type-check": "turbo run type-check"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.11",
-		"drizzle-kit": "0.31.10",
+		"drizzle-kit": "1.0.0-rc.4",
 		"envalid": "8.2.0",
 		"knip": "^6.0.0",
 		"portless": "0.15.6",

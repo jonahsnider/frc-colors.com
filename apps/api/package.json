@@ -18,7 +18,7 @@
 		"convert": "7.0.2",
 		"croner": "10.0.1",
 		"devalue": "5.9.2",
-		"drizzle-orm": "0.45.2",
+		"drizzle-orm": "1.0.0-rc.4",
 		"envalid": "8.2.0",
 		"extract-colors": "4.2.1",
 		"hono": "4.13.5",

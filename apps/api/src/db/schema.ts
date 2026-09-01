@@ -17,9 +17,7 @@ export const teams = pgTable(
 		number: integer('team_number').primaryKey().notNull(),
 		createdAt: timestamp('created_at', { precision: 3, withTimezone: true, mode: 'date' }).defaultNow().notNull(),
 	},
-	(teams) => ({
-		numberKey: uniqueIndex().on(teams.number),
-	}),
+	(teams) => [uniqueIndex().on(teams.number)],
 );
 
 export const teamColors = pgTable(
@@ -34,10 +32,7 @@ export const teamColors = pgTable(
 		updatedAt: timestamp('updated_at', { precision: 3, withTimezone: true, mode: 'date' }),
 		verified: boolean('verified').default(true).notNull(),
 	},
-	(teamColors) => ({
-		teamIdKey: uniqueIndex().on(teamColors.team),
-		verifiedIdx: index().on(teamColors.verified),
-	}),
+	(teamColors) => [uniqueIndex().on(teamColors.team), index().on(teamColors.verified)],
 );
 
 export const verificationRequests = pgTable(
@@ -51,11 +46,11 @@ export const verificationRequests = pgTable(
 		createdAt: timestamp('created_at', { precision: 3, withTimezone: true, mode: 'date' }).defaultNow().notNull(),
 		updatedAt: timestamp('updated_at', { precision: 3, withTimezone: true, mode: 'date' }),
 	},
-	(verificationRequests) => ({
-		teamKey: index().on(verificationRequests.team),
-		createdAtIdx: index().on(verificationRequests.createdAt),
-		statusIdx: index().on(verificationRequests.status),
-	}),
+	(verificationRequests) => [
+		index().on(verificationRequests.team),
+		index().on(verificationRequests.createdAt),
+		index().on(verificationRequests.status),
+	],
 );
 
 export const colorSubmissions = pgTable(
@@ -71,10 +66,10 @@ export const colorSubmissions = pgTable(
 		createdAt: timestamp('created_at', { precision: 3, withTimezone: true, mode: 'date' }).defaultNow().notNull(),
 		updatedAt: timestamp('updated_at', { precision: 3, withTimezone: true, mode: 'date' }),
 	},
-	(colorFormSubmissions) => ({
-		teamIdKey: index().on(colorFormSubmissions.team),
-		createdAtIdx: index().on(colorFormSubmissions.createdAt),
-		statusIdx: index().on(colorFormSubmissions.status),
-		updatedAtIdx: index().on(colorFormSubmissions.updatedAt),
-	}),
+	(colorFormSubmissions) => [
+		index().on(colorFormSubmissions.team),
+		index().on(colorFormSubmissions.createdAt),
+		index().on(colorFormSubmissions.status),
+		index().on(colorFormSubmissions.updatedAt),
+	],
 );
