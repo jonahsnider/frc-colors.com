@@ -1,4 +1,4 @@
-import { clamp, random } from '@jonahsnider/util';
+import { clamp } from '@jonahsnider/util';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { validateParams } from 'next-api-utils';
@@ -10,7 +10,7 @@ const ERROR_RATE_START = 0.1;
 const ERROR_RATE_START_AT = Date.UTC(2026, 8, 1);
 const ERROR_RATE_END_AT = Date.UTC(2026, 11, 1);
 
-export function getLegacyAvatarErrorRate(now = Date.now()): number {
+function getLegacyAvatarErrorRate(now = Date.now()): number {
 	const progress = (now - ERROR_RATE_START_AT) / (ERROR_RATE_END_AT - ERROR_RATE_START_AT);
 	return clamp(ERROR_RATE_START + progress * (1 - ERROR_RATE_START), ERROR_RATE_START, 1);
 }
