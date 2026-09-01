@@ -127,6 +127,13 @@
 			"when": 1707255836728,
 			"tag": "0017_neat_mandroid",
 			"breakpoints": true
+		},
+		{
+			"idx": 18,
+			"version": "5",
+			"when": 1788299473000,
+			"tag": "0018_drop_avatars",
+			"breakpoints": true
 		}
 	]
 }

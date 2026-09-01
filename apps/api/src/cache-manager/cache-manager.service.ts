@@ -6,8 +6,7 @@ class CacheManager {
 	private readonly logger = baseLogger.child({ module: 'cache manager' });
 
 	init(): void {
-		// Schedule hourly refresh
-		new Cron('0 * * * *', () => {
+		new Cron('0 0 * * *', () => {
 			refreshAllTeamColors();
 		});
 
