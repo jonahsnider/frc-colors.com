@@ -17,12 +17,7 @@ export function proxy(request: NextRequest) {
 		targetUrl.host = apiUrl.host;
 		targetUrl.port = apiUrl.port;
 
-		return NextResponse.redirect(targetUrl, {
-			headers: {
-				'Access-Control-Allow-Origin': '*',
-			},
-			status: 301,
-		});
+		return NextResponse.rewrite(targetUrl);
 	}
 
 	return NextResponse.next();
