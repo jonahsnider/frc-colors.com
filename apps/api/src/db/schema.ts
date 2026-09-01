@@ -1,15 +1,4 @@
-import {
-	boolean,
-	customType,
-	index,
-	integer,
-	pgEnum,
-	pgTable,
-	text,
-	timestamp,
-	uniqueIndex,
-	uuid,
-} from 'drizzle-orm/pg-core';
+import { boolean, index, integer, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 export enum VerificationRequestStatus {
 	Rejected = 'REJECTED',
@@ -89,18 +78,3 @@ export const colorSubmissions = pgTable(
 		updatedAtIdx: index().on(colorFormSubmissions.updatedAt),
 	}),
 );
-
-const bytea = customType<{ data: Buffer; notNull: false; default: false }>({
-	dataType() {
-		return 'bytea';
-	},
-});
-
-export const avatars = pgTable('avatars', {
-	team: integer('team_number')
-		.primaryKey()
-		.notNull()
-		.references(() => teams.number, { onDelete: 'restrict', onUpdate: 'cascade' }),
-	png: bytea('png'),
-	createdAt: timestamp('created_at', { precision: 3, withTimezone: true, mode: 'date' }).defaultNow().notNull(),
-});

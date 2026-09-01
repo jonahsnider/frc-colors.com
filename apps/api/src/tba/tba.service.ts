@@ -1,5 +1,3 @@
-import { Buffer } from 'node:buffer';
-
 import { TRPCError } from '@trpc/server';
 import ky, { HTTPError, type KyResponse } from 'ky';
 import { configService } from '../config/config.service.ts';
@@ -7,9 +5,7 @@ import { baseLogger } from '../logger/logger.ts';
 import { TeamNumber } from '../teams/dtos/team-number.dto.ts';
 import { trackDuration } from '../timing/timing.ts';
 import type { TbaEventTeams } from './interfaces/tba-event-teams.interface.ts';
-import type { TbaMediaAvatar } from './interfaces/tba-media.interface.ts';
 import type { TbaTeam } from './interfaces/tba-team.interface.ts';
-import type { TbaTeamMediaForYear } from './interfaces/tba-team-media-for-year.interface.ts';
 
 /** API client for fetching team data from TBA. */
 class TbaService {
@@ -19,22 +15,6 @@ class TbaService {
 			'X-TBA-Auth-Key': configService.tbaApiKey,
 		},
 	});
-
-	/** Get a buffer with a PNG of the team's avatar for the current year. */
-	async getTeamAvatarForThisYear(teamNumber: TeamNumber): Promise<Buffer | undefined> {
-		const currentYear = new Date().getFullYear();
-		const yearsToCheck = [currentYear, currentYear - 1];
-
-		for (const year of yearsToCheck) {
-			const colors = await this.getTeamAvatarForYear(teamNumber, year);
-
-			if (colors) {
-				return colors;
-			}
-		}
-
-		return undefined;
-	}
 
 	async getTeamName(teamNumber: TeamNumber): Promise<string | undefined> {
 		const team = await this.getTeamRaw(teamNumber);
@@ -50,44 +30,6 @@ class TbaService {
 		const eventTeams = await trackDuration('tba', 'teams for event', this.getEventRaw(eventCode));
 
 		return TeamNumber.array().parse(eventTeams.map((team) => team.team_number));
-	}
-
-	/** Get a buffer with a PNG of the team's avatar for the given year. */
-	private async getTeamAvatarForYear(teamNumber: TeamNumber, year: number): Promise<Buffer | undefined> {
-		const teamMedia = await this.getTeamMediaForYearRaw(teamNumber, year);
-
-		const avatarMedia = teamMedia.find((media): media is TbaMediaAvatar => media.type === 'avatar');
-
-		if (!avatarMedia?.details?.base64Image) {
-			return undefined;
-		}
-
-		return Buffer.from(avatarMedia.details.base64Image, 'base64');
-	}
-
-	/** Get a team's media for a given year. */
-	private async getTeamMediaForYearRaw(teamNumber: TeamNumber, year: number): Promise<TbaTeamMediaForYear> {
-		try {
-			const response = await this.fetcher.get(`team/frc${teamNumber}/media/${year}`);
-			const body = await response.json<TbaTeamMediaForYear>();
-
-			if (!Array.isArray(body)) {
-				baseLogger.warn('TBA returned non-array response for team media:');
-				console.warn({ response });
-				return [];
-			}
-
-			return body;
-		} catch (error) {
-			if (error instanceof HTTPError && error.response.status === 404) {
-				return [];
-			}
-
-			throw new TRPCError({
-				code: 'INTERNAL_SERVER_ERROR',
-				message: 'Error fetching team media from TBA.',
-			});
-		}
 	}
 
 	private async getTeamRaw(teamNumber: TeamNumber): Promise<TbaTeam | undefined> {
