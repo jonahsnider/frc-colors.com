@@ -46,7 +46,7 @@
 	"devDependencies": {
 		"@types/culori": "4.0.1",
 		"dotenv": "17.4.2",
-		"type-fest": "5.8.0"
+		"type-fest": "5.9.0"
 	},
 	"packageManager": "pnpm@12.1.0",
 	"devEngines": {
