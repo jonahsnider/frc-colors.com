@@ -261,3 +261,5 @@ service-account-key.json
 **/*.jsonc
 **/*.css
 !**/package.json
+
+pnpm-lock.yaml
