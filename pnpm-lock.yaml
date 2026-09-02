@@ -309,8 +309,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.26)
       posthog-js:
-        specifier: 1.424.0
-        version: 1.424.0(@types/react@19.2.18)(react@19.2.8)
+        specifier: 1.424.1
+        version: 1.424.1(@types/react@19.2.18)(react@19.2.8)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -1855,6 +1855,9 @@ packages:
 
   '@posthog/core@1.50.1':
     resolution: {integrity: sha512-REG9hSmWdQhPvXJfZuH0cwvveq5lS3wAluNSav7mqiaZszALRL4+4qS5FFO2gpgvV5D7OIhkJFB4ZKFbzqbviA==}
+
+  '@posthog/core@1.50.2':
+    resolution: {integrity: sha512-El7y/ipZ45OFBRTN/+ixat9Nw21bW+pKKnX0G+rG4rWxBtDA47Ub/ZUnHvZNhAufNInQr4AYCUeWQsuJsTcoKg==}
 
   '@posthog/types@1.407.1':
     resolution: {integrity: sha512-WhbkXPC2rgylXqmxHqv70ffI3k+KxyR6s7DBIfr5NvIqHkxp6v0pk31D/jbz0DNVbzwkLjyll2pxr4FNbJiYzg==}
@@ -4393,8 +4396,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.424.0:
-    resolution: {integrity: sha512-owEiZm26dJe7THtRvgMuKRJ0RS7GhZieL42PVcDN8IWzHdDL2VMEIX6bcIN8+HmK9Jleih7cyhPjw8o3GxRC3w==}
+  posthog-js@1.424.1:
+    resolution: {integrity: sha512-5jJ3PWPDbJ255gcIgANRGt83npqb6hNwgmDt67PmaNMW3ZRTo+arlooEJaSC+poAAJHgsAU4VL0NJ9i/rvmd5g==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5915,7 +5918,7 @@ snapshots:
 
   '@posthog/browser-common@0.7.1':
     dependencies:
-      '@posthog/core': 1.50.0
+      '@posthog/core': 1.50.1
       '@posthog/types': 1.407.1
 
   '@posthog/core@1.50.0':
@@ -5923,6 +5926,10 @@ snapshots:
       '@posthog/types': 1.407.1
 
   '@posthog/core@1.50.1':
+    dependencies:
+      '@posthog/types': 1.407.1
+
+  '@posthog/core@1.50.2':
     dependencies:
       '@posthog/types': 1.407.1
 
@@ -8439,10 +8446,10 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.424.0(@types/react@19.2.18)(react@19.2.8):
+  posthog-js@1.424.1(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       '@posthog/browser-common': 0.7.1
-      '@posthog/core': 1.50.1
+      '@posthog/core': 1.50.2
       '@posthog/types': 1.407.1
       core-js: 3.50.0
       dompurify: 3.4.14
