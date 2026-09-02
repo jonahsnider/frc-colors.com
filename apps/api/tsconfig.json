@@ -7,6 +7,6 @@
 		"allowImportingTsExtensions": true,
 		"rewriteRelativeImportExtensions": false
 	},
-	"extends": ["@tsconfig/strictest", "@tsconfig/node24", "@tsconfig/node-ts"],
+	"extends": ["@tsconfig/strictest", "@tsconfig/node26", "@tsconfig/node-ts"],
 	"include": ["src", "types"]
 }

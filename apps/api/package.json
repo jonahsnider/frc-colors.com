@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@tsconfig/node-ts": "23.6.4",
-		"@tsconfig/node24": "24.0.5",
+		"@tsconfig/node26": "26.0.1",
 		"@tsconfig/strictest": "2.0.8",
 		"@types/node": "26.4.0",
 		"@types/pg": "8.23.1",
@@ -46,7 +46,7 @@
 	"devEngines": {
 		"runtime": {
 			"name": "node",
-			"version": "24.x",
+			"version": "26.x",
 			"onFail": "error"
 		}
 	}
