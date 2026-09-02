@@ -16,8 +16,8 @@ export default function HomePage() {
 
 	const [debouncedTeam] = useDebounce(teamNumber, 100, { maxWait: 1000 });
 
-	// biome-ignore lint/style/noNonNullAssertion: This won't run if teamNumber isn't defined
-	const teamNameQuery = trpc.teams.getName.useQuery(debouncedTeam!, { enabled: Boolean(teamNumber) });
+	// biome-ignore lint/style/noNonNullAssertion: This won't run if debouncedTeam isn't defined
+	const teamNameQuery = trpc.teams.getName.useQuery(debouncedTeam!, { enabled: debouncedTeam !== undefined });
 
 	const teamExists = teamNameQuery.isSuccess ? Boolean(teamNameQuery.data?.name) : true;
 
