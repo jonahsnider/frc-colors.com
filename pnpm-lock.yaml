@@ -309,8 +309,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.26)
       posthog-js:
-        specifier: 1.423.0
-        version: 1.423.0(@types/react@19.2.18)(react@19.2.8)
+        specifier: 1.424.0
+        version: 1.424.0(@types/react@19.2.18)(react@19.2.8)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -1852,6 +1852,9 @@ packages:
 
   '@posthog/core@1.50.0':
     resolution: {integrity: sha512-25SnQycZbqqLodQs+GaDPGDC1oxT8+XOSGlyhiS2rtdVON9Opg2hmfJ/fpFNgMBL7YDi0rpvJiR/fudy96W4pA==}
+
+  '@posthog/core@1.50.1':
+    resolution: {integrity: sha512-REG9hSmWdQhPvXJfZuH0cwvveq5lS3wAluNSav7mqiaZszALRL4+4qS5FFO2gpgvV5D7OIhkJFB4ZKFbzqbviA==}
 
   '@posthog/types@1.407.1':
     resolution: {integrity: sha512-WhbkXPC2rgylXqmxHqv70ffI3k+KxyR6s7DBIfr5NvIqHkxp6v0pk31D/jbz0DNVbzwkLjyll2pxr4FNbJiYzg==}
@@ -4390,8 +4393,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.423.0:
-    resolution: {integrity: sha512-r9s9uFhGDoftboOfTxD0ePtDE6s9xROxvjr3bGzZ1QcCbm6kZOZB/S708zkOjSufEUDGCuUOMluc9XKYixFBtA==}
+  posthog-js@1.424.0:
+    resolution: {integrity: sha512-owEiZm26dJe7THtRvgMuKRJ0RS7GhZieL42PVcDN8IWzHdDL2VMEIX6bcIN8+HmK9Jleih7cyhPjw8o3GxRC3w==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5919,6 +5922,10 @@ snapshots:
       '@posthog/types': 1.407.1
 
   '@posthog/core@1.50.0':
+    dependencies:
+      '@posthog/types': 1.407.1
+
+  '@posthog/core@1.50.1':
     dependencies:
       '@posthog/types': 1.407.1
 
@@ -8435,10 +8442,10 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.423.0(@types/react@19.2.18)(react@19.2.8):
+  posthog-js@1.424.0(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       '@posthog/browser-common': 0.7.1
-      '@posthog/core': 1.50.0
+      '@posthog/core': 1.50.1
       '@posthog/types': 1.407.1
       core-js: 3.50.0
       dompurify: 3.4.14
