@@ -200,8 +200,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
       posthog-node:
-        specifier: 5.51.4
-        version: 5.51.4
+        specifier: 5.51.5
+        version: 5.51.5
       superjson:
         specifier: 2.2.6
         version: 2.2.6
@@ -1850,14 +1850,11 @@ packages:
   '@posthog/browser-common@0.7.0':
     resolution: {integrity: sha512-Kr6j9sH7NisT3fC3w7jZlonYeCFjPXZrDwHl3usFpjNEdgbHUrxPAmekEkTt+zRAa2huldFPIAmibZ3KC4hXoQ==}
 
-  '@posthog/core@1.49.1':
-    resolution: {integrity: sha512-jdZh85tG56OXLH881CVwBZyiXCPPaZasfYeWwm9kVUvxC/Rb+lz7wYN9GuqSEmNPJgVnK4v8wS0bCaFc3OmVEA==}
-
   '@posthog/core@1.49.2':
     resolution: {integrity: sha512-AXHDo/4nisUg7OPG1TQNgREK7n+chBQXLQyttp7bDTDsDg2k9lV06TmnpvuNbwJs53q9mP9hjezKEZu4fYadfg==}
 
-  '@posthog/types@1.407.0':
-    resolution: {integrity: sha512-7J/aFVi7JWFt/ekGVsMFvkTcADoE9MTNf1N9cpBSMUQ/SPLiBjbg386Fzk5OlgWG/u5OemBy4wlgD7YebqeppQ==}
+  '@posthog/core@1.50.0':
+    resolution: {integrity: sha512-25SnQycZbqqLodQs+GaDPGDC1oxT8+XOSGlyhiS2rtdVON9Opg2hmfJ/fpFNgMBL7YDi0rpvJiR/fudy96W4pA==}
 
   '@posthog/types@1.407.1':
     resolution: {integrity: sha512-WhbkXPC2rgylXqmxHqv70ffI3k+KxyR6s7DBIfr5NvIqHkxp6v0pk31D/jbz0DNVbzwkLjyll2pxr4FNbJiYzg==}
@@ -4407,8 +4404,8 @@ packages:
       react:
         optional: true
 
-  posthog-node@5.51.4:
-    resolution: {integrity: sha512-gI6JMBnU3vjDNclUBWonw3y7k8Y0UPIAVO4AQ2zu9eyW+7sY8UQRofx4JIA7IGYLMEbs4gykfogOmXp16+oUdg==}
+  posthog-node@5.51.5:
+    resolution: {integrity: sha512-QNFlKYU3L2HYAx3FcmmAb+0GbL3pBfyTQsU4n9IUR78rTBbznmw5geYD3z0qp+FrF5eXxBpswGgLNUg5qILddA==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -5927,15 +5924,13 @@ snapshots:
       '@posthog/core': 1.49.2
       '@posthog/types': 1.407.1
 
-  '@posthog/core@1.49.1':
-    dependencies:
-      '@posthog/types': 1.407.0
-
   '@posthog/core@1.49.2':
     dependencies:
       '@posthog/types': 1.407.1
 
-  '@posthog/types@1.407.0': {}
+  '@posthog/core@1.50.0':
+    dependencies:
+      '@posthog/types': 1.407.1
 
   '@posthog/types@1.407.1': {}
 
@@ -8468,9 +8463,9 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@5.51.4:
+  posthog-node@5.51.5:
     dependencies:
-      '@posthog/core': 1.49.1
+      '@posthog/core': 1.50.0
 
   preact@10.29.8: {}
 
