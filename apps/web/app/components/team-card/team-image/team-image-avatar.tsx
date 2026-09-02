@@ -72,12 +72,10 @@ export function TeamImageAvatar({ colors, avatarUrl }: Props) {
 					height={40}
 					width={40}
 					onLoad={(event) => {
-						const path = new URL((event.target as unknown as { src: string }).src).pathname;
-						imageStates.set(path, 'success');
+						imageStates.set(event.currentTarget.src, 'success');
 					}}
 					onError={(event) => {
-						const path = new URL((event.target as unknown as { src: string }).src).pathname;
-						imageStates.set(path, 'error');
+						imageStates.set(event.currentTarget.src, 'error');
 					}}
 				/>
 			)}
