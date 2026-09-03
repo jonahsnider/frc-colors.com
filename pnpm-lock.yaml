@@ -306,8 +306,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.26)
       posthog-js:
-        specifier: 1.424.1
-        version: 1.424.1(@types/react@19.2.18)(react@19.2.8)
+        specifier: 1.425.0
+        version: 1.425.0(@types/react@19.2.18)(react@19.2.8)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -1850,14 +1850,14 @@ packages:
   '@posthog/core@1.50.0':
     resolution: {integrity: sha512-25SnQycZbqqLodQs+GaDPGDC1oxT8+XOSGlyhiS2rtdVON9Opg2hmfJ/fpFNgMBL7YDi0rpvJiR/fudy96W4pA==}
 
-  '@posthog/core@1.50.1':
-    resolution: {integrity: sha512-REG9hSmWdQhPvXJfZuH0cwvveq5lS3wAluNSav7mqiaZszALRL4+4qS5FFO2gpgvV5D7OIhkJFB4ZKFbzqbviA==}
-
   '@posthog/core@1.50.2':
     resolution: {integrity: sha512-El7y/ipZ45OFBRTN/+ixat9Nw21bW+pKKnX0G+rG4rWxBtDA47Ub/ZUnHvZNhAufNInQr4AYCUeWQsuJsTcoKg==}
 
   '@posthog/types@1.407.1':
     resolution: {integrity: sha512-WhbkXPC2rgylXqmxHqv70ffI3k+KxyR6s7DBIfr5NvIqHkxp6v0pk31D/jbz0DNVbzwkLjyll2pxr4FNbJiYzg==}
+
+  '@posthog/types@1.408.0':
+    resolution: {integrity: sha512-xMY8QrRKsTYu4A4Of7XF/xEt0HcnZOWwnICm3do7tGKA0lTlnnr4YW0AHQN1Uv2P3BDqf5GQoqh91MKE+dgdcA==}
 
   '@radix-ui/colors@3.0.0':
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -4397,8 +4397,8 @@ packages:
     resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
     engines: {node: '>=12'}
 
-  posthog-js@1.424.1:
-    resolution: {integrity: sha512-5jJ3PWPDbJ255gcIgANRGt83npqb6hNwgmDt67PmaNMW3ZRTo+arlooEJaSC+poAAJHgsAU4VL0NJ9i/rvmd5g==}
+  posthog-js@1.425.0:
+    resolution: {integrity: sha512-HwbWI1PPFsVQjuFSmRoZioruw2DuIinH37AV9xu8iT2dUIgeBJYOGSv7VQbPSGtH/DeyxCv04UnMAdNKeBSJWg==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5919,14 +5919,10 @@ snapshots:
 
   '@posthog/browser-common@0.7.1':
     dependencies:
-      '@posthog/core': 1.50.1
+      '@posthog/core': 1.50.2
       '@posthog/types': 1.407.1
 
   '@posthog/core@1.50.0':
-    dependencies:
-      '@posthog/types': 1.407.1
-
-  '@posthog/core@1.50.1':
     dependencies:
       '@posthog/types': 1.407.1
 
@@ -5935,6 +5931,8 @@ snapshots:
       '@posthog/types': 1.407.1
 
   '@posthog/types@1.407.1': {}
+
+  '@posthog/types@1.408.0': {}
 
   '@radix-ui/colors@3.0.0': {}
 
@@ -8462,11 +8460,11 @@ snapshots:
 
   postgres@3.4.9: {}
 
-  posthog-js@1.424.1(@types/react@19.2.18)(react@19.2.8):
+  posthog-js@1.425.0(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       '@posthog/browser-common': 0.7.1
       '@posthog/core': 1.50.2
-      '@posthog/types': 1.407.1
+      '@posthog/types': 1.408.0
       core-js: 3.50.0
       dompurify: 3.4.14
       fflate: 0.4.9
