@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@adonisjs/tsconfig": "2.0.0",
-		"@types/node": "26.4.0",
+		"@types/node": "26.4.1",
 		"@types/pg": "8.23.1",
 		"@types/pngjs": "6.0.5",
 		"typescript": "7.0.2"
