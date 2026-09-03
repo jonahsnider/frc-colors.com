@@ -12,6 +12,8 @@ Automatically extracts colors from team avatars uploaded to FIRST if verified co
 
 The API is publicly available at `https://api.frc-colors.com`.
 
+An OpenAPI 3.1 document is available at `https://api.frc-colors.com/openapi.json`.
+
 ### `GET /v1/team/:teamNumber`
 
 Get the colors for a team by number.
