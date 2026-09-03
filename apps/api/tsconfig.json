@@ -1,12 +1,7 @@
 {
+	"extends": "@adonisjs/tsconfig/tsconfig.app.json",
 	"compilerOptions": {
-		// This is disabled since we're using --experimental-transform-types
-		"erasableSyntaxOnly": false,
-		"exactOptionalPropertyTypes": false,
 		"noEmit": true,
-		"allowImportingTsExtensions": true,
-		"rewriteRelativeImportExtensions": false
-	},
-	"extends": ["@tsconfig/strictest", "@tsconfig/node26", "@tsconfig/node-ts"],
-	"include": ["src", "types"]
+		"allowImportingTsExtensions": true
+	}
 }
