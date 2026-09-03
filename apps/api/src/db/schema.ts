@@ -1,10 +1,12 @@
 import { boolean, index, integer, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
-export enum VerificationRequestStatus {
-	Rejected = 'REJECTED',
-	Finished = 'FINISHED',
-	Pending = 'PENDING',
-}
+export const VerificationRequestStatus = {
+	Rejected: 'REJECTED',
+	Finished: 'FINISHED',
+	Pending: 'PENDING',
+} as const;
+export type VerificationRequestStatus = (typeof VerificationRequestStatus)[keyof typeof VerificationRequestStatus];
+
 export const verificationRequestStatus = pgEnum('verification_request_status', [
 	VerificationRequestStatus.Finished,
 	VerificationRequestStatus.Pending,
