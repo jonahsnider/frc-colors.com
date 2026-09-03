@@ -1,8 +1,10 @@
 {
-	"extends": "@adonisjs/tsconfig/tsconfig.app.json",
 	"compilerOptions": {
+		"lib": ["ES2025", "ESNext.Array"],
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
-		"erasableSyntaxOnly": true
-	}
+		"exactOptionalPropertyTypes": false
+	},
+	"extends": ["@tsconfig/strictest", "@tsconfig/node26", "@tsconfig/node-ts"],
+	"include": ["src", "types"]
 }

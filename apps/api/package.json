@@ -34,7 +34,9 @@
 		"zod": "4.5.4"
 	},
 	"devDependencies": {
-		"@adonisjs/tsconfig": "2.0.0",
+		"@tsconfig/node-ts": "23.6.4",
+		"@tsconfig/node26": "26.0.1",
+		"@tsconfig/strictest": "2.0.8",
 		"@types/node": "26.4.1",
 		"@types/pg": "8.23.1",
 		"@types/pngjs": "6.0.5",
