@@ -41,7 +41,7 @@
 		"@types/pngjs": "6.0.5",
 		"typescript": "7.0.2"
 	},
-	"packageManager": "pnpm@12.2.1",
+	"packageManager": "pnpm@12.3.0",
 	"devEngines": {
 		"runtime": {
 			"name": "node",
