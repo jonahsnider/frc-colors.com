@@ -18,7 +18,7 @@
 		"type-check": "turbo run type-check"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.11",
+		"@biomejs/biome": "2.5.12",
 		"drizzle-kit": "1.0.0-rc.5-ab785fc",
 		"envalid": "8.2.0",
 		"knip": "^6.0.0",
