@@ -23,7 +23,7 @@
 		"extract-colors": "4.2.1",
 		"hono": "4.13.5",
 		"ky": "2.1.0",
-		"next-api-utils": "3.0.2",
+		"next-api-utils": "3.1.0",
 		"p-limit": "7.3.2",
 		"pino": "10.3.1",
 		"pino-pretty": "13.1.3",
