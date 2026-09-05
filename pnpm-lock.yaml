@@ -141,13 +141,13 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: 2.1.1
-        version: 2.1.1(hono@4.13.5)
+        version: 2.1.1(hono@4.13.7)
       '@hono/trpc-server':
         specifier: 0.4.2
-        version: 0.4.2(@trpc/server@11.18.0(typescript@7.0.2))(hono@4.13.5)
+        version: 0.4.2(@trpc/server@11.18.0(typescript@7.0.2))(hono@4.13.7)
       '@hono/zod-openapi':
         specifier: 1.6.3
-        version: 1.6.3(hono@4.13.5)(zod@4.5.4)
+        version: 1.6.3(hono@4.13.7)(zod@4.5.4)
       '@jonahsnider/util':
         specifier: 13.0.0
         version: 13.0.0
@@ -176,8 +176,8 @@ importers:
         specifier: 4.2.1
         version: 4.2.1
       hono:
-        specifier: 4.13.5
-        version: 4.13.5
+        specifier: 4.13.7
+        version: 4.13.7
       ky:
         specifier: 2.1.0
         version: 2.1.0
@@ -3827,8 +3827,8 @@ packages:
   help-me@5.0.0:
     resolution: {integrity: sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg==}
 
-  hono@4.13.5:
-    resolution: {integrity: sha512-O6+/eCYRkzzzy0rPWwKLiGBR1nFuUPZynnwjxN1MBA62NNqbT0wQEzQyK2gSO5yDIDB336sXQleAhOHrzlYyKw==}
+  hono@4.13.7:
+    resolution: {integrity: sha512-c8/gF9ac8Y78/agExVocyLevgR+JlpNB444Py0FSX8pJoPdYUfUzRcXtYEYGwt6l19qIlVZPN5Mfsw9jFShmQQ==}
     engines: {node: '>=16.9.0'}
 
   http-errors@1.7.3:
@@ -5371,26 +5371,26 @@ snapshots:
     dependencies:
       react: 19.2.8
 
-  '@hono/node-server@2.1.1(hono@4.13.5)':
+  '@hono/node-server@2.1.1(hono@4.13.7)':
     dependencies:
-      hono: 4.13.5
+      hono: 4.13.7
 
-  '@hono/trpc-server@0.4.2(@trpc/server@11.18.0(typescript@7.0.2))(hono@4.13.5)':
+  '@hono/trpc-server@0.4.2(@trpc/server@11.18.0(typescript@7.0.2))(hono@4.13.7)':
     dependencies:
       '@trpc/server': 11.18.0(typescript@7.0.2)
-      hono: 4.13.5
+      hono: 4.13.7
 
-  '@hono/zod-openapi@1.6.3(hono@4.13.5)(zod@4.5.4)':
+  '@hono/zod-openapi@1.6.3(hono@4.13.7)(zod@4.5.4)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.5.4)
-      '@hono/zod-validator': 0.9.1(hono@4.13.5)(zod@4.5.4)
-      hono: 4.13.5
+      '@hono/zod-validator': 0.9.1(hono@4.13.7)(zod@4.5.4)
+      hono: 4.13.7
       openapi3-ts: 4.6.1
       zod: 4.5.4
 
-  '@hono/zod-validator@0.9.1(hono@4.13.5)(zod@4.5.4)':
+  '@hono/zod-validator@0.9.1(hono@4.13.7)(zod@4.5.4)':
     dependencies:
-      hono: 4.13.5
+      hono: 4.13.7
       zod: 4.5.4
 
   '@img/colour@1.1.0':
@@ -7898,7 +7898,7 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono@4.13.5: {}
+  hono@4.13.7: {}
 
   http-errors@1.7.3:
     dependencies:
