@@ -35,7 +35,7 @@
 		"postcss": "8.5.28",
 		"postcss-import": "17.0.0",
 		"posthog-js": "1.427.1",
-		"radix-themes-tw": "0.2.3",
+		"radix-themes-tw": "1.1.0",
 		"react": "19.2.8",
 		"react-dom": "19.2.8",
 		"sonner": "2.0.8",
