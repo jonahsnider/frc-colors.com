@@ -158,8 +158,8 @@ importers:
         specifier: 11.18.0
         version: 11.18.0(typescript@7.0.2)
       convert:
-        specifier: 7.0.2
-        version: 7.0.2
+        specifier: 8.0.1
+        version: 8.0.1
       croner:
         specifier: 10.0.1
         version: 10.0.1
@@ -3386,8 +3386,8 @@ packages:
     resolution: {integrity: sha512-7V+KqSvMiHp8yWDuwfww06XleMWVVB9b9tURBx+G7UTADuo5hYPuowKloz4OzOqbPezxgo+fdQ1522WzPG4OeA==}
     engines: {node: '>=8'}
 
-  convert@7.0.2:
-    resolution: {integrity: sha512-vDIDqKYqSxmg3x16wYdB+CyfioYOd70GJBtFeU9eoj7PXzhhsmEut+N9NJ7X4Lc+mp18AHOPL9YgyXyejpDc1A==}
+  convert@8.0.1:
+    resolution: {integrity: sha512-lwoEMYZxln/NOBAxEM8RIUqNvaakcm2EBWjilaSyOD+ENh25LlwU5cZfz7rAq/Tf40Jy8FNfl+KV72Dhu7Hu/A==}
 
   copy-anything@4.1.0:
     resolution: {integrity: sha512-ufbM3smX/Jbnpk5wcQjzd1MgBpzmqfNETUAyZNrGwU9foRlyHoGzMMBBCRzEhQLBjZfFDE1W2ufPXX2vdWkV8Q==}
@@ -7552,7 +7552,7 @@ snapshots:
 
   convert-hrtime@3.0.0: {}
 
-  convert@7.0.2: {}
+  convert@8.0.1: {}
 
   copy-anything@4.1.0: {}
 
