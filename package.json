@@ -28,7 +28,7 @@
 		"turbo": "2.10.12",
 		"vercel": "59.11.2"
 	},
-	"packageManager": "pnpm@12.3.3",
+	"packageManager": "pnpm@12.3.4",
 	"devEngines": {
 		"runtime": {
 			"name": "node",
