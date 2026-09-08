@@ -200,8 +200,8 @@ importers:
         specifier: 3.4.9
         version: 3.4.9
       posthog-node:
-        specifier: 5.51.6
-        version: 5.51.6
+        specifier: 5.51.7
+        version: 5.51.7
       superjson:
         specifier: 2.2.6
         version: 2.2.6
@@ -1859,17 +1859,17 @@ packages:
   '@posthog/browser-common@0.7.2':
     resolution: {integrity: sha512-ukDmETXy6fTBE4ZpaO8ccscrNz5SvTaUnhQ0Ze2JX/oYILa89rrNwqUH7lDAuhFKa+NY6EoJ9kZMuOvuu4WwLQ==}
 
-  '@posthog/core@1.50.0':
-    resolution: {integrity: sha512-25SnQycZbqqLodQs+GaDPGDC1oxT8+XOSGlyhiS2rtdVON9Opg2hmfJ/fpFNgMBL7YDi0rpvJiR/fudy96W4pA==}
-
   '@posthog/core@1.50.5':
     resolution: {integrity: sha512-afEchuShDaVIoxAIj76kDZQ1DhfesDmgfVp+mtTzsA3wlc8DF5uoz8YjuTjnxOicWkpP5HCDqYidK/1kT125Cg==}
 
-  '@posthog/types@1.407.1':
-    resolution: {integrity: sha512-WhbkXPC2rgylXqmxHqv70ffI3k+KxyR6s7DBIfr5NvIqHkxp6v0pk31D/jbz0DNVbzwkLjyll2pxr4FNbJiYzg==}
+  '@posthog/core@1.51.0':
+    resolution: {integrity: sha512-LilmmtjcrjV1LgaVNQXrAUt4IXcWIYMrwEtx6VJUUFDeBBdmeI99jshKGtAWugYeB3Wkcp9xQIVCrxIYRpNiRA==}
 
   '@posthog/types@1.409.0':
     resolution: {integrity: sha512-239umoaZVb2GBaXeEyJpwFvjhrrChJH8NHCwiao23EBSu3NA6EN0MTMoaHSmMEf4yjiXEFFoYJA6FjJAXF5HGA==}
+
+  '@posthog/types@1.409.1':
+    resolution: {integrity: sha512-lA2sSGQUdVknSQl93uN9eUXDwkCMjAuthq24GONGHzMWwVygsKNHlWCnlJsVv2giDokj2p1NopO4zsE2S7gYjA==}
 
   '@radix-ui/colors@3.0.0':
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -4428,8 +4428,8 @@ packages:
       react:
         optional: true
 
-  posthog-node@5.51.6:
-    resolution: {integrity: sha512-r+Ge3p0OnOcOWeTnvKZmAtDwECeIoyNTyxBxuZc8wM6RHCQ9j2Xrhogrf39HSq1Y2gIOpWLqIDRmWDcu7xmqcA==}
+  posthog-node@5.51.7:
+    resolution: {integrity: sha512-QzUQ0S7afLIivL1mQvZ1qv3/o179ds1Zze7Zf4JDhjVlJ1mFTyu42cwFQHrD0VQpPXhIVKOq7AvSrF8Bt8yonQ==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -5948,17 +5948,17 @@ snapshots:
       '@posthog/core': 1.50.5
       '@posthog/types': 1.409.0
 
-  '@posthog/core@1.50.0':
-    dependencies:
-      '@posthog/types': 1.407.1
-
   '@posthog/core@1.50.5':
     dependencies:
       '@posthog/types': 1.409.0
 
-  '@posthog/types@1.407.1': {}
+  '@posthog/core@1.51.0':
+    dependencies:
+      '@posthog/types': 1.409.1
 
   '@posthog/types@1.409.0': {}
+
+  '@posthog/types@1.409.1': {}
 
   '@radix-ui/colors@3.0.0': {}
 
@@ -8508,9 +8508,9 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@5.51.6:
+  posthog-node@5.51.7:
     dependencies:
-      '@posthog/core': 1.50.0
+      '@posthog/core': 1.51.0
 
   preact@10.29.8: {}
 
