@@ -13,7 +13,7 @@
 		"@hono/trpc-server": "0.4.2",
 		"@hono/zod-openapi": "1.6.3",
 		"@jonahsnider/util": "13.0.0",
-		"@sentry/node": "10.73.0",
+		"@sentry/node": "10.74.0",
 		"@trpc/server": "11.18.0",
 		"convert": "8.0.1",
 		"croner": "10.0.1",
