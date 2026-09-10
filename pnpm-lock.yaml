@@ -147,7 +147,7 @@ importers:
         version: 0.4.2(@trpc/server@11.18.0(typescript@7.0.2))(hono@4.13.7)
       '@hono/zod-openapi':
         specifier: 1.6.3
-        version: 1.6.3(hono@4.13.7)(zod@4.6.0)
+        version: 1.6.3(hono@4.13.7)(zod@4.6.1)
       '@jonahsnider/util':
         specifier: 13.0.0
         version: 13.0.0
@@ -168,7 +168,7 @@ importers:
         version: 5.9.2
       drizzle-orm:
         specifier: 1.0.0-rc.5-ab785fc
-        version: 1.0.0-rc.5-ab785fc(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(pg@8.23.0)(postgres@3.4.9)(zod@4.6.0)
+        version: 1.0.0-rc.5-ab785fc(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(pg@8.23.0)(postgres@3.4.9)(zod@4.6.1)
       envalid:
         specifier: 8.2.0
         version: 8.2.0
@@ -183,7 +183,7 @@ importers:
         version: 2.1.0
       next-api-utils:
         specifier: 3.1.1
-        version: 3.1.1(next@16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(zod@4.6.0)
+        version: 3.1.1(next@16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(zod@4.6.1)
       p-limit:
         specifier: 7.3.2
         version: 7.3.2
@@ -206,8 +206,8 @@ importers:
         specifier: 2.2.6
         version: 2.2.6
       zod:
-        specifier: 4.6.0
-        version: 4.6.0
+        specifier: 4.6.1
+        version: 4.6.1
     devDependencies:
       '@tsconfig/node-ts':
         specifier: 23.6.4
@@ -5030,14 +5030,17 @@ packages:
   zod@4.6.0:
     resolution: {integrity: sha512-iIvwyDnebKYpww2ta0DjaNOL8RnVLmPMhgWyOzlW9y0EIIxv5gl+H6Y0ONpt83HqjGqkk78uWp6xWtpxzZdPbw==}
 
+  zod@4.6.1:
+    resolution: {integrity: sha512-341aRWQsve0rvronKNTqZpjmzdbUDlFuzHaI/XLg/Ej82qffDJRRfBTCuv7+9q/rMjB6LSLyEBnW4InJeMtt/Q==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@asteasolutions/zod-to-openapi@9.1.0(zod@4.6.0)':
+  '@asteasolutions/zod-to-openapi@9.1.0(zod@4.6.1)':
     dependencies:
       openapi3-ts: 4.6.1
-      zod: 4.6.0
+      zod: 4.6.1
 
   '@biomejs/biome@2.5.12':
     optionalDependencies:
@@ -5377,18 +5380,18 @@ snapshots:
       '@trpc/server': 11.18.0(typescript@7.0.2)
       hono: 4.13.7
 
-  '@hono/zod-openapi@1.6.3(hono@4.13.7)(zod@4.6.0)':
+  '@hono/zod-openapi@1.6.3(hono@4.13.7)(zod@4.6.1)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.6.0)
-      '@hono/zod-validator': 0.9.1(hono@4.13.7)(zod@4.6.0)
+      '@asteasolutions/zod-to-openapi': 9.1.0(zod@4.6.1)
+      '@hono/zod-validator': 0.9.1(hono@4.13.7)(zod@4.6.1)
       hono: 4.13.7
       openapi3-ts: 4.6.1
-      zod: 4.6.0
+      zod: 4.6.1
 
-  '@hono/zod-validator@0.9.1(hono@4.13.7)(zod@4.6.0)':
+  '@hono/zod-validator@0.9.1(hono@4.13.7)(zod@4.6.1)':
     dependencies:
       hono: 4.13.7
-      zod: 4.6.0
+      zod: 4.6.1
 
   '@img/colour@1.1.0':
     optional: true
@@ -7623,13 +7626,13 @@ snapshots:
       get-tsconfig: 4.14.3
       jiti: 2.7.0
 
-  drizzle-orm@1.0.0-rc.5-ab785fc(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(pg@8.23.0)(postgres@3.4.9)(zod@4.6.0):
+  drizzle-orm@1.0.0-rc.5-ab785fc(@opentelemetry/api@1.9.1)(@types/pg@8.23.1)(pg@8.23.0)(postgres@3.4.9)(zod@4.6.1):
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/pg': 8.23.1
       pg: 8.23.0
       postgres: 3.4.9
-      zod: 4.6.0
+      zod: 4.6.1
 
   edge-runtime@2.5.9:
     dependencies:
@@ -8091,11 +8094,11 @@ snapshots:
 
   nanoid@3.3.18: {}
 
-  next-api-utils@3.1.1(next@16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(zod@4.6.0):
+  next-api-utils@3.1.1(next@16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(zod@4.6.1):
     dependencies:
       '@jonahsnider/util': 12.0.0
       next: 16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      zod: 4.6.0
+      zod: 4.6.1
 
   next-plausible@4.0.0(next@16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
@@ -9211,3 +9214,5 @@ snapshots:
   zod@4.5.4: {}
 
   zod@4.6.0: {}
+
+  zod@4.6.1: {}
