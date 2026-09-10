@@ -306,8 +306,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.28)
       posthog-js:
-        specifier: 1.428.7
-        version: 1.428.7(@types/react@19.2.18)(react@19.2.8)
+        specifier: 1.428.8
+        version: 1.428.8(@types/react@19.2.18)(react@19.2.8)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -1861,6 +1861,9 @@ packages:
 
   '@posthog/core@1.51.0':
     resolution: {integrity: sha512-LilmmtjcrjV1LgaVNQXrAUt4IXcWIYMrwEtx6VJUUFDeBBdmeI99jshKGtAWugYeB3Wkcp9xQIVCrxIYRpNiRA==}
+
+  '@posthog/core@1.51.1':
+    resolution: {integrity: sha512-k0aDkW2XR7G0CWVnL0MZdY8wS5PhYvFtpWLdC2vD/sIUB6BGHhxNLgfVd2mLpmuf1zCBz5Q+p8g/01VL88s0Hg==}
 
   '@posthog/types@1.409.1':
     resolution: {integrity: sha512-lA2sSGQUdVknSQl93uN9eUXDwkCMjAuthq24GONGHzMWwVygsKNHlWCnlJsVv2giDokj2p1NopO4zsE2S7gYjA==}
@@ -4412,8 +4415,8 @@ packages:
     resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
     engines: {node: '>=12'}
 
-  posthog-js@1.428.7:
-    resolution: {integrity: sha512-ztFOoipQ1eOEl1xkkEldy1x8TEPKhNRb6ZZbuODoXqILqcHgHCUF1hATENY36HBuSV7TwXq16pQ3QYYI1rBCuQ==}
+  posthog-js@1.428.8:
+    resolution: {integrity: sha512-ZQoJGcZ3TNirjv1DZWm+eQE4eVU5dFWN+aK7DSHoj1vBXhMrQ+mwC8862Yw7FNl9TLyUiIMYPE2m47DQXb9jDg==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5946,6 +5949,10 @@ snapshots:
   '@posthog/core@1.51.0':
     dependencies:
       '@posthog/types': 1.409.1
+
+  '@posthog/core@1.51.1':
+    dependencies:
+      '@posthog/types': 1.409.2
 
   '@posthog/types@1.409.1': {}
 
@@ -8484,10 +8491,10 @@ snapshots:
 
   postgres@3.4.9: {}
 
-  posthog-js@1.428.7(@types/react@19.2.18)(react@19.2.8):
+  posthog-js@1.428.8(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       '@posthog/browser-common': 0.8.2
-      '@posthog/core': 1.51.0
+      '@posthog/core': 1.51.1
       '@posthog/types': 1.409.2
       core-js: 3.50.0
       dompurify: 3.4.14
