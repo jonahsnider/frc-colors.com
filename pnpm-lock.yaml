@@ -134,8 +134,8 @@ importers:
         specifier: 2.10.12
         version: 2.10.12
       vercel:
-        specifier: 59.15.0
-        version: 59.15.0(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)
+        specifier: 59.15.1
+        version: 59.15.1(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)
 
   apps/api:
     dependencies:
@@ -3146,8 +3146,8 @@ packages:
   '@vercel/python-analysis@0.14.0':
     resolution: {integrity: sha512-qyVxbaU14gAi/AsaR8syZLukUsOp69Jkm1xn80rZPy4k9+zRUTIfqs0AOk7L8wwBxDDB6LLjcBUAmafhbJQnUQ==}
 
-  '@vercel/python@13.0.3':
-    resolution: {integrity: sha512-uWj7IU6tJKciG/sWYtKcxk/U9Vtk4AntZz+4l4HdQD4+qlhHAi2/JTe7ILYtLkyJtJmevUPx0UqNCC+UoFY+xw==}
+  '@vercel/python@13.0.4':
+    resolution: {integrity: sha512-TwUrgV4OJgIUoPX+5BQXKHao4tPDGunkjp4zaPYxH3acSqEPW4Qo2UW2RdMWyUldXILJwxq1YzpuYd7OETbVPQ==}
     peerDependencies:
       '@vercel/build-utils': 14.9.3
 
@@ -3182,23 +3182,23 @@ packages:
   '@vercel/static-config@3.4.3':
     resolution: {integrity: sha512-BY1sL8rNJvIm3TK/8TQ+Q6jIx7NpO5xckQzv7s6c1ypHvRnTl+vf6rmgY5WFXmoYDeGm3tMy4jiy/5M/5jGr/g==}
 
-  '@vercel/vc-native-darwin-arm64@59.15.0':
-    resolution: {integrity: sha512-zHEJeggrKRxEebuTahSg7aYGAfVA1PqPdzN+Bn+q15KIB3tCgIIZX8dpsjFKHiDutSQELwl++v7jyUm+7LuwJQ==}
+  '@vercel/vc-native-darwin-arm64@59.15.1':
+    resolution: {integrity: sha512-qS00+zuDAPAgAgvRmAaHJ9+oGNgIFCLdJqiVRtPKqnTIezv49EIAko90GrrU5gnyYeJIODhSrei8gzCBbxFc5w==}
     cpu: [arm64]
     os: [darwin]
 
-  '@vercel/vc-native-darwin-x64@59.15.0':
-    resolution: {integrity: sha512-DM6oMSXCS3iPJ1WAoeySwE2BWt7XEbmrluCOdwUKj6HQjm+EDhrcRifHam2+ZBl0zlazPCd3h83TV8jxJyH28A==}
+  '@vercel/vc-native-darwin-x64@59.15.1':
+    resolution: {integrity: sha512-zhaLkk3IPjEtoU7GMYuGzD7y3AQmIhgqrLrDgnnXAD3sQf4fQ62jw63aAUJw+kypEiWe6s+6SxCHN6H1XhW6Bw==}
     cpu: [x64]
     os: [darwin]
 
-  '@vercel/vc-native-linux-arm64@59.15.0':
-    resolution: {integrity: sha512-JS54YzJNla32mdVy1blLSzDKV7E36tYnP/1G5+oENezMf6v1aU2ycpTJiTMoUZ04nsZPJDvUfnN8bo0ukBUGsw==}
+  '@vercel/vc-native-linux-arm64@59.15.1':
+    resolution: {integrity: sha512-ab5uRhGAQzY1Mepwav5v0t9Wqgf+OypD257A8N+ekmTk44HJPd+oQl7jZ6OOdKkmljxHBUu/K3PgailOBLfzFw==}
     cpu: [arm64]
     os: [linux]
 
-  '@vercel/vc-native-linux-x64@59.15.0':
-    resolution: {integrity: sha512-yZ+KijW8aGSeY4dKZ1akpxHHQO/BQzKOOOz437jJG9oxRzzQ7vPMZvHkR6YpY5/xeeWkdY0YHncrw8Ux+bc7NA==}
+  '@vercel/vc-native-linux-x64@59.15.1':
+    resolution: {integrity: sha512-pqZUd/37Qnf5Sedqq3lsicTK9yTvTY/G4do8troGH1rsXg3H4ySSyY28ckN0HflYGNkNb2F0PslSL/uRsOwzjg==}
     cpu: [x64]
     os: [linux]
 
@@ -4937,8 +4937,8 @@ packages:
     resolution: {integrity: sha512-6ZxzVpzDXDa3bJWaHilVayA+BH/1zmxCJoVgvmqJnid/gPoKHxUrS/aC/T6LGQtNHT+XHG9fXPJB4d+IrU30Ew==}
     hasBin: true
 
-  vercel@59.15.0:
-    resolution: {integrity: sha512-yKSfU7XNjBkFRbTU/UB+2Z3TZa0ekI4wxskPo4CSniGFwvzoYdSUNBscAVQWI5+CYz0h54R9UxXSlA2knWY4yA==}
+  vercel@59.15.1:
+    resolution: {integrity: sha512-FsKpupuWzp/qm2FlGUJ92U9Ey/Dc/Rwux7GOudNRsmUihboJRMPBltru+IT60tBCU/q6kMy32Pl3yxbRdS/mOQ==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -5029,9 +5029,6 @@ packages:
 
   zod@4.5.4:
     resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
-
-  zod@4.6.0:
-    resolution: {integrity: sha512-iIvwyDnebKYpww2ta0DjaNOL8RnVLmPMhgWyOzlW9y0EIIxv5gl+H6Y0ONpt83HqjGqkk78uWp6xWtpxzZdPbw==}
 
   zod@4.6.1:
     resolution: {integrity: sha512-341aRWQsve0rvronKNTqZpjmzdbUDlFuzHaI/XLg/Ej82qffDJRRfBTCuv7+9q/rMjB6LSLyEBnW4InJeMtt/Q==}
@@ -7324,7 +7321,7 @@ snapshots:
       smol-toml: 1.5.2
       zod: 3.22.4
 
-  '@vercel/python@13.0.3(@vercel/build-utils@14.9.3)':
+  '@vercel/python@13.0.4(@vercel/build-utils@14.9.3)':
     dependencies:
       '@vercel/build-utils': 14.9.3
       '@vercel/python-analysis': 0.14.0
@@ -7383,7 +7380,7 @@ snapshots:
       tar-stream: 3.1.7
       undici: 7.29.0
       xdg-app-paths: 5.1.0
-      zod: 4.6.0
+      zod: 4.6.1
     transitivePeerDependencies:
       - bare-abort-controller
       - react-native-b4a
@@ -7409,16 +7406,16 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  '@vercel/vc-native-darwin-arm64@59.15.0':
+  '@vercel/vc-native-darwin-arm64@59.15.1':
     optional: true
 
-  '@vercel/vc-native-darwin-x64@59.15.0':
+  '@vercel/vc-native-darwin-x64@59.15.1':
     optional: true
 
-  '@vercel/vc-native-linux-arm64@59.15.0':
+  '@vercel/vc-native-linux-arm64@59.15.1':
     optional: true
 
-  '@vercel/vc-native-linux-x64@59.15.0':
+  '@vercel/vc-native-linux-x64@59.15.1':
     optional: true
 
   '@workflow/serde@4.1.0-beta.2': {}
@@ -8735,7 +8732,7 @@ snapshots:
       async-retry: 1.3.3
       debug: 4.4.3
       ws: 8.21.3
-      zod: 4.6.0
+      zod: 4.6.1
     transitivePeerDependencies:
       - bare-abort-controller
       - bufferutil
@@ -9098,7 +9095,7 @@ snapshots:
 
   uuid@14.0.1: {}
 
-  vercel@59.15.0(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3):
+  vercel@59.15.1(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3):
     dependencies:
       '@vercel/backends': 7.0.4(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(@vercel/build-utils@14.9.3)
       '@vercel/blob': 2.8.0
@@ -9120,7 +9117,7 @@ snapshots:
       '@vercel/next': 11.0.4(@vercel/build-utils@14.9.3)
       '@vercel/node': 12.0.3(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(@vercel/build-utils@14.9.3)
       '@vercel/prepare-flags-definitions': 0.3.0
-      '@vercel/python': 13.0.3(@vercel/build-utils@14.9.3)
+      '@vercel/python': 13.0.4(@vercel/build-utils@14.9.3)
       '@vercel/python-analysis': 0.14.0
       '@vercel/redwood': 9.0.3(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(@vercel/build-utils@14.9.3)
       '@vercel/remix-builder': 12.0.3(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(@vercel/build-utils@14.9.3)
@@ -9138,10 +9135,10 @@ snapshots:
       uuid: 14.0.1
       zod: 4.1.11
     optionalDependencies:
-      '@vercel/vc-native-darwin-arm64': 59.15.0
-      '@vercel/vc-native-darwin-x64': 59.15.0
-      '@vercel/vc-native-linux-arm64': 59.15.0
-      '@vercel/vc-native-linux-x64': 59.15.0
+      '@vercel/vc-native-darwin-arm64': 59.15.1
+      '@vercel/vc-native-darwin-x64': 59.15.1
+      '@vercel/vc-native-linux-arm64': 59.15.1
+      '@vercel/vc-native-linux-x64': 59.15.1
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
@@ -9217,7 +9214,5 @@ snapshots:
   zod@4.1.11: {}
 
   zod@4.5.4: {}
-
-  zod@4.6.0: {}
 
   zod@4.6.1: {}
