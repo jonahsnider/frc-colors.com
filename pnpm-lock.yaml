@@ -306,8 +306,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.28)
       posthog-js:
-        specifier: 1.428.11
-        version: 1.428.11(@types/react@19.3.0)(react@19.3.0)
+        specifier: 1.429.1
+        version: 1.429.1(@types/react@19.3.0)(react@19.3.0)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -1870,6 +1870,9 @@ packages:
 
   '@posthog/types@1.409.4':
     resolution: {integrity: sha512-X8egIUjMe1uItlxpbLfWypS2SWLOF+5Vzvne/44AsaHa/fYbtSy8itJNk5iQS1MZEwVYAEYUsQY1vuN61jpxTg==}
+
+  '@posthog/types@1.410.0':
+    resolution: {integrity: sha512-741sltt/h+l0eYH+Nkow96qKfDmRxwKacfjF93Z+kMySjzL0a87ptmpklZxGkbjBp/DJH/CSowGrolYWK/1ToA==}
 
   '@radix-ui/colors@3.0.0':
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -4415,8 +4418,8 @@ packages:
     resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
     engines: {node: '>=12'}
 
-  posthog-js@1.428.11:
-    resolution: {integrity: sha512-98hMmCYgEclXefLmDHSaZIFzGS2D/1ypytNG51WJsWSJkEznyx6JlizT6m+aVqCXh0SR4u8TEvdloFoxCbP3UQ==}
+  posthog-js@1.429.1:
+    resolution: {integrity: sha512-6DnWhkmaFlY6/Wjrw59GXeUyyS2NG0CIFNklxuUlEfbw1Wx2A3Z9/NSYCUJlY7feMgqN74BguAmQtXAlsNwguQ==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -5949,8 +5952,8 @@ snapshots:
 
   '@posthog/browser-common@0.8.2':
     dependencies:
-      '@posthog/core': 1.51.1
-      '@posthog/types': 1.409.2
+      '@posthog/core': 1.52.0
+      '@posthog/types': 1.409.4
 
   '@posthog/core@1.51.1':
     dependencies:
@@ -5963,6 +5966,8 @@ snapshots:
   '@posthog/types@1.409.2': {}
 
   '@posthog/types@1.409.4': {}
+
+  '@posthog/types@1.410.0': {}
 
   '@radix-ui/colors@3.0.0': {}
 
@@ -8497,11 +8502,11 @@ snapshots:
 
   postgres@3.4.9: {}
 
-  posthog-js@1.428.11(@types/react@19.3.0)(react@19.3.0):
+  posthog-js@1.429.1(@types/react@19.3.0)(react@19.3.0):
     dependencies:
       '@posthog/browser-common': 0.8.2
       '@posthog/core': 1.52.0
-      '@posthog/types': 1.409.4
+      '@posthog/types': 1.410.0
       core-js: 3.50.0
       dompurify: 3.4.14
       fflate: 0.4.9
