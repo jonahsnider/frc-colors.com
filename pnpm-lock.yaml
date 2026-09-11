@@ -273,8 +273,8 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(next@16.3.4(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
       autoprefixer:
-        specifier: 10.5.5
-        version: 10.5.5(postcss@8.5.28)
+        specifier: 10.5.6
+        version: 10.5.6(postcss@8.5.28)
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -3267,8 +3267,8 @@ packages:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
     engines: {node: '>=8.0.0'}
 
-  autoprefixer@10.5.5:
-    resolution: {integrity: sha512-uiRYvQYe/nNSzBJ7OUnd2/TZVsAdob3blml44teEpee9Cc1f4rGZFewO+JT3Wo8mgFOSzNqes4FHZn/Qz8WOuw==}
+  autoprefixer@10.5.6:
+    resolution: {integrity: sha512-HiH4oYNc5+DQEx/b8FPfMj+WHH/WWUBmbN5r1Uf/ixtfyFkk+wGIlfJT/RD5eAyzlwkeYRtZUCI8qrEi26pl2g==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -7470,7 +7470,7 @@ snapshots:
 
   atomic-sleep@1.0.0: {}
 
-  autoprefixer@10.5.5(postcss@8.5.28):
+  autoprefixer@10.5.6(postcss@8.5.28):
     dependencies:
       browserslist: 4.28.9
       caniuse-lite: 1.0.30001810
