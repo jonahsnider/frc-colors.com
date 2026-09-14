@@ -4,10 +4,12 @@
 		"includes": [
 			"**",
 			"!**/.next",
+			"!**/.open-next",
 			"!**/node_modules",
-			"!**/.vercel",
+			"!**/.wrangler",
 			"!**/package.json",
 			"!**/.turbo",
+			"!**/cloudflare-env.d.ts",
 			"!**/next-env.d.ts"
 		]
 	},

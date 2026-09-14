@@ -6,3 +6,9 @@ enableGlobalVirtualStore: false
 allowBuilds:
   core-js: true
   esbuild: true
+  rclone.js: false
+  workerd: true
+
+minimumReleaseAgeExclude:
+  - miniflare@5.20260911.1-alpha
+  - wrangler@4.131.2

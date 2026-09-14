@@ -3,8 +3,9 @@ name: CI
 on: [push, pull_request]
 
 env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  BASE_URL: https://frc-colors.com
+  NEXT_PUBLIC_API_URL: https://api.frc-colors.com
+  NEXT_PUBLIC_POSTHOG_KEY: phc_JGZc71tEanpLx9XRzGWPt0Du9nUgb6IEfkQQtKii2yu
 
 jobs:
   build-and-test:
@@ -20,8 +21,6 @@ jobs:
         uses: pnpm/setup@v2
         with:
           cache: true
-      - name: Pull environment variables
-        run: pnpm exec vercel env pull --environment development .env --token ${{ secrets.VERCEL_TOKEN }}
       - name: Cache Next.js
         uses: actions/cache@v6
         with:

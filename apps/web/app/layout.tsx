@@ -1,5 +1,4 @@
 import { Container, Section, Theme } from '@radix-ui/themes';
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import type { Metadata, Viewport } from 'next';
 import PlausibleProvider from 'next-plausible';
 import { ThemeProvider } from 'next-themes';
@@ -65,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 										</Section>
 										<Footer />
 
-										<VercelAnalytics />
 										<Toaster />
 									</Theme>
 								</ThemeProvider>

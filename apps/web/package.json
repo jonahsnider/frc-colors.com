@@ -4,9 +4,14 @@
 	"private": true,
 	"scripts": {
 		"build": "NODE_ENV=production next build",
+		"build:cloudflare": "opennextjs-cloudflare build",
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+		"deploy": "pnpm run build:cloudflare && opennextjs-cloudflare deploy",
 		"dev": "portless frc-colors.com next dev",
+		"preview": "pnpm run build:cloudflare && opennextjs-cloudflare preview",
 		"start": "next start",
-		"type-check": "tsc"
+		"type-check": "tsc",
+		"upload": "pnpm run build:cloudflare && opennextjs-cloudflare upload"
 	},
 	"dependencies": {
 		"@frc-colors/api": "workspace:*",
@@ -22,7 +27,6 @@
 		"@types/react": "19.3.0",
 		"@types/react-dom": "19.3.0",
 		"@uidotdev/usehooks": "2.4.1",
-		"@vercel/analytics": "2.0.1",
 		"autoprefixer": "10.6.0",
 		"clsx": "2.1.1",
 		"culori": "4.0.2",
@@ -44,9 +48,11 @@
 		"use-debounce": "10.1.1"
 	},
 	"devDependencies": {
+		"@opennextjs/cloudflare": "1.20.6",
 		"@types/culori": "4.0.1",
 		"dotenv": "17.4.2",
-		"type-fest": "5.9.0"
+		"type-fest": "5.9.0",
+		"wrangler": "4.131.2"
 	},
 	"packageManager": "pnpm@12.4.1",
 	"devEngines": {

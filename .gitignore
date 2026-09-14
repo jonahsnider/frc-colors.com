@@ -244,9 +244,13 @@ service-account-key.json
 # Turbo
 .turbo
 
-# Vercel
-.vercel
+# Hosting build state
+.wrangler
+.open-next
+.dev.vars*
+!.dev.vars.example
 .env*.local
 
 # Next.js
+cloudflare-env.d.ts
 next-env.d.ts

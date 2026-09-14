@@ -2,10 +2,6 @@ name: autofix.ci # needed to securely identify the workflow
 
 on: [push, pull_request]
 
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 permissions:
   contents: read
 
@@ -20,8 +16,6 @@ jobs:
         uses: pnpm/setup@v2
         with:
           cache: true
-      - name: Pull environment variables
-        run: pnpm exec vercel env pull --environment development .env --token ${{ secrets.VERCEL_TOKEN }}
       - name: Migrate Biome schema
         continue-on-error: true
         run: pnpm exec biome migrate --write

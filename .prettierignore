@@ -244,8 +244,11 @@ service-account-key.json
 # Turbo
 .turbo
 
-# Vercel
-.vercel
+# Hosting build state
+.wrangler
+.open-next
+.dev.vars*
+!.dev.vars.example
 .env*.local
 
 # Files that Biome can handle
@@ -261,5 +264,6 @@ service-account-key.json
 **/*.jsonc
 **/*.css
 !**/package.json
+**/cloudflare-env.d.ts
 
 pnpm-lock.yaml

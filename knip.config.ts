@@ -1,13 +1,9 @@
 import type { KnipConfig } from 'knip';
 
 const config: KnipConfig = {
+	// Loaded by the OpenNext CLI.
+	ignore: ['apps/web/open-next.config.ts'],
 	workspaces: {
-		'.': {
-			ignoreDependencies: [
-				// Used in CI workflow
-				'vercel',
-			],
-		},
 		'apps/api': {
 			ignoreDependencies: [
 				// Used as a string reference in pino transport config
