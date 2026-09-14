@@ -14,6 +14,16 @@ if (!apiUrl) {
 const nextConfig = withPlausibleProxy({ src: 'https://plausible.io/js/pa-cl6RdTRHDwcw6snO6VH_-.js' })({
 	productionBrowserSourceMaps: true,
 	allowedDevOrigins: ['frc-colors.com.localhost'],
+	async redirects() {
+		return [
+			{
+				source: '/:path*',
+				has: [{ type: 'host', value: 'www.frc-colors.com' }],
+				destination: 'https://frc-colors.com/:path*',
+				permanent: true,
+			},
+		];
+	},
 	async rewrites() {
 		return [
 			{

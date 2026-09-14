@@ -12,6 +12,10 @@
 		{
 			"pattern": "frc-colors.com/*",
 			"zone_name": "frc-colors.com"
+		},
+		{
+			"pattern": "www.frc-colors.com/*",
+			"zone_name": "frc-colors.com"
 		}
 	],
 	"observability": {
