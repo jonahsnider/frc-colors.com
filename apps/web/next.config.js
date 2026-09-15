@@ -17,6 +17,12 @@ const nextConfig = withPlausibleProxy({ src: 'https://plausible.io/js/pa-cl6RdTR
 	async redirects() {
 		return [
 			{
+				source: '/',
+				has: [{ type: 'host', value: 'www.frc-colors.com' }],
+				destination: 'https://frc-colors.com',
+				permanent: true,
+			},
+			{
 				source: '/:path*',
 				has: [{ type: 'host', value: 'www.frc-colors.com' }],
 				destination: 'https://frc-colors.com/:path*',
