@@ -254,8 +254,8 @@ importers:
         specifier: 3.4.9
         version: 3.4.9
       posthog-node:
-        specifier: 5.52.2
-        version: 5.52.2
+        specifier: 5.52.3
+        version: 5.52.3
       superjson:
         specifier: 2.2.6
         version: 2.2.6
@@ -2039,11 +2039,11 @@ packages:
   '@posthog/browser-common@0.8.3':
     resolution: {integrity: sha512-4Hlbwyn+Hioc2+pjqSGWMTDrA5XsDshssPnGfv34khPKoJaeBe2YvPvsEPoH78jezOS6Wo3LJvCPhqyolg3S8w==}
 
-  '@posthog/core@1.53.3':
-    resolution: {integrity: sha512-ioBDeZtsFZej4vfX2bGGBud3DNCvSlmUUdk2KtQWOlpGytbdirMHVxG2iAFkxqemiukqcvf/Do6BtZb5hp9MYw==}
-
   '@posthog/core@1.54.0':
     resolution: {integrity: sha512-168MROFCM9YsGcCrbI4zukwR1lmLtKCvJk1NRuRS3PlhpMDBgmdNBxefPifb7nBCQz+61lrWq70saXdFhNdbiQ==}
+
+  '@posthog/core@1.54.1':
+    resolution: {integrity: sha512-UvpnMylZ25ncVGi1jJjZlrN09VOdwYy34t1fh61T6aNZhtRA5aIwLIvaD6nOftOhi8d/DBCZi43wTjzhVlMotw==}
 
   '@posthog/types@1.412.0':
     resolution: {integrity: sha512-EP+lSTnEmftW/slhGXsuGcYAygO4oho3hjWqObP+GeceZ+6qcwK9qZwVRqJjsiZAl0xLPy5s0U0SZqGKayFyeQ==}
@@ -4480,8 +4480,8 @@ packages:
       react:
         optional: true
 
-  posthog-node@5.52.2:
-    resolution: {integrity: sha512-era2ptMcl8nQBT1apUMeoagLSgU1IfR5IwW4v0gudjzkV7IZbr+slG7I4IPiEG0WmsqrLjKnYz/t75vdveTbFA==}
+  posthog-node@5.52.3:
+    resolution: {integrity: sha512-eRmstlXCltl9VxKTOghckk2HvnLkYSAbqW+1fAbIeQKTXcf9jK6ns2MKM9Mcb8AzUMoR3QpNNeWAgGEXtSmVgQ==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -6505,11 +6505,11 @@ snapshots:
       '@posthog/core': 1.54.0
       '@posthog/types': 1.412.0
 
-  '@posthog/core@1.53.3':
+  '@posthog/core@1.54.0':
     dependencies:
       '@posthog/types': 1.412.0
 
-  '@posthog/core@1.54.0':
+  '@posthog/core@1.54.1':
     dependencies:
       '@posthog/types': 1.412.0
 
@@ -8872,9 +8872,9 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@5.52.2:
+  posthog-node@5.52.3:
     dependencies:
-      '@posthog/core': 1.53.3
+      '@posthog/core': 1.54.1
 
   preact@10.29.8: {}
 
