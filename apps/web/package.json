@@ -22,7 +22,7 @@
 		"@radix-ui/themes": "3.3.0",
 		"@trpc/client": "11.19.0",
 		"@trpc/next": "11.19.0",
-		"@trpc/react-query": "11.18.0",
+		"@trpc/react-query": "11.19.0",
 		"@types/node": "26.6.1",
 		"@types/react": "19.3.0",
 		"@types/react-dom": "19.3.0",
