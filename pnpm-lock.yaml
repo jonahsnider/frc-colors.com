@@ -239,8 +239,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1(next@16.3.5(@opentelemetry/api@1.9.1)(@types/node@26.6.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(zod@4.6.5)
       p-limit:
-        specifier: 7.3.2
-        version: 7.3.2
+        specifier: 7.3.3
+        version: 7.3.3
       pino:
         specifier: 10.3.1
         version: 10.3.1
@@ -4287,8 +4287,8 @@ packages:
   oxc-resolver@11.24.2:
     resolution: {integrity: sha512-FY91FiDBj7ls5MsFS9jN3tjz2o0/zsdSsymlakySaBwVJZorHhkWyICLZMKxlu1R9vYo+sd3z1jwb4J8x7bNDw==}
 
-  p-limit@7.3.2:
-    resolution: {integrity: sha512-Ll0w3fU24vYpXoZmjjZIee6bJQDgG0oAyo1PdmFYI8UDwJJddaHAypxIH9avUu+t+lSsAwKVsb1jDCMIIChliw==}
+  p-limit@7.3.3:
+    resolution: {integrity: sha512-SKgVvDU5TNIxQ4r30U75BNLC6a+6GOEjngrk/ysM5+Zu3oJuk1SC5ApzIzY/7PjCEjoVPMWJ0zho/4QUiEB7TQ==}
     engines: {node: '>=20'}
 
   package-json-from-dist@1.0.1:
@@ -8680,7 +8680,7 @@ snapshots:
       '@oxc-resolver/binding-win32-arm64-msvc': 11.24.2
       '@oxc-resolver/binding-win32-x64-msvc': 11.24.2
 
-  p-limit@7.3.2:
+  p-limit@7.3.3:
     dependencies:
       yocto-queue: 1.2.2
 
