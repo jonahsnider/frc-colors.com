@@ -54,7 +54,7 @@
 		"type-fest": "5.10.0",
 		"wrangler": "4.135.0"
 	},
-	"packageManager": "pnpm@12.4.2",
+	"packageManager": "pnpm@12.5.1",
 	"devEngines": {
 		"runtime": {
 			"name": "node",
