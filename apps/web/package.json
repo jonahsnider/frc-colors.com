@@ -52,7 +52,7 @@
 		"@types/culori": "4.0.1",
 		"dotenv": "18.0.1",
 		"type-fest": "5.10.0",
-		"wrangler": "4.135.0"
+		"wrangler": "4.136.0"
 	},
 	"packageManager": "pnpm@12.5.1",
 	"devEngines": {
