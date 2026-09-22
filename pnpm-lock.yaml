@@ -357,8 +357,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.28)
       posthog-js:
-        specifier: 1.434.4
-        version: 1.434.4(@types/react@19.3.0)(react@19.3.0)
+        specifier: 1.434.5
+        version: 1.434.5(@types/react@19.3.0)(react@19.3.0)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -4474,8 +4474,8 @@ packages:
     resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
     engines: {node: '>=12'}
 
-  posthog-js@1.434.4:
-    resolution: {integrity: sha512-gsyult9qyScG0+Wqcqw6VXnb1a25QELnerQ44hStku6amEKndo8JLJleRaaQhkNn1A9xJ6awqQm1xF79WPkLRA==}
+  posthog-js@1.434.5:
+    resolution: {integrity: sha512-0bQsdC7RMnBV9fHH4XeD5Jp0a20SkW/SMOqgcNv99ISRopeZ5hDS9M/kEDTR8Ey+XQxo3SLQePdN9J+IUwyNzA==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -8863,7 +8863,7 @@ snapshots:
 
   postgres@3.4.9: {}
 
-  posthog-js@1.434.4(@types/react@19.3.0)(react@19.3.0):
+  posthog-js@1.434.5(@types/react@19.3.0)(react@19.3.0):
     dependencies:
       '@posthog/browser-common': 0.9.0
       '@posthog/core': 1.55.1
