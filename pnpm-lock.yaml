@@ -357,8 +357,8 @@ importers:
         specifier: 17.0.0
         version: 17.0.0(postcss@8.5.28)
       posthog-js:
-        specifier: 1.434.2
-        version: 1.434.2(@types/react@19.3.0)(react@19.3.0)
+        specifier: 1.434.3
+        version: 1.434.3(@types/react@19.3.0)(react@19.3.0)
       radix-themes-tw:
         specifier: 0.2.3
         version: 0.2.3
@@ -2039,20 +2039,14 @@ packages:
   '@posthog/browser-common@0.9.0':
     resolution: {integrity: sha512-EWoVzs1vVY7ihpn8yOjj3jyjriHUEEMVSBNL/TW3hk09fTriWRe76vJXrRg0G0yjTYxHmtlSkNn4mOV24ZEzzA==}
 
-  '@posthog/core@1.54.4':
-    resolution: {integrity: sha512-Y5SWMUqeiq4R7h1ZflP0iGlqq1SSMNnFHz0XIUAXxuPDyOaZu1UVTefc2qCPRWPR3nQ9bx3LeQEBu9tw8fNHvg==}
-
-  '@posthog/core@1.55.0':
-    resolution: {integrity: sha512-x+0FR+uHsK3uJeofd5X4S2YS7hjaWkzkPN0X1GROHm9SvKw2RJ91kfQ7gT1bPtFwZSHNiRtteB7fX/xEMRN0IQ==}
-
   '@posthog/core@1.55.1':
     resolution: {integrity: sha512-S76bSbCHGVC8oQa1zyue6A6WzkNf1Ue4oRvfvBNLRnFM3UoWnpWnQ4T/4IzrIEtVCQYv1OI7gk8uL8/U6Tuu7w==}
 
-  '@posthog/types@1.412.2':
-    resolution: {integrity: sha512-taxTh8o6n7ZVlC8qBypZvF+6w7/18yNkS9XDiGCbutGTKqIljfzYi/7pumgwN3mcnl/n0e9A+JhF05+nLd4Xaw==}
-
   '@posthog/types@1.412.3':
     resolution: {integrity: sha512-SObrE2wqXic4/1B0OqXXPFuucReZ/dQ2qLkuTZT3K7pXsbcc9ZOLj0d8JVK/kjEaram8ppadAlbxqI++GjWNHQ==}
+
+  '@posthog/types@1.412.4':
+    resolution: {integrity: sha512-Q7lV9O9TbLngjOYw1ucm3bS3tn48xb1B4ZQdDy8gv7yfKe99hCTeWYG4xZ36nJM80VxpTF9TriiJt5hngDOkBg==}
 
   '@radix-ui/colors@3.0.0':
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -4480,8 +4474,8 @@ packages:
     resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
     engines: {node: '>=12'}
 
-  posthog-js@1.434.2:
-    resolution: {integrity: sha512-xyvjj88U2Cp1JfDzmifLvNbdiY/z+YbTT1DaRRKRZ+qzaF9IKqMLumpv8jTKGh6y3m4vc3xz0ku8h5Tw0XU9zQ==}
+  posthog-js@1.434.3:
+    resolution: {integrity: sha512-+/pJ0D4Tlmj4uKlH1pGpttzlTER2QSpAeBeejkaRaX3yktPIfOL9y4ana2AMqak9qDNqbNsFYRP7CHd7G9IkbQ==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -6515,24 +6509,16 @@ snapshots:
 
   '@posthog/browser-common@0.9.0':
     dependencies:
-      '@posthog/core': 1.54.4
-      '@posthog/types': 1.412.2
-
-  '@posthog/core@1.54.4':
-    dependencies:
-      '@posthog/types': 1.412.2
-
-  '@posthog/core@1.55.0':
-    dependencies:
-      '@posthog/types': 1.412.2
+      '@posthog/core': 1.55.1
+      '@posthog/types': 1.412.3
 
   '@posthog/core@1.55.1':
     dependencies:
       '@posthog/types': 1.412.3
 
-  '@posthog/types@1.412.2': {}
-
   '@posthog/types@1.412.3': {}
+
+  '@posthog/types@1.412.4': {}
 
   '@radix-ui/colors@3.0.0': {}
 
@@ -8877,11 +8863,11 @@ snapshots:
 
   postgres@3.4.9: {}
 
-  posthog-js@1.434.2(@types/react@19.3.0)(react@19.3.0):
+  posthog-js@1.434.3(@types/react@19.3.0)(react@19.3.0):
     dependencies:
       '@posthog/browser-common': 0.9.0
-      '@posthog/core': 1.55.0
-      '@posthog/types': 1.412.2
+      '@posthog/core': 1.55.1
+      '@posthog/types': 1.412.4
       core-js: 3.50.0
       dompurify: 3.4.14
       fflate: 0.4.9
