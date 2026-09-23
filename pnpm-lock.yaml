@@ -383,7 +383,7 @@ importers:
     devDependencies:
       '@opennextjs/cloudflare':
         specifier: 1.20.6
-        version: 1.20.6(next@16.3.5(@opentelemetry/api@1.9.1)(@types/node@26.6.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(rclone.js@0.6.6)(supports-color@10.2.2)(wrangler@4.136.1(@types/node@26.6.2))
+        version: 1.20.6(next@16.3.5(@opentelemetry/api@1.9.1)(@types/node@26.6.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(rclone.js@0.6.6)(supports-color@10.2.2)(wrangler@4.136.2(@types/node@26.6.2))
       '@types/culori':
         specifier: 4.0.1
         version: 4.0.1
@@ -394,8 +394,8 @@ importers:
         specifier: 5.10.0
         version: 5.10.0
       wrangler:
-        specifier: 4.136.1
-        version: 4.136.1(@types/node@26.6.2)
+        specifier: 4.136.2
+        version: 4.136.2(@types/node@26.6.2)
 
 packages:
 
@@ -4978,8 +4978,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  wrangler@4.136.1:
-    resolution: {integrity: sha512-xGdBeGMbdFJ7KgndpFyXsncg+kSQ46pD378LTFvyEGUnVvHGAF5ka1shqMpQIrg8n5AFmqajoTxi4E7w7FfEwQ==}
+  wrangler@4.136.2:
+    resolution: {integrity: sha512-BeWkkU7leFyalKi++LDHUaWSumwLVNeBeY2Ma+CqylT/hxs2sKT5e/q88MvXUl4Ng4iPS90H9H1qlb5oK3uhhQ==}
     engines: {node: '>=22.0.0'}
     hasBin: true
     peerDependencies:
@@ -6310,7 +6310,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opennextjs/cloudflare@1.20.6(next@16.3.5(@opentelemetry/api@1.9.1)(@types/node@26.6.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(rclone.js@0.6.6)(supports-color@10.2.2)(wrangler@4.136.1(@types/node@26.6.2))':
+  '@opennextjs/cloudflare@1.20.6(next@16.3.5(@opentelemetry/api@1.9.1)(@types/node@26.6.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(rclone.js@0.6.6)(supports-color@10.2.2)(wrangler@4.136.2(@types/node@26.6.2))':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@dotenvx/dotenvx': 1.31.0
@@ -6322,7 +6322,7 @@ snapshots:
       glob: 12.0.0
       next: 16.3.5(@opentelemetry/api@1.9.1)(@types/node@26.6.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       ts-tqdm: 0.8.6
-      wrangler: 4.136.1(@types/node@26.6.2)
+      wrangler: 4.136.2(@types/node@26.6.2)
       yargs: 18.1.0
     optionalDependencies:
       rclone.js: 0.6.6
@@ -9457,7 +9457,7 @@ snapshots:
       '@cloudflare/workerd-linux-arm64': 1.20260921.1
       '@cloudflare/workerd-windows-64': 1.20260921.1
 
-  wrangler@4.136.1(@types/node@26.6.2):
+  wrangler@4.136.2(@types/node@26.6.2):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.5.0
       '@cloudflare/unenv-preset': 2.16.2(unenv@2.0.0-rc.24)(workerd@1.20260921.1)
