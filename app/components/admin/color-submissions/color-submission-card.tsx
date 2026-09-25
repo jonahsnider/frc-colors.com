@@ -11,7 +11,7 @@ import { useApiKey } from '@/app/hooks/use-api-key';
 import { api } from '@/convex/_generated/api';
 import type { ColorSubmission } from '@/src/color-submissions/dtos/color-submission.dto';
 import type { TeamColors } from '@/src/colors/dtos/colors.dto';
-import { Schema } from '@/src/db/index';
+import { VerificationRequestStatus } from '@/src/review-status';
 import { Toast } from '../../toast';
 import { CompareColors } from './compare-colors';
 
@@ -24,7 +24,7 @@ function CardActions({ submission }: { submission: ColorSubmission }) {
 		setPendingStatus(status);
 		try {
 			const updated = await updateStatus({ password, id: submission.id, status });
-			const action = updated.status === Schema.VerificationRequestStatus.Rejected ? 'rejected' : 'approved';
+			const action = updated.status === VerificationRequestStatus.Rejected ? 'rejected' : 'approved';
 
 			toast.custom(() => (
 				<Toast icon={<CheckIcon width='22' height='22' />} color='green'>
@@ -42,15 +42,15 @@ function CardActions({ submission }: { submission: ColorSubmission }) {
 		}
 	};
 
-	if (submission.status === Schema.VerificationRequestStatus.Pending) {
+	if (submission.status === VerificationRequestStatus.Pending) {
 		return (
 			<div className='flex justify-between items-center w-full pt-rx-2'>
 				<Button
 					variant='surface'
 					color='red'
 					size='3'
-					onClick={() => onUpdate(Schema.VerificationRequestStatus.Rejected)}
-					loading={pendingStatus === Schema.VerificationRequestStatus.Rejected}
+					onClick={() => onUpdate(VerificationRequestStatus.Rejected)}
+					loading={pendingStatus === VerificationRequestStatus.Rejected}
 					disabled={pendingStatus !== undefined}
 				>
 					Reject
@@ -59,8 +59,8 @@ function CardActions({ submission }: { submission: ColorSubmission }) {
 					variant='surface'
 					color='jade'
 					size='3'
-					onClick={() => onUpdate(Schema.VerificationRequestStatus.Finished)}
-					loading={pendingStatus === Schema.VerificationRequestStatus.Finished}
+					onClick={() => onUpdate(VerificationRequestStatus.Finished)}
+					loading={pendingStatus === VerificationRequestStatus.Finished}
 					disabled={pendingStatus !== undefined}
 				>
 					Approve
@@ -69,9 +69,9 @@ function CardActions({ submission }: { submission: ColorSubmission }) {
 		);
 	}
 
-	const result = submission.status === Schema.VerificationRequestStatus.Rejected ? 'Rejected' : 'Approved';
+	const result = submission.status === VerificationRequestStatus.Rejected ? 'Rejected' : 'Approved';
 	const icon =
-		submission.status === Schema.VerificationRequestStatus.Rejected ? (
+		submission.status === VerificationRequestStatus.Rejected ? (
 			<Cross1Icon width='22' height='22' className='text-gray-12 inline' />
 		) : (
 			<CheckIcon width='22' height='22' className='text-gray-12 inline' />
@@ -85,8 +85,8 @@ function CardActions({ submission }: { submission: ColorSubmission }) {
 						<Text
 							size='4'
 							className={clsx('w-full rounded-2 text-center p-rx-1', {
-								'bg-red-4': submission.status === Schema.VerificationRequestStatus.Rejected,
-								'bg-jade-4': submission.status === Schema.VerificationRequestStatus.Finished,
+								'bg-red-4': submission.status === VerificationRequestStatus.Rejected,
+								'bg-jade-4': submission.status === VerificationRequestStatus.Finished,
 							})}
 						>
 							{icon} {result} {formatDistanceToNow(new Date(submission.updatedAt))} ago

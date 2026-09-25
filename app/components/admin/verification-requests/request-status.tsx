@@ -1,5 +1,5 @@
 import { CheckIcon, ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import { Schema } from '@/src/db/index';
+import { VerificationRequestStatus } from '@/src/review-status';
 import type { VerificationRequest } from '@/src/verification-requests/dtos/verification-request.dto';
 
 type Props = {
@@ -8,13 +8,13 @@ type Props = {
 
 export function RequestStatus({ request }: Props) {
 	switch (request.status) {
-		case Schema.VerificationRequestStatus.Pending:
+		case VerificationRequestStatus.Pending:
 			return <ExclamationTriangleIcon width='22' height='22' className='text-amber-10' />;
 
-		case Schema.VerificationRequestStatus.Finished:
+		case VerificationRequestStatus.Finished:
 			return <CheckIcon width='22' height='22' className='text-gray-9' />;
 
-		case Schema.VerificationRequestStatus.Rejected: {
+		case VerificationRequestStatus.Rejected: {
 			return <CheckIcon width='22' height='22' className='text-red-9' />;
 		}
 	}

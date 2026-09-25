@@ -3,7 +3,7 @@ import { Card, Heading } from '@radix-ui/themes';
 import { useQuery } from 'convex/react';
 import { useState } from 'react';
 import { api } from '@/convex/_generated/api';
-import { Schema } from '@/src/db/index';
+import { VerificationRequestStatus } from '@/src/review-status';
 import { ColorSubmissionsTable } from '../components/admin/color-submissions/table';
 import { useApiKey } from '../hooks/use-api-key';
 
@@ -13,11 +13,11 @@ export function ColorSubmissionsList() {
 	const data = useQuery(api.colorSubmissions.list, password ? { password, cutoff } : 'skip');
 
 	const pendingSubmissions = {
-		total: count(data ?? [], (submission) => submission.status === Schema.VerificationRequestStatus.Pending),
+		total: count(data ?? [], (submission) => submission.status === VerificationRequestStatus.Pending),
 		unique: count(
 			new Set(
 				(data ?? [])
-					.filter((submission) => submission.status === Schema.VerificationRequestStatus.Pending)
+					.filter((submission) => submission.status === VerificationRequestStatus.Pending)
 					.map((submission) => submission.teamNumber),
 			),
 		),

@@ -3,7 +3,7 @@ import { Card, Heading } from '@radix-ui/themes';
 import { useQuery } from 'convex/react';
 import { useState } from 'react';
 import { api } from '@/convex/_generated/api';
-import { Schema } from '@/src/db/index';
+import { VerificationRequestStatus } from '@/src/review-status';
 import { VerificationRequestsTable } from '../components/admin/verification-requests/table';
 import { useApiKey } from '../hooks/use-api-key';
 
@@ -13,11 +13,11 @@ export function VerificationRequestsList() {
 	const data = useQuery(api.verificationRequests.list, password ? { password, cutoff } : 'skip');
 
 	const pendingRequests = {
-		total: count(data ?? [], (request) => request.status === Schema.VerificationRequestStatus.Pending),
+		total: count(data ?? [], (request) => request.status === VerificationRequestStatus.Pending),
 		unique: count(
 			new Set(
 				(data ?? [])
-					.filter((request) => request.status === Schema.VerificationRequestStatus.Pending)
+					.filter((request) => request.status === VerificationRequestStatus.Pending)
 					.map((request) => request.team),
 			),
 		),
