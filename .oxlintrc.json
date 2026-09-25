@@ -1,0 +1,20 @@
+{
+	"options": {
+		"typeAware": true,
+		"typeCheck": true
+	},
+	"categories": {
+		"correctness": "error",
+		"perf": "error"
+	},
+	"overrides": [
+		{
+			"files": ["convex/**/*.ts"],
+			// Pagination and database writes need to run in order.
+			"rules": {
+				"no-await-in-loop": "off"
+			}
+		}
+	],
+	"ignorePatterns": ["convex/_generated/**"]
+}

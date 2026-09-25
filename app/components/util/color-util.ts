@@ -63,7 +63,7 @@ export function useNearestAccentName(hex?: string): RadixAccentName | undefined 
 	const hexToName = isDarkTheme ? ACCENT_HEX_TO_NAME_DARK : ACCENT_HEX_TO_NAME_LIGHT;
 
 	const findNearest = nearest(
-		lookupTable.map(([_, accentHex]) => accentHex),
+		lookupTable.map(([, accentHex]) => accentHex),
 		differenceCiede2000(),
 	);
 	const [nearestHex] = findNearest(hex, 1);

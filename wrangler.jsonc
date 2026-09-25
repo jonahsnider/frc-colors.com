@@ -6,23 +6,23 @@
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
 	"assets": {
 		"directory": ".open-next/assets",
-		"binding": "ASSETS"
+		"binding": "ASSETS",
 	},
 	"routes": [
 		{
 			"pattern": "frc-colors.com/*",
-			"zone_name": "frc-colors.com"
+			"zone_name": "frc-colors.com",
 		},
 		{
 			"pattern": "www.frc-colors.com/*",
-			"zone_name": "frc-colors.com"
+			"zone_name": "frc-colors.com",
 		},
 		{
 			"pattern": "api.frc-colors.com/*",
-			"zone_name": "frc-colors.com"
-		}
+			"zone_name": "frc-colors.com",
+		},
 	],
 	"observability": {
-		"enabled": true
-	}
+		"enabled": true,
+	},
 }

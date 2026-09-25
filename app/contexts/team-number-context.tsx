@@ -19,7 +19,7 @@ export function TeamNumberProvider({ children }: PropsWithChildren) {
 
 	const setTeamNumber = useMemo(
 		() => (newValue: string) => {
-			setTeamNumberRaw(newValue === '' ? null : Number(newValue));
+			void setTeamNumberRaw(newValue === '' ? null : Number(newValue));
 
 			if (newValue === '') {
 				setTeamNumberValid(undefined);
