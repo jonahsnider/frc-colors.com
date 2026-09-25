@@ -87,6 +87,10 @@ Same response format as `GET /v1/team`.
 
 ## Development
 
-FRC Colors is built with [Next.js](https://nextjs.org/) and uses [Radix Themes](https://www.radix-ui.com/) with [Tailwind CSS](https://tailwindcss.com/) for frontend styling.
+FRC Colors is built with [TanStack Start](https://tanstack.com/start) and [Vite+](https://viteplus.dev/) for Cloudflare Workers. It uses [Radix Themes](https://www.radix-ui.com/) with [Tailwind CSS](https://tailwindcss.com/) for frontend styling.
 
 The backend is built on Convex and uses Hono for the public HTTP API.
+
+Run `vp install` and `pnpm dev` for local development. The web app uses portless at `frc-colors.com.localhost`.
+
+For production, set the Convex deploy key in the build environment, run `pnpm run build:production`, then run `pnpm run deploy:cloudflare`. The build gets both the Convex deployment and HTTP site URLs from Convex; the deploy command uploads the already built Worker.

@@ -1,5 +1,3 @@
-'use client';
-
 import { TextField } from '@radix-ui/themes';
 import { useEffect } from 'react';
 import { useApiKey } from '@/app/hooks/use-api-key';

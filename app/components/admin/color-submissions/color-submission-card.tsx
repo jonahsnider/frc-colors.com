@@ -1,5 +1,3 @@
-'use client';
-
 import { CheckIcon, Cross1Icon, ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { Button, Card, Code, Link, Text, Tooltip } from '@radix-ui/themes';
 import clsx from 'clsx';

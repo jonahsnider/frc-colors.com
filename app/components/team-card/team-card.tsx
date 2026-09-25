@@ -1,8 +1,9 @@
+import { convexQuery } from '@convex-dev/react-query';
 import { CheckBadgeIcon } from '@heroicons/react/20/solid';
 import { Heading, Skeleton, Text, Theme, Tooltip } from '@radix-ui/themes';
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
-import { useQuery } from 'convex/react';
-import { VerificationRequestButton } from '@/app/(team)/verification-request-button';
+import { VerificationRequestButton } from '@/app/components/verification-request-button';
 import { useTeamName } from '@/app/hooks/use-team-name';
 import { api } from '@/convex/_generated/api';
 import { useNearestAccentName } from '../util/color-util';
@@ -18,7 +19,7 @@ type Props = {
 
 export function TeamCard({ teamNumber, className }: Props) {
 	const teamNameQuery = useTeamName(teamNumber);
-	const colors = useQuery(api.colors.getOne, { team: teamNumber });
+	const { data: colors } = useQuery(convexQuery(api.colors.getOne, { team: teamNumber }));
 
 	const teamName = teamNameQuery.name;
 	const title = teamName ? `Team ${teamNumber} - ${teamName}` : `Team ${teamNumber}`;

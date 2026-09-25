@@ -1,6 +1,6 @@
 import { Link, Table, Text, Tooltip } from '@radix-ui/themes';
+import { Link as RouterLink } from '@tanstack/react-router';
 import { formatDistanceToNow } from 'date-fns';
-import { Link as NextLink } from 'next-view-transitions';
 import type { VerificationRequest } from '@/src/verification-requests/dtos/verification-request.dto';
 import { RequestStatus } from './request-status';
 
@@ -25,9 +25,9 @@ export function TableRow({ request }: Props) {
 
 			<Table.Cell align='center'>
 				<Tooltip content={<Text size='2'>{updatedAt}</Text>} hidden={!updatedAt}>
-					<NextLink href={`/?team=${request.team}`}>
+					<RouterLink to='/' search={{ team: request.team }} viewTransition={true}>
 						<RequestStatus request={request} />
-					</NextLink>
+					</RouterLink>
 				</Tooltip>
 			</Table.Cell>
 		</Table.Row>

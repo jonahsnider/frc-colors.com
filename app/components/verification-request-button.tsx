@@ -1,19 +1,21 @@
+import { convexQuery } from '@convex-dev/react-query';
 import { CheckIcon, ExclamationTriangleIcon, PlusIcon } from '@radix-ui/react-icons';
 import { IconButton, Text, Tooltip } from '@radix-ui/themes';
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
-import { useMutation, useQuery } from 'convex/react';
+import { useMutation } from 'convex/react';
 import { type ReactNode, useState } from 'react';
 import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
 import type { TeamNumber } from '@/src/teams/dtos/team-number.dto';
-import { Toast } from '../components/toast';
+import { Toast } from './toast';
 
 type Props = {
 	teamNumber: TeamNumber;
 };
 
 export function VerificationRequestButton({ teamNumber }: Props) {
-	const colors = useQuery(api.colors.getOne, { team: teamNumber });
+	const { data: colors } = useQuery(convexQuery(api.colors.getOne, { team: teamNumber }));
 	const createRequest = useMutation(api.verificationRequests.create);
 	const [status, setStatus] = useState<'idle' | 'pending' | 'success' | 'error'>('idle');
 

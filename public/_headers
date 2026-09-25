@@ -1,4 +1,4 @@
 # https://developers.cloudflare.com/workers/static-assets/headers
-# https://opennext.js.org/cloudflare/caching#static-assets-caching
-/_next/static/*
+# Vite emits content-hashed asset filenames.
+/assets/*
   Cache-Control: public,max-age=31536000,immutable

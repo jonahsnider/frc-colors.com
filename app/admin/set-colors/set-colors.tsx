@@ -1,5 +1,3 @@
-'use client';
-
 import { CheckIcon } from '@radix-ui/react-icons';
 import { Button, Card, Heading } from '@radix-ui/themes';
 import { useMutation } from 'convex/react';

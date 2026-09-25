@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { usePlausible } from '@/app/hooks/plausible';

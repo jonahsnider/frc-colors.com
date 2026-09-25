@@ -1,8 +1,5 @@
-'use client';
-
 import { useMap } from '@uidotdev/usehooks';
 import clsx from 'clsx';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import type { TeamColors } from '@/src/colors/dtos/colors.dto';
 import styles from './team-image-avatar.module.css';
@@ -61,10 +58,8 @@ export function TeamImageAvatar({ colors, avatarUrl }: Props) {
 			/>
 
 			{imageStateForUrl !== 'error' && (
-				<Image
+				<img
 					src={avatarUrl}
-					unoptimized={true}
-					priority={true}
 					alt='Team avatar'
 					className={clsx('p-1 h-48 w-48 transition-all top-0 left-0 absolute', styles.image, {
 						'opacity-0': imageHidden,

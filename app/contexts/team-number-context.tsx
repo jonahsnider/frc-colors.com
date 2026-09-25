@@ -1,5 +1,5 @@
-import { parseAsInteger, useQueryState } from 'nuqs';
-import { createContext, type PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { useNavigate, useSearch } from '@tanstack/react-router';
+import { createContext, type PropsWithChildren, useCallback, useMemo } from 'react';
 import { TeamNumber } from '@/src/teams/dtos/team-number.dto';
 
 type ContextValue = {
@@ -14,33 +14,24 @@ export const TeamNumberContext = createContext<ContextValue>({
 });
 
 export function TeamNumberProvider({ children }: PropsWithChildren) {
-	const [teamNumberRaw, setTeamNumberRaw] = useQueryState('team', parseAsInteger);
-	const [teamNumber, setTeamNumberValid] = useState<TeamNumber>();
-
-	const setTeamNumber = useMemo(
-		() => (newValue: string) => {
-			void setTeamNumberRaw(newValue === '' ? null : Number(newValue));
-
-			if (newValue === '') {
-				setTeamNumberValid(undefined);
-			} else {
-				const parsed = TeamNumber.safeParse(newValue);
-
-				if (parsed.success) {
-					setTeamNumberValid(parsed.data);
-				}
-			}
+	const { team: teamNumber } = useSearch({ from: '/' });
+	const teamNumberRaw = teamNumber?.toString() ?? '';
+	const navigate = useNavigate({ from: '/' });
+	const setTeamNumber = useCallback(
+		(newValue: string) => {
+			const parsed = TeamNumber.safeParse(newValue);
+			void navigate({
+				to: '/',
+				search: (previous) => ({ ...previous, team: parsed.success ? parsed.data : undefined }),
+				replace: true,
+			});
 		},
-		[setTeamNumberRaw],
+		[navigate],
 	);
-
-	useEffect(() => {
-		setTeamNumber(teamNumberRaw?.toString() ?? '');
-	}, []);
 
 	const contextValue: ContextValue = useMemo(
 		() => ({
-			teamNumberRaw: teamNumberRaw?.toString() ?? '',
+			teamNumberRaw,
 			teamNumber,
 			setTeamNumber,
 		}),

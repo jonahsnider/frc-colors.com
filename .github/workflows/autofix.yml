@@ -12,19 +12,16 @@ jobs:
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/setup@v3
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1.21.1
         with:
           cache: true
-      - name: Fix formatting
+      - name: Fix formatting and lint issues
         continue-on-error: true
-        run: pnpm format:fix
-      - name: Fix lint issues
-        continue-on-error: true
-        run: pnpm run lint:fix
+        run: vp check --fix
       - name: Fix Knip issues
         continue-on-error: true
-        run: pnpm knip --fix
+        run: vp exec knip --fix
       - name: Run autofix.ci
         uses: autofix-ci/action@v1
         with:

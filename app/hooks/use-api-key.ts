@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useMemo, useState } from 'react';
 
 export function useApiKey(): [string | undefined, (key: string | undefined) => void] {

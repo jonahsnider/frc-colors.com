@@ -1,5 +1,3 @@
-'use client';
-
 import { capitalize } from '@jonahsnider/util';
 import { TextField, Theme } from '@radix-ui/themes';
 import { HexColorCode } from '@/src/colors/dtos/colors.dto';

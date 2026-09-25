@@ -246,11 +246,11 @@ service-account-key.json
 
 # Hosting build state
 .wrangler
-.open-next
+.next
 .dev.vars*
 !.dev.vars.example
 .env*.local
 
-# Next.js
+# Generated Cloudflare types
 cloudflare-env.d.ts
 next-env.d.ts

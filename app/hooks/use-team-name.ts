@@ -1,12 +1,11 @@
-'use client';
-
-import { useQuery } from 'convex/react';
+import { convexQuery } from '@convex-dev/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { api } from '@/convex/_generated/api';
 
 export function useTeamName(teamNumber: number | undefined) {
-	const result = useQuery(api.teamNames.get, teamNumber === undefined ? 'skip' : { team: teamNumber });
+	const result = useQuery(convexQuery(api.teamNames.get, teamNumber === undefined ? 'skip' : { team: teamNumber }));
 	return {
-		name: result?.name,
-		isPending: teamNumber !== undefined && result === undefined,
+		name: result.data?.name,
+		isPending: teamNumber !== undefined && result.isPending,
 	};
 }

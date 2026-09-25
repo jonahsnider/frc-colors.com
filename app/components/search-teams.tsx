@@ -1,8 +1,5 @@
-'use client';
-
 import { TextField } from '@radix-ui/themes';
 import { useContext } from 'react';
-import { TeamNumber } from '@/src/teams/dtos/team-number.dto';
 import { TeamNumberContext } from '../contexts/team-number-context';
 
 type Props = {
@@ -10,8 +7,8 @@ type Props = {
 };
 
 export function SearchTeams({ invalidTeam }: Props) {
-	const { teamNumber, setTeamNumber } = useContext(TeamNumberContext);
-	const valid = teamNumber === undefined || (TeamNumber.safeParse(teamNumber).success && !invalidTeam);
+	const { teamNumber, teamNumberRaw, setTeamNumber } = useContext(TeamNumberContext);
+	const valid = teamNumberRaw === '' || (teamNumber !== undefined && !invalidTeam);
 
 	return (
 		<TextField.Root
@@ -22,7 +19,7 @@ export function SearchTeams({ invalidTeam }: Props) {
 			onChange={(event) => {
 				setTeamNumber(event.currentTarget.value);
 			}}
-			value={teamNumber ?? ''}
+			value={teamNumberRaw}
 			color={valid ? undefined : 'red'}
 			className='[view-transition-name:small-input]'
 		/>

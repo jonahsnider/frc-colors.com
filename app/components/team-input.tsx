@@ -1,5 +1,3 @@
-'use client';
-
 import { TextField } from '@radix-ui/themes';
 import { TeamNumber } from '@/src/teams/dtos/team-number.dto';
 

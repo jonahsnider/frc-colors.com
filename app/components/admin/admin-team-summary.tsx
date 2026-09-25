@@ -1,5 +1,3 @@
-'use client';
-
 import { Card, Heading } from '@radix-ui/themes';
 import { useQuery } from 'convex/react';
 import { useState } from 'react';

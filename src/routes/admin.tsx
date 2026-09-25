@@ -1,14 +1,15 @@
-'use client';
-
+import { createFileRoute } from '@tanstack/react-router';
 import { LockClosedIcon } from '@radix-ui/react-icons';
 import { Callout, Card, Heading, Section } from '@radix-ui/themes';
 import { useState } from 'react';
-import { ApiKeyInput } from '../components/admin/api-key-input';
-import { ColorSubmissionsList } from './color-submissions-list';
-import { SetColors } from './set-colors/set-colors';
-import { VerificationRequestsList } from './verification-requests-list';
+import { ApiKeyInput } from '@/app/components/admin/api-key-input';
+import { ColorSubmissionsList } from '@/app/admin/color-submissions-list';
+import { SetColors } from '@/app/admin/set-colors/set-colors';
+import { VerificationRequestsList } from '@/app/admin/verification-requests-list';
 
-export default function Admin() {
+export const Route = createFileRoute('/admin')({ component: Admin });
+
+function Admin() {
 	const [apiKey, setApiKey] = useState<string | undefined>();
 
 	return (

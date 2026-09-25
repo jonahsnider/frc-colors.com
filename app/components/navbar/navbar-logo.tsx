@@ -1,14 +1,13 @@
 import { Text } from '@radix-ui/themes';
-import Image from 'next/image';
-import { Link } from 'next-view-transitions';
+import { Link } from '@tanstack/react-router';
 import frcColors from './frc-colors.svg';
 
 export function NavbarLogo() {
 	return (
-		<Link href='/'>
+		<Link to='/' viewTransition={true}>
 			<div className='flex gap-x-4'>
 				<div className='relative h-8 w-8'>
-					<Image fill={true} src={frcColors} alt='FRC Colors logo' priority={true} />
+					<img src={frcColors} alt='FRC Colors logo' className='h-full w-full' />
 				</div>
 
 				<Text size='6' className='self-center' weight='bold'>

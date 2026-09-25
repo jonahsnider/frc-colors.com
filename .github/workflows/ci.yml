@@ -6,7 +6,8 @@ permissions:
   contents: read
 
 env:
-  NEXT_PUBLIC_CONVEX_URL: https://example.convex.cloud
+  VITE_CONVEX_URL: https://example.convex.cloud
+  VITE_CONVEX_SITE_URL: https://example.convex.site
 
 jobs:
   build-and-test:
@@ -18,17 +19,15 @@ jobs:
     steps:
       - name: Checkout Git repository
         uses: actions/checkout@v7
-      - name: Setup pnpm
-        uses: pnpm/setup@v3
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1.21.1
         with:
           cache: true
-      - name: Check formatting
-        run: pnpm format
-      - name: Lint
-        run: pnpm lint
-      - name: Type check
-        run: pnpm type-check
+      - name: Check formatting, lint, and types
+        run: vp check
+      - name: Check Convex types
+        run: vp exec tsc -p convex/tsconfig.json
       - name: Run Knip
-        run: pnpm knip
+        run: vp exec knip
       - name: Build
-        run: pnpm build
+        run: vp build

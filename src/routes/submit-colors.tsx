@@ -1,5 +1,4 @@
-'use client';
-
+import { createFileRoute } from '@tanstack/react-router';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { Button, Card, Heading, Link, Text, Tooltip } from '@radix-ui/themes';
 import { useMutation } from 'convex/react';
@@ -9,11 +8,13 @@ import { api } from '@/convex/_generated/api';
 import { CreateColorSubmission } from '@/src/color-submissions/dtos/color-submission.dto';
 import type { HexColorCode } from '@/src/colors/dtos/colors.dto';
 import type { TeamNumber } from '@/src/teams/dtos/team-number.dto';
-import { ColorInput } from '../components/color-input';
-import { TeamInput } from '../components/team-input';
-import { Toast } from '../components/toast';
+import { ColorInput } from '@/app/components/color-input';
+import { TeamInput } from '@/app/components/team-input';
+import { Toast } from '@/app/components/toast';
 
-export default function SubmitColors() {
+export const Route = createFileRoute('/submit-colors')({ component: SubmitColors });
+
+function SubmitColors() {
 	const [rawTeam, setRawTeam] = useState<string>('');
 	const [rawPrimaryColor, setRawPrimaryColor] = useState<string>('');
 	const [rawSecondaryColor, setRawSecondaryColor] = useState<string>('');

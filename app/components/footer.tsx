@@ -1,6 +1,6 @@
 import { Link, Separator, Strong, Text } from '@radix-ui/themes';
+import { Link as RouterLink } from '@tanstack/react-router';
 import clsx from 'clsx';
-import { Link as NextLink } from 'next-view-transitions';
 import { Children, Fragment, type PropsWithChildren } from 'react';
 
 function FooterRow({ children, vertical }: PropsWithChildren<{ vertical: boolean }>) {
@@ -33,7 +33,9 @@ export function Footer() {
 
 			<FooterRow vertical={true}>
 				<Link asChild={true}>
-					<NextLink href='/submit-colors'>Submit colors for a team</NextLink>
+					<RouterLink to='/submit-colors' viewTransition={true}>
+						Submit colors for a team
+					</RouterLink>
 				</Link>
 
 				<Link href='https://status.frc-colors.com'>Status page</Link>

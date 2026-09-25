@@ -1,5 +1,3 @@
-'use client';
-
 import { useApiKey } from '@/app/hooks/use-api-key';
 import { NavbarLink } from './navbar-link';
 
