@@ -5,8 +5,10 @@
 	"scripts": {
 		"build": "NODE_ENV=production next build",
 		"build:cloudflare": "opennextjs-cloudflare build",
+		"build:production": "convex deploy --cmd 'pnpm run build:cloudflare' --cmd-url-env-var-name NEXT_PUBLIC_CONVEX_URL",
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-		"deploy": "convex deploy --cmd 'pnpm run build:cloudflare' --cmd-url-env-var-name NEXT_PUBLIC_CONVEX_URL && opennextjs-cloudflare deploy",
+		"deploy": "pnpm run build:production && pnpm run deploy:cloudflare",
+		"deploy:cloudflare": "opennextjs-cloudflare deploy",
 		"dev": "pnpm run \"/^dev:(backend|frontend)$/\"",
 		"dev:backend": "convex dev",
 		"dev:frontend": "WATCHPACK_POLLING=true portless frc-colors.com next dev",
