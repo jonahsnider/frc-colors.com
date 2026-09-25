@@ -24,12 +24,9 @@ Get the colors for a team by number.
 
 ```json
 {
-	"teamNumber": 581,
-	"colors": {
-		"primaryHex": "#591616",
-		"secondaryHex": "#e86d38",
-		"verified": true
-	}
+	"primaryHex": "#591616",
+	"secondaryHex": "#e86d38",
+	"verified": true
 }
 ```
 
