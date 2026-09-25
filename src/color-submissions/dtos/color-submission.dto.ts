@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { Id } from '../../../convex/_generated/dataModel.ts';
+import type { Id } from '../../../convex/_generated/dataModel';
 import { HexColorCode } from '../../colors/dtos/colors.dto.ts';
 import { VerificationRequestStatus } from '../../review-status.ts';
 import { TeamNumber } from '../../teams/dtos/team-number.dto.ts';
