@@ -21,18 +21,18 @@ function CardActions({ submission }: { submission: ColorSubmission }) {
 		if (!password) return;
 		setPendingStatus(status);
 		try {
-			const updated = await updateStatus({ password, id: submission.id, status });
+			const updated = await updateStatus({ password, _id: submission._id, status });
 			const action = updated.status === VerificationRequestStatus.Rejected ? 'rejected' : 'approved';
 
 			toast.custom(() => (
 				<Toast icon={<CheckIcon width='22' height='22' />} color='green'>
-					Successfully {action} submission <Code>{updated.id}</Code>
+					Successfully {action} submission <Code>{updated._id}</Code>
 				</Toast>
 			));
 		} catch {
 			toast.custom(() => (
 				<Toast icon={<ExclamationTriangleIcon width='22' height='22' />} color='red'>
-					Failed to update submission {submission.id}
+					Failed to update submission {submission._id}
 				</Toast>
 			));
 		} finally {
@@ -119,8 +119,8 @@ export function ColorSubmissionCard({ submission, oldColors, oldColorsLoading }:
 				<Tooltip content={<Text size='2'>Created {formatRelative(new Date(submission.createdAt), new Date())}</Text>}>
 					<Text size='4'>{formatDistanceToNow(new Date(submission.createdAt))} ago</Text>
 				</Tooltip>
-				<Tooltip content={<Text size='2'>{submission.id}</Text>}>
-					<Code size='4'>{submission.id.split('-', 1)[0]}</Code>
+				<Tooltip content={<Text size='2'>{submission._id}</Text>}>
+					<Code size='4'>{submission._id.slice(0, 8)}</Code>
 				</Tooltip>
 			</div>
 

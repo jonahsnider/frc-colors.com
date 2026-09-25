@@ -1,4 +1,5 @@
 import { v } from 'convex/values';
+import type { Id } from './_generated/dataModel';
 import { CreateColorSubmission } from '../src/color-submissions/dtos/color-submission.dto';
 import { mutation, query } from './_generated/server';
 import { isAdmin, requireAdmin } from './lib/admin';
@@ -6,7 +7,7 @@ import { finishPendingVerificationRequests, upsertTeamColors } from './lib/color
 import { ReviewStatus } from './schema';
 
 export const ColorSubmission = v.object({
-	id: v.string(),
+	_id: v.id('colorSubmissions'),
 	teamNumber: v.number(),
 	primaryHex: v.string(),
 	secondaryHex: v.string(),
@@ -58,27 +59,23 @@ export const create = mutation({
 	handler: async (ctx, { teamNumber, primaryHex, secondaryHex }) => {
 		CreateColorSubmission.parse({ teamNumber, primaryHex, secondaryHex });
 		const value = {
-			id: crypto.randomUUID(),
 			team: teamNumber,
 			primaryHex,
 			secondaryHex,
 			status: 'PENDING' as const,
 			createdAt: Date.now(),
 		};
-		await ctx.db.insert('colorSubmissions', value);
-		return toValue(value);
+		const _id = await ctx.db.insert('colorSubmissions', value);
+		return toValue({ _id, ...value });
 	},
 });
 
 export const updateStatus = mutation({
-	args: { password: v.string(), id: v.string(), status: ReviewStatus },
+	args: { password: v.string(), _id: v.id('colorSubmissions'), status: ReviewStatus },
 	returns: ColorSubmission,
-	handler: async (ctx, { password, id, status }) => {
+	handler: async (ctx, { password, _id, status }) => {
 		requireAdmin(password);
-		const row = await ctx.db
-			.query('colorSubmissions')
-			.withIndex('by_submission_id', (q) => q.eq('id', id))
-			.unique();
+		const row = await ctx.db.get(_id);
 		if (!row) throw new Error('Color submission not found');
 		const updatedAt = Date.now();
 		await ctx.db.patch(row._id, { status, updatedAt });
@@ -95,7 +92,7 @@ export const updateStatus = mutation({
 });
 
 function toValue(row: {
-	id: string;
+	_id: Id<'colorSubmissions'>;
 	team: number;
 	primaryHex: string;
 	secondaryHex: string;
@@ -104,7 +101,7 @@ function toValue(row: {
 	updatedAt?: number;
 }) {
 	return {
-		id: row.id,
+		_id: row._id,
 		teamNumber: row.team,
 		primaryHex: row.primaryHex,
 		secondaryHex: row.secondaryHex,

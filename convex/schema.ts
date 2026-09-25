@@ -17,17 +17,16 @@ export default defineSchema({
 		updatedAt: v.optional(v.number()),
 	}).index('by_team', ['team']),
 	verificationRequests: defineTable({
-		id: v.string(),
+		id: v.optional(v.string()),
 		team: v.number(),
 		status: ReviewStatus,
 		createdAt: v.number(),
 		updatedAt: v.optional(v.number()),
 	})
-		.index('by_request_id', ['id'])
 		.index('by_team', ['team'])
 		.index('by_status_and_updatedAt', ['status', 'updatedAt']),
 	colorSubmissions: defineTable({
-		id: v.string(),
+		id: v.optional(v.string()),
 		team: v.number(),
 		primaryHex: v.string(),
 		secondaryHex: v.string(),
@@ -35,7 +34,6 @@ export default defineSchema({
 		createdAt: v.number(),
 		updatedAt: v.optional(v.number()),
 	})
-		.index('by_submission_id', ['id'])
 		.index('by_team', ['team'])
 		.index('by_status_and_updatedAt', ['status', 'updatedAt']),
 });

@@ -28,7 +28,7 @@ export function VerificationRequestsTable({ requests }: Props) {
 
 				<Table.Body>
 					{requests.map((verificationRequest) => (
-						<TableRow key={verificationRequest.id} request={verificationRequest} />
+						<TableRow key={verificationRequest._id} request={verificationRequest} />
 					))}
 				</Table.Body>
 			</Table.Root>

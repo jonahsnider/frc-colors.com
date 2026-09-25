@@ -26,7 +26,7 @@ export function ColorSubmissionsTable({ colorSubmissions }: Props) {
 			<div className='flex flex-col gap-y-2 w-full'>
 				{colorSubmissions.map((colorSubmission) => (
 					<ColorSubmissionCard
-						key={colorSubmission.id}
+						key={colorSubmission._id}
 						submission={colorSubmission}
 						oldColors={oldColors?.find((entry) => entry.teamNumber === colorSubmission.teamNumber)?.colors ?? undefined}
 						oldColorsLoading={oldColors === undefined}

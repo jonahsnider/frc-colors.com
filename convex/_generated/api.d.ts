@@ -15,6 +15,7 @@ import type * as http from "../http.js";
 import type * as lib_admin from "../lib/admin.js";
 import type * as lib_colors from "../lib/colors.js";
 import type * as lib_tba from "../lib/tba.js";
+import type * as migrateIds from "../migrateIds.js";
 import type * as refresh from "../refresh.js";
 import type * as refreshBatch from "../refreshBatch.js";
 import type * as teamNames from "../teamNames.js";
@@ -34,6 +35,7 @@ declare const fullApi: ApiFromModules<{
   "lib/admin": typeof lib_admin;
   "lib/colors": typeof lib_colors;
   "lib/tba": typeof lib_tba;
+  migrateIds: typeof migrateIds;
   refresh: typeof refresh;
   refreshBatch: typeof refreshBatch;
   teamNames: typeof teamNames;
