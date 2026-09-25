@@ -87,8 +87,6 @@ Same response format as `GET /v1/team`.
 
 ## Development
 
-FRC Colors is built with [Next.js](https://nextjs.org/) and uses [Tailwind CSS](https://tailwindcss.com/) for frontend styling.
+FRC Colors is built with [Next.js](https://nextjs.org/) and uses [Radix Themes](https://www.radix-ui.com/) with [Tailwind CSS](https://tailwindcss.com/) for frontend styling.
 
-The backend is built in TypeScript and uses [tRPC](https://trpc.io/) for internal functionality, and [a minimal HTTP server](https://hono.dev/) for the public API.
-
-It uses a PostgreSQL database via [Drizzle ORM](https://orm.drizzle.team/) for persisting data.
+The backend is built on Convex and uses Hono for the public HTTP API.

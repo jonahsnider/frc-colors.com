@@ -16,20 +16,15 @@ jobs:
         uses: pnpm/setup@v3
         with:
           cache: true
-      - name: Migrate Biome schema
+      - name: Fix formatting
         continue-on-error: true
-        run: pnpm exec biome migrate --write
-      - name: Fix linting errors
+        run: pnpm format:fix
+      - name: Fix lint issues
         continue-on-error: true
         run: pnpm run lint:fix
-      - name: Format with Prettier
-        continue-on-error: true
-        run: pnpm run format:write
       - name: Fix Knip issues
         continue-on-error: true
-        run: pnpm exec knip --fix
-        env:
-          DATABASE_URL: unused
+        run: pnpm knip --fix
       - name: Run autofix.ci
         uses: autofix-ci/action@v1
         with:

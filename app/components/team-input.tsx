@@ -1,0 +1,36 @@
+'use client';
+
+import { TextField } from '@radix-ui/themes';
+import { TeamNumber } from '@/src/teams/dtos/team-number.dto';
+
+type Props = {
+	teamNumber: string;
+	onChange: (teamNumberRaw: string) => void;
+	onValidChange: (teamNumber: TeamNumber | undefined) => void;
+	className?: string;
+};
+
+export function TeamInput({ onChange, onValidChange, teamNumber, className }: Props) {
+	const valid = teamNumber === '' || TeamNumber.safeParse(teamNumber).success;
+
+	return (
+		<TextField.Root
+			type='text'
+			placeholder='Team number'
+			color={valid ? undefined : 'red'}
+			onChange={(event) => {
+				onChange(event.target.value);
+
+				const parsed = TeamNumber.safeParse(event.target.value);
+
+				if (parsed.success) {
+					onValidChange(parsed.data);
+				} else {
+					onValidChange(undefined);
+				}
+			}}
+			value={teamNumber}
+			className={className}
+		/>
+	);
+}

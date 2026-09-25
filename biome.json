@@ -10,7 +10,8 @@
 			"!**/package.json",
 			"!**/.turbo",
 			"!**/cloudflare-env.d.ts",
-			"!**/next-env.d.ts"
+			"!**/next-env.d.ts",
+			"!**/convex/_generated"
 		]
 	},
 	"formatter": {
