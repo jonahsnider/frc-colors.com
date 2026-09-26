@@ -53,7 +53,7 @@
 		"zod": "4.6.5"
 	},
 	"devDependencies": {
-		"@cloudflare/vite-plugin": "1.60.0",
+		"@cloudflare/vite-plugin": "1.60.1",
 		"@types/culori": "4.0.1",
 		"@types/node": "26.6.2",
 		"@types/pngjs": "6.0.5",
