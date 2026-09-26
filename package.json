@@ -55,7 +55,7 @@
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "1.60.2",
 		"@types/culori": "4.0.1",
-		"@types/node": "26.6.2",
+		"@types/node": "26.6.3",
 		"@types/pngjs": "6.0.5",
 		"@types/react": "19.3.0",
 		"@types/react-dom": "19.3.0",
