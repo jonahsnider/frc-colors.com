@@ -267,8 +267,8 @@ importers:
         version: 4.6.5
     devDependencies:
       '@cloudflare/vite-plugin':
-        specifier: 1.62.1
-        version: 1.62.1(@types/node@26.6.3)(@voidzero-dev/vite-plus-core@1.0.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@1.21.7)(tsx@4.23.12)(typescript@7.0.2)(yaml@2.9.1))(wrangler@4.144.0(@types/node@26.6.3))
+        specifier: 1.62.2
+        version: 1.62.2(@types/node@26.6.3)(@voidzero-dev/vite-plus-core@1.0.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@1.21.7)(tsx@4.23.12)(typescript@7.0.2)(yaml@2.9.1))(wrangler@4.144.0(@types/node@26.6.3))
       '@types/culori':
         specifier: 4.0.1
         version: 4.0.1
@@ -419,12 +419,12 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/vite-plugin@1.62.1':
-    resolution: {integrity: sha512-slwUq/+f+1db4bfMgEfz/pB100LMT4hLb725aj8SSqWgwTzN6Rpd+TjdTNzz5WdFe+AR1kpzAxsutQj0UT0a1g==}
+  '@cloudflare/vite-plugin@1.62.2':
+    resolution: {integrity: sha512-lIBc7cDYvLZXq7urLxVSzzkRNjQlxKki/StmvoS1weyJcLQ4VbONsADUy6hkw6DKbrRcupF4s2bX6eQiZNuw6w==}
     hasBin: true
     peerDependencies:
       vite: ^6.1.0 || ^7.0.0 || ^8.0.0
-      wrangler: ^4.143.1
+      wrangler: ^4.144.0
 
   '@cloudflare/workerd-darwin-64@1.20260926.1':
     resolution: {integrity: sha512-VCIpwgJu5Dm1o+VHLclNOKIdpttEqss7oDHS5DYxgVoonM9Dxxxr1xCQvJbh6IXFuQ1DDrbm5krjte5NsTgX3Q==}
@@ -4462,7 +4462,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20260926.1
 
-  '@cloudflare/vite-plugin@1.62.1(@types/node@26.6.3)(@voidzero-dev/vite-plus-core@1.0.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@1.21.7)(tsx@4.23.12)(typescript@7.0.2)(yaml@2.9.1))(wrangler@4.144.0(@types/node@26.6.3))':
+  '@cloudflare/vite-plugin@1.62.2(@types/node@26.6.3)(@voidzero-dev/vite-plus-core@1.0.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@1.21.7)(tsx@4.23.12)(typescript@7.0.2)(yaml@2.9.1))(wrangler@4.144.0(@types/node@26.6.3))':
     dependencies:
       '@cloudflare/unenv-preset': 2.16.2(unenv@2.0.0-rc.24)(workerd@1.20260926.1)
       miniflare: 5.20260926.1-alpha(@types/node@26.6.3)
