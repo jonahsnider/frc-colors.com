@@ -65,7 +65,7 @@
 		"portless": "0.15.6",
 		"postcss": "8.5.28",
 		"postcss-import": "17.0.0",
-		"tailwindcss": "3.4.19",
+		"tailwindcss": "4.3.3",
 		"type-fest": "5.10.0",
 		"typescript": "7.0.2",
 		"vite": "catalog:",
