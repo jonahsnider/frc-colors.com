@@ -36,7 +36,7 @@
 		"@uidotdev/usehooks": "2.4.1",
 		"clsx": "2.1.1",
 		"convex": "1.46.0",
-		"convex-helpers": "0.1.124",
+		"convex-helpers": "0.1.125",
 		"culori": "4.0.2",
 		"date-fns": "4.4.0",
 		"extract-colors": "4.2.1",
