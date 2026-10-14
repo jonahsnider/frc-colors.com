@@ -62,7 +62,7 @@
 		"@vitejs/plugin-react": "6.1.2",
 		"autoprefixer": "10.6.1",
 		"knip": "6.41.0",
-		"portless": "0.15.7",
+		"portless": "0.15.8",
 		"postcss": "8.5.30",
 		"postcss-import": "17.0.1",
 		"tailwindcss": "3.4.19",
