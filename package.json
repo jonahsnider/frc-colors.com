@@ -32,7 +32,7 @@
 		"@tanstack/react-query": "5.104.2",
 		"@tanstack/react-router": "1.170.44",
 		"@tanstack/react-router-ssr-query": "1.167.3",
-		"@tanstack/react-start": "1.169.1",
+		"@tanstack/react-start": "1.169.2",
 		"@uidotdev/usehooks": "2.4.1",
 		"clsx": "2.1.1",
 		"convex": "1.46.0",
