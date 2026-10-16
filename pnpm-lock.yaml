@@ -180,7 +180,7 @@ importers:
     dependencies:
       '@convex-dev/react-query':
         specifier: 0.1.0
-        version: 0.1.0(@tanstack/react-query@5.104.3(react@19.3.1))(convex@1.46.0(react@19.3.1))
+        version: 0.1.0(@tanstack/react-query@5.104.3(react@19.3.1))(convex@1.47.0(react@19.3.1))
       '@heroicons/react':
         specifier: 2.2.0
         version: 2.2.0(react@19.3.1)
@@ -218,11 +218,11 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       convex:
-        specifier: 1.46.0
-        version: 1.46.0(react@19.3.1)
+        specifier: 1.47.0
+        version: 1.47.0(react@19.3.1)
       convex-helpers:
         specifier: 0.1.128
-        version: 0.1.128(@standard-schema/spec@1.1.0)(convex@1.46.0(react@19.3.1))(hono@4.13.13)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)
+        version: 0.1.128(@standard-schema/spec@1.1.0)(convex@1.47.0(react@19.3.1))(hono@4.13.13)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)
       culori:
         specifier: 4.0.2
         version: 4.0.2
@@ -3091,8 +3091,8 @@ packages:
       zod:
         optional: true
 
-  convex@1.46.0:
-    resolution: {integrity: sha512-dhBwDQTZDOhi5SUGAX17EWNehCdNq6/UFrSL0eLZuGfMkdsQbCVWVRZCzbZ5CF+/pgvoGxtApbEoTSipqL4JTw==}
+  convex@1.47.0:
+    resolution: {integrity: sha512-B1z/lOmex7i09NASq8+2WG9rZLzGXXOSkpwGOpaNIvOs4awyW4RMgpVBjt8r2wvvHwhEBEsOr2pGYpulnmAxYQ==}
     engines: {node: '>=20.0.0', npm: '>=7.0.0'}
     hasBin: true
     peerDependencies:
@@ -4265,10 +4265,10 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20261012.1':
     optional: true
 
-  '@convex-dev/react-query@0.1.0(@tanstack/react-query@5.104.3(react@19.3.1))(convex@1.46.0(react@19.3.1))':
+  '@convex-dev/react-query@0.1.0(@tanstack/react-query@5.104.3(react@19.3.1))(convex@1.47.0(react@19.3.1))':
     dependencies:
       '@tanstack/react-query': 5.104.3(react@19.3.1)
-      convex: 1.46.0(react@19.3.1)
+      convex: 1.47.0(react@19.3.1)
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -6350,9 +6350,9 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  convex-helpers@0.1.128(@standard-schema/spec@1.1.0)(convex@1.46.0(react@19.3.1))(hono@4.13.13)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7):
+  convex-helpers@0.1.128(@standard-schema/spec@1.1.0)(convex@1.47.0(react@19.3.1))(hono@4.13.13)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7):
     dependencies:
-      convex: 1.46.0(react@19.3.1)
+      convex: 1.47.0(react@19.3.1)
     optionalDependencies:
       '@standard-schema/spec': 1.1.0
       hono: 4.13.13
@@ -6360,7 +6360,7 @@ snapshots:
       typescript: 7.0.2
       zod: 4.6.7
 
-  convex@1.46.0(react@19.3.1):
+  convex@1.47.0(react@19.3.1):
     dependencies:
       esbuild: 0.27.0
       prettier: 3.9.9
