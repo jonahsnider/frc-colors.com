@@ -23,11 +23,12 @@ jobs:
         uses: voidzero-dev/setup-vp@v1.21.2
         with:
           cache: true
-      - name: Check formatting, lint, and types
-        run: vp check
-      - name: Check Convex types
-        run: vp exec tsc -p convex/tsconfig.json
-      - name: Run Knip
-        run: vp exec knip
-      - name: Build
-        run: vp build
+      - parallel:
+          - name: Check formatting, lint, and types
+            run: vp check
+          - name: Check Convex types
+            run: vp exec tsc -p convex/tsconfig.json
+          - name: Run Knip
+            run: vp exec knip
+          - name: Build
+            run: vp build
