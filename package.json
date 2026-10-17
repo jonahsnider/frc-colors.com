@@ -70,7 +70,7 @@
 		"typescript": "7.0.2",
 		"vite": "catalog:",
 		"vite-plus": "catalog:",
-		"wrangler": "4.151.0"
+		"wrangler": "4.151.1"
 	},
 	"devEngines": {
 		"runtime": {
