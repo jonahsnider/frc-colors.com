@@ -30,6 +30,10 @@ import type { DataModel } from "./dataModel.js";
 type Env = {
   readonly CONVEX_CLOUD_URL: string;
   readonly CONVEX_SITE_URL: string;
+  readonly ADMIN_PASSWORD: string;
+  readonly FRC_EVENTS_API_KEY: string;
+  readonly FRC_EVENTS_USERNAME: string;
+  readonly TBA_API_KEY: string;
 };
 
 /**

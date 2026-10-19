@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 import { internal } from './_generated/api';
-import { internalAction } from './_generated/server';
+import { env, internalAction } from './_generated/server';
 import { refreshPool } from './lib/workpool';
 
 const batchSize = 100;
@@ -9,10 +9,7 @@ export const start = internalAction({
 	args: {},
 	returns: v.object({ teams: v.number(), jobs: v.number() }),
 	handler: async (ctx) => {
-		const username = process.env['FRC_EVENTS_USERNAME'];
-		const password = process.env['FRC_EVENTS_API_KEY'];
-		if (!username || !password) throw new Error('FRC Events API credentials are not configured');
-		const authorization = `Basic ${btoa(`${username}:${password}`)}`;
+		const authorization = `Basic ${btoa(`${env.FRC_EVENTS_USERNAME}:${env.FRC_EVENTS_API_KEY}`)}`;
 		const teams: number[] = [];
 		let page = 1;
 		let pageTotal = 1;

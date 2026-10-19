@@ -1,5 +1,7 @@
+import { env } from '../_generated/server';
+
 export function isAdmin(password: string): boolean {
-	const configuredPassword = process.env['ADMIN_PASSWORD'];
+	const configuredPassword = env.ADMIN_PASSWORD;
 	return Boolean(configuredPassword && password === configuredPassword);
 }
 

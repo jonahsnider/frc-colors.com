@@ -1,8 +1,8 @@
+import { env } from '../_generated/server';
+
 async function get(path: string): Promise<Response> {
-	const apiKey = process.env['TBA_API_KEY'];
-	if (!apiKey) throw new Error('TBA_API_KEY is not configured');
 	return fetch(`https://www.thebluealliance.com/api/v3/${path}`, {
-		headers: { 'X-TBA-Auth-Key': apiKey },
+		headers: { 'X-TBA-Auth-Key': env.TBA_API_KEY },
 	});
 }
 
