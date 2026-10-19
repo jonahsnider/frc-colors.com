@@ -18,7 +18,6 @@ class AvatarService {
 	}
 
 	async getAvatars(teamNumbers: TeamNumber[]): Promise<Map<TeamNumber, Buffer | undefined>> {
-		console.log('getting avatars for', teamNumbers);
 		return new Map(
 			await Promise.all(teamNumbers.map(async (teamNumber) => [teamNumber, await this.getAvatar(teamNumber)] as const)),
 		);
