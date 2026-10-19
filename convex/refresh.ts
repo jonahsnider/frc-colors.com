@@ -1,13 +1,13 @@
 import { v } from 'convex/values';
 import { internal } from './_generated/api';
 import { internalAction } from './_generated/server';
+import { refreshPool } from './lib/workpool';
 
-const batchSize = 25;
-const nameBatchSize = 100;
+const batchSize = 100;
 
 export const start = internalAction({
 	args: {},
-	returns: v.object({ teams: v.number(), batches: v.number() }),
+	returns: v.object({ teams: v.number(), jobs: v.number() }),
 	handler: async (ctx) => {
 		const username = process.env['FRC_EVENTS_USERNAME'];
 		const password = process.env['FRC_EVENTS_API_KEY'];
@@ -34,17 +34,24 @@ export const start = internalAction({
 				const name = nameShort?.trim() || nameFull?.trim();
 				return name ? [{ team: teamNumber, name }] : [];
 			});
-			for (let offset = 0; offset < names.length; offset += nameBatchSize) {
-				await ctx.runMutation(internal.teamNames.upsertBatch, { teams: names.slice(offset, offset + nameBatchSize) });
+			for (let offset = 0; offset < names.length; offset += batchSize) {
+				await ctx.runMutation(internal.teamNames.upsertBatch, { teams: names.slice(offset, offset + batchSize) });
 			}
 			page = body.pageCurrent + 1;
 			pageTotal = body.pageTotal;
 		}
+		let jobs = 0;
 		for (let offset = 0; offset < teams.length; offset += batchSize) {
-			await ctx.scheduler.runAfter(0, internal.refreshBatch.process, {
+			const unverified = await ctx.runQuery(internal.colors.getUnverifiedTeams, {
 				teams: teams.slice(offset, offset + batchSize),
 			});
+			await refreshPool.enqueueActionBatch(
+				ctx,
+				internal.refreshTeam.process,
+				unverified.map((team) => ({ team })),
+			);
+			jobs += unverified.length;
 		}
-		return { teams: teams.length, batches: Math.ceil(teams.length / batchSize) };
+		return { teams: teams.length, jobs };
 	},
 });
