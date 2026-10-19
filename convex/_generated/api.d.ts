@@ -14,6 +14,7 @@ import type * as crons from "../crons.js";
 import type * as http from "../http.js";
 import type * as lib_admin from "../lib/admin.js";
 import type * as lib_colors from "../lib/colors.js";
+import type * as lib_frcEvents from "../lib/frcEvents.js";
 import type * as lib_tba from "../lib/tba.js";
 import type * as lib_workpool from "../lib/workpool.js";
 import type * as refresh from "../refresh.js";
@@ -34,6 +35,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   "lib/admin": typeof lib_admin;
   "lib/colors": typeof lib_colors;
+  "lib/frcEvents": typeof lib_frcEvents;
   "lib/tba": typeof lib_tba;
   "lib/workpool": typeof lib_workpool;
   refresh: typeof refresh;

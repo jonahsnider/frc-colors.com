@@ -235,12 +235,12 @@ importers:
       extract-colors:
         specifier: 4.2.1
         version: 4.2.1
+      fetch-extras:
+        specifier: 3.2.1
+        version: 3.2.1
       hono:
         specifier: 4.13.13
         version: 4.13.13
-      ky:
-        specifier: 2.2.0
-        version: 2.2.0
       next-themes:
         specifier: 0.4.6
         version: 0.4.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3234,6 +3234,10 @@ packages:
       picomatch:
         optional: true
 
+  fetch-extras@3.2.1:
+    resolution: {integrity: sha512-MuxNR+WUQiu6i4xEDrtoSzSwoqDR2QhN8KU5jlFdAyM3aJmPYwOVC/PwkL5tqyzFMoxz9aGzYyPKRrnSkJQsEA==}
+    engines: {node: '>=22'}
+
   fetchdts@0.2.0:
     resolution: {integrity: sha512-PJb4ZTGT2/wK78RmVrxZITStWabhZlKBsL52VOgq+c7clEkdHdEB+0rtzrXCbZJqeYJj+IwNWYqB5/G6vouA6A==}
 
@@ -3347,10 +3351,6 @@ packages:
     resolution: {integrity: sha512-lNypqHwi38RJQG8pVuItqzCDPMOfPbBExyFh8aM4yMJRHVU7t5OQAtEK4tDkaB3rLHetOcVMhRFAgv5Vn2CM0A==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
-
-  ky@2.2.0:
-    resolution: {integrity: sha512-4+B63kyZt+Y8snQiUGydK1vgY9xYQJZEh9K/nIAIEts+gYJzy1EiAw3BbK8xpWRuWUpN70SNCMjqRGTm75xxIA==}
-    engines: {node: '>=22'}
 
   lightningcss-android-arm64@1.33.0:
     resolution: {integrity: sha512-gEpRTalKdosp4Bb8qWtc2iOgE5SeIHlpS1up9bFq2wAyYhl1UdTObYiHe98zEM9SQvSoqQZ1IQD0JNpg3Ml5pg==}
@@ -6518,6 +6518,8 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
+  fetch-extras@3.2.1: {}
+
   fetchdts@0.2.0: {}
 
   fflate@0.8.3: {}
@@ -6610,8 +6612,6 @@ snapshots:
       unbash: 6.0.0
       yaml: 2.9.1
       zod: 4.6.7
-
-  ky@2.2.0: {}
 
   lightningcss-android-arm64@1.33.0:
     optional: true

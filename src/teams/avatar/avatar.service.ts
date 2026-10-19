@@ -1,15 +1,21 @@
-import ky, { HTTPError } from 'ky';
+import { HttpError, pipeline, withBaseUrl, withHttpError, withRetry, withTimeout } from 'fetch-extras';
 import type { TeamNumber } from '../dtos/team-number.dto.ts';
 
 class AvatarService {
-	private readonly fetcher = ky.create({ prefix: 'https://avatars.frc.sh' });
+	private readonly fetcher = pipeline(
+		fetch,
+		withTimeout(10_000),
+		withBaseUrl('https://avatars.frc.sh'),
+		withRetry(),
+		withHttpError(),
+	);
 
 	async getAvatar(teamNumber: TeamNumber): Promise<Buffer | undefined> {
 		try {
-			const response = await this.fetcher.get(`teams/${teamNumber}.png`);
+			const response = await this.fetcher(`teams/${teamNumber}.png`);
 			return Buffer.from(await response.arrayBuffer());
 		} catch (error) {
-			if (error instanceof HTTPError && error.response.status === 404) {
+			if (error instanceof HttpError && error.response.status === 404) {
 				return undefined;
 			}
 
