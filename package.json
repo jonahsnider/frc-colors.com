@@ -36,7 +36,7 @@
 		"@tanstack/react-start": "1.169.4",
 		"@uidotdev/usehooks": "2.4.1",
 		"clsx": "2.1.1",
-		"convex": "1.47.0",
+		"convex": "1.48.0",
 		"convex-helpers": "0.1.129",
 		"culori": "4.0.2",
 		"date-fns": "4.4.0",
