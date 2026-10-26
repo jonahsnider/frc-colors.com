@@ -42,7 +42,7 @@
 		"date-fns": "4.4.0",
 		"extract-colors": "4.2.1",
 		"fetch-extras": "3.2.1",
-		"hono": "4.13.13",
+		"hono": "4.13.14",
 		"next-themes": "0.4.6",
 		"pngjs": "7.0.0",
 		"radix-themes-tw": "0.2.3",
