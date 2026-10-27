@@ -294,8 +294,8 @@ importers:
         specifier: 6.43.0
         version: 6.43.0
       portless:
-        specifier: 0.15.11
-        version: 0.15.11
+        specifier: 0.15.12
+        version: 0.15.12
       postcss:
         specifier: 8.5.31
         version: 8.5.31
@@ -3572,8 +3572,8 @@ packages:
     resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
     engines: {node: '>=14.19.0'}
 
-  portless@0.15.11:
-    resolution: {integrity: sha512-2qjRJ0CG3zPOJ3mUVPdEZjivd7KV/ldiUwhYGI0fdxPVKDjv77GFVmioLQFWoDqNz5paG+4yk+Tibmgtil3Otg==}
+  portless@0.15.12:
+    resolution: {integrity: sha512-Lbz85zLboOMkvq2unXYfJ/YMpsvFZYQgrwGEbinZErp045y9fLm4obm7E77V2BI2Om0Mh6tX/2w2ftFqRs5kfQ==}
     engines: {node: '>=24'}
     os: [darwin, linux, win32]
     hasBin: true
@@ -6848,7 +6848,7 @@ snapshots:
 
   pngjs@7.0.0: {}
 
-  portless@0.15.11: {}
+  portless@0.15.12: {}
 
   postcss-import@15.1.0(postcss@8.5.31):
     dependencies:
