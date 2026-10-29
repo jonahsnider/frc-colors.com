@@ -23,7 +23,7 @@
 	},
 	"dependencies": {
 		"@convex-dev/react-query": "0.1.0",
-		"@convex-dev/workpool": "0.4.14",
+		"@convex-dev/workpool": "0.4.15",
 		"@heroicons/react": "2.2.0",
 		"@hono/zod-openapi": "1.6.3",
 		"@jonahsnider/util": "13.0.0",

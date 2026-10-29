@@ -182,8 +182,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0(@tanstack/react-query@5.105.0(@types/react@19.3.0)(react@19.3.1))(convex@1.48.0(react@19.3.1))
       '@convex-dev/workpool':
-        specifier: 0.4.14
-        version: 0.4.14(convex-helpers@0.1.129(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7))(convex@1.48.0(react@19.3.1))(react@19.3.1)
+        specifier: 0.4.15
+        version: 0.4.15(@standard-schema/spec@1.1.0)(convex-helpers@0.1.129(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7))(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)
       '@heroicons/react':
         specifier: 2.2.0
         version: 2.2.0(react@19.3.1)
@@ -455,11 +455,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@convex-dev/batch-worker@0.2.2':
-    resolution: {integrity: sha512-3knigElzTVhWw1sN28EYkGBTdrJZ03vMj2PJPuFq3V0Tg41i7tcv/EWDBFQWcUaKzBWWVw693hcJtxCF3CRtEw==}
+  '@convex-dev/batch-worker@0.3.6':
+    resolution: {integrity: sha512-tR+9DaHR3jG3oqkIFX0ok/6944h7UHEQgT6HTmiuxU+lERYuYMsxA2IWwFD5yTFbCpO3YJhqXU4QdGY90sgUqQ==}
     peerDependencies:
-      convex: ^1.36.1
-      react: ^18.3.1 || ^19.0.0
+      convex: ^1.43.0
 
   '@convex-dev/react-query@0.1.0':
     resolution: {integrity: sha512-ULmBZCtAQDUePdBhUv7hj1Yy4QiCelhi6uEIOtMpjW8db6W9CFKvQwLt9heLngccFyMFfAZdOfSrT+cP4AH0Jw==}
@@ -467,10 +466,10 @@ packages:
       '@tanstack/react-query': ^5.0.0
       convex: ^1.29.3
 
-  '@convex-dev/workpool@0.4.14':
-    resolution: {integrity: sha512-uTgOlLo7/Sv5OYhb6jjQ/+COAgLhOd1sMfHtJbN5qB298SHJQGoUUab66f6kqfEb8ugD1FnkL0oNZmk6fMqkow==}
+  '@convex-dev/workpool@0.4.15':
+    resolution: {integrity: sha512-eweNWj3nHnUpwT40S5qwtA/d9LbuVMXlBP6GqM5tE4+eAOkzWbudiiCz9bi1bBpFSjtnbdRfQ+PoBG/STqgj8A==}
     peerDependencies:
-      convex: ^1.36.1
+      convex: ^1.43.0
       convex-helpers: ^0.1.94
 
   '@cspotcode/source-map-support@0.8.1':
@@ -4270,23 +4269,33 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20261023.1':
     optional: true
 
-  '@convex-dev/batch-worker@0.2.2(convex@1.48.0(react@19.3.1))(react@19.3.1)':
+  '@convex-dev/batch-worker@0.3.6(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)':
     dependencies:
       convex: 1.48.0(react@19.3.1)
-      react: 19.3.1
+      convex-helpers: 0.1.129(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)
+    transitivePeerDependencies:
+      - '@standard-schema/spec'
+      - hono
+      - react
+      - typescript
+      - zod
 
   '@convex-dev/react-query@0.1.0(@tanstack/react-query@5.105.0(@types/react@19.3.0)(react@19.3.1))(convex@1.48.0(react@19.3.1))':
     dependencies:
       '@tanstack/react-query': 5.105.0(@types/react@19.3.0)(react@19.3.1)
       convex: 1.48.0(react@19.3.1)
 
-  '@convex-dev/workpool@0.4.14(convex-helpers@0.1.129(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7))(convex@1.48.0(react@19.3.1))(react@19.3.1)':
+  '@convex-dev/workpool@0.4.15(@standard-schema/spec@1.1.0)(convex-helpers@0.1.129(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7))(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)':
     dependencies:
-      '@convex-dev/batch-worker': 0.2.2(convex@1.48.0(react@19.3.1))(react@19.3.1)
+      '@convex-dev/batch-worker': 0.3.6(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)
       convex: 1.48.0(react@19.3.1)
       convex-helpers: 0.1.129(@standard-schema/spec@1.1.0)(convex@1.48.0(react@19.3.1))(hono@4.13.14)(react@19.3.1)(typescript@7.0.2)(zod@4.6.7)
     transitivePeerDependencies:
+      - '@standard-schema/spec'
+      - hono
       - react
+      - typescript
+      - zod
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
