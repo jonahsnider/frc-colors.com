@@ -61,7 +61,7 @@
 		"@types/react-dom": "19.3.0",
 		"@vitejs/plugin-react": "6.1.2",
 		"autoprefixer": "10.6.2",
-		"knip": "6.43.0",
+		"knip": "6.44.0",
 		"portless": "0.15.12",
 		"postcss": "8.5.32",
 		"postcss-import": "17.0.1",
