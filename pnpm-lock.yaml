@@ -315,8 +315,8 @@ importers:
         specifier: 3.4.19
         version: 3.4.19(tsx@4.23.12)(yaml@2.9.1)
       type-fest:
-        specifier: 6.0.1
-        version: 6.0.1
+        specifier: 6.0.2
+        version: 6.0.2
       typescript:
         specifier: 7.0.2
         version: 7.0.2
@@ -3950,8 +3950,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  type-fest@6.0.1:
-    resolution: {integrity: sha512-nnRRKEpyNxX4XkeR6dpMy27ZNT5/nE3D73fs5FcKW/+OtqwSmdshWUw5azvpsMzjst5rAUe61ZxilQ70YFS9yA==}
+  type-fest@6.0.2:
+    resolution: {integrity: sha512-eVBdZcUsT0GbeVcuMHJG4qiZeHF7ANdJtzMtAD+r94rw7PQZ4zAK43ik+jZZ6woURQA6QIz6Kz5uv0HbMs0AQQ==}
     engines: {node: '>=22'}
 
   typescript@7.0.2:
@@ -7340,7 +7340,7 @@ snapshots:
       fsevents: 2.3.3
     optional: true
 
-  type-fest@6.0.1:
+  type-fest@6.0.2:
     dependencies:
       tagged-tag: 1.0.0
 
