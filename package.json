@@ -60,7 +60,7 @@
 		"@types/react": "19.3.0",
 		"@types/react-dom": "19.3.0",
 		"@vitejs/plugin-react": "6.3.0",
-		"autoprefixer": "10.6.2",
+		"autoprefixer": "10.7.0",
 		"knip": "6.46.1",
 		"portless": "0.18.1",
 		"postcss": "8.5.33",
